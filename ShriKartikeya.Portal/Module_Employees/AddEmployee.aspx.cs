@@ -49,7 +49,9 @@ namespace ShriKartikeya.Portal
                     //LoadClientids();
 
                     LoadDesignations();
-                    employeeid();
+
+                    NYAEmpId();
+                   // employeeid();
                     LoadStatenames();
                     LoadOldEmployeeId();
 
@@ -2688,10 +2690,8 @@ namespace ShriKartikeya.Portal
                     rdbGeneral.Checked = true;
                     rdbmanual.Checked = false;
                     rdbStaff.Checked = false;
-                    employeeid();
-
-
-
+                    //employeeid();
+                    NYAEmpId();
                 }
                 else
                 {
@@ -2722,7 +2722,8 @@ namespace ShriKartikeya.Portal
 
         protected void Btn_Cancel_Personal_Tab_Click(object sender, EventArgs e) // Personal Tab Cancel Button Click
         {
-            employeeid();
+            // employeeid();
+            NYAEmpId();
             ClearDataFromPersonalInfoTabFields();
             txtDOfEnroll.Text = txtDofDischarge.Text = "";
             txtServiceNum.Text = txtRank.Text = txtCrops.Text = txtTrade.Text = txtMCategory.Text = TxtROfDischarge.Text = txtConduct.Text = string.Empty;
@@ -4422,14 +4423,16 @@ namespace ShriKartikeya.Portal
         }
         protected void rdbStaff_CheckedChanged(object sender, EventArgs e)
         {
-            employeeid();
+            // employeeid();
+            NYAEmpId();
             txtEmID.ReadOnly = true;
 
         }
         protected void rdbGeneral_CheckedChanged(object sender, EventArgs e)
         {
             txtEmID.ReadOnly = true;
-            employeeid();
+            //employeeid();
+            NYAEmpId();
         }
         //protected void ddlbirthstate_SelectedIndexChanged(object sender, EventArgs e)
         //{

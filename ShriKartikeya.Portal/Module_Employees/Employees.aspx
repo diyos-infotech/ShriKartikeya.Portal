@@ -39,7 +39,7 @@
                                 <asp:Button ID="btnSearch" runat="server" Text="Search" class=" btn save" OnClick="btnSearch_Click" ToolTip="Search" />
                             </td>
                             <td align="right"><a href="AddEmployee.aspx" class=" btn save">Add New Employee</a><br />
-                                <a href="ApproveEmployee.aspx" class=" btn save" runat="server" id="ApproveEmployeeLink" visible="false">Approve Employee</a> </td>
+                                <a href="ApproveEmployee.aspx" class=" btn save" runat="server" id="ApproveEmployeeLink">Approve Employee</a> </td>
                             <td align="right"><a href="EmpSalaryStructure.aspx" class=" btn save">Emp Salary Structure</a></td>
                         </tr>
                     </table>

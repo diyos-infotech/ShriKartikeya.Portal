@@ -17,8 +17,14 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="assets/EPFLogo.png">
       <publishTime>08/17/2021 10:54:50</publishTime>
     </File>
+    <File Include="assets/FooterPayslip.jpg">
+      <publishTime>09/20/2021 14:17:52</publishTime>
+    </File>
     <File Include="assets/GDXBillLogo.png">
       <publishTime>08/17/2021 10:54:50</publishTime>
+    </File>
+    <File Include="assets/HeaderPayslip.jpg">
+      <publishTime>09/20/2021 16:51:28</publishTime>
     </File>
     <File Include="assets/Images/addressproof.png">
       <publishTime>08/17/2021 10:54:50</publishTime>
@@ -135,20 +141,20 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/17/2021 10:54:49</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/16/2021 17:10:31</publishTime>
+      <publishTime>09/21/2021 13:20:52</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/16/2021 17:10:31</publishTime>
+      <publishTime>09/21/2021 13:20:52</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
       <publishTime>06/28/2021 15:53:08</publishTime>
-      <publishTime>09/16/2021 17:10:06</publishTime>
+      <publishTime>09/21/2021 13:20:27</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/16/2021 17:10:31</publishTime>
+      <publishTime>09/21/2021 13:20:52</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
-      <publishTime>09/16/2021 17:10:06</publishTime>
+      <publishTime>09/21/2021 13:20:27</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.pdb">
       <publishTime>07/12/2021 10:45:13</publishTime>
@@ -1613,10 +1619,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="PrecompiledApp.config">
       <publishTime>06/28/2021 15:53:30</publishTime>
-      <publishTime>09/16/2021 17:10:28</publishTime>
+      <publishTime>09/21/2021 13:20:48</publishTime>
     </File>
     <File Include="Properties/PublishProfiles/FolderProfile.pubxml.user">
-      <publishTime>09/04/2021 12:27:40</publishTime>
+      <publishTime>09/16/2021 17:11:12</publishTime>
     </File>
     <File Include="Reminders.aspx">
       <publishTime>08/17/2021 10:59:38</publishTime>

@@ -410,11 +410,15 @@
                             </tr>
                         </table>
 
+                       
 
                     </div>
 
-                    <div id="dialog" style="display: none">
+                    
 
+
+                    <div id="dialog" style="display: none">
+                         
                         <table cellpadding="5" cellspacing="5">
                             <tr>
                                 <td>Emp ID
@@ -444,23 +448,9 @@
                             </tr>
                         </table>
                     </div>
+                     
                     <div class="panel-body">
-                         <table width="20%" align="right">
-                        <tr>
-                            <td>
-                                <input type="button" id="btnPrevious" value="Previous" style="display: none" /></td>
-                            <td>
-                                <input type="button" id="btnNext" value="Next" /></td>
-                            <td>
-                                <asp:Button ID="Button1" runat="server" Text="Save"
-                                    OnClick="Btn_Save_Personal_Tab_Click" ValidationGroup="a" /></td>
-                            <td>
-                                <asp:Button ID="Button2" runat="server" Text="Cancel" OnClientClick='return confirm("Are you sure you want to Cancel this entry?");'
-                                    OnClick="Btn_Cancel_Personal_Tab_Click" /></td>
-
-
-                        </tr>
-                    </table>
+                         
                         <div style="text-align: right">
                             <asp:Label ID="txtmodifyempid" runat="server"></asp:Label>
                         </div>
@@ -3363,9 +3353,31 @@
                                     </div>
 
                                 </asp:Panel>
+                                
+                       
                             </div>
+
                         </div>
                     </div>
+                  <%--  naresh3362--%>
+
+                       <table width="20%"   align="right">
+                        <tr>
+                            <td>
+                                <input type="button" id="btnPrevious" value="Previous" style="display: none" /></td>
+                            <td>
+                                <input type="button" id="btnNext" value="Next" /></td>
+                            <td>
+                                <asp:Button ID="Button1" runat="server" Text="Save"
+                                    OnClick="Btn_Save_Personal_Tab_Click" ValidationGroup="a" /></td>
+                            <td>
+                                <asp:Button ID="Button2" runat="server" Text="Cancel" OnClientClick='return confirm("Are you sure you want to Cancel this entry?");'
+                                    OnClick="Btn_Cancel_Personal_Tab_Click" /></td>
+
+
+                        </tr>
+                    </table>
+                  
                     <br />
                     <br />
 
