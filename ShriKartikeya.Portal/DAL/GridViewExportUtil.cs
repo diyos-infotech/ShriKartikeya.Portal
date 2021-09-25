@@ -865,7 +865,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.End();
     }
 
-    public void ExportGridForWagesheetReport(string fileName, int countduties, int countfixedwages, int countearnings, int countdedutions, int countpfempr, int countAdvBonus, int countnetpay, int Empdetailscount, string Form, string wages, string Rule, string ContractorName, string WorkLocation, int count, HiddenField hidGridView)
+    public void ExportGridForWagesheetReport(string fileName, int countduties, int countfixedwages, int countearnings, int countdedutions, int countpfempr, int countAdvBonus, int countnetpay, int Empdetailscount, string Form, string wages, string Address, string ContractorName, string line2, int count, HiddenField hidGridView)
     {
         string filename = fileName;
         string style = @"<style> .text { mso-number-format:\@; } </style> ";
@@ -883,7 +883,7 @@ public class GridViewExportUtil
           "style='font-size:11.0pt; font-family:calibri; background:white;'>");
 
         //am getting my grid's column headers
-        int columnscount = 30;
+        int columnscount = 27;
 
         //HttpContext.Current.Response.Write("<TR valign='top'>");
 
@@ -919,12 +919,21 @@ public class GridViewExportUtil
         //HttpContext.Current.Response.Write("</Td>");
         //HttpContext.Current.Response.Write("</TR>");
 
-        //HttpContext.Current.Response.Write("<TR valign='top'>");
-        //HttpContext.Current.Response.Write("<Td border='0'; align='left' colspan= '" + count + "'>");
-        //HttpContext.Current.Response.Write("<B>");
-        //HttpContext.Current.Response.Write(ContractorName);
-        //HttpContext.Current.Response.Write("</B>");
-        //HttpContext.Current.Response.Write("</Td>");
+        HttpContext.Current.Response.Write("<TR valign='top'>");
+        HttpContext.Current.Response.Write("<Td border='1'; align='center' colspan=27>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write(ContractorName+Address);
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+        HttpContext.Current.Response.Write("</TR>");
+
+        HttpContext.Current.Response.Write("<TR valign='top'>");
+        HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan=27 >");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write(line2);
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+        HttpContext.Current.Response.Write("</TR>");
 
         ////HttpContext.Current.Response.Write("<Td style='border:0; align='right'  colspan= '" + count/2 + "'>");
         ////HttpContext.Current.Response.Write("<B>");
@@ -967,41 +976,41 @@ public class GridViewExportUtil
 
         HttpContext.Current.Response.Write("<Table border='1' bgColor='#ffffff' " +
          "borderColor='#000000' cellSpacing='0' cellPadding='0' " +
-         "style='font-size:11.0pt; font-family:calibri; background:white;'>");
+         "style='font-size:20.0pt; font-family:calibri; background:white;'>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan= '" + Empdetailscount + "'>");
-        HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("EMPLOYEES DETAILS");
-        HttpContext.Current.Response.Write("</B>");
-        HttpContext.Current.Response.Write("</Td>");
+        //HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan= '" + Empdetailscount + "'>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write("EMPLOYEES DETAILS");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
         //HttpContext.Current.Response.Write("</TR>");
 
-        HttpContext.Current.Response.Write("<Td border='1' align='center'  colspan='" + countfixedwages + "'>");
-        HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("FIXED WAGES");
-        HttpContext.Current.Response.Write("</B>");
-        HttpContext.Current.Response.Write("</Td>");
+        //HttpContext.Current.Response.Write("<Td border='1' align='center'  colspan='" + countfixedwages + "'>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write("FIXED WAGES");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
 
-        HttpContext.Current.Response.Write("<Td border='1' align='center'  colspan='" + countduties + "'>");
-        HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("WORKED");
-        HttpContext.Current.Response.Write("</B>");
-        HttpContext.Current.Response.Write("</Td>");
-
-
-        HttpContext.Current.Response.Write("<Td border='1' align='center'  colspan='" + countearnings + "'>");
-        HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("AMOUNT OF WAGES EARNED");
-        HttpContext.Current.Response.Write("</B>");
-        HttpContext.Current.Response.Write("</Td>");
+        //HttpContext.Current.Response.Write("<Td border='1' align='center'  colspan='" + countduties + "'>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write("WORKED");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
 
 
-        HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan='" + countdedutions + "'>");
-        HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("DEDUCTIONS");
-        HttpContext.Current.Response.Write("</B>");
-        HttpContext.Current.Response.Write("</Td>");
+        //HttpContext.Current.Response.Write("<Td border='1' align='center'  colspan='" + countearnings + "'>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write("AMOUNT OF WAGES EARNED");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
+
+
+        //HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan='" + countdedutions + "'>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write("DEDUCTIONS");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
 
         //HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan=1>");
         //HttpContext.Current.Response.Write("<B>");
@@ -1017,24 +1026,24 @@ public class GridViewExportUtil
 
         if (countAdvBonus > 0)
         {
-            HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan='" + countAdvBonus + "'>");
-            HttpContext.Current.Response.Write("<B>");
-            HttpContext.Current.Response.Write("");
-            HttpContext.Current.Response.Write("</B>");
-            HttpContext.Current.Response.Write("</Td>");
+            //HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan='" + countAdvBonus + "'>");
+            //HttpContext.Current.Response.Write("<B>");
+            //HttpContext.Current.Response.Write("");
+            //HttpContext.Current.Response.Write("</B>");
+            //HttpContext.Current.Response.Write("</Td>");
         }
 
-        HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan='" + countnetpay + "'>");
-        HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("NET PAID");
-        HttpContext.Current.Response.Write("</B>");
-        HttpContext.Current.Response.Write("</Td>");
+        //HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan='" + countnetpay + "'>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write("NET PAID");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
 
-        HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan= 1>");
-        HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write(" ");
-        HttpContext.Current.Response.Write("</B>");
-        HttpContext.Current.Response.Write("</Td>");
+        //HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan= 1>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write(" ");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
 
         HttpContext.Current.Response.Write("</TR>");
         HttpContext.Current.Response.Write("</Table>");

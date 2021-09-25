@@ -1189,6 +1189,13 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                                 }
 
+                                string strNoofDaysFromContracts = dt.Rows[i]["NoofDaysFromContracts"].ToString();
+                                if (strNoofDaysFromContracts.Trim().Length > 0)
+                                {
+                                    totalwds += Convert.ToSingle(strNoofDaysFromContracts);
+
+                                }
+
                                 //string strUniformAllw = dt.Rows[i]["UniformAllw"].ToString();
                                 //if (strUniformAllw.Trim().Length > 0)
                                 //{
@@ -1810,7 +1817,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                     {
                         countdedutions += 1;
                     }
-
+                   
 
                     //if (totalMobInstDed > 0)
                     //{
@@ -1861,20 +1868,21 @@ namespace ShriKartikeya.Portal.Module_Reports
                         Year = DateTime.Parse(date).Year.ToString().Substring(2, 2);
                     }
                     string filename = "PaySheetReport " + ".xls";
-                    //int count = GVListEmployees.Columns.Count;
-                    int count = countduties + countfixed + countearnings + countdedutions + countNetpay + EmpDetialscount + countAdvBonus;
+                    int count = GVListEmployees.Columns.Count;
+                  //  int count = countduties + countfixed + countearnings + countdedutions + countNetpay + EmpDetialscount + countAdvBonus;
                     companyname = dtbranchesi.Rows[0]["CompanyName"].ToString();
+                    string Address = dtbranchesi.Rows[0]["Address"].ToString();
                     string Form = "FORM XVII";
                     string wages = "REGISTER OF WAGES";
                     string Rule = "[Rule 78(1)(a)(i)]";
-                    string ContractorName = "Name and address of contractor " + companyname;
+                    string ContractorName = companyname;
                     string WorkLocation = "Nature and location of work";
-                    string Address = "Name and address of establishment in/under which contract is carried on";
+                   // string Address = "Name and address of establishment in/under which contract is carried on";
                     string PrincipalEmployeer = "Name and address of principal employer";
                     string Wageperiod = "Wage period: Monthly";
                     line2 = "Salary Statement for Month of " + GetMonthName() + "-" + Year;
                     //GVUtill.ExportGrid("Netpay-(" + txtmonth.Text + ")" + ".xls", hidGridView);
-                    gve.ExportGridForWagesheetReport(filename, countduties, countfixed, countearnings, countdedutions, countpfempr, countAdvBonus, countNetpay, EmpDetialscount, Form, wages, Rule, ContractorName, WorkLocation, count, hidGridView);
+                    gve.ExportGridForWagesheetReport(filename, countduties, countfixed, countearnings, countdedutions, countpfempr, countAdvBonus, countNetpay, EmpDetialscount, Form, wages, Address, ContractorName, line2,count, hidGridView);
 
                 }
             }
@@ -2118,6 +2126,7 @@ namespace ShriKartikeya.Portal.Module_Reports
         float totalcdRankAllowance = 0;
         float totalRankAllowance = 0;
         float totalAdvBonus = 0;
+        float totalwds = 0;
         #endregion Total Variables
 
         protected void DisplayData()
@@ -2248,7 +2257,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     {
                                         totalCdTempGross += Convert.ToSingle(strCdTempGross);
                                     }
-
+                                    string sttotalwds = dt.Rows[i]["NoofDaysFromContracts"].ToString();
+                                    if (sttotalwds.Trim().Length > 0)
+                                    {
+                                        totalwds += Convert.ToSingle(sttotalwds);
+                                    }
                                     string strCdBasic = dt.Rows[i]["CdBasic"].ToString();
                                     if (strCdBasic.Trim().Length > 0)
                                     {
@@ -2991,8 +3004,17 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     string stAdvBonus = dt.Rows[i]["AdvBonus"].ToString();
                                     if (stAdvBonus.Trim().Length > 0)
                                     {
-                                        totalAdvBonus += Convert.ToSingle(stAdvBonus);
+                                        totalAdvBonus += Convert.ToSingle(stAdvBonus); 
                                     }
+
+
+                                   
+
+                                    //string strDaysFromContracts = dt.Rows[i]["NoofDaysFromContracts"].ToString();
+                                    //if (stAdvBonus.Trim().Length > 0)
+                                    //{
+                                    //    totalAdvBonus += Convert.ToSingle(strDaysFromContracts);
+                                    //}
 
                                     //string strNPCl25Per = dt.Rows[i]["OTHrs"].ToString();
                                     //if (strNPCl25Per.Trim().Length > 0)
@@ -4627,6 +4649,12 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
 
+
+                        Label lblnoofContracts = GVListEmployees.FooterRow.FindControl("lblnoofContracts") as Label;
+                        lblnoofContracts.Text = Math.Round(totalwds).ToString();
+                       
+
+
                         Label lblTotalNetAmount = GVListEmployees.FooterRow.FindControl("lblTotalNetAmount") as Label;
                         lblTotalNetAmount.Text = Math.Round(totalActualamount).ToString();
 
@@ -4668,7 +4696,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                     e.Row.Style.Add("font-weight", "bold");
 
                     ((Label)e.Row.FindControl("lblTempGross")).Text = "";
-
+                    ((Label)e.Row.FindControl("lblTempGross1")).Text = "";
                     ((Label)e.Row.FindControl("lblbasic")).Text = "";
                     ((Label)e.Row.FindControl("lbldutyhrs")).Text = "";
                     ((Label)e.Row.FindControl("lblOTs")).Text = "";
@@ -4747,9 +4775,11 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                     //(19)
                     ((Label)e.Row.FindControl("lblCdbasic")).Text = "";
+                    ((Label)e.Row.FindControl("lblCdbasic1")).Text = "";
                     ((Label)e.Row.FindControl("lblCdda")).Text = "";
                     //((Label)e.Row.FindControl("lblOts")).Text = "";
                     ((Label)e.Row.FindControl("lblCdhra")).Text = "";
+                    ((Label)e.Row.FindControl("lblCdhra1")).Text = "";
                     ((Label)e.Row.FindControl("lblCdcca")).Text = "";
                     ((Label)e.Row.FindControl("lblCdConveyance")).Text = "";
                     //((Label)e.Row.FindControl("lbltempgross")).Text = "";
@@ -4764,6 +4794,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                     ((Label)e.Row.FindControl("lblcdNhsAmt")).Text = "";
                     ((Label)e.Row.FindControl("lblcdmedicalallowance")).Text = "";
                     ((Label)e.Row.FindControl("lblcdSpecialAllowance")).Text = "";
+                    ((Label)e.Row.FindControl("lblcdSpecialAllowance1")).Text = "";
                     ((Label)e.Row.FindControl("lblcdTravelAllw")).Text = "";
                     ((Label)e.Row.FindControl("lblcdMobileAllowance")).Text = "";
                     ((Label)e.Row.FindControl("lblcdPerformanceAllw")).Text = "";
