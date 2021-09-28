@@ -2514,18 +2514,18 @@ namespace ShriKartikeya.Portal
 
                 }
                 string StrSign = "";
-                if (FileUploadSign.HasFile)
-                {
-                    StrSign = txtEmID.Text + "Sign.jpg";
-                    path = Path.GetFileName(FileUploadSign.PostedFile.FileName);
-                    FileUploadSign.PostedFile.SaveAs(Server.MapPath("~/assets/EmpSign/") + StrSign);
+                //if (FileUploadSign.HasFile)
+                //{
+                //    StrSign = txtEmID.Text + "Sign.jpg";
+                //    path = Path.GetFileName(FileUploadSign.PostedFile.FileName);
+                //    FileUploadSign.PostedFile.SaveAs(Server.MapPath("~/assets/EmpSign/") + StrSign);
 
-                }
-                else
-                {
-                    StrSign = "";
+                //}
+                //else
+                //{
+                //    StrSign = "";
 
-                }
+                //}
 
                 var EmployeeType = "G";
 

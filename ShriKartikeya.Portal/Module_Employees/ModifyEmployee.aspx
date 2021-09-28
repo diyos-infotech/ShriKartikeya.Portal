@@ -918,9 +918,9 @@
 
                                         </asp:Panel>
 
-                                        <asp:Panel ID="pnlimages" runat="server" Enabled="false" GroupingText="<strong>&nbsp;Images&nbsp;</strong>" Style="display: none">
+                                        <asp:Panel ID="pnlimages" runat="server" Enabled="false" GroupingText="<strong>&nbsp;Images&nbsp;</strong>">
 
-                                            <div class="dashboard_firsthalf" style="display: none">
+                                            <div class="dashboard_firsthalf">
                                                 <table cellpadding="5" cellspacing="5" style="margin-top: 10px">
                                                     <tr>
                                                         <td>Employee Photo</td>
