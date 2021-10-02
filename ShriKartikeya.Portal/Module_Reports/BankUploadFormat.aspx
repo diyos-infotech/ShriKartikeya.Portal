@@ -166,9 +166,9 @@
                                             <td>
                                                 <asp:DropDownList ID="ddlOptions" class="sdrop" runat="server">
                                                     <asp:ListItem>--Select--</asp:ListItem>
-                                                    <asp:ListItem>HDFC</asp:ListItem>
+                                                    <%--<asp:ListItem>HDFC</asp:ListItem>
                                                     <asp:ListItem>SBI</asp:ListItem>
-                                                    <asp:ListItem>Others</asp:ListItem>
+                                                    <asp:ListItem>Others</asp:ListItem>--%>
                                                 </asp:DropDownList>
                                             </td>
                                            

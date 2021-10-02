@@ -47,6 +47,7 @@ namespace ShriKartikeya.Portal
                     }
                     //  FillClientList();
                     // FillClientNameList();
+                    GetBankNames();
                 }
 
             }
@@ -133,6 +134,25 @@ namespace ShriKartikeya.Portal
             lbtn_Export.Visible = true;
         }
 
+        public void GetBankNames()
+        {
+            ddlOptions.DataSource = null;
+            ddlOptions.DataBind();
+
+            string query = "select BankId,Bankname from BankNames";
+            DataTable dtbanks = config.ExecuteAdaptorAsyncWithQueryParams(query).Result;
+            if (dtbanks.Rows.Count > 0)
+            {
+                
+                ddlOptions.DataSource = dtbanks;
+                ddlOptions.DataBind();
+                ddlOptions.DataTextField = "Bankname";
+                ddlOptions.DataValueField = "BankId";
+                ddlOptions.DataBind();
+               // ddlOptions.Items.Insert(0, "Select");
+            }
+         
+        }
         protected void ClearData()
         {
             GVListEmployees.DataSource = null;
@@ -308,26 +328,31 @@ namespace ShriKartikeya.Portal
                     //    string line1 = DateTime.Now.ToString("dd/MM/yyyy");
                     //    gve.ExporttoExcelForBankUpload("BankUploadFormat.xls", this.GVListClients, line, line1, count);
                     //}
-                    if (ddlOptions.SelectedIndex == 1 || ddlOptions.SelectedIndex == 2 )
+
+                    if (ddlOptions.SelectedIndex == 1)
                     {
-                        string line = "EMPLOYEES SALARIES & BANK A/C DETAILS FOR  "+ txtmonth.Text;
+                        string line = "";
                         string line1 = "";
-                        gve.ExporttoExcelForBankUploadbank("BankUploadFormat.xls", this.GVListClients, line, line1, count);
-                    }
-                    if (ddlOptions.SelectedIndex == 3)
-                    {
-                        string line = "To,";
-                        string line1 = "The Branch Manager,";
-                        string line2 = "State Bank of India,";
-                        string line3 = "PBB HPS, Hyd-16.";
+                        string line2 = "";
+                        string line3 = "";
                         string line4 = "";
-                        string line5 = "Dear Sir,";
+                        string line5 = "";
                         string line6 = "";
-                        string line7 = "Sub:-Request to transfer Employees Salaries for the Month of "+ txtmonth.Text+" through NEFT from our C/A No.10421834581.";
-                        string line8 = "Ensure that the customer is to be debited with the total amount including commission. The credit is to be provided to the NEFT intermediate BGL account (98556) and the commission to the branch BGL 98934. For validation the NEFT amount only is taken ";
+                        string line7 = "";
+                        string line8 = " ";
 
                         gve.ExporttoExcelForBankUploadNew("BankUploadFormat.xls", this.GVListClients, line, line1, line2, line3, line4, line5, line6, line7, line8, count);
+
                     }
+                    if (ddlOptions.SelectedIndex == 2 )
+                    {
+                        string strcompanyName = compInfo.Rows[0]["CompanyName"].ToString();
+                        string line = strcompanyName;
+                        Label lblclientname = GVListEmployees.Rows[0].FindControl("lblclientname") as Label;
+                        string line1 = "Salary Register For The Month of " + txtmonth.Text+ lblclientname; 
+                        gve.ExporttoExcelForBankUploadbank("BankUploadFormat.xls", this.GVListClients, line, line1, count);
+                    }
+                   
                 }
             }
         }
