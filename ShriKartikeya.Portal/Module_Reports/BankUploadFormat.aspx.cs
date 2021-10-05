@@ -336,7 +336,7 @@ namespace ShriKartikeya.Portal
                         gve.Export("BankUploadFormat.xls", this.GVListClients);
 
                     }
-                    if (ddlOptions.SelectedIndex == 2 )
+                    if (ddlOptions.SelectedIndex == 2 || ddlOptions.SelectedIndex == 3)
                     {
                         string strcompanyName = compInfo.Rows[0]["CompanyName"].ToString();
                         string line = strcompanyName;
@@ -377,7 +377,8 @@ namespace ShriKartikeya.Portal
 
                 if (ddlOptions.SelectedIndex == 3 )
                 {
-                    e.Row.Cells[6].Attributes.Add("class", "text");
+                    e.Row.Cells[3].Attributes.Add("class", "text");
+                    e.Row.Cells[4].Attributes.Add("class", "text");
                 }
 
 

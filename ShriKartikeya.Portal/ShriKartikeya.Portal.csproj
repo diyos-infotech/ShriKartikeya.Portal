@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -183,9 +184,7 @@
     <Content Include="Module_Employees\EmployeeMaster.master" />
     <Content Include="Module_Reports\assets\Thumbs.db" />
     <Content Include="Module_Reports\ReportMaster.master" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="MainMaster.Master" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="script\BitString.as" />
     <Content Include="script\JPGEncoder.as" />
     <Content Include="script\jscam.as" />
@@ -212,6 +211,7 @@
     <Content Include="Service References\plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="Service References\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Service References\plugins\input-mask\phone-codes\phone-codes.json" />
+    <None Include="Properties\PublishProfiles\Shrikartikeya.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -671,7 +671,6 @@
     <Content Include="Module_Settings\Segment.aspx" />
     <Content Include="Module_Settings\Settings.aspx" />
     <Content Include="Module_Settings\TaxComponents.aspx" />
-    <Content Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
     <Content Include="Reminders.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -2495,9 +2494,6 @@
     <Compile Include="Module_Settings\TaxComponents.aspx.designer.cs">
       <DependentUpon>TaxComponents.aspx</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reminders.aspx.cs">
       <DependentUpon>Reminders.aspx</DependentUpon>
@@ -2517,7 +2513,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
