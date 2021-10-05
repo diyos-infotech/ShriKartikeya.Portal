@@ -2007,7 +2007,7 @@ public class GridViewExportUtil
 
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td style='border:none' align='left'  colspan= " + count + ">");
+        HttpContext.Current.Response.Write("<Td style='border:none' align='center'  colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write(line);
         HttpContext.Current.Response.Write("</B>");
@@ -2016,7 +2016,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</TR>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td style='border:none' align='right' colspan= " + count + ">");
+        HttpContext.Current.Response.Write("<Td style='border:none' align='center' colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write(line1);
         HttpContext.Current.Response.Write("</B>");

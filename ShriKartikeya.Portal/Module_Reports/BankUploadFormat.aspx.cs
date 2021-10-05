@@ -139,18 +139,19 @@ namespace ShriKartikeya.Portal
             ddlOptions.DataSource = null;
             ddlOptions.DataBind();
 
-            string query = "select BankId,Bankname from BankNames";
+            string query = "select BankId,Bankname from BankNames where bankid>0";
             DataTable dtbanks = config.ExecuteAdaptorAsyncWithQueryParams(query).Result;
             if (dtbanks.Rows.Count > 0)
             {
-                
+
                 ddlOptions.DataSource = dtbanks;
                 ddlOptions.DataBind();
                 ddlOptions.DataTextField = "Bankname";
                 ddlOptions.DataValueField = "BankId";
                 ddlOptions.DataBind();
-               // ddlOptions.Items.Insert(0, "Select");
             }
+               ddlOptions.Items.Insert(0, "--Select--");
+            
          
         }
         protected void ClearData()
@@ -349,7 +350,7 @@ namespace ShriKartikeya.Portal
                         string strcompanyName = compInfo.Rows[0]["CompanyName"].ToString();
                         string line = strcompanyName;
                         Label lblclientname = GVListEmployees.Rows[0].FindControl("lblclientname") as Label;
-                        string line1 = "Salary Register For The Month of " + txtmonth.Text+ lblclientname; 
+                        string line1 = "Salary Register For The Month of " +"-"+ txtmonth.Text+"-"+ lblclientname.Text; 
                         gve.ExporttoExcelForBankUploadbank("BankUploadFormat.xls", this.GVListClients, line, line1, count);
                     }
                    

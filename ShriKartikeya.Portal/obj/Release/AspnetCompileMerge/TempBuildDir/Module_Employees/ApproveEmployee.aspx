@@ -240,10 +240,10 @@
                                                 <table cellpadding="5" cellspacing="5">
                                                     <tr>
                                                         <td>
-                                                            <asp:RadioButton ID="rdbGeneral" TabIndex="1" runat="server" GroupName="E1" Text=" General Enrollment" />
+                                                            <asp:RadioButton ID="rdbGeneral" TabIndex="1" runat="server" Checked="true" GroupName="E1" Text=" General Enrollment" />
                                                         </td>
                                                         <td>
-                                                            <asp:RadioButton ID="rdbStaff" TabIndex="2" runat="server" Visible="false" GroupName="E1" Text=" Staff" />
+                                                            <asp:RadioButton ID="rdbStaff" TabIndex="2" runat="server" GroupName="E1" Text=" Staff" />
                                                         </td>
                                                     </tr>
                                                     <tr>

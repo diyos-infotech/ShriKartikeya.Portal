@@ -51,6 +51,7 @@ namespace ShriKartikeya.Portal
                     LoadClientids();
                     LoadStatenames();
                     LoadCitynames();
+                    employeeid();
                     ClearAllControlsDataFromThePage();
                     LoandWithNYAEmployees();
                     if (Emp_Id == "1" || Emp_Id == "9" || Emp_Id == "2" || Emp_Id == "5" || Emp_Id == "6" || Emp_Id == "7" || Emp_Id == "8" || Emp_Id == "9" || Emp_Id == "10" || Emp_Id == "28" || Emp_Id == "29" || Emp_Id == "30")
@@ -1023,17 +1024,17 @@ namespace ShriKartikeya.Portal
                         {
                             // Image = dtimg.Rows[0]["AadharCardImg"].ToString();
                             //path = Server.MapPath("~/assets/Empphotos/" + SubEmpid + "AadharFrontPhoto.jpg");
-                            AadharFrontImg = SubEmpid + "AadharFrontPhoto.jpg";
-                            System.IO.File.Move(Server.MapPath("~/assets/Empphotos/" + Empid + "AadharFrontPhoto.jpg"), Server.MapPath("~/assets/Empphotos/" + SubEmpid + "AadharFrontPhoto.jpg"));
-                            System.IO.File.Delete(Server.MapPath("~/assets/Empphotos/" + Empid + "AadharFrontPhoto.jpg"));
+                            //AadharFrontImg = SubEmpid + "AadharFrontPhoto.jpg";
+                            //System.IO.File.Move(Server.MapPath("~/assets/Empphotos/" + Empid + "AadharFrontPhoto.jpg"), Server.MapPath("~/assets/Empphotos/" + SubEmpid + "AadharFrontPhoto.jpg"));
+                            //System.IO.File.Delete(Server.MapPath("~/assets/Empphotos/" + Empid + "AadharFrontPhoto.jpg"));
 
                         }
                         else
                         {
-                            AadharFrontImg = SubEmpid + "AadharFrontPhoto.jpg";
-                            AadhaImagepath = Path.GetFileName(FileUploadAadharImage.PostedFile.FileName);
-                            FileUploadAadharImage.PostedFile.SaveAs(Server.MapPath("~/assets/EmpPhotos/") + AadharFrontImg);
-                            AadharImg.ImageUrl = ("/assets/EmpPhotos/") + AadharFrontImg;
+                            //AadharFrontImg = SubEmpid + "AadharFrontPhoto.jpg";
+                            //AadhaImagepath = Path.GetFileName(FileUploadAadharImage.PostedFile.FileName);
+                            //FileUploadAadharImage.PostedFile.SaveAs(Server.MapPath("~/assets/EmpPhotos/") + AadharFrontImg);
+                            //AadharImg.ImageUrl = ("/assets/EmpPhotos/") + AadharFrontImg;
                         }
                     }
 
@@ -2286,7 +2287,7 @@ namespace ShriKartikeya.Portal
         protected void ClearDataFromPersonalInfoTabFields()
         {
             txtEmpDtofInterview.Text = txtEmpDtofJoining.Text = txtEmpDtofBirth.Text = txtDofleaving.Text = "";
-            txtEmpFName.Text = txtEmpmiName.Text = txtEmplname.Text = txtEmpid.Text =
+            txtEmpFName.Text = txtEmpmiName.Text = txtEmplname.Text = 
             txtQualification.Text = txtPreEmp.Text = txtfatheroccupation.Text =
             // txtEmpFatherName.Text = txtFaocccu.Text = txtFaSpRelation.Text = txtFAge.Text =
             //txtmname.Text = txtmoccupation.Text = 
@@ -2824,7 +2825,7 @@ namespace ShriKartikeya.Portal
                     Emptype = "S";
 
                 }
-                txtEmpid.Text = GlobalData.Instance.LoadMaxEmpid(EmpIDPrefix, Emptype);
+               // txtEmpid.Text = GlobalData.Instance.LoadMaxEmpid(EmpIDPrefix, Emptype);
 
                 ddlTitle.SelectedValue = dt.Rows[0]["Title"].ToString();
                 txtEmpFName.Text = dt.Rows[0]["EmpFName"].ToString();
