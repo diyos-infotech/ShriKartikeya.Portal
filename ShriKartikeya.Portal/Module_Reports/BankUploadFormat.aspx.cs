@@ -332,17 +332,8 @@ namespace ShriKartikeya.Portal
 
                     if (ddlOptions.SelectedIndex == 1)
                     {
-                        string line = "";
-                        string line1 = "";
-                        string line2 = "";
-                        string line3 = "";
-                        string line4 = "";
-                        string line5 = "";
-                        string line6 = "";
-                        string line7 = "";
-                        string line8 = " ";
 
-                        gve.ExporttoExcelForBankUploadNew("BankUploadFormat.xls", this.GVListClients, line, line1, line2, line3, line4, line5, line6, line7, line8, count);
+                        gve.Export("BankUploadFormat.xls", this.GVListClients);
 
                     }
                     if (ddlOptions.SelectedIndex == 2 )
@@ -368,7 +359,17 @@ namespace ShriKartikeya.Portal
                     e.Row.Cells[0].Text = "";
                     e.Row.Font.Bold = true;
                 }
-                if (ddlOptions.SelectedIndex == 1 || ddlOptions.SelectedIndex == 2 )
+                if (ddlOptions.SelectedIndex == 1)
+                {
+                    e.Row.Cells[3].Attributes.Add("class", "text");
+                    e.Row.Cells[4].Attributes.Add("class", "text");
+                    e.Row.Cells[5].Attributes.Add("class", "text");
+                    e.Row.Cells[6].Attributes.Add("class", "text");
+                    e.Row.Cells[13].Attributes.Add("class", "text");
+                    e.Row.Cells[15].Attributes.Add("class", "text");
+                    e.Row.Cells[14].Attributes.Add("class", "text");
+                }
+                else
                 {
                     e.Row.Cells[3].Attributes.Add("class", "text");
                     e.Row.Cells[4].Attributes.Add("class", "text");
