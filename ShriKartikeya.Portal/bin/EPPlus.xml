@@ -25029,7 +25029,7 @@
             <param name="cellAddress">The alphanumeric cell address</param>
             <returns>True if the cell address is valid</returns>
         </member>
-        <member name="M:OfficeOpenXml.ExcelCellBase.UpdateFormulaReferences(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Boolean)">
+        <member name="M:OfficeOpenXml.ExcelCellBase.UpdateFormulaReferences(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
             Updates the Excel formula so that all the cellAddresses are incremented by the row and column increments
             if they fall after the afterRow and afterColumn.
@@ -25043,6 +25043,7 @@
             <param name="currentSheet">The sheet that contains the formula currently being processed.</param>
             <param name="modifiedSheet">The sheet where cells are being inserted or deleted.</param>
             <param name="setFixed">Fixed address</param>
+            <param name="copy">If a copy operation is performed, fully fixed cells should be untoughe.</param>
             <returns>The updated version of the <paramref name="formula"/>.</returns>
         </member>
         <member name="M:OfficeOpenXml.ExcelCellBase.UpdateFormulaReferences(System.String,OfficeOpenXml.ExcelAddressBase,OfficeOpenXml.ExcelAddressBase,OfficeOpenXml.eShiftTypeInsert,System.String,System.String,System.Boolean)">
@@ -25289,7 +25290,7 @@
             </summary>
             <param name="cell">The cell</param>
             <param name="Text">The comment text</param>
-            <param name="author">Author</param>
+            <param name="author">The author for the comment. If this property is null or blank EPPlus will set it to the identity of the ClaimsPrincipal if available otherwise to "Anonymous"</param>
             <returns>The comment</returns>
         </member>
         <member name="M:OfficeOpenXml.ExcelCommentCollection.Remove(OfficeOpenXml.ExcelComment)">
@@ -25872,6 +25873,13 @@
             Returns a string representation of the object
             </summary>
             <returns>The name of the range</returns>
+        </member>
+        <member name="M:OfficeOpenXml.ExcelNamedRange.Equals(System.Object)">
+            <summary>
+            Returns true if the name is equal to the obj
+            </summary>
+            <param name="obj">The object to compare with</param>
+            <returns>true if equal</returns>
         </member>
         <member name="T:OfficeOpenXml.ExcelNamedRangeCollection">
             <summary>
@@ -27510,8 +27518,8 @@
             Adds a new comment for the range.
             If this range contains more than one cell, the top left comment is returned by the method.
             </summary>
-            <param name="Text"></param>
-            <param name="Author"></param>
+            <param name="Text">The text for the comment</param>
+            <param name="Author">The author for the comment. If this property is null or blank EPPlus will set it to the identity of the ClaimsPrincipal if available otherwise to "Anonymous"</param>
             <returns>A reference comment of the top left cell</returns>
         </member>
         <member name="M:OfficeOpenXml.ExcelRangeBase.AddThreadedComment">
@@ -51215,7 +51223,7 @@
             </summary>
             <param name="helper">The xml helper</param>
             <param name="path">The x path</param>
-            <param name="v">The string</param>
+            <param name="s">The string</param>
         </member>
         <member name="M:OfficeOpenXml.Style.Dxf.DxfStyleBase.SetValueBool(OfficeOpenXml.XmlHelper,System.String,System.Nullable{System.Boolean})">
             <summary>

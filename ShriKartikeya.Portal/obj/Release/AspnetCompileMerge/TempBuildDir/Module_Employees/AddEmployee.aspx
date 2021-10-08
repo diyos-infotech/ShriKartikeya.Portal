@@ -554,7 +554,7 @@
                                                     <td>Last Name
                                                     </td>
                                                     <td>
-                                                        <asp:TextBox ID="txtEmplname" TabIndex="4" runat="server" class="sinput" MaxLength="25"></asp:TextBox>
+                                                        <asp:TextBox ID="txtEmplname" TabIndex="4" runat="server" class="sinput"></asp:TextBox>
                                                     </td>
                                                     <td>&nbsp;
                                                     </td>

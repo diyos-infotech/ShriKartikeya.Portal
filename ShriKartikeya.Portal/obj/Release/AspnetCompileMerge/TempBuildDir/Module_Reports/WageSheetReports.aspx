@@ -601,7 +601,7 @@
 
                                               <asp:TemplateField HeaderText="W/A" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblcdOTAmt" runat="server" Text='<%#Bind("CdOtAmt1","{0:0}") %>'></asp:Label>
+                                                    <asp:Label ID="lblcdOTAmt" runat="server" Text='<%#Bind("WashAllowance","{0:0}") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label runat="server" ID="lblTotalcdOTAmount"></asp:Label>
@@ -1620,7 +1620,7 @@
 
 
                                             <%-- 110--%>
-                                            <asp:TemplateField HeaderText="U.D." ItemStyle-HorizontalAlign="Center" Visible="false">
+                                            <asp:TemplateField HeaderText="L.D." ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbluniform" runat="server" Text='<%#Bind("UniformDed","{0:0}") %>'></asp:Label>
                                                 </ItemTemplate>
