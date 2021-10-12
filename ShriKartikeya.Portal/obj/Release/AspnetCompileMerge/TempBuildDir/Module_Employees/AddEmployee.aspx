@@ -1008,7 +1008,7 @@
                                                         <td>EPF No.
                                                         </td>
                                                         <td>
-                                                            <asp:TextBox runat="server" TabIndex="17" ID="txtEmpPFNumber" class="sinput" MaxLength="15" Style="margin-left: 68px"></asp:TextBox>
+                                                            <asp:TextBox runat="server" TabIndex="17" ID="txtEmpPFNumber" class="sinput" MaxLength="22" Style="margin-left: 68px"></asp:TextBox>
                                                         </td>
                                                     </tr>
 

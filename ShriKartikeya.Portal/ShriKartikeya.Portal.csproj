@@ -134,6 +134,7 @@
   <ItemGroup>
     <Content Include="assets\FooterPayslip.jpg" />
     <Content Include="assets\HeaderPayslip.jpg" />
+    <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2282,6 +2283,13 @@
     </Compile>
     <Compile Include="Module_Reports\SampleAttendance.aspx.designer.cs">
       <DependentUpon>SampleAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\SendMail.aspx.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\SendMail.aspx.designer.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Reports\SubClientsWithMainClientReports.aspx.cs">
       <DependentUpon>SubClientsWithMainClientReports.aspx</DependentUpon>

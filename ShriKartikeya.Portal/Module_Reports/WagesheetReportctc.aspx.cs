@@ -403,7 +403,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                 int countfixed = 0;
                 int countAdvBonus = 0;
                 int othrsount = 1;
-                int countNetpay = 1;
+               // int countNetpay = 1;
 
                 {
                     string Fromdate = string.Empty;
@@ -451,158 +451,19 @@ namespace ShriKartikeya.Portal.Module_Reports
                                 {
                                     totalCdBasic += Convert.ToSingle(strCdBasic);
                                 }
-                                string strCdDA = dt.Rows[i]["CdDA"].ToString();
-                                if (strCdDA.Trim().Length > 0)
-                                {
-                                    totalCdDA += Convert.ToSingle(strCdDA);
-                                }
+                               
                                 string strCdHRA = dt.Rows[i]["CdHRA"].ToString();
                                 if (strCdHRA.Trim().Length > 0)
                                 {
                                     totalCdHRA += Convert.ToSingle(strCdHRA);
                                 }
-                                string strCdCCA = dt.Rows[i]["CdCCA"].ToString();
-                                if (strCdCCA.Trim().Length > 0)
-                                {
-                                    totalCdCCA += Convert.ToSingle(strCdCCA);
-                                }
-                                string strCdConv = dt.Rows[i]["CdConv"].ToString();
-                                if (strCdConv.Trim().Length > 0)
-                                {
-                                    totalCdConveyance += Convert.ToSingle(strCdConv);
-                                }
-
-                                string strCdWA = dt.Rows[i]["CdWA"].ToString();
-                                if (strCdWA.Trim().Length > 0)
-                                {
-                                    totalCdWA += Convert.ToSingle(strCdWA);
-                                }
-                                string strCdNfhs = dt.Rows[i]["CdNfhs"].ToString();
-                                if (strCdNfhs.Trim().Length > 0)
-                                {
-                                    totalCdNfhs += Convert.ToSingle(strCdNfhs);
-                                }
-                                string strCdRC = dt.Rows[i]["CdRC"].ToString();
-                                if (strCdRC.Trim().Length > 0)
-                                {
-                                    totalCdrc += Convert.ToSingle(strCdRC);
-                                }
-                                string strCdCS = dt.Rows[i]["CdCS"].ToString();
-                                if (strCdCS.Trim().Length > 0)
-                                {
-                                    totalCdcs += Convert.ToSingle(strCdCS);
-                                }
-                                string strCdAddlAmount = dt.Rows[i]["CdAddlAmount"].ToString();
-                                if (strCdAddlAmount.Trim().Length > 0)
-                                {
-                                    totalCdAddlAmount += Convert.ToSingle(strCdAddlAmount);
-                                }
-                                string strCdFoodAllw = dt.Rows[i]["CdFoodAllw"].ToString();
-                                if (strCdFoodAllw.Trim().Length > 0)
-                                {
-                                    totalCdFoodAllw += Convert.ToSingle(strCdFoodAllw);
-                                }
-                                string strCdWOAmt = dt.Rows[i]["CdWOAmt"].ToString();
-                                if (strCdWOAmt.Trim().Length > 0)
-                                {
-                                    totalCdWOAmt += Convert.ToSingle(strCdWOAmt);
-                                }
-                                string strCdNHsAmt = dt.Rows[i]["CdNHsAmt"].ToString();
-                                if (strCdNHsAmt.Trim().Length > 0)
-                                {
-                                    totalCdNHsAmt += Convert.ToSingle(strCdNHsAmt);
-                                }
-                                string strCdMedicalReimbursement = dt.Rows[i]["CdMedicalReimbursement"].ToString();
-                                if (strCdMedicalReimbursement.Trim().Length > 0)
-                                {
-                                    totalCdMedicalReimbursement += Convert.ToSingle(strCdMedicalReimbursement);
-                                }
+                              
                                 string strCdSpecialAllW = dt.Rows[i]["CdSpecialAllW"].ToString();
                                 if (strCdSpecialAllW.Trim().Length > 0)
                                 {
                                     totalCdSpecialAllW += Convert.ToSingle(strCdSpecialAllW);
                                 }
-                                string strCdTravelAllw = dt.Rows[i]["CdTravelAllw"].ToString();
-                                if (strCdTravelAllw.Trim().Length > 0)
-                                {
-                                    totalCdTravelAllw += Convert.ToSingle(strCdTravelAllw);
-                                }
-                                string strCdMobileAllw = dt.Rows[i]["CdMobileAllw"].ToString();
-                                if (strCdMobileAllw.Trim().Length > 0)
-                                {
-                                    totalCdMobileAllw += Convert.ToSingle(strCdMobileAllw);
-                                }
-                                string strCdPerformanceAllw = dt.Rows[i]["CdPerformanceAllw"].ToString();
-                                if (strCdPerformanceAllw.Trim().Length > 0)
-                                {
-                                    totalCdPerformanceAllw += Convert.ToSingle(strCdPerformanceAllw);
-                                }
-                                string strCdLW = dt.Rows[i]["CdLW"].ToString();
-                                if (strCdLW.Trim().Length > 0)
-                                {
-                                    totalCdLW += Convert.ToSingle(strCdLW);
-                                }
-                                string strCdNPOTsAmt = dt.Rows[i]["CdNPOTsAmt"].ToString();
-                                if (strCdNPOTsAmt.Trim().Length > 0)
-                                {
-                                    totalCdNPOTsAmt += Convert.ToSingle(strCdNPOTsAmt);
-                                }
-                                string strCdIncentivs = dt.Rows[i]["CdIncentivs"].ToString();
-                                if (strCdIncentivs.Trim().Length > 0)
-                                {
-                                    totalCdIncentivs += Convert.ToSingle(strCdIncentivs);
-                                }
-                                string strCdBonus = dt.Rows[i]["CdBonus"].ToString();
-                                if (strCdBonus.Trim().Length > 0)
-                                {
-                                    totalCdBonus += Convert.ToSingle(strCdBonus);
-                                }
-                                string strCdGratuity = dt.Rows[i]["CdGratuity"].ToString();
-                                if (strCdGratuity.Trim().Length > 0)
-                                {
-                                    totalCdGratuity += Convert.ToSingle(strCdGratuity);
-                                }
-                                string strCdOA = dt.Rows[i]["CdOA"].ToString();
-                                if (strCdOA.Trim().Length > 0)
-                                {
-                                    totalCdOA += Convert.ToSingle(strCdOA);
-                                }
-                                string strCdOTAmt = dt.Rows[i]["CdOTAmt1"].ToString();
-                                if (strCdOTAmt.Trim().Length > 0)
-                                {
-                                    totalcdOtRate += Convert.ToSingle(strCdOTAmt);
-                                }
-                                string strCdServiceWeightage = dt.Rows[i]["CdServiceWeightage"].ToString();
-                                if (strCdServiceWeightage.Trim().Length > 0)
-                                {
-                                    totalCdServiceWeightage += Convert.ToSingle(strCdServiceWeightage);
-                                }
-                                string strCdArrears = dt.Rows[i]["CdArrears"].ToString();
-                                if (strCdArrears.Trim().Length > 0)
-                                {
-                                    totalCdArrears += Convert.ToSingle(strCdArrears);
-                                }
-                                string strCdAttBonus = dt.Rows[i]["CdAttBonus"].ToString();
-                                if (strCdAttBonus.Trim().Length > 0)
-                                {
-                                    totalCdAttBonus += Convert.ToSingle(strCdAttBonus);
-                                }
-                                string strCdNightAllw = dt.Rows[i]["CdNightAllw"].ToString();
-                                if (strCdNightAllw.Trim().Length > 0)
-                                {
-                                    totalCdNightAllw += Convert.ToSingle(strCdNightAllw);
-                                }
-                                string strCdEmpty1 = dt.Rows[i]["CdEmpty1"].ToString();
-                                if (strCdEmpty1.Trim().Length > 0)
-                                {
-                                    totalCdEmpty1 += Convert.ToSingle(strCdEmpty1);
-                                }
-                                string strCdEmpty2 = dt.Rows[i]["CdEmpty2"].ToString();
-                                if (strCdEmpty2.Trim().Length > 0)
-                                {
-                                    totalCdEmpty2 += Convert.ToSingle(strCdEmpty2);
-                                }
-
+                              
 
                                 string duties = dt.Rows[i]["NoOfDuties"].ToString();
                                 if (duties.Trim().Length > 0)
@@ -615,222 +476,42 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     totalOts += Convert.ToSingle(ots);
                                 }
 
-                                string wos = dt.Rows[i]["wo"].ToString();
-                                if (wos.Trim().Length > 0)
-                                {
-                                    totalwo += Convert.ToSingle(wos);
-                                }
-                                string nhs = dt.Rows[i]["nhs"].ToString();
-                                if (nhs.Trim().Length > 0)
-                                {
-                                    totalnhs += Convert.ToSingle(nhs);
-                                }
-                                string npots = dt.Rows[i]["pldays"].ToString();
-                                if (npots.Trim().Length > 0)
-                                {
-                                    totalnpots += Convert.ToSingle(npots);
-                                }
-
+                               
                                 string strBasic = dt.Rows[i]["Basic"].ToString();
                                 if (strBasic.Trim().Length > 0)
                                 {
                                     totalBasic += Convert.ToSingle(strBasic);
                                     // countearnings += 1;
                                 }
-                                string strDA = dt.Rows[i]["DA"].ToString();
-                                if (strDA.Trim().Length > 0)
-                                {
-                                    totalDA += Convert.ToSingle(strDA);
-
-                                }
+                               
                                 string strhHRA = dt.Rows[i]["HRA"].ToString();
                                 if (strhHRA.Trim().Length > 0)
                                 {
                                     totalHRA += Convert.ToSingle(strhHRA);
 
                                 }
-                                string strCCA = dt.Rows[i]["CCA"].ToString();
-                                if (strCCA.Trim().Length > 0)
-                                {
-                                    totalCCA += Convert.ToSingle(strCCA);
-
-                                }
-                                string strConveyance = dt.Rows[i]["Conveyance"].ToString();
-                                if (strConveyance.Trim().Length > 0)
-                                {
-                                    totalConveyance += Convert.ToSingle(strConveyance);
-
-                                }
-                                string strWA = dt.Rows[i]["WashAllowance"].ToString();
-                                if (strWA.Trim().Length > 0)
-                                {
-                                    totalWA += Convert.ToSingle(strWA);
-
-                                }
-                                string strNfhs = dt.Rows[i]["Nfhs"].ToString();
-                                if (strNfhs.Trim().Length > 0)
-                                {
-                                    totalnfhs += Convert.ToSingle(strNfhs);
-
-                                }
-                                string strRC = dt.Rows[i]["RC"].ToString();
-                                if (strRC.Trim().Length > 0)
-                                {
-                                    totalRC += Convert.ToSingle(strRC);
-
-                                }
-
-                                string strCS = dt.Rows[i]["CS"].ToString();
-                                if (strCS.Trim().Length > 0)
-                                {
-                                    totalCS += Convert.ToSingle(strCS);
-                                    //countearnings += 1;
-                                }
-                                string strAddlAmount = dt.Rows[i]["AddlAmount"].ToString();
-                                if (strAddlAmount.Trim().Length > 0)
-                                {
-                                    totalAddlAmount += Convert.ToSingle(strAddlAmount);
-
-                                }
-                                string strFoodAllowance = dt.Rows[i]["FoodAllowance"].ToString();
-                                if (strFoodAllowance.Trim().Length > 0)
-                                {
-                                    totalFoodAllowance += Convert.ToSingle(strFoodAllowance);
-
-                                }
-                                string strWoAmt = dt.Rows[i]["WOAmt"].ToString();
-                                if (strWoAmt.Trim().Length > 0)
-                                {
-                                    totalWoAmt += Convert.ToSingle(strWoAmt);
-
-                                }
-
-                                string strNhsAmt = dt.Rows[i]["Nhsamt"].ToString();
-                                if (strNhsAmt.Trim().Length > 0)
-                                {
-                                    totalNhsAmt += Convert.ToSingle(strNhsAmt);
-
-                                }
-                                string strmedicalallowance = dt.Rows[i]["medicalallowance"].ToString();
-                                if (strmedicalallowance.Trim().Length > 0)
-                                {
-                                    totalmedicalallowance += Convert.ToSingle(strmedicalallowance);
-
-                                }
+                                
                                 string strSpecialAllowance = dt.Rows[i]["SpecialAllowance"].ToString();
                                 if (strSpecialAllowance.Trim().Length > 0)
                                 {
                                     totalSpecialAllowance += Convert.ToSingle(strSpecialAllowance);
 
                                 }
-                                string strTravelAllw = dt.Rows[i]["TravelAllw"].ToString();
-                                if (strTravelAllw.Trim().Length > 0)
-                                {
-                                    totalTravelAllw += Convert.ToSingle(strTravelAllw);
-
-                                }
-                                string strMobileAllowance = dt.Rows[i]["MobileAllw"].ToString();
-                                if (strMobileAllowance.Trim().Length > 0)
-                                {
-                                    totalMobileAllowance += Convert.ToSingle(strMobileAllowance);
-
-                                }
-
-                                string strPerformanceAllw = dt.Rows[i]["PerformanceAllw"].ToString();
-                                if (strPerformanceAllw.Trim().Length > 0)
-                                {
-                                    totalPerformanceAllw += Convert.ToSingle(strPerformanceAllw);
-
-                                }
-
-                                string strLeaveEncashAmt = dt.Rows[i]["LeaveEncashAmt"].ToString();
-                                if (strCCA.Trim().Length > 0)
-                                {
-                                    totalLeaveEncashAmt += Convert.ToSingle(strLeaveEncashAmt);
-
-                                }
-                                string strNpotsAmt = dt.Rows[i]["Npotsamt"].ToString();
-                                if (strNpotsAmt.Trim().Length > 0)
-                                {
-                                    totalNpotsAmt += Convert.ToSingle(strNpotsAmt);
-
-                                }
+                               
                                 string strIncentivs = dt.Rows[i]["Incentivs"].ToString();
                                 if (strIncentivs.Trim().Length > 0)
                                 {
                                     totalIncentivs += Convert.ToSingle(strIncentivs);
 
                                 }
-                                string strBonus = dt.Rows[i]["Bonus"].ToString();
-                                if (strBonus.Trim().Length > 0)
-                                {
-                                    totalBonus += Convert.ToSingle(strBonus);
-
-                                }
-                                string strGratuity = dt.Rows[i]["Gratuity"].ToString();
-                                if (strGratuity.Trim().Length > 0)
-                                {
-                                    totalGratuity += Convert.ToSingle(strGratuity);
-
-                                }
-
-                                string strOA = dt.Rows[i]["OtherAllowance"].ToString();
-                                if (strOA.Trim().Length > 0)
-                                {
-                                    totalOA += Convert.ToSingle(strOA);
-
-                                }
-                                //string strOTAmount = dt.Rows[i]["OTAmt"].ToString();
-                                //if (strOTAmount.Trim().Length > 0)
-                                //{
-                                //    totalOTAmount += Convert.ToSingle(strOTAmount);
-                                //}
-
-                                string strNPCl25Per = dt.Rows[i]["OTHrs"].ToString();
-                                if (strNPCl25Per.Trim().Length > 0)
-                                {
-                                    totalNPCl25Per += Convert.ToSingle(strNPCl25Per);
-                                }
-                                string strTransport6Per = dt.Rows[i]["ServiceWeightage"].ToString();
-                                if (strTransport6Per.Trim().Length > 0)
-                                {
-                                    totalTransport6Per += Convert.ToSingle(strTransport6Per);
-
-                                }
+                              
                                 string strArrears = dt.Rows[i]["Arrears"].ToString();
                                 if (strArrears.Trim().Length > 0)
                                 {
                                     totalArrears += Convert.ToSingle(strArrears);
 
                                 }
-                                string strAttBonus = dt.Rows[i]["AttBonus"].ToString();
-                                if (strAttBonus.Trim().Length > 0)
-                                {
-                                    totalAttBonus += Convert.ToSingle(strAttBonus);
-                                    // countearnings += 1;
-                                }
-                                string strNightShiftAllw = dt.Rows[i]["NightAllw"].ToString();
-                                if (strNightShiftAllw.Trim().Length > 0)
-                                {
-                                    totalNightShiftAllw += Convert.ToSingle(strNightShiftAllw);
-
-                                }
-
-                                string strEmpty = dt.Rows[i]["Empty"].ToString();
-                                if (strEmpty.Trim().Length > 0)
-                                {
-                                    totalEmpty1 += Convert.ToSingle(strEmpty);
-                                }
-                                string strEmpty1 = dt.Rows[i]["Empty"].ToString();
-                                if (strEmpty1.Trim().Length > 0)
-                                {
-                                    totalEmpty2 += Convert.ToSingle(strEmpty1);
-                                }
-                                string strEmpty2 = dt.Rows[i]["Empty"].ToString();
-                                if (strEmpty2.Trim().Length > 0)
-                                {
-                                    totalEmpty3 += Convert.ToSingle(strEmpty2);
-                                }
+                               
                                 string strGross = dt.Rows[i]["Gross"].ToString();
                                 if (strGross.Trim().Length > 0)
                                 {
@@ -856,138 +537,13 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                                 }
 
-                                string strSalAdv = dt.Rows[i]["SalAdvDed"].ToString();
-                                if (strSalAdv.Trim().Length > 0)
-                                {
-                                    totalSalAdv += Convert.ToSingle(strSalAdv);
-
-                                }
-
-                                string strAdvDed = dt.Rows[i]["ADVDed"].ToString();
-                                if (strAdvDed.Trim().Length > 0)
-                                {
-                                    totalAdvDed += Convert.ToSingle(strAdvDed);
-
-                                }
-
-                                string strWCDed = dt.Rows[i]["WCDed"].ToString();
-                                if (strWCDed.Trim().Length > 0)
-                                {
-                                    totalWCDed += Convert.ToSingle(strWCDed);
-
-                                }
-
-                                string strUniformDed = dt.Rows[i]["UniformDed"].ToString();
-                                if (strUniformDed.Trim().Length > 0)
-                                {
-                                    totalUniformDed += Convert.ToSingle(strUniformDed);
-
-                                }
-                                string strOtherDed = dt.Rows[i]["OtherDed"].ToString();
-                                if (strOtherDed.Trim().Length > 0)
-                                {
-                                    totalOtherDed += Convert.ToSingle(strOtherDed);
-
-                                }
-
-                                string strLoanDed = dt.Rows[i]["LoanDed"].ToString();
-                                if (strLoanDed.Trim().Length > 0)
-                                {
-                                    totalloanded += Convert.ToSingle(strLoanDed);
-                                }
-                                string strCanteenAdv = dt.Rows[i]["CanteenAdv"].ToString();
-                                if (strCanteenAdv.Trim().Length > 0)
-                                {
-                                    totalCanteenAdv += Convert.ToSingle(strCanteenAdv);
-
-                                }
-                                string strSecDep = dt.Rows[i]["SecurityDepDed"].ToString();
-                                if (strSecDep.Trim().Length > 0)
-                                {
-                                    totalSecDepDed += Convert.ToSingle(strSecDep);
-                                }
-
-
-                                string strGeneralDed = dt.Rows[i]["GeneralDed"].ToString();
-                                if (strGeneralDed.Trim().Length > 0)
-                                {
-                                    totalGenDed += Convert.ToSingle(strGeneralDed);
-                                }
-                                string strOWF = dt.Rows[i]["OWF"].ToString();
-                                if (strOWF.Trim().Length > 0)
-                                {
-                                    totalOWF += Convert.ToSingle(strOWF);
-                                }
+                               
                                 string strPenalty = dt.Rows[i]["Penalty"].ToString();
                                 if (strPenalty.Trim().Length > 0)
                                 {
                                     totalPenalty += Convert.ToSingle(strPenalty);
                                 }
-                                string strRentDed = dt.Rows[i]["atmDed"].ToString();
-                                if (strRentDed.Trim().Length > 0)
-                                {
-                                    totalRentDed += Convert.ToSingle(strRentDed);
-
-                                }
-                                string strMedicalDed = dt.Rows[i]["MedicalDed"].ToString();
-                                if (strMedicalDed.Trim().Length > 0)
-                                {
-                                    totalMedicalDed += Convert.ToSingle(strMedicalDed);
-
-                                }
-                                string strMLWFDed = dt.Rows[i]["MLWFDed"].ToString();
-                                if (strMLWFDed.Trim().Length > 0)
-                                {
-                                    totalMLWFDed += Convert.ToSingle(strMLWFDed);
-
-                                }
-                                string strFoodDed = dt.Rows[i]["FoodDed"].ToString();
-                                if (strFoodDed.Trim().Length > 0)
-                                {
-                                    totalFoodDed += Convert.ToSingle(strFoodDed);
-
-                                }
-
-                                string strElectricityDed = dt.Rows[i]["IDCardDed"].ToString();
-                                if (strElectricityDed.Trim().Length > 0)
-                                {
-                                    totalElectricityDed += Convert.ToSingle(strElectricityDed);
-
-                                }
-
-
-                                string strTransportDed = dt.Rows[i]["RentDed1"].ToString();
-                                if (strTransportDed.Trim().Length > 0)
-                                {
-                                    totalTransportDed += Convert.ToSingle(strTransportDed);
-
-                                }
-                                string strDccDed = dt.Rows[i]["Finesded1"].ToString();
-                                if (strDccDed.Trim().Length > 0)
-                                {
-                                    totalDccDed += Convert.ToSingle(strDccDed);
-
-                                }
-                                string strLeaveDed = dt.Rows[i]["PVCDed"].ToString();
-                                if (strLeaveDed.Trim().Length > 0)
-                                {
-                                    totalLeaveDed += Convert.ToSingle(strLeaveDed);
-
-                                }
-                                string strLicenseDed = dt.Rows[i]["LicenseDed"].ToString();
-                                if (strLicenseDed.Trim().Length > 0)
-                                {
-                                    totalLicenseDed += Convert.ToSingle(strLicenseDed);
-
-                                }
-
-                                //
-                                string strAdv4Ded = dt.Rows[i]["Adv4Ded"].ToString();
-                                if (strAdv4Ded.Trim().Length > 0)
-                                {
-                                    totalAdv4Ded += Convert.ToSingle(strAdv4Ded);
-
-                                }
+                              
                                 string strNightRoundDed = dt.Rows[i]["Extra"].ToString();
                                 if (strNightRoundDed.Trim().Length > 0)
                                 {
@@ -995,38 +551,7 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                                 }
 
-                                string strManpowerMobDed = dt.Rows[i]["ManpowerMobDed"].ToString();
-                                if (strManpowerMobDed.Trim().Length > 0)
-                                {
-                                    totalManpowerMobDed += Convert.ToSingle(strManpowerMobDed);
-
-                                }
-
-                                string strMobileusageDed = dt.Rows[i]["MobileusageDed"].ToString();
-                                if (strMobileusageDed.Trim().Length > 0)
-                                {
-                                    totalMobileusageDed += Convert.ToSingle(strMobileusageDed);
-
-                                }
-
-                                string strMediClaimDed = dt.Rows[i]["MediClaimDed"].ToString();
-                                if (strMediClaimDed.Trim().Length > 0)
-                                {
-                                    totalMediClaimDed += Convert.ToSingle(strMediClaimDed);
-
-                                }
-
-                                string strCrisisDed = dt.Rows[i]["CrisisDed"].ToString();
-                                if (strCrisisDed.Trim().Length > 0)
-                                {
-                                    totalCrisisDed += Convert.ToSingle(strCrisisDed);
-
-                                }
-                                string strTelephoneBillDed = dt.Rows[i]["TelephoneBillDed"].ToString();
-                                if (strTelephoneBillDed.Trim().Length > 0)
-                                {
-                                    totalTelephoneBillDed += Convert.ToSingle(strTelephoneBillDed);
-                                }
+                              
                                 string strDed = dt.Rows[i]["TotalDeductions"].ToString();
                                 if (strDed.Trim().Length > 0)
                                 {
@@ -1038,281 +563,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     totalActualamount += Convert.ToSingle(actualAmount);
                                 }
 
-                                string strfixedADDL4HR = dt.Rows[i]["fixedADDL4HR"].ToString();
-                                if (strfixedADDL4HR.Trim().Length > 0)
-                                {
-                                    totalfixedADDL4HR += Convert.ToSingle(strfixedADDL4HR);
-
-                                }
-
-                                string strfixedQTRALLOW = dt.Rows[i]["fixedQTRALLOW"].ToString();
-                                if (strfixedQTRALLOW.Trim().Length > 0)
-                                {
-                                    totalfixedQTRALLOW += Convert.ToSingle(strfixedQTRALLOW);
-
-                                }
-
-                                string strfixedRELALLOW = dt.Rows[i]["fixedRELALLOW"].ToString();
-                                if (strfixedRELALLOW.Trim().Length > 0)
-                                {
-                                    totalfixedRELALLOW += Convert.ToSingle(strfixedRELALLOW);
-
-                                }
-
-                                string strfixedSITEALLOW = dt.Rows[i]["fixedSITEALLOW"].ToString();
-                                if (strfixedSITEALLOW.Trim().Length > 0)
-                                {
-                                    totalfixedSITEALLOW += Convert.ToSingle(strfixedSITEALLOW);
-
-                                }
-
-                                string strfixedGunAllw = dt.Rows[i]["fixedGunAllw"].ToString();
-                                if (strfixedGunAllw.Trim().Length > 0)
-                                {
-                                    totalfixedGunAllw += Convert.ToSingle(strfixedGunAllw);
-
-                                }
-
-                                string strfixedFireAllw = dt.Rows[i]["fixedFireAllw"].ToString();
-                                if (strfixedFireAllw.Trim().Length > 0)
-                                {
-                                    totalfixedFireAllw += Convert.ToSingle(strfixedFireAllw);
-
-                                }
-
-                                string strfixedTelephoneAllw = dt.Rows[i]["fixedTelephoneAllw"].ToString();
-                                if (strfixedTelephoneAllw.Trim().Length > 0)
-                                {
-                                    totalfixedTelephoneAllw += Convert.ToSingle(strfixedTelephoneAllw);
-
-                                }
-
-                                string strfixedReimbursement = dt.Rows[i]["fixedReimbursement"].ToString();
-                                if (strfixedReimbursement.Trim().Length > 0)
-                                {
-                                    totalfixedReimbursement += Convert.ToSingle(strfixedReimbursement);
-
-                                }
-
-                                string strfixedHardshipAllw = dt.Rows[i]["fixedHardshipAllw"].ToString();
-                                if (strfixedHardshipAllw.Trim().Length > 0)
-                                {
-                                    totalfixedHardshipAllw += Convert.ToSingle(strfixedHardshipAllw);
-
-                                }
-
-                                string strfixedPaidHolidayAllw = dt.Rows[i]["fixedPaidHolidayAllw"].ToString();
-                                if (strfixedPaidHolidayAllw.Trim().Length > 0)
-                                {
-                                    totalfixedPaidHolidayAllw += Convert.ToSingle(strfixedPaidHolidayAllw);
-
-                                }
-
-                                string strADDL4HR = dt.Rows[i]["ADDL4HR"].ToString();
-                                if (strADDL4HR.Trim().Length > 0)
-                                {
-                                    totalADDL4HR += Convert.ToSingle(strADDL4HR);
-
-                                }
-
-                                string strQTRALLOW = dt.Rows[i]["QTRALLOW"].ToString();
-                                if (strQTRALLOW.Trim().Length > 0)
-                                {
-                                    totalQTRALLOW += Convert.ToSingle(strQTRALLOW);
-
-                                }
-
-                                string strRELALLOW = dt.Rows[i]["RELALLOW"].ToString();
-                                if (strRELALLOW.Trim().Length > 0)
-                                {
-                                    totalRELALLOW += Convert.ToSingle(strRELALLOW);
-
-                                }
-
-                                string strSITEALLOW = dt.Rows[i]["SITEALLOW"].ToString();
-                                if (strSITEALLOW.Trim().Length > 0)
-                                {
-                                    totalSITEALLOW += Convert.ToSingle(strSITEALLOW);
-
-                                }
-
-                                string strGunAllw = dt.Rows[i]["GunAllw"].ToString();
-                                if (strGunAllw.Trim().Length > 0)
-                                {
-                                    totalGunAllw += Convert.ToSingle(strGunAllw);
-
-                                }
-
-                                string strFireAllw = dt.Rows[i]["FireAllw"].ToString();
-                                if (strFireAllw.Trim().Length > 0)
-                                {
-                                    totalFireAllw += Convert.ToSingle(strFireAllw);
-
-                                }
-
-                                string strTelephoneAllw = dt.Rows[i]["TelephoneAllw"].ToString();
-                                if (strTelephoneAllw.Trim().Length > 0)
-                                {
-                                    totalTelephoneAllw += Convert.ToSingle(strTelephoneAllw);
-
-                                }
-
-                                string strReimbursement = dt.Rows[i]["Reimbursement"].ToString();
-                                if (strReimbursement.Trim().Length > 0)
-                                {
-                                    totalReimbursement += Convert.ToSingle(strReimbursement);
-
-                                }
-
-                                string strHardshipAllw = dt.Rows[i]["HardshipAllw"].ToString();
-                                if (strHardshipAllw.Trim().Length > 0)
-                                {
-                                    totalHardshipAllw += Convert.ToSingle(strHardshipAllw);
-
-                                }
-
-                                string strPaidHolidayAllw = dt.Rows[i]["PaidHolidayAllw"].ToString();
-                                if (strPaidHolidayAllw.Trim().Length > 0)
-                                {
-                                    totalPaidHolidayAllw += Convert.ToSingle(strPaidHolidayAllw);
-
-                                }
-
-                                string strAdmincharges = dt.Rows[i]["AdminCharges"].ToString();
-                                if (strAdmincharges.Trim().Length > 0)
-                                {
-                                    totalAdmincharges += Convert.ToSingle(strAdmincharges);
-
-                                }
-
-                                string strAdvBonus = dt.Rows[i]["AdvBonus"].ToString();
-                                if (strAdvBonus.Trim().Length > 0)
-                                {
-                                    totalAdvBonus += Convert.ToSingle(strAdvBonus);
-
-                                }
-
-                                //string strUniformAllw = dt.Rows[i]["UniformAllw"].ToString();
-                                //if (strUniformAllw.Trim().Length > 0)
-                                //{
-                                //    totalUniformAllw += Convert.ToSingle(strUniformAllw);
-
-                                //}
-                                //string strNPCl25Per = dt.Rows[i]["OTHrs"].ToString();
-                                //if (strNPCl25Per.Trim().Length > 0)
-                                //{
-                                //    totalNPCl25Per += Convert.ToSingle(strNPCl25Per);
-                                //}
-
-                                //string Div = dt.Rows[i]["DivisionName"].ToString();
-                                //if (Div.Trim().Length > 0)
-                                //{
-                                //    totalDiv += Convert.ToSingle(Div);
-                                //}
-                                //string Area = dt.Rows[i]["Location"].ToString();
-                                //if (Area.Trim().Length > 0)
-                                //{
-                                //    totalArea += Convert.ToSingle(Area);
-                                //}
-                                string ntempgross = dt.Rows[i]["tempgross"].ToString();
-                                if (ntempgross.Trim().Length > 0)
-                                {
-                                    totaltempgross += Convert.ToSingle(ntempgross);
-                                }
-                                //string strcdOtAmt = dt.Rows[i]["cdOTAmt"].ToString();
-                                //if (strcdOtAmt.Trim().Length > 0)
-                                //{
-                                //    totalcdOtAmt += Convert.ToSingle(strcdOtAmt);
-
-                                //}
-                                //string strTransport = dt.Rows[i]["OTHrsAmt"].ToString();
-                                //if (strTransport.Trim().Length > 0)
-                                //{
-                                //    totalTransport += Convert.ToSingle(strTransport);
-                                //}
-                                //string strMobInstDed = dt.Rows[i]["MobInstDed"].ToString();
-                                //if (strMobInstDed.Trim().Length > 0)
-                                //{
-                                //    totalMobInstDed += Convert.ToSingle(strMobInstDed);
-
-                                //}
-
-                                //string strTDSDed = dt.Rows[i]["TDSDed"].ToString();
-                                //if (strTDSDed.Trim().Length > 0)
-                                //{
-                                //    totalTDSDed += Convert.ToSingle(strTDSDed);
-
-                                //}
-                                //string strNightAllw = dt.Rows[i]["NightAllw"].ToString();
-                                //if (strNightAllw.Trim().Length > 0)
-                                //{
-                                //    totalNightAllw += Convert.ToSingle(strNightAllw);
-
-                                //}
-                                //string strtotalwed = dt.Rows[i]["WCDed"].ToString();
-                                //if (strtotalwed.Trim().Length > 0)
-                                //{
-                                //    totalwed += Convert.ToSingle(strtotalwed);
-
-                                //}
-
-                                ////
-                                string stOTAmt = dt.Rows[i]["OTAmt"].ToString();
-                                if (stOTAmt.Trim().Length > 0)
-                                {
-                                    totalOTAmt += Convert.ToSingle(stOTAmt);
-                                }
-
-                                string stotesi = dt.Rows[i]["otesi"].ToString();
-                                if (stotesi.Trim().Length > 0)
-                                {
-                                    totalotesi += Convert.ToSingle(stotesi);
-                                }
-
-                                string stnetot = dt.Rows[i]["netot"].ToString();
-                                if (stnetot.Trim().Length > 0)
-                                {
-                                    totalnetot += Convert.ToSingle(stnetot);
-                                }
-
-                                string stTOTALNETPAY = dt.Rows[i]["ActualAmount"].ToString();
-                                if (stTOTALNETPAY.Trim().Length > 0)
-                                {
-                                    totalTOTALNETPAY += Convert.ToSingle(stTOTALNETPAY);
-                                }
-
-                                string strEmpty3 = dt.Rows[i]["uniformcharge"].ToString();
-                                if (strEmpty3.Trim().Length > 0)
-                                {
-                                    totaluniformcharge += Convert.ToSingle(strEmpty3);
-                                }
-
-                                string strEmpty4 = dt.Rows[i]["Empty"].ToString();
-                                if (strEmpty4.Trim().Length > 0)
-                                {
-                                    totalservicecharge += Convert.ToSingle(strEmpty4);
-                                }
-
-                                string strEmpty5 = dt.Rows[i]["Empty"].ToString();
-                                if (strEmpty5.Trim().Length > 0)
-                                {
-                                    totalgst += Convert.ToSingle(strEmpty5);
-                                }
-
-
-
-                                //string strEmpty8 = dt.Rows[i]["Empty"].ToString();
-                                //if (strEmpty8.Trim().Length > 0)
-                                //{
-                                //    totalothers += Convert.ToSingle(strEmpty8);
-                                //}
-
-
-                                string strEmpty10 = dt.Rows[i]["Empty"].ToString();
-                                if (strEmpty10.Trim().Length > 0)
-                                {
-                                    totalESiDAYS += Convert.ToSingle(strEmpty10);
-                                }
+                              
 
                                 string strpfempr = dt.Rows[i]["pfempr"].ToString();
                                 if (strpfempr.Trim().Length > 0)
@@ -1326,47 +577,12 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     totalesiempr += Convert.ToSingle(stresiempr);
                                 }
 
-                                string strctc = dt.Rows[i]["CTC"].ToString();
-                                if (strctc.Trim().Length > 0)
+                                string stOTAmt = dt.Rows[i]["OTAmt"].ToString();
+                                if (stOTAmt.Trim().Length > 0)
                                 {
-                                    totalctc += Convert.ToSingle(strctc);
+                                    totalOTAmt += Convert.ToSingle(stOTAmt);
                                 }
 
-                                string stservicecharge = dt.Rows[i]["servicecharge"].ToString();
-                                if (stservicecharge.Trim().Length > 0)
-                                {
-                                    totalservicecharge1 += Convert.ToSingle(stservicecharge);
-                                }
-
-                                string stgstper = dt.Rows[i]["gstper"].ToString();
-                                if (stgstper.Trim().Length > 0)
-                                {
-                                    totalgstper += Convert.ToSingle(stgstper);
-                                }
-
-                                string stgrandtotal = dt.Rows[i]["grandtotal"].ToString();
-                                if (stgrandtotal.Trim().Length > 0)
-                                {
-                                    totalgrandtotal += Convert.ToSingle(stgrandtotal);
-                                }
-
-                                string stAdvances = dt.Rows[i]["Advances"].ToString();
-                                if (stAdvances.Trim().Length > 0)
-                                {
-                                    totalAdvances += Convert.ToSingle(stAdvances);
-                                }
-
-                                string stUnifom = dt.Rows[i]["Unifom"].ToString();
-                                if (stUnifom.Trim().Length > 0)
-                                {
-                                    totalUnifom += Convert.ToSingle(stUnifom);
-                                }
-
-                                string stOthers = dt.Rows[i]["Others"].ToString();
-                                if (stOthers.Trim().Length > 0)
-                                {
-                                    totalOthers += Convert.ToSingle(stOthers);
-                                }
 
                                 string stTotDeductions = dt.Rows[i]["TotDeductions"].ToString();
                                 if (stTotDeductions.Trim().Length > 0)
@@ -1385,171 +601,17 @@ namespace ShriKartikeya.Portal.Module_Reports
                     {
                         countfixed += 1;
                     }
-                    if (totalCdDA > 0)
-                    {
-                        countfixed += 1;
-                    }
+                   
                     if (totalCdHRA > 0)
                     {
                         countfixed += 1;
                     }
-                    if (totalCdCCA > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdConveyance > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdWA > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdNfhs > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdrc > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    //if (totalCdrc > 0)
-                    //{
-                    //    countfixed += 1;
-                    //}
-                    if (totalCdcs > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdAddlAmount > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdFoodAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdWOAmt > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdNHsAmt > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdMedicalReimbursement > 0)
-                    {
-                        countfixed += 1;
-                    }
+                    
                     if (totalCdSpecialAllW > 0)
                     {
                         countfixed += 1;
                     }
-                    if (totalCdTravelAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdMobileAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdPerformanceAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdLW > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdNPOTsAmt > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdIncentivs > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdBonus > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdGratuity > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdOA > 0)
-                    {
-                        countfixed += 1;
-                    }
 
-                    if (totalcdOtRate > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdServiceWeightage > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdArrears > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdAttBonus > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalCdNightAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalfixedADDL4HR > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalfixedQTRALLOW > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalfixedRELALLOW > 0)
-                    {
-                        countfixed += 1;
-                    }
-
-                    if (totalfixedSITEALLOW > 0)
-                    {
-                        countfixed += 1;
-                    }
-
-                    if (totalfixedGunAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalfixedFireAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalfixedTelephoneAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-
-                    if (totalfixedReimbursement > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalfixedHardshipAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-                    if (totalfixedPaidHolidayAllw > 0)
-                    {
-                        countfixed += 1;
-                    }
-
-                    if (totaltempgross > 0)
-                    {
-                        countfixed += 1;
-                    }
 
 
                     //Duties
@@ -1564,22 +626,6 @@ namespace ShriKartikeya.Portal.Module_Reports
                     }
 
 
-                    if (totalwo > 0)
-                    {
-                        countduties += 1;
-                    }
-
-
-                    if (totalnhs > 0)
-                    {
-                        countduties += 1;
-                    }
-
-
-                    if (totalnpots > 0)
-                    {
-                        countduties += 1;
-                    }
 
 
                     //Earnings
@@ -1587,103 +633,24 @@ namespace ShriKartikeya.Portal.Module_Reports
                     {
                         countearnings += 1;
                     }
-                    if (totalDA > 0)
-                    {
-                        countearnings += 1;
-                    }
+                  
 
                     if (totalHRA > 0)
                     {
                         countearnings += 1;
                     }
-                    if (totalCCA > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalConveyance > 0)
-                    {
-                        countearnings += 1;
-                    }
-
-                    if (totalWA > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalnfhs > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalRC > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalAddlAmount > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalFoodAllowance > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalWoAmt > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalNhsAmt > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalmedicalallowance > 0)
-                    {
-                        countearnings += 1;
-                    }
+                  
                     if (totalSpecialAllowance > 0)
                     {
                         countearnings += 1;
                     }
-                    if (totalTravelAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalMobileAllowance > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalPerformanceAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalLeaveEncashAmt > 0)
-                    {
-                        countearnings += 1;
-                    }
 
-                    if (totalNpotsAmt > 0)
-                    {
-                        countearnings += 1;
-                    }
                     if (totalIncentivs > 0)
                     {
                         countearnings += 1;
                     }
 
-                    if (totalBonus > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalGratuity > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalOA > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    //if (totalOTAmount > 0)
-                    //{
-                    //    countearnings += 1;
-                    //}
-                    if (totalServiceWeightage > 0)
+                    if (totalOTAmt > 0)
                     {
                         countearnings += 1;
                     }
@@ -1691,86 +658,19 @@ namespace ShriKartikeya.Portal.Module_Reports
                     {
                         countearnings += 1;
                     }
-                    if (totalAttBonus > 0)
-                    {
-                        countearnings += 1;
-                    }
 
-                    if (totalNightShiftAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
                     if (totalGrass > 0)
                     {
                         countearnings += 1;
                     }
-                    //if (totalNPCl25Per>0)
-                    //{
-                    //    countearnings += 1;
-                    //}
 
-                    if (totalTransport6Per > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalCS > 0)
-                    {
-                        countearnings += 1;
-                    }
 
-                    if (totalUniformAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
 
-                    if (totalTransport > 0)
-                    {
-                        countearnings += 1;
-                    }
 
-                    if (totalADDL4HR > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalQTRALLOW > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalRELALLOW > 0)
-                    {
-                        countearnings += 1;
-                    }
 
-                    if (totalSITEALLOW > 0)
-                    {
-                        countearnings += 1;
-                    }
 
-                    if (totalGunAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalFireAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalTelephoneAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
 
-                    if (totalReimbursement > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalHardshipAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
-                    if (totalPaidHolidayAllw > 0)
-                    {
-                        countearnings += 1;
-                    }
+                   
 
                     //Deductions
                     if (totalPF > 0)
@@ -1789,96 +689,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                     }
 
 
-                    if (totalSalAdv > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-                    if (totalAdvDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-
-                    if (totalWCDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-                    if (totalUniformDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-                    if (totalOtherDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalloanded > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalCanteenAdv > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalSecDepDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalGenDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
                     if (totalPenalty > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-                    if (totalOWF > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalRentDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalMedicalDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-                    if (totalMLWFDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalFoodDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalElectricityDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalTransportDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-                    if (totalDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalLeaveDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-                    if (totalLicenseDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalAdv4Ded > 0)
                     {
                         countdedutions += 1;
                     }
@@ -1886,146 +697,19 @@ namespace ShriKartikeya.Portal.Module_Reports
                     {
                         countdedutions += 1;
                     }
-                    if (totalManpowerMobDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-
-                    if (totalMobileusageDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalMediClaimDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-                    if (totalCrisisDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalTelephoneBillDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalAdmincharges > 0)
-                    {
-                        countdedutions += 1;
-                    }
-                    if (totalDccDed > 0)
-                    {
-                        countdedutions += 1;
-                    }
-
-
-                    //if (totalMobInstDed > 0)
-                    //{
-                    //    countdedutions += 1;
-                    //}
-
-
-                    //if (totalTDSDed > 0)
-                    //{
-                    //    countdedutions += 1;
-                    //}
-                    if (totalOTAmt > 0)
-                    {
-                        countpfempr += 1;
-                    }
-                    if (totalotesi > 0)
-                    {
-                        countpfempr += 1;
-                    }
-                    if (totalnetot > 0)
-                    {
-                        countpfempr += 1;
-                    }
-                    if (totalpfempr > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-                    if (totalesiempr > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-                    if (totalotesi > 0)
-                    {
-                        countpfempr += 1;
-                    }
-                    if (totaluniformcharge > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-
-                    if (totalctc > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-                    if (totalservicecharge1 > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-                    if (totalgstper > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-                    if (totalgrandtotal > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-                    if (totalAdvances > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-                    if (totalUnifom > 0)
-                    {
-                        countpfempr += 1;
-                    }
-
-                    if (totalOthers > 0)
-                    {
-                        countpfempr += 1;
-                    }
 
                     if (totaltotdeductions > 0)
                     {
-                        countpfempr += 1;
-                    }
-
-                    if (totalTOTALNETPAY > 0)
-                    {
-                        countpfempr += 1;
+                        countdedutions += 1;
                     }
 
 
+                    //Netpay
 
-
-                    // Fixed Count
-
-                    if (totalAdvBonus > 0)
-                    {
-                        countAdvBonus = 1;
-                    }
-
-                    if (totalNPCl25Per > 0)
-                    {
-                        othrsount = 1;
-                    }
-
-                    //if (totalESiDAYS > 0)
+                    //if (totalActualamount > 0)
                     //{
-                    //    othrsount = 1;
+                    //    countNetpay += 1;
                     //}
-
 
 
 
@@ -2036,7 +720,8 @@ namespace ShriKartikeya.Portal.Module_Reports
                 {
                     string date = "";
                     string Year = "";
-                    int EmpDetialscount = 9;
+                    int EmpDetialscount = 21;
+                    int countNetpay = 1;
                     if (txtmonth.Text.Trim().Length > 0)
                     {
                         date = DateTime.Parse(txtmonth.Text.Trim(), CultureInfo.GetCultureInfo("en-gb")).ToString();
@@ -2044,7 +729,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                     }
                     string filename = "PaySheetReport " + ".xls";
                     //int count = GVListEmployees.Columns.Count;
-                    int count = countduties + countfixed + countearnings + countdedutions + countNetpay + EmpDetialscount + countAdvBonus;
+                    int count = EmpDetialscount+ countfixed + countduties +countearnings + countdedutions + countNetpay ;
                     companyname = dtbranchesi.Rows[0]["CompanyName"].ToString();
                     string Form = "FORM XVII";
                     string wages = "REGISTER OF WAGES";
@@ -2056,7 +741,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                     string Wageperiod = "Wage period: Monthly";
                     line2 = "Danube Showroom Wages for the Month of " + GetMonthName() + "-" + Year;
                     //GVUtill.ExportGrid("Netpay-(" + txtmonth.Text + ")" + ".xls", hidGridView);
-                    gve.ExportGridForWagesheetctcReport(filename, countduties, countfixed, countearnings, countdedutions, countpfempr, countAdvBonus, countNetpay, EmpDetialscount, Form, wages, Rule, ContractorName, WorkLocation, count, othrsount, line2, hidGridView);
+                    gve.ExportGridForWagesheetctcReportse(filename, countduties, countfixed, countearnings, countdedutions, countNetpay, EmpDetialscount, ContractorName , line2, hidGridView);
 
                 }
             }
@@ -2065,6 +750,7 @@ namespace ShriKartikeya.Portal.Module_Reports
 
             }
         }
+
         protected void GVListEmployees_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GVListEmployees1.PageIndex = e.NewPageIndex;
@@ -2145,6 +831,8 @@ namespace ShriKartikeya.Portal.Module_Reports
             }
             return MonthYear;
         }
+
+
         #region Total Variables
         float totalActualamount = 0;
         float totalctcamount = 0;
@@ -3306,11 +1994,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     //{
                                     //    totalDiv += Convert.ToSingle(Div);
                                     //}
-                                    //string Area = dt.Rows[i]["Location"].ToString();
-                                    //if (Area.Trim().Length > 0)
-                                    //{
-                                    //    totalArea += Convert.ToSingle(Area);
-                                    //}
+                                    string Area = dt.Rows[i]["Department"].ToString();
+                                    if (Area.Trim().Length > 0)
+                                    {
+                                        totalArea += Convert.ToSingle(Area);
+                                    }
                                     //string ntempgross = dt.Rows[i]["tempgross"].ToString();
                                     //if (ntempgross.Trim().Length > 0)
                                     //{
@@ -3384,25 +2072,13 @@ namespace ShriKartikeya.Portal.Module_Reports
                         //26-04-2018
 
 
-                        Label lbltotalTempGross = GVListEmployees1.FooterRow.FindControl("lbltotalTempGross") as Label;
-                        lbltotalTempGross.Text = Math.Round(totalCdTempGross).ToString();
+                        Label lbltotalcdTempGross = GVListEmployees1.FooterRow.FindControl("lbltotalcdTempGross") as Label;
+                        lbltotalcdTempGross.Text = Math.Round(totalCdTempGross).ToString();
 
                         if (totalCdTempGross > 0)
                         {
-                            GVListEmployees1.Columns[19].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[19].Visible = false;
-
-                        }
-
-                        Label lblTotalDuties = GVListEmployees1.FooterRow.FindControl("lblTotalDuties") as Label;
-                        lblTotalDuties.Text = Math.Round(totalDuties).ToString();
-                        if (totalDuties > 0)
-                        {
                             GVListEmployees1.Columns[20].Visible = true;
+
                         }
                         else
                         {
@@ -3410,11 +2086,13 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
 
-                        Label lbltotalOTHours = GVListEmployees1.FooterRow.FindControl("lbltotalOTHours") as Label;
-                        lbltotalOTHours.Text = Math.Round(totalNPCl25Per).ToString();
-                        if (totalNPCl25Per > 0)
+                        Label lblTotalCdBasic = GVListEmployees1.FooterRow.FindControl("lblTotalCdBasic") as Label;
+                        lblTotalCdBasic.Text = Math.Round(totalCdBasic).ToString();
+
+                        if (totalCdBasic > 0)
                         {
                             GVListEmployees1.Columns[21].Visible = true;
+
                         }
                         else
                         {
@@ -3422,12 +2100,10 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
 
+                        Label lblTotalCdHRA = GVListEmployees1.FooterRow.FindControl("lblTotalCdHRA") as Label;
+                        lblTotalCdHRA.Text = Math.Round(totalCdHRA).ToString();
 
-
-                        Label lblTotalCdBasic = GVListEmployees1.FooterRow.FindControl("lblTotalCdBasic") as Label;
-                        lblTotalCdBasic.Text = Math.Round(totalCdBasic).ToString();
-
-                        if (totalCdBasic > 0)
+                        if (totalCdHRA > 0)
                         {
                             GVListEmployees1.Columns[22].Visible = true;
 
@@ -3437,10 +2113,10 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[22].Visible = false;
 
                         }
-                        Label lblTotalCdDA = GVListEmployees1.FooterRow.FindControl("lblTotalCdDA") as Label;
-                        lblTotalCdDA.Text = Math.Round(totalCdDA).ToString();
 
-                        if (totalCdDA > 0)
+                        Label lblTotalcdSpecialAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalcdSpecialAllowance") as Label;
+                        lblTotalcdSpecialAllowance.Text = Math.Round(totalCdSpecialAllW).ToString();
+                        if (totalCdSpecialAllW > 0)
                         {
                             GVListEmployees1.Columns[23].Visible = true;
 
@@ -3450,34 +2126,34 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[23].Visible = false;
 
                         }
-                        Label lblTotalCdHRA = GVListEmployees1.FooterRow.FindControl("lblTotalCdHRA") as Label;
-                        lblTotalCdHRA.Text = Math.Round(totalCdHRA).ToString();
 
-                        if (totalCdHRA > 0)
+                        Label lblTotalDuties = GVListEmployees1.FooterRow.FindControl("lblTotalDuties") as Label;
+                        lblTotalDuties.Text = Math.Round(totalDuties).ToString();
+                        if (totalDuties > 0)
                         {
                             GVListEmployees1.Columns[24].Visible = true;
-
                         }
                         else
                         {
                             GVListEmployees1.Columns[24].Visible = false;
 
                         }
-                        Label lblTotalCdCCA = GVListEmployees1.FooterRow.FindControl("lblTotalCdCCA") as Label;
-                        lblTotalCdCCA.Text = Math.Round(totalCdCCA).ToString();
-                        if (totalCdCCA > 0)
+
+                        Label lbltotalOTHours = GVListEmployees1.FooterRow.FindControl("lbltotalOTHours") as Label;
+                        lbltotalOTHours.Text = Math.Round(totalOts).ToString();
+                        if (totalOts > 0)
                         {
                             GVListEmployees1.Columns[25].Visible = true;
-
                         }
                         else
                         {
                             GVListEmployees1.Columns[25].Visible = false;
 
                         }
-                        Label lblTotalCdConveyance = GVListEmployees1.FooterRow.FindControl("lblTotalCdConveyance") as Label;
-                        lblTotalCdConveyance.Text = Math.Round(totalCdConveyance).ToString();
-                        if (totalCdConveyance > 0)
+
+                        Label lblTotalBasic = GVListEmployees1.FooterRow.FindControl("lblTotalBasic") as Label;
+                        lblTotalBasic.Text = Math.Round(totalBasic).ToString();
+                        if (totalBasic > 0)
                         {
                             GVListEmployees1.Columns[26].Visible = true;
 
@@ -3487,9 +2163,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[26].Visible = false;
 
                         }
-                        Label lblTotalcdWA = GVListEmployees1.FooterRow.FindControl("lblTotalcdWA") as Label;
-                        lblTotalcdWA.Text = Math.Round(totalCdWA).ToString();
-                        if (totalCdWA > 0)
+
+                        Label lblTotalHRA = GVListEmployees1.FooterRow.FindControl("lblTotalHRA") as Label;
+                        lblTotalHRA.Text = Math.Round(totalHRA).ToString();
+
+                        if (totalHRA > 0)
                         {
                             GVListEmployees1.Columns[27].Visible = true;
 
@@ -3499,9 +2177,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[27].Visible = false;
 
                         }
-                        Label lblTotalcdNfhs = GVListEmployees1.FooterRow.FindControl("lblTotalcdNfhs") as Label;
-                        lblTotalcdNfhs.Text = Math.Round(totalCdNfhs).ToString();
-                        if (totalCdNfhs > 0)
+
+                        Label lblTotalSpecialAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalSpecialAllowance") as Label;
+                        lblTotalSpecialAllowance.Text = Math.Round(totalSpecialAllowance).ToString();
+
+                        if (totalSpecialAllowance > 0)
                         {
                             GVListEmployees1.Columns[28].Visible = true;
 
@@ -3511,21 +2191,23 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[28].Visible = false;
 
                         }
-                        Label lblTotalcdrc = GVListEmployees1.FooterRow.FindControl("lblTotalcdrc") as Label;
-                        lblTotalcdrc.Text = Math.Round(totalCdrc).ToString();
-                        if (totalCdrc > 0)
+
+                        Label lblTotalOTEARNED = GVListEmployees1.FooterRow.FindControl("lblTotalOTEARNED") as Label;
+                        lblTotalOTEARNED.Text = Math.Round(totalOTAmt).ToString();
+                        if (totalOTAmt > 0)
                         {
                             GVListEmployees1.Columns[29].Visible = true;
-
                         }
                         else
                         {
                             GVListEmployees1.Columns[29].Visible = false;
 
                         }
-                        Label lblTotalcdcs = GVListEmployees1.FooterRow.FindControl("lblTotalcdcs") as Label;
-                        lblTotalcdcs.Text = Math.Round(totalCdcs).ToString();
-                        if (totalCdcs > 0)
+
+                        Label lblTotalArrears = GVListEmployees1.FooterRow.FindControl("lblTotalArrears") as Label;
+                        lblTotalArrears.Text = Math.Round(totalArrears).ToString();
+
+                        if (totalArrears > 0)
                         {
                             GVListEmployees1.Columns[30].Visible = true;
 
@@ -3535,9 +2217,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[30].Visible = false;
 
                         }
-                        Label lbltTotalcdAddlAmount = GVListEmployees1.FooterRow.FindControl("lbltTotalcdAddlAmount") as Label;
-                        lbltTotalcdAddlAmount.Text = Math.Round(totalCdAddlAmount).ToString();
-                        if (totalCdAddlAmount > 0)
+
+                        Label lblTotalIncentivs = GVListEmployees1.FooterRow.FindControl("lblTotalIncentivs") as Label;
+                        lblTotalIncentivs.Text = Math.Round(totalIncentivs).ToString();
+
+                        if (totalIncentivs > 0)
                         {
                             GVListEmployees1.Columns[31].Visible = true;
 
@@ -3547,45 +2231,47 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[31].Visible = false;
 
                         }
-                        Label lblTotalcdFoodAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalcdFoodAllowance") as Label;
-                        lblTotalcdFoodAllowance.Text = Math.Round(totalCdFoodAllw).ToString();
-                        if (totalCdFoodAllw > 0)
+
+                        Label lblTotalGross = GVListEmployees1.FooterRow.FindControl("lblTotalGross") as Label;
+                        lblTotalGross.Text = Math.Round(totalGrass).ToString();
+                        if (totalGrass > 0)
                         {
                             GVListEmployees1.Columns[32].Visible = true;
-
                         }
                         else
                         {
                             GVListEmployees1.Columns[32].Visible = false;
 
                         }
-                        Label lblTotalcdWOAmount = GVListEmployees1.FooterRow.FindControl("lblTotalcdWOAmount") as Label;
-                        lblTotalcdWOAmount.Text = Math.Round(totalCdWOAmt).ToString();
-                        if (totalCdWOAmt > 0)
+
+
+                        Label lblTotalPF = GVListEmployees1.FooterRow.FindControl("lblTotalPF") as Label;
+                        lblTotalPF.Text = Math.Round(totalPF).ToString();
+                        if (totalPF > 0)
                         {
                             GVListEmployees1.Columns[33].Visible = true;
-
                         }
                         else
                         {
                             GVListEmployees1.Columns[33].Visible = false;
 
                         }
-                        Label lblTotalcdNhsAmount = GVListEmployees1.FooterRow.FindControl("lblTotalcdNhsAmount") as Label;
-                        lblTotalcdNhsAmount.Text = Math.Round(totalCdNHsAmt).ToString();
-                        if (totalCdNHsAmt > 0)
+
+                        Label lblTotalESI = GVListEmployees1.FooterRow.FindControl("lblTotalESI") as Label;
+                        lblTotalESI.Text = Math.Round(totalESI).ToString();
+                        if (totalESI > 0)
                         {
                             GVListEmployees1.Columns[34].Visible = true;
-
                         }
                         else
                         {
                             GVListEmployees1.Columns[34].Visible = false;
 
                         }
-                        Label lblTotalcdmedicalallowance = GVListEmployees1.FooterRow.FindControl("lblTotalcdmedicalallowance") as Label;
-                        lblTotalcdmedicalallowance.Text = Math.Round(totalCdMedicalReimbursement).ToString();
-                        if (totalCdMedicalReimbursement > 0)
+
+                        Label lblTotalProfTax = GVListEmployees1.FooterRow.FindControl("lblTotalProfTax") as Label;
+                        lblTotalProfTax.Text = Math.Round(totalProfTax).ToString();
+                        if (totalProfTax > 0)
                         {
                             GVListEmployees1.Columns[35].Visible = true;
 
@@ -3594,11 +2280,12 @@ namespace ShriKartikeya.Portal.Module_Reports
                         {
                             GVListEmployees1.Columns[35].Visible = false;
 
-
                         }
-                        Label lblTotalcdSpecialAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalcdSpecialAllowance") as Label;
-                        lblTotalcdSpecialAllowance.Text = Math.Round(totalCdSpecialAllW).ToString();
-                        if (totalCdSpecialAllW > 0)
+
+                        Label lblTotalPenalty = GVListEmployees1.FooterRow.FindControl("lblTotalPenalty") as Label;
+                        lblTotalPenalty.Text = Math.Round(totalPenalty).ToString();
+
+                        if (totalPenalty > 0)
                         {
                             GVListEmployees1.Columns[36].Visible = true;
 
@@ -3608,9 +2295,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[36].Visible = false;
 
                         }
-                        Label lblTotalcdTravelAllw = GVListEmployees1.FooterRow.FindControl("lblTotalcdTravelAllw") as Label;
-                        lblTotalcdTravelAllw.Text = Math.Round(totalCdTravelAllw).ToString();
-                        if (totalCdTravelAllw > 0)
+
+
+                        Label lblTotalNightRoundDed = GVListEmployees1.FooterRow.FindControl("lblTotalNightRoundDed") as Label;
+                        lblTotalNightRoundDed.Text = Math.Round(totalNightRoundDed).ToString();
+                        if (totalNightRoundDed > 0)
                         {
                             GVListEmployees1.Columns[37].Visible = true;
 
@@ -3620,1514 +2309,33 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees1.Columns[37].Visible = false;
 
                         }
-                        Label lblTotalcdMobileAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalcdMobileAllowance") as Label;
-                        lblTotalcdMobileAllowance.Text = Math.Round(totalCdMobileAllw).ToString();
-                        if (totalCdMobileAllw > 0)
-                        {
-                            GVListEmployees1.Columns[38].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[38].Visible = false;
-
-                        }
-                        Label lblTotalcdPerformanceAllw = GVListEmployees1.FooterRow.FindControl("lblTotalcdPerformanceAllw") as Label;
-                        lblTotalcdPerformanceAllw.Text = Math.Round(totalCdPerformanceAllw).ToString();
-                        if (totalCdPerformanceAllw > 0)
-                        {
-                            GVListEmployees1.Columns[39].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[39].Visible = false;
-
-                        }
-                        Label lblTotalcdLeaveEncashAmt = GVListEmployees1.FooterRow.FindControl("lblTotalcdLeaveEncashAmt") as Label;
-                        lblTotalcdLeaveEncashAmt.Text = Math.Round(totalCdLW).ToString();
-                        if (totalCdLW > 0)
-                        {
-                            GVListEmployees1.Columns[40].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[40].Visible = false;
-
-                        }
-                        Label lblTotalcdNpotsAmount = GVListEmployees1.FooterRow.FindControl("lblTotalcdNpotsAmount") as Label;
-                        lblTotalcdNpotsAmount.Text = Math.Round(totalCdNPOTsAmt).ToString();
-                        if (totalCdNPOTsAmt > 0)
-                        {
-                            GVListEmployees1.Columns[41].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[41].Visible = false;
-
-                        }
-                        Label lblTotalcdIncentivs = GVListEmployees1.FooterRow.FindControl("lblTotalcdIncentivs") as Label;
-                        lblTotalcdIncentivs.Text = Math.Round(totalCdIncentivs).ToString();
-                        if (totalCdIncentivs > 0)
-                        {
-                            GVListEmployees1.Columns[42].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[42].Visible = false;
-
-                        }
-                        Label lblTotalcdBonus = GVListEmployees1.FooterRow.FindControl("lblTotalcdBonus") as Label;
-                        lblTotalcdBonus.Text = Math.Round(totalCdBonus).ToString();
-                        if (totalCdBonus > 0)
-                        {
-                            GVListEmployees1.Columns[43].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[43].Visible = false;
-
-                        }
-                        Label lblTotalcdGratuity = GVListEmployees1.FooterRow.FindControl("lblTotalcdGratuity") as Label;
-                        lblTotalcdGratuity.Text = Math.Round(totalCdGratuity).ToString();
-                        if (totalCdGratuity > 0)
-                        {
-                            GVListEmployees1.Columns[44].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[44].Visible = false;
-
-                        }
-                        Label lblTotalcdOA = GVListEmployees1.FooterRow.FindControl("lblTotalcdOA") as Label;
-                        lblTotalcdOA.Text = Math.Round(totalCdOA).ToString();
-                        if (totalCdOA > 0)
-                        {
-                            GVListEmployees1.Columns[45].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[45].Visible = false;
-
-                        }
-
-                        Label lblTotalcdOTAmount = GVListEmployees1.FooterRow.FindControl("lblTotalcdOTAmount") as Label;
-                        lblTotalcdOTAmount.Text = Math.Round(totalcdOtRate).ToString();
-                        if (totalcdOtRate > 0)
-                        {
-                            GVListEmployees1.Columns[46].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[46].Visible = false;
-
-                        }
-                        Label lblTotalcdServiceWeightage = GVListEmployees1.FooterRow.FindControl("lblTotalcdServiceWeightage") as Label;
-                        lblTotalcdServiceWeightage.Text = Math.Round(totalCdServiceWeightage).ToString();
-                        if (totalCdServiceWeightage > 0)
-                        {
-                            GVListEmployees1.Columns[47].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[47].Visible = false;
-
-                        }
-                        Label lblTotalcdRankAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalcdRankAllowance") as Label;
-                        lblTotalcdRankAllowance.Text = Math.Round(totalcdRankAllowance).ToString();
-                        if (totalcdRankAllowance > 0)
-                        {
-                            GVListEmployees1.Columns[48].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[48].Visible = false;
-
-                        }
-                        Label lblTotalcdAttBonus = GVListEmployees1.FooterRow.FindControl("lblTotalcdAttBonus") as Label;
-                        lblTotalcdAttBonus.Text = Math.Round(totalCdAttBonus).ToString();
-                        if (totalCdAttBonus > 0)
-                        {
-                            GVListEmployees1.Columns[49].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[49].Visible = false;
-
-                        }
-                        Label lblTotalcdNightAllw = GVListEmployees1.FooterRow.FindControl("lblTotalcdNightAllw") as Label;
-                        lblTotalcdNightAllw.Text = Math.Round(totalCdNightAllw).ToString();
-                        if (totalCdNightAllw > 0)
-                        {
-                            GVListEmployees1.Columns[50].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[50].Visible = false;
-
-                        }
-                        Label lblTotalfixedADDL4HR = GVListEmployees1.FooterRow.FindControl("lblTotalfixedADDL4HR") as Label;
-                        lblTotalfixedADDL4HR.Text = Math.Round(totalfixedADDL4HR).ToString();
-                        if (totalfixedADDL4HR > 0)
-                        {
-                            GVListEmployees1.Columns[51].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[51].Visible = false;
-
-                        }
-                        Label lblTotalfixedQTRALLOW = GVListEmployees1.FooterRow.FindControl("lblTotalfixedQTRALLOW") as Label;
-                        lblTotalfixedQTRALLOW.Text = Math.Round(totalfixedQTRALLOW).ToString();
-                        if (totalfixedQTRALLOW > 0)
-                        {
-                            GVListEmployees1.Columns[52].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[52].Visible = false;
-
-                        }
-                        Label lblTotalfixedRELALLOW = GVListEmployees1.FooterRow.FindControl("lblTotalfixedRELALLOW") as Label;
-                        lblTotalfixedRELALLOW.Text = Math.Round(totalfixedRELALLOW).ToString();
-                        if (totalfixedRELALLOW > 0)
-                        {
-                            GVListEmployees1.Columns[53].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[53].Visible = false;
-
-                        }
-                        Label lblTotalfixedSITEALLOW = GVListEmployees1.FooterRow.FindControl("lblTotalfixedSITEALLOW") as Label;
-                        lblTotalfixedSITEALLOW.Text = Math.Round(totalfixedSITEALLOW).ToString();
-                        if (totalfixedSITEALLOW > 0)
-                        {
-                            GVListEmployees1.Columns[54].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[54].Visible = false;
-
-                        }
-
-                        Label lblTotalfixedGunAllw = GVListEmployees1.FooterRow.FindControl("lblTotalfixedGunAllw") as Label;
-                        lblTotalfixedGunAllw.Text = Math.Round(totalfixedGunAllw).ToString();
-                        if (totalfixedGunAllw > 0)
-                        {
-                            GVListEmployees1.Columns[56].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[56].Visible = false;
-
-                        }
-                        Label lblTotalfixedFireAllw = GVListEmployees1.FooterRow.FindControl("lblTotalfixedFireAllw") as Label;
-                        lblTotalfixedFireAllw.Text = Math.Round(totalfixedFireAllw).ToString();
-                        if (totalfixedFireAllw > 0)
-                        {
-                            GVListEmployees1.Columns[56].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[56].Visible = false;
-
-                        }
-
-                        Label lblTotalfixedTelephoneAllw = GVListEmployees1.FooterRow.FindControl("lblTotalfixedTelephoneAllw") as Label;
-                        lblTotalfixedTelephoneAllw.Text = Math.Round(totalfixedTelephoneAllw).ToString();
-                        if (totalfixedTelephoneAllw > 0)
-                        {
-                            GVListEmployees1.Columns[57].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[57].Visible = false;
-
-                        }
-                        Label lblTotalfixedReimbursement = GVListEmployees1.FooterRow.FindControl("lblTotalfixedReimbursement") as Label;
-                        lblTotalfixedReimbursement.Text = Math.Round(totalfixedReimbursement).ToString();
-                        if (totalfixedReimbursement > 0)
-                        {
-                            GVListEmployees1.Columns[58].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[58].Visible = false;
-
-                        }
-
-                        Label lblTotalfixedHardshipAllw = GVListEmployees1.FooterRow.FindControl("lblTotalfixedHardshipAllw") as Label;
-                        lblTotalfixedHardshipAllw.Text = Math.Round(totalfixedHardshipAllw).ToString();
-                        if (totalfixedHardshipAllw > 0)
-                        {
-                            GVListEmployees1.Columns[59].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[59].Visible = false;
-
-                        }
-                        Label lblTotalfixedPaidHolidayAllw = GVListEmployees1.FooterRow.FindControl("lblTotalfixedPaidHolidayAllw") as Label;
-                        lblTotalfixedPaidHolidayAllw.Text = Math.Round(totalfixedPaidHolidayAllw).ToString();
-                        if (totalfixedPaidHolidayAllw > 0)
-                        {
-                            GVListEmployees1.Columns[60].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[60].Visible = false;
-
-                        }
-
-                        Label lbltotalcdTempGross = GVListEmployees1.FooterRow.FindControl("lbltotalTempGross") as Label;
-                        lbltotalcdTempGross.Text = Math.Round(totalCdTempGross).ToString();
-
-                        if (totalCdTempGross > 0)
-                        {
-                            GVListEmployees1.Columns[61].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[61].Visible = false;
-
-                        }
-
-
-                        //Label lblTotalDuties = GVListEmployees.FooterRow.FindControl("lblTotalDuties") as Label;
-                        //lblTotalDuties.Text = Math.Round(totalDuties).ToString();
-                        //if (totalDuties > 0)
-                        //{
-                        //    GVListEmployees.Columns[58].Visible = true;
-                        //}
-                        //else
-                        //{
-                        //    GVListEmployees.Columns[58].Visible = false;
-
-                        //}
-                        Label lblTotalOts = GVListEmployees1.FooterRow.FindControl("lblTotalOts") as Label;
-                        lblTotalOts.Text = Math.Round(totalOts).ToString();
-                        if (totalOts > 0)
-                        {
-                            GVListEmployees1.Columns[62].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[62].Visible = false;
-
-                        }
-
-
-                        Label lblTotalwos = GVListEmployees1.FooterRow.FindControl("lblTotalwos") as Label;
-                        lblTotalwos.Text = Math.Round(totalwo).ToString();
-
-                        if (totalwo > 0)
-                        {
-                            GVListEmployees1.Columns[63].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[63].Visible = false;
-
-                        }
-
-                        Label lblTotalNhs = GVListEmployees1.FooterRow.FindControl("lblTotalNhs") as Label;
-                        lblTotalNhs.Text = Math.Round(totalnhs).ToString();
-
-                        if (totalnhs > 0)
-                        {
-                            GVListEmployees1.Columns[64].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[64].Visible = false;
-
-                        }
-                        Label lblTotalNpots = GVListEmployees1.FooterRow.FindControl("lblTotalNpots") as Label;
-                        lblTotalNpots.Text = Math.Round(totalnpots).ToString();
-
-                        if (totalnpots > 0)
-                        {
-                            GVListEmployees1.Columns[65].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[65].Visible = false;
-
-                        }
-
-                        Label lblTotalBasic = GVListEmployees1.FooterRow.FindControl("lblTotalBasic") as Label;
-                        lblTotalBasic.Text = Math.Round(totalBasic).ToString();
-                        if (totalBasic > 0)
-                        {
-                            GVListEmployees1.Columns[66].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[66].Visible = false;
-
-                        }
-                        Label lblTotalDA = GVListEmployees1.FooterRow.FindControl("lblTotalDA") as Label;
-                        lblTotalDA.Text = Math.Round(totalDA).ToString();
-
-                        if (totalDA > 0)
-                        {
-                            GVListEmployees1.Columns[67].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[67].Visible = false;
-
-                        }
-
-                        Label lblTotalHRA = GVListEmployees1.FooterRow.FindControl("lblTotalHRA") as Label;
-                        lblTotalHRA.Text = Math.Round(totalHRA).ToString();
-
-                        if (totalHRA > 0)
-                        {
-                            GVListEmployees1.Columns[68].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[68].Visible = false;
-
-                        }
-
-                        Label lblTotalCCA = GVListEmployees1.FooterRow.FindControl("lblTotalCCA") as Label;
-                        lblTotalCCA.Text = Math.Round(totalCCA).ToString();
-
-                        if (totalCCA > 0)
-                        {
-                            GVListEmployees1.Columns[69].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[69].Visible = false;
-
-                        }
-
-                        Label lblTotalConveyance = GVListEmployees1.FooterRow.FindControl("lblTotalConveyance") as Label;
-                        lblTotalConveyance.Text = Math.Round(totalConveyance).ToString();
-
-                        if (totalConveyance > 0)
-                        {
-                            GVListEmployees1.Columns[70].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[70].Visible = false;
-
-                        }
-
-                        Label lblTotalWA = GVListEmployees1.FooterRow.FindControl("lblTotalWA") as Label;
-                        lblTotalWA.Text = Math.Round(totalWA).ToString();
-
-                        if (totalWA > 0)
-                        {
-                            GVListEmployees1.Columns[71].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[71].Visible = false;
-
-                        }
-
-                        Label lblTotalNfhs = GVListEmployees1.FooterRow.FindControl("lblTotalNfhs") as Label;
-                        lblTotalNfhs.Text = Math.Round(totalnfhs).ToString();
-
-                        if (totalnfhs > 0)
-                        {
-                            GVListEmployees1.Columns[72].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[72].Visible = false;
-
-                        }
-
-                        Label lblTotalrc = GVListEmployees1.FooterRow.FindControl("lblTotalrc") as Label;
-                        lblTotalrc.Text = Math.Round(totalRC).ToString();
-
-                        if (totalRC > 0)
-                        {
-                            GVListEmployees1.Columns[73].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[73].Visible = false;
-
-                        }
-
-                        Label lblTotalcs = GVListEmployees1.FooterRow.FindControl("lblTotalcs") as Label;
-                        lblTotalcs.Text = Math.Round(totalCS).ToString();
-
-                        if (totalCS > 0)
-                        {
-                            GVListEmployees1.Columns[74].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[74].Visible = false;
-
-                        }
-                        Label lbltTotalAddlAmount = GVListEmployees1.FooterRow.FindControl("lbltTotalAddlAmount") as Label;
-                        lbltTotalAddlAmount.Text = Math.Round(totalAddlAmount).ToString();
-
-                        if (totalAddlAmount > 0)
-                        {
-                            GVListEmployees1.Columns[75].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[75].Visible = false;
-
-                        }
-                        Label lblTotalFoodAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalFoodAllowance") as Label;
-                        lblTotalFoodAllowance.Text = Math.Round(totalFoodAllowance).ToString();
-
-                        if (totalFoodAllowance > 0)
-                        {
-                            GVListEmployees1.Columns[77].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[77].Visible = false;
-                        }
-
-                        Label lblTotalWOAmount = GVListEmployees1.FooterRow.FindControl("lblTotalWOAmount") as Label;
-                        lblTotalWOAmount.Text = Math.Round(totalWoAmt).ToString();
-
-                        if (totalWoAmt > 0)
-                        {
-                            GVListEmployees1.Columns[77].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[77].Visible = false;
-
-                        }
-
-                        Label lblTotalNhsAmount = GVListEmployees1.FooterRow.FindControl("lblTotalNhsAmount") as Label;
-                        lblTotalNhsAmount.Text = Math.Round(totalNhsAmt).ToString();
-
-                        if (totalNhsAmt > 0)
-                        {
-                            GVListEmployees1.Columns[78].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[78].Visible = false;
-
-                        }
-
-                        Label lblTotalmedicalallowance = GVListEmployees1.FooterRow.FindControl("lblTotalmedicalallowance") as Label;
-                        lblTotalmedicalallowance.Text = Math.Round(totalmedicalallowance).ToString();
-
-                        if (totalmedicalallowance > 0)
-                        {
-                            GVListEmployees1.Columns[79].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[79].Visible = false;
-                        }
-
-
-                        Label lblTotalSpecialAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalSpecialAllowance") as Label;
-                        lblTotalSpecialAllowance.Text = Math.Round(totalSpecialAllowance).ToString();
-
-                        if (totalSpecialAllowance > 0)
-                        {
-                            GVListEmployees1.Columns[80].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[80].Visible = false;
-
-                        }
-
-                        Label lblTotalTravelAllw = GVListEmployees1.FooterRow.FindControl("lblTotalTravelAllw") as Label;
-                        lblTotalTravelAllw.Text = Math.Round(totalTravelAllw).ToString();
-
-                        if (totalTravelAllw > 0)
-                        {
-                            GVListEmployees1.Columns[81].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[81].Visible = false;
-                        }
-
-                        Label lblTotalMobileAllowance = GVListEmployees1.FooterRow.FindControl("lblTotalMobileAllowance") as Label;
-                        lblTotalMobileAllowance.Text = Math.Round(totalMobileAllowance).ToString();
-
-                        if (totalMobileAllowance > 0)
-                        {
-                            GVListEmployees1.Columns[82].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[82].Visible = false;
-
-                        }
-                        Label lblTotalPerformanceAllw = GVListEmployees1.FooterRow.FindControl("lblTotalPerformanceAllw") as Label;
-                        lblTotalPerformanceAllw.Text = Math.Round(totalPerformanceAllw).ToString();
-                        if (totalPerformanceAllw > 0)
-                        {
-                            GVListEmployees1.Columns[83].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[83].Visible = false;
-
-                        }
-
-                        Label lblTotalLeaveEncashAmt = GVListEmployees1.FooterRow.FindControl("lblTotalLeaveEncashAmt") as Label;
-                        lblTotalLeaveEncashAmt.Text = Math.Round(totalLeaveEncashAmt).ToString();
-
-                        if (totalLeaveEncashAmt > 0)
-                        {
-                            GVListEmployees1.Columns[84].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[84].Visible = false;
-
-                        }
-                        Label lblTotalNpotsAmount = GVListEmployees1.FooterRow.FindControl("lblTotalNpotsAmount") as Label;
-                        lblTotalNpotsAmount.Text = Math.Round(totalNpotsAmt).ToString();
-
-                        if (totalNpotsAmt > 0)
-                        {
-                            GVListEmployees1.Columns[85].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[85].Visible = false;
-
-                        }
-
-
-                        Label lblTotalIncentivs = GVListEmployees1.FooterRow.FindControl("lblTotalIncentivs") as Label;
-                        lblTotalIncentivs.Text = Math.Round(totalIncentivs).ToString();
-                        if (totalIncentivs > 0)
-                        {
-                            GVListEmployees1.Columns[86].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[86].Visible = false;
-
-                        }
-                        Label lblTotalBonus = GVListEmployees1.FooterRow.FindControl("lblTotalBonus") as Label;
-                        lblTotalBonus.Text = Math.Round(totalBonus).ToString();
-                        if (totalBonus > 0)
-                        {
-                            GVListEmployees1.Columns[87].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[87].Visible = false;
-
-                        }
-
-                        Label lblTotalGratuity = GVListEmployees1.FooterRow.FindControl("lblTotalGratuity") as Label;
-                        lblTotalGratuity.Text = Math.Round(totalGratuity).ToString();
-
-                        if (totalGratuity > 0)
-                        {
-                            GVListEmployees1.Columns[88].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[88].Visible = false;
-
-                        }
-                        Label lblTotalOA = GVListEmployees1.FooterRow.FindControl("lblTotalOA") as Label;
-                        lblTotalOA.Text = Math.Round(totalOA).ToString();
-
-                        if (totalOA > 0)
-                        {
-                            GVListEmployees1.Columns[89].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[89].Visible = false;
-
-                        }
-
-                        Label lblTotalServiceWeightage = GVListEmployees1.FooterRow.FindControl("lblTotalServiceWeightage") as Label;
-                        lblTotalServiceWeightage.Text = Math.Round(totalServiceWeightage).ToString();
-
-                        if (totalServiceWeightage > 0)
-                        {
-                            GVListEmployees1.Columns[90].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[90].Visible = false;
-
-                        }
-                        Label lblTotalArrears = GVListEmployees1.FooterRow.FindControl("lblTotalArrears") as Label;
-                        lblTotalArrears.Text = Math.Round(totalArrears).ToString();
-
-                        if (totalArrears > 0)
-                        {
-                            GVListEmployees1.Columns[91].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[91].Visible = false;
-
-                        }
-
-                        Label lblTotalAttBonus = GVListEmployees1.FooterRow.FindControl("lblTotalAttBonus") as Label;
-                        lblTotalAttBonus.Text = Math.Round(totalAttBonus).ToString();
-
-                        if (totalAttBonus > 0)
-                        {
-                            GVListEmployees1.Columns[92].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[92].Visible = false;
-
-                        }
-                        Label lblTotalNightAllw = GVListEmployees1.FooterRow.FindControl("lblTotalNightAllw") as Label;
-                        lblTotalNightAllw.Text = Math.Round(totalNightAllw).ToString();
-
-                        if (totalNightAllw > 0)
-                        {
-                            GVListEmployees1.Columns[93].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[93].Visible = false;
-
-                        }
-                        Label lblTotalADDL4HR = GVListEmployees1.FooterRow.FindControl("lblTotalADDL4HR") as Label;
-                        lblTotalADDL4HR.Text = Math.Round(totalADDL4HR).ToString();
-
-                        if (totalADDL4HR > 0)
-                        {
-                            GVListEmployees1.Columns[94].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[94].Visible = false;
-
-                        }
-                        Label lblTotalQTRALLOW = GVListEmployees1.FooterRow.FindControl("lblTotalQTRALLOW") as Label;
-                        lblTotalQTRALLOW.Text = Math.Round(totalQTRALLOW).ToString();
-
-                        if (totalQTRALLOW > 0)
-                        {
-                            GVListEmployees1.Columns[95].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[95].Visible = false;
-
-                        }
-
-                        Label lblTotalRELALLOW = GVListEmployees1.FooterRow.FindControl("lblTotalRELALLOW") as Label;
-                        lblTotalRELALLOW.Text = Math.Round(totalRELALLOW).ToString();
-                        if (totalRELALLOW > 0)
-                        {
-                            GVListEmployees1.Columns[96].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[96].Visible = false;
-
-                        }
-                        Label lblTotalSITEALLOW = GVListEmployees1.FooterRow.FindControl("lblTotalSITEALLOW") as Label;
-                        lblTotalSITEALLOW.Text = Math.Round(totalSITEALLOW).ToString();
-                        if (totalSITEALLOW > 0)
-                        {
-                            GVListEmployees1.Columns[97].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[97].Visible = false;
-
-                        }
-
-                        Label lblTotalGunAllw = GVListEmployees1.FooterRow.FindControl("lblTotalGunAllw") as Label;
-                        lblTotalGunAllw.Text = Math.Round(totalGunAllw).ToString();
-                        if (totalGunAllw > 0)
-                        {
-                            GVListEmployees1.Columns[98].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[98].Visible = false;
-
-                        }
-                        Label lblTotalFireAllw = GVListEmployees1.FooterRow.FindControl("lblTotalFireAllw") as Label;
-                        lblTotalFireAllw.Text = Math.Round(totalFireAllw).ToString();
-                        if (totalFireAllw > 0)
-                        {
-                            GVListEmployees1.Columns[99].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[99].Visible = false;
-
-                        }
-
-                        Label lblTotalTelephoneAllw = GVListEmployees1.FooterRow.FindControl("lblTotalTelephoneAllw") as Label;
-                        lblTotalTelephoneAllw.Text = Math.Round(totalTelephoneAllw).ToString();
-                        if (totalTelephoneAllw > 0)
-                        {
-                            GVListEmployees1.Columns[100].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[100].Visible = false;
-
-                        }
-                        Label lblTotalReimbursement = GVListEmployees1.FooterRow.FindControl("lblTotalReimbursement") as Label;
-                        lblTotalReimbursement.Text = Math.Round(totalReimbursement).ToString();
-                        if (totalReimbursement > 0)
-                        {
-                            GVListEmployees1.Columns[101].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[101].Visible = false;
-
-                        }
-
-                        Label lblTotalHardshipAllw = GVListEmployees1.FooterRow.FindControl("lblTotalHardshipAllw") as Label;
-                        lblTotalHardshipAllw.Text = Math.Round(totalHardshipAllw).ToString();
-                        if (totalHardshipAllw > 0)
-                        {
-                            GVListEmployees1.Columns[102].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[102].Visible = false;
-
-                        }
-                        Label lblTotalPaidHolidayAllw = GVListEmployees1.FooterRow.FindControl("lblTotalPaidHolidayAllw") as Label;
-                        lblTotalPaidHolidayAllw.Text = Math.Round(totalPaidHolidayAllw).ToString();
-                        if (totalPaidHolidayAllw > 0)
-                        {
-                            GVListEmployees1.Columns[103].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[103].Visible = false;
-
-                        }
-
-                        Label lblTotalRankAllownace = GVListEmployees1.FooterRow.FindControl("lblTotalRankAllownace") as Label;
-                        lblTotalRankAllownace.Text = Math.Round(totalRankAllowance).ToString();
-
-                        if (totalRankAllowance > 0)
-                        {
-                            GVListEmployees1.Columns[104].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[104].Visible = false;
-
-                        }
-
-                        Label lblTotalGross = GVListEmployees1.FooterRow.FindControl("lblTotalGross") as Label;
-                        lblTotalGross.Text = Math.Round(totalGrass).ToString();
-                        if (totalGrass > 0)
-                        {
-                            GVListEmployees1.Columns[105].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[105].Visible = false;
-
-                        }
-
-                        Label lblTotalPF = GVListEmployees1.FooterRow.FindControl("lblTotalPF") as Label;
-                        lblTotalPF.Text = Math.Round(totalPF).ToString();
-                        if (totalPF > 0)
-                        {
-                            GVListEmployees1.Columns[106].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[106].Visible = false;
-
-                        }
-
-                        Label lblTotalESI = GVListEmployees1.FooterRow.FindControl("lblTotalESI") as Label;
-                        lblTotalESI.Text = Math.Round(totalESI).ToString();
-                        if (totalESI > 0)
-                        {
-                            GVListEmployees1.Columns[107].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[107].Visible = false;
-
-                        }
-
-                        Label lblTotalProfTax = GVListEmployees1.FooterRow.FindControl("lblTotalProfTax") as Label;
-                        lblTotalProfTax.Text = Math.Round(totalProfTax).ToString();
-                        if (totalProfTax > 0)
-                        {
-                            GVListEmployees1.Columns[108].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[108].Visible = false;
-
-                        }
-
-
-                        Label lblTotalsaladv = GVListEmployees1.FooterRow.FindControl("lblTotalsaladv") as Label;
-                        lblTotalsaladv.Text = Math.Round(totalSalAdv).ToString();
-
-                        if (totalSalAdv > 0)
-                        {
-                            GVListEmployees1.Columns[109].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[109].Visible = false;
-
-                        }
-
-                        Label lblTotaladvded = GVListEmployees1.FooterRow.FindControl("lblTotaladvded") as Label;
-                        lblTotaladvded.Text = Math.Round(totalAdvDed).ToString();
-                        if (totalAdvDed > 0)
-                        {
-                            GVListEmployees1.Columns[110].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[110].Visible = false;
-
-                        }
-                        Label lblTotalwed = GVListEmployees1.FooterRow.FindControl("lblTotalwed") as Label;
-                        lblTotalwed.Text = Math.Round(totalwed).ToString();
-                        if (totalwed > 0)
-                        {
-                            GVListEmployees1.Columns[111].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[111].Visible = false;
-
-                        }
-
-                        Label lblTotalUniformDed = GVListEmployees1.FooterRow.FindControl("lblTotalUniformDed") as Label;
-                        lblTotalUniformDed.Text = Math.Round(totalUniformDed).ToString();
-
-                        if (totalUniformDed > 0)
-                        {
-                            GVListEmployees1.Columns[112].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[112].Visible = false;
-
-                        }
-
-                        Label lblTotalOtherDed = GVListEmployees1.FooterRow.FindControl("lblTotalOtherDed") as Label;
-                        lblTotalOtherDed.Text = Math.Round(totalOtherDed).ToString();
-
-                        if (totalOtherDed > 0)
-                        {
-                            GVListEmployees1.Columns[113].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[113].Visible = false;
-
-                        }
-
-                        Label lblTotaltotalloanded = GVListEmployees1.FooterRow.FindControl("lblTotaltotalloanded") as Label;
-                        lblTotaltotalloanded.Text = Math.Round(totalloanded).ToString();
-
-                        if (totalloanded > 0)
-                        {
-                            GVListEmployees1.Columns[114].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[114].Visible = false;
-
-                        }
-
-                        Label lblTotalcantadv = GVListEmployees1.FooterRow.FindControl("lblTotalcantadv") as Label;
-                        lblTotalcantadv.Text = Math.Round(totalCanteenAdv).ToString();
-
-                        if (totalCanteenAdv > 0)
-                        {
-                            GVListEmployees1.Columns[115].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[115].Visible = false;
-
-                        }
-                        Label lblTotalSeepDed = GVListEmployees1.FooterRow.FindControl("lblTotalSeepDed") as Label;
-                        lblTotalSeepDed.Text = Math.Round(totalSeepDed).ToString();
-
-                        if (totalSeepDed > 0)
-                        {
-                            GVListEmployees1.Columns[116].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[116].Visible = false;
-
-                        }
-
-
-                        Label lblTotalGeneralDed = GVListEmployees1.FooterRow.FindControl("lblTotalGeneralDed") as Label;
-                        lblTotalGeneralDed.Text = Math.Round(totalGenDed).ToString();
-
-
-                        if (totalGenDed > 0)
-                        {
-                            GVListEmployees1.Columns[117].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[117].Visible = false;
-
-                        }
-
-                        Label lblTotalowf = GVListEmployees1.FooterRow.FindControl("lblTotalowf") as Label;
-                        lblTotalowf.Text = Math.Round(totalOWF).ToString();
-
-                        if (totalOWF > 0)
-                        {
-
-                            GVListEmployees1.Columns[118].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[118].Visible = false;
-
-                        }
-
-                        Label lblTotalPenalty = GVListEmployees1.FooterRow.FindControl("lblTotalPenalty") as Label;
-                        lblTotalPenalty.Text = Math.Round(totalPenalty).ToString();
-
-                        if (totalPenalty > 0)
-                        {
-                            GVListEmployees1.Columns[119].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[119].Visible = false;
-
-                        }
-
-
-                        Label lblTotalRentDed = GVListEmployees1.FooterRow.FindControl("lblTotalRentDed") as Label;
-                        lblTotalRentDed.Text = Math.Round(totalRentDed).ToString();
-
-                        if (totalRentDed > 0)
-                        {
-                            GVListEmployees1.Columns[120].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[120].Visible = false;
-
-                        }
-
-
-                        Label lblTotalMedicalDed = GVListEmployees1.FooterRow.FindControl("lblTotalMedicalDed") as Label;
-                        lblTotalMedicalDed.Text = Math.Round(totalMedicalDed).ToString();
-
-                        if (totalMedicalDed > 0)
-                        {
-                            GVListEmployees1.Columns[121].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[121].Visible = false;
-
-                        }
-
-                        Label lblTotalMLWFDed = GVListEmployees1.FooterRow.FindControl("lblTotalMLWFDed") as Label;
-                        lblTotalMLWFDed.Text = Math.Round(totalMLWFDed).ToString();
-
-                        if (totalMLWFDed > 0)
-                        {
-                            GVListEmployees1.Columns[122].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[122].Visible = false;
-
-                        }
-
-                        Label lblTotalFoodDed = GVListEmployees1.FooterRow.FindControl("lblTotalFoodDed") as Label;
-                        lblTotalFoodDed.Text = Math.Round(totalFoodDed).ToString();
-
-                        if (totalFoodDed > 0)
-                        {
-                            GVListEmployees1.Columns[123].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[123].Visible = false;
-
-                        }
-
-                        Label lblTotalElectricityDed = GVListEmployees1.FooterRow.FindControl("lblTotalElectricityDed") as Label;
-                        lblTotalElectricityDed.Text = Math.Round(totalElectricityDed).ToString();
-
-                        if (totalElectricityDed > 0)
-                        {
-                            GVListEmployees1.Columns[124].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[124].Visible = false;
-                        }
-
-                        Label lblTotalTransportDed = GVListEmployees1.FooterRow.FindControl("lblTotalTransportDed") as Label;
-                        lblTotalTransportDed.Text = Math.Round(totalTransportDed).ToString();
-
-                        if (totalTransportDed > 0)
-                        {
-                            GVListEmployees1.Columns[125].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[125].Visible = false;
-                        }
-                        Label lblTotalDced = GVListEmployees1.FooterRow.FindControl("lblTotalDced") as Label;
-                        lblTotalDced.Text = Math.Round(totalDced).ToString();
-
-                        if (totalDced > 0)
-                        {
-                            GVListEmployees1.Columns[126].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[126].Visible = false;
-                        }
-
-                        Label lblTotalLeaveDed = GVListEmployees1.FooterRow.FindControl("lblTotalLeaveDed") as Label;
-                        lblTotalLeaveDed.Text = Math.Round(totalLeaveDed).ToString();
-
-                        if (totalLeaveDed > 0)
-                        {
-                            GVListEmployees1.Columns[127].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[127].Visible = false;
-                        }
-
-                        Label lblTotalLicenseDed = GVListEmployees1.FooterRow.FindControl("lblTotalLicenseDed") as Label;
-                        lblTotalLicenseDed.Text = Math.Round(totalLicenseDed).ToString();
-
-                        if (totalLicenseDed > 0)
-                        {
-                            GVListEmployees1.Columns[128].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[128].Visible = false;
-                        }
-
-
-                        ///
-
-                        Label lblTotalAdv4Ded = GVListEmployees1.FooterRow.FindControl("lblTotalAdv4Ded") as Label;
-                        lblTotalAdv4Ded.Text = Math.Round(totalAdv4Ded).ToString();
-                        if (totalAdv4Ded > 0)
-                        {
-                            GVListEmployees1.Columns[129].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[129].Visible = false;
-
-                        }
-
-                        Label lblTotalNightRoundDed = GVListEmployees1.FooterRow.FindControl("lblTotalNightRoundDed") as Label;
-                        lblTotalNightRoundDed.Text = Math.Round(totalNightRoundDed).ToString();
-                        if (totalNightRoundDed > 0)
-                        {
-                            GVListEmployees1.Columns[130].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[130].Visible = false;
-
-                        }
-
-                        Label lblTotalManpowerMobDed = GVListEmployees1.FooterRow.FindControl("lblTotalManpowerMobDed") as Label;
-                        lblTotalManpowerMobDed.Text = Math.Round(totalManpowerMobDed).ToString();
-                        if (totalManpowerMobDed > 0)
-                        {
-                            GVListEmployees1.Columns[131].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[131].Visible = false;
-
-                        }
-
-
-                        Label lblTotalMobileusageDed = GVListEmployees1.FooterRow.FindControl("lblTotalMobileusageDed") as Label;
-                        lblTotalMobileusageDed.Text = Math.Round(totalMobileusageDed).ToString();
-                        if (totalMobileusageDed > 0)
-                        {
-                            GVListEmployees1.Columns[132].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[132].Visible = false;
-
-                        }
-
-                        Label lblTotalMediClaimDed = GVListEmployees1.FooterRow.FindControl("lblTotalMediClaimDed") as Label;
-                        lblTotalMediClaimDed.Text = Math.Round(totalMediClaimDed).ToString();
-                        if (totalMediClaimDed > 0)
-                        {
-                            GVListEmployees1.Columns[133].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[133].Visible = false;
-
-                        }
-
-
-                        Label lblTotalCrisisDed = GVListEmployees1.FooterRow.FindControl("lblTotalCrisisDed") as Label;
-                        lblTotalCrisisDed.Text = Math.Round(totalCrisisDed).ToString();
-                        if (totalCrisisDed > 0)
-                        {
-                            GVListEmployees1.Columns[134].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[134].Visible = false;
-
-                        }
-
-
-
-                        Label lblTotalTelephoneBillDed = GVListEmployees1.FooterRow.FindControl("lblTotalTelephoneBillDed") as Label;
-                        lblTotalTelephoneBillDed.Text = Math.Round(totalTelephoneBillDed).ToString();
-                        if (totalTelephoneBillDed > 0)
-                        {
-                            GVListEmployees1.Columns[135].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[135].Visible = false;
-
-                        }
-
-                        Label lblTotalAdminChargesDed = GVListEmployees1.FooterRow.FindControl("lblTotalAdminChargesDed") as Label;
-                        lblTotalAdminChargesDed.Text = Math.Round(totalAdmincharges).ToString();
-                        if (totalAdmincharges > 0)
-                        {
-                            GVListEmployees1.Columns[136].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[136].Visible = false;
-
-                        }
-
-                        Label lblTotalRegistrationFee = GVListEmployees1.FooterRow.FindControl("lblTotalRegistrationFee") as Label;
-                        lblTotalRegistrationFee.Text = Math.Round(totalRegistrationFee).ToString();
-                        if (totalRegistrationFee > 0)
-                        {
-                            GVListEmployees1.Columns[137].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[137].Visible = false;
-
-                        }
-
-
+                        //38
                         Label lblTotalDeductions = GVListEmployees1.FooterRow.FindControl("lblTotalDeductions") as Label;
                         lblTotalDeductions.Text = Math.Round(totalDed).ToString();
 
-                        Label lblTotalAdvanceAgainstBonus = GVListEmployees1.FooterRow.FindControl("lblTotalAdvanceAgainstBonus") as Label;
-                        lblTotalAdvanceAgainstBonus.Text = Math.Round(totalAdvBonus).ToString();
-                        if (totalAdvBonus > 0)
-                        {
-                            GVListEmployees1.Columns[139].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[139].Visible = false;
-
-                        }
-
+                        //39
                         Label lblTotalNetAmount = GVListEmployees1.FooterRow.FindControl("lblTotalNetAmount") as Label;
                         lblTotalNetAmount.Text = Math.Round(totalActualamount).ToString();
 
-                        Label lblTotalOTEARNED = GVListEmployees1.FooterRow.FindControl("lblTotalOTEARNED") as Label;
-                        lblTotalOTEARNED.Text = Math.Round(totalOTAmt).ToString();
-                        if (totalOTAmt > 0)
-                        {
-                            GVListEmployees1.Columns[141].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[141].Visible = false;
-
-                        }
-
-                        Label lblTotalOTESIDeduction = GVListEmployees1.FooterRow.FindControl("lblTotalOTESIDeduction") as Label;
-                        lblTotalOTESIDeduction.Text = Math.Round(totalotesi).ToString();
-                        if (totalotesi > 0)
-                        {
-                            GVListEmployees1.Columns[142].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[142].Visible = false;
-
-                        }
-
-
-                        Label lblTotalNETOT = GVListEmployees1.FooterRow.FindControl("lblTotalNETOT") as Label;
-                        lblTotalNETOT.Text = Math.Round(totalnetot).ToString();
-                        if (totalnetot > 0)
-                        {
-                            GVListEmployees1.Columns[143].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[143].Visible = false;
-
-                        }
-
-
-                        Label lblTotalTOTALNETPAY = GVListEmployees1.FooterRow.FindControl("lblTotalTOTALNETPAY") as Label;
-                        lblTotalTOTALNETPAY.Text = Math.Round(totalTOTALNETPAY).ToString();
-                       
-
-
+                        //40
                         Label lblTotalPFEMPR = GVListEmployees1.FooterRow.FindControl("lblTotalPFEMPR") as Label;
                         lblTotalPFEMPR.Text = Math.Round(totalpfempr).ToString();
-                       
 
 
 
+                        //41
                         Label lblTotalESIEMPR = GVListEmployees1.FooterRow.FindControl("lblTotalESIEMPR") as Label;
                         lblTotalESIEMPR.Text = Math.Round(totalesiempr).ToString();
-                        
 
 
-                        Label lblTotalESIONOT = GVListEmployees1.FooterRow.FindControl("lblTotalESIONOT") as Label;
-                        lblTotalESIONOT.Text = Math.Round(totalotesi).ToString();
-                       
 
-                        Label lblTotalUniformCharges = GVListEmployees1.FooterRow.FindControl("lblTotalUniformCharges") as Label;
-                        lblTotalUniformCharges.Text = Math.Round(totaluniformcharge).ToString();
-                       
-
-
+                        //42
                         Label lblTotalTOTALCTC = GVListEmployees1.FooterRow.FindControl("lblTotalTOTALCTC") as Label;
                         lblTotalTOTALCTC.Text = Math.Round(totalCTC).ToString();
 
 
-                        Label lblTotalSERVCHRG = GVListEmployees1.FooterRow.FindControl("lblTotalSERVCHRG") as Label;
-                        lblTotalSERVCHRG.Text = Math.Round(totalservicecharge1).ToString();
-                        if (totalservicecharge1 > 0)
-                        {
-                            GVListEmployees1.Columns[150].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[150].Visible = false;
 
-                        }
-
-                        Label lblTotalGST = GVListEmployees1.FooterRow.FindControl("lblTotalGST") as Label;
-                        lblTotalGST.Text = Math.Round(totalgstper).ToString();
-                        if (totalgstper > 0)
-                        {
-                            GVListEmployees1.Columns[151].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[151].Visible = false;
-
-                        }
-
-
-
-                        Label lblTotalGRANDTOTAL = GVListEmployees1.FooterRow.FindControl("lblTotalGRANDTOTAL") as Label;
-                        lblTotalGRANDTOTAL.Text = Math.Round(totalgrandtotal).ToString();
-                        if (totalgrandtotal > 0)
-                        {
-                            GVListEmployees1.Columns[152].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[152].Visible = false;
-
-                        }
-
-                        Label lblTotalAdvances = GVListEmployees1.FooterRow.FindControl("lblTotalAdvances") as Label;
-                        lblTotalAdvances.Text = Math.Round(totalAdvances).ToString();
-                        if (totalAdvances > 0)
-                        {
-                            GVListEmployees1.Columns[153].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[153].Visible = false;
-
-                        }
-
-                        Label lblTotalUnifom = GVListEmployees1.FooterRow.FindControl("lblTotalUnifom") as Label;
-                        lblTotalUnifom.Text = Math.Round(totalUnifom).ToString();
-                        if (totalUnifom > 0)
-                        {
-                            GVListEmployees1.Columns[154].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[154].Visible = false;
-
-                        }
-
-                        Label lblTotalOthers = GVListEmployees1.FooterRow.FindControl("lblTotalOthers") as Label;
-                        lblTotalOthers.Text = Math.Round(totalOthers).ToString();
-                        if (totalOthers > 0)
-                        {
-                            GVListEmployees1.Columns[155].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[155].Visible = false;
-
-                        }
-
-                        Label lblTotalTotalDeductions = GVListEmployees1.FooterRow.FindControl("lblTotalTotalDeductions") as Label;
-                        lblTotalTotalDeductions.Text = Math.Round(totalTotDeductions).ToString();
-                        if (totalTotDeductions > 0)
-                        {
-                            GVListEmployees1.Columns[156].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[156].Visible = false;
-
-                        }
-
-
-
-                        Label lblTotalNetPayy = GVListEmployees1.FooterRow.FindControl("lblTotalNetPayy") as Label;
-                        lblTotalNetPayy.Text = Math.Round(totalTOTALNETPAY).ToString();
-                        if (totalTOTALNETPAY > 0)
-                        {
-                            GVListEmployees1.Columns[157].Visible = true;
-                        }
-                        else
-                        {
-                            GVListEmployees1.Columns[157].Visible = false;
-
-                        }
-
-
-
-                        //New code add as on 10/08/2021 by Mahesh Goud
+                        //New code add as on 12/10/2021 by Rajesh
 
                         #endregion
 
@@ -5239,7 +2447,7 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                     //((Label)e.Row.FindControl("lblPFEmpr")).Text = "";
                     //((Label)e.Row.FindControl("lblESIEmpr")).Text = "";
-                    //((Label)e.Row.FindControl("lblctc")).Text = "";
+                    //((Label)e.Row.FindControl("lblTOTALCTC")).Text = "";
 
                     //(19)
                     ((Label)e.Row.FindControl("lblCdbasic")).Text = "";
@@ -6262,9 +3470,10 @@ namespace ShriKartikeya.Portal.Module_Reports
             {
                 e.Row.Cells[3].Attributes.Add("class", "text");
                 e.Row.Cells[4].Attributes.Add("class", "text");
-                e.Row.Cells[9].Attributes.Add("class", "text");
+                e.Row.Cells[5].Attributes.Add("class", "text");
                 e.Row.Cells[10].Attributes.Add("class", "text");
                 e.Row.Cells[11].Attributes.Add("class", "text");
+                e.Row.Cells[12].Attributes.Add("class", "text");
             }
         }
     }

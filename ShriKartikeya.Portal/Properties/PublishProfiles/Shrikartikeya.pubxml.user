@@ -141,23 +141,23 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/25/2021 13:26:38</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>10/08/2021 17:56:23</publishTime>
+      <publishTime>10/12/2021 19:25:30</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>10/08/2021 17:56:23</publishTime>
+      <publishTime>10/12/2021 19:25:30</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
       <publishTime>06/28/2021 15:53:08</publishTime>
-      <publishTime>10/08/2021 17:56:05</publishTime>
+      <publishTime>10/12/2021 19:25:18</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>10/08/2021 17:56:23</publishTime>
+      <publishTime>10/12/2021 19:25:30</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
-      <publishTime>10/08/2021 17:56:05</publishTime>
+      <publishTime>10/12/2021 19:25:18</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.pdb">
-      <publishTime>10/08/2021 17:56:05</publishTime>
+      <publishTime>10/12/2021 19:25:18</publishTime>
     </File>
     <File Include="bin/BouncyCastle.Crypto.dll">
       <publishTime>09/25/2021 13:27:37</publishTime>
@@ -1039,10 +1039,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/25/2021 13:26:39</publishTime>
     </File>
     <File Include="Module_Employees/AddEmployee.aspx">
-      <publishTime>10/07/2021 14:46:30</publishTime>
+      <publishTime>10/12/2021 19:16:30</publishTime>
     </File>
     <File Include="Module_Employees/ApproveEmployee.aspx">
-      <publishTime>10/05/2021 12:06:58</publishTime>
+      <publishTime>10/12/2021 19:17:00</publishTime>
     </File>
     <File Include="Module_Employees/ClientAttendancePage.aspx">
       <publishTime>09/25/2021 13:26:39</publishTime>
@@ -1069,7 +1069,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/25/2021 13:26:39</publishTime>
     </File>
     <File Include="Module_Employees/ModifyEmployee.aspx">
-      <publishTime>10/07/2021 14:54:38</publishTime>
+      <publishTime>10/12/2021 19:17:49</publishTime>
     </File>
     <File Include="Module_Employees/NewLoan.aspx">
       <publishTime>09/25/2021 13:26:39</publishTime>
@@ -1524,14 +1524,17 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Module_Reports/SampleAttendance.aspx">
       <publishTime>09/25/2021 13:26:41</publishTime>
     </File>
+    <File Include="Module_Reports/SendMail.aspx">
+      <publishTime>10/12/2021 18:57:34</publishTime>
+    </File>
     <File Include="Module_Reports/SubClientsWithMainClientReports.aspx">
       <publishTime>09/25/2021 13:26:41</publishTime>
     </File>
     <File Include="Module_Reports/WagesheetReportctc.aspx">
-      <publishTime>10/08/2021 17:55:14</publishTime>
+      <publishTime>10/12/2021 19:10:49</publishTime>
     </File>
     <File Include="Module_Reports/WageSheetReports.aspx">
-      <publishTime>10/07/2021 16:29:37</publishTime>
+      <publishTime>10/12/2021 16:06:36</publishTime>
     </File>
     <File Include="Module_Reports/WageSheetReportsNew.aspx">
       <publishTime>09/25/2021 13:26:41</publishTime>
@@ -1619,7 +1622,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="PrecompiledApp.config">
       <publishTime>06/28/2021 15:53:30</publishTime>
-      <publishTime>10/08/2021 17:56:15</publishTime>
+      <publishTime>10/12/2021 19:25:25</publishTime>
     </File>
     <File Include="Properties/PublishProfiles/FolderProfile.pubxml.user">
       <publishTime>10/05/2021 14:30:26</publishTime>

@@ -1058,7 +1058,119 @@ public class GridViewExportUtil
 
 
     }
+    public void ExportGridForWagesheetctcReportse(string fileName, int countduties, int countfixedwages, int countearnings, int countdedutions, int countnetpay, int Empdetailscount,  string ContractorName, string line2, HiddenField hidGridView)
+    {
+        string filename = fileName;
+        string style = @"<style> .text { mso-number-format:\@; } </style> ";
+        HttpContext.Current.Response.ClearContent();
+        HttpContext.Current.Response.ContentType = "application/ms-excel";
+        HttpContext.Current.Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", filename));
 
+        HttpContext.Current.Response.Charset = "";
+        HttpContext.Current.Response.Write("<font style='font-size:10.0pt; font-family:Calibri;'>");
+        HttpContext.Current.Response.Write("<BR><BR><BR>");
+
+        //sets the table border, cell spacing, border color, font of the text, background, foreground, font height
+        HttpContext.Current.Response.Write("<Table border='0' bgColor='#ffffff' " +
+          "borderColor='#000000' cellSpacing='0' cellPadding='0' " +
+          "style='font-size:11.0pt; font-family:calibri; background:white;'>");
+
+        //am getting my grid's column headers
+       // int columnscount = 44;
+
+        HttpContext.Current.Response.Write("<TR valign='top'>");
+
+        HttpContext.Current.Response.Write("<Td style='border:0; align='center'  colspan=44>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write(ContractorName);
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+        HttpContext.Current.Response.Write("</TR>");
+
+        HttpContext.Current.Response.Write("<TR valign='top'>");
+
+        HttpContext.Current.Response.Write("<Td style='border:0; align='center'  colspan=44 >");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write(line2);
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+        HttpContext.Current.Response.Write("</TR>");
+        //HttpContext.Current.Response.Write("<TR valign='top'>");
+
+        HttpContext.Current.Response.Write("<TR valign='top'>");
+
+        HttpContext.Current.Response.Write("<Td border :'1'; align='center'  colspan= '" + Empdetailscount +"'>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write("EMPLOYEES DETAILS");
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+       
+
+        HttpContext.Current.Response.Write("<Td border : '1' align='center'  colspan='" + countfixedwages + "'>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write("FIXED WAGES");
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+
+        HttpContext.Current.Response.Write("<Td border : '1' align='center'  colspan='" + countduties + "'>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write("WORKED");
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+
+
+        HttpContext.Current.Response.Write("<Td border :'1' align='center'  colspan='" + countearnings + "'>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write("AMOUNT OF WAGES EARNED");
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+
+
+        HttpContext.Current.Response.Write("<Td border :'1'; align='center'  colspan='" + countdedutions + "'>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write("DEDUCTIONS");
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+
+        //HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan=1>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write(" ");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
+
+        //HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan='" + countpfempr + "'>");
+        //HttpContext.Current.Response.Write("<B>");
+        //HttpContext.Current.Response.Write(" ");
+        //HttpContext.Current.Response.Write("</B>");
+        //HttpContext.Current.Response.Write("</Td>");
+
+       
+
+        HttpContext.Current.Response.Write("<Td border :'1'; align='center'  colspan='" + countnetpay + "'>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write("NET PAID");
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+
+        HttpContext.Current.Response.Write("<Td border :'1'; align='center'  colspan= 5>");
+        HttpContext.Current.Response.Write("<B>");
+        HttpContext.Current.Response.Write(" ");
+        HttpContext.Current.Response.Write("</B>");
+        HttpContext.Current.Response.Write("</Td>");
+
+        HttpContext.Current.Response.Write("</TR>");
+        HttpContext.Current.Response.Write("</Table>");
+        HttpContext.Current.Response.Write("</font>");
+
+
+        System.IO.StringWriter stringwriter = new System.IO.StringWriter();
+        stringwriter.Write(System.Web.HttpUtility.HtmlDecode(hidGridView.Value));
+        HttpContext.Current.Response.Write(style);
+        HttpContext.Current.Response.Write(stringwriter.ToString());
+        HttpContext.Current.Response.End();
+
+
+    }
 
     public void ExportGridForWagesheetctcReport(string fileName, int countduties, int countfixedwages, int countearnings, int countdedutions, int countpfempr, int countAdvBonus, int countnetpay, int Empdetailscount, string Form, string wages, string Rule, string ContractorName, string WorkLocation, int count,int othrsount,string line2, HiddenField hidGridView)
     {
@@ -1173,7 +1285,7 @@ public class GridViewExportUtil
          "borderColor='#000000' cellSpacing='0' cellPadding='0' " +
          "style='font-size:11.0pt; font-family:calibri; background:white;'>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
-
+        
         HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan= '" + Empdetailscount + "'>");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write("");
