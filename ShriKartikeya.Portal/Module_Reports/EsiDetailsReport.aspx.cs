@@ -707,12 +707,25 @@ namespace ShriKartikeya.Portal.Module_Reports
             ddlEsibranch.Items.Insert(0, "All");
         }
 
+        float totalDuties = 0;
+        float Esiwages = 0;
         protected void GVListOfClients_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Cells[0].Attributes.Add("class", "text");
+
+                float duties = float.Parse(((Label)e.Row.FindControl("lblNoofduties")).Text);
+                totalDuties += duties;
+                float Esiamts = float.Parse(((Label)e.Row.FindControl("lblmonthlyesi")).Text);
+                Esiwages += Esiamts;
             }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ((Label)e.Row.FindControl("lblTotalNoofduties")).Text = totalDuties.ToString();
+                ((Label)e.Row.FindControl("lblTotalmonthlyesi")).Text = Esiwages.ToString();
+            }
+
         }
 
         protected void lbtn_Export_esiregister_Click(object sender, EventArgs e)

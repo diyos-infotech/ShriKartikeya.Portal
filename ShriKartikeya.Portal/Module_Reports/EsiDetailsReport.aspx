@@ -231,7 +231,7 @@
                                 <div class="rounded_corners">
                                     <div style="overflow: scroll; width: auto">
                                         <asp:GridView ID="GVListOfClients" runat="server" AutoGenerateColumns="False" Width="100%"
-                                            CssClass="datagrid" CellPadding="4" CellSpacing="3" OnRowDataBound="GVListOfClients_RowDataBound" ForeColor="#333333" GridLines="None">
+                                            CssClass="datagrid" CellPadding="4" CellSpacing="3" OnRowDataBound="GVListOfClients_RowDataBound" ForeColor="#333333" GridLines="None" ShowFooter="True">
                                             <RowStyle BackColor="#EFF3FB" />
                                             <Columns>
 
@@ -257,18 +257,26 @@
                                                     <ItemTemplate>
                                                         <asp:Label runat="server" ID="lblNoofduties" Text="<%# Bind('NoOfDuties') %>"></asp:Label>
                                                     </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalNoofduties" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                   
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Total Monthly Wages">
                                                     <ItemTemplate>
-                                                        <asp:Label runat="server" ID="lbltotalmonthlyesi" Text="<%# Bind('ESIWAGES') %>"></asp:Label>
+                                                        <asp:Label runat="server" ID="lblmonthlyesi" Text="<%# Bind('ESIWAGES') %>"></asp:Label>
                                                     </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalmonthlyesi" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Reason Code for Zero working days">
                                                     <ItemTemplate>
                                                         <asp:Label runat="server" ID="lblReason" Text=" "></asp:Label>
                                                     </ItemTemplate>
+                                                     
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Last Working Day">

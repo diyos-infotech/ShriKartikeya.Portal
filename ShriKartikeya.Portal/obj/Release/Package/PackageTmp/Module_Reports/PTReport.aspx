@@ -90,7 +90,17 @@
                                 <asp:ScriptManager runat="server" ID="ScriptEmployReports">
                                 </asp:ScriptManager>
                                 <div style="width: 100%">
-                                    <table style="width:100%" cellpadding="7" cellspacing="7">
+                                    <table style="width: 100%" cellpadding="7" cellspacing="7">
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <div align="right">
+                                                    <asp:LinkButton ID="lbtn_Export" runat="server" OnClick="lbtn_Export_Click" Visible="False">Export to Excel</asp:LinkButton>&nbsp;&nbsp;&nbsp;
+                                                </div>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td>Month
                                             </td>
@@ -101,20 +111,30 @@
                                                 </cc1:CalendarExtender>
 
                                             </td>
-                                            <td style="padding-left: 50px;padding-left: -100px;width: 100px;">PT State
+                                            <td style="padding-left: 50px; padding-left: -100px; width: 100px;">Type
                                             </td>
                                             <td style="padding-left: 100px;">
+                                                <asp:DropDownList runat="server" ID="ddltype" TabIndex="19" class="sdrop">
+                                                    <asp:ListItem>PT</asp:ListItem>
+                                                    <asp:ListItem>TDS</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 100px;">State
+                                            </td>
+                                            <td>
                                                 <asp:DropDownList runat="server" ID="ddlPTState" TabIndex="19" class="sdrop">
                                                 </asp:DropDownList>
                                             </td>
+
+
+                                            <td></td>
                                             <td>
                                                 <asp:Button runat="server" ID="btn_Submit" Text="Submit" class="btn save" OnClick="btnsearch_Click" />
+
                                             </td>
-                                            <td>
-                                                <div align="right">
-                                                    <asp:LinkButton ID="lbtn_Export" runat="server" OnClick="lbtn_Export_Click" Visible="False">Export to Excel</asp:LinkButton>&nbsp;&nbsp;&nbsp;
-                                                </div>
-                                            </td>
+
                                         </tr>
                                         <tr>
                                             <td colspan="3" style="width: 30%">
@@ -129,61 +149,126 @@
                                             EmptyDataText="" CellPadding="4" ForeColor="#333333" CellSpacing="3" ShowFooter="True"
                                             OnRowDataBound="GVListEmployees_RowDataBound">
                                             <Columns>
-                                               <asp:TemplateField HeaderText="SNo" ItemStyle-HorizontalAlign="Center">
-                                        <ItemTemplate>
-                                             <asp:Label ID="lblSno" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="SNo" ItemStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblSno" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Client Id" ItemStyle-HorizontalAlign="Center">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblClientid" runat="server" Text='<%#Bind("Clientid")%>'></asp:Label>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Client Id" ItemStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblClientid" runat="server" Text='<%#Bind("Clientid")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Client Name" ItemStyle-HorizontalAlign="Left">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblclientname" runat="server" Text='<%#Bind("ClientName")%>'></asp:Label>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Client Name" ItemStyle-HorizontalAlign="Left">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblclientname" runat="server" Text='<%#Bind("ClientName")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Emp Id" ItemStyle-HorizontalAlign="Center">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblempid" runat="server" Text='<%#Bind("empid")%>'></asp:Label>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Emp Id" ItemStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblempid" runat="server" Text='<%#Bind("empid")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Emp Name" ItemStyle-HorizontalAlign="Left">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblempname" runat="server" Text='<%#Bind("Name")%>'></asp:Label>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Emp Name" ItemStyle-HorizontalAlign="Left">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblempname" runat="server" Text='<%#Bind("Name")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                                 <asp:TemplateField HeaderText="Month" ItemStyle-HorizontalAlign="Left">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblMonthName" runat="server" Text='<%#Bind("MonthName")%>'></asp:Label>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Month" ItemStyle-HorizontalAlign="Left">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblMonthName" runat="server" Text='<%#Bind("MonthName")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="PT Gross" ItemStyle-HorizontalAlign="Right">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgross" runat="server" Text='<%#Bind("PTWages") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <FooterTemplate>
-                                            <asp:Label ID="lblTotalgross" runat="server" ></asp:Label>
-                                        </FooterTemplate>
-                                        </asp:TemplateField>
-                                        
+                                                <asp:TemplateField HeaderText="PT Gross" ItemStyle-HorizontalAlign="Right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgross" runat="server" Text='<%#Bind("PTWages") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblTotalgross" runat="server"></asp:Label>
+                                                    </FooterTemplate>
+                                                </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="PT Deducted" ItemStyle-HorizontalAlign="Right">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblPT" runat="server" Text='<%#Bind("ProfTax") %>'></asp:Label>
-                                        </ItemTemplate>
-                                         <FooterTemplate>
-                                            <asp:Label ID="lblTotalPT" runat="server" ></asp:Label>
-                                        </FooterTemplate>
-                                        </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="PT Deducted" ItemStyle-HorizontalAlign="Right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblPT" runat="server" Text='<%#Bind("ProfTax") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblTotalPT" runat="server"></asp:Label>
+                                                    </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+
+                                    <div class="rounded_corners" style="width: 950px">
+                                        <asp:GridView ID="GVTDSEmployee" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-striped table-bordered table-condensed table-hover"
+                                            EmptyDataText="" CellPadding="4" ForeColor="#333333" CellSpacing="3" ShowFooter="True"
+                                            OnRowDataBound="GVTDSEmployee_RowDataBound">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SNo" ItemStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblSno" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Client Id" ItemStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblClientid" runat="server" Text='<%#Bind("Clientid")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Client Name" ItemStyle-HorizontalAlign="Left">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblclientname" runat="server" Text='<%#Bind("ClientName")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Emp Id" ItemStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblempid" runat="server" Text='<%#Bind("empid")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="Emp Name" ItemStyle-HorizontalAlign="Left">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblempname" runat="server" Text='<%#Bind("Name")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Month" ItemStyle-HorizontalAlign="Left">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblMonthName" runat="server" Text='<%#Bind("MonthName")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="TDS Gross" ItemStyle-HorizontalAlign="Right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgross" runat="server" Text='<%#Bind("TDSWages") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblTotalgross" runat="server"></asp:Label>
+                                                    </FooterTemplate>
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="TDS Deducted" ItemStyle-HorizontalAlign="Right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbltds" runat="server" Text='<%#Bind("TDSDed") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblTotaltds" runat="server"></asp:Label>
+                                                    </FooterTemplate>
+                                                </asp:TemplateField>
 
                                             </Columns>
                                         </asp:GridView>

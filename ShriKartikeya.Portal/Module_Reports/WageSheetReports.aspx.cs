@@ -3369,6 +3369,20 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees.Columns[35].Visible = true;
 
                         }
+
+                        Label lblTotalotamt = GVListEmployees.FooterRow.FindControl("lblTotalotamt") as Label;
+                        lblTotalotamt.Text = Math.Round(totalOTAmount).ToString();
+                        if (totalOTAmount > 0)
+                        {
+                            GVListEmployees.Columns[36].Visible = true;
+
+                        }
+                        else
+                        {
+                            GVListEmployees.Columns[36].Visible = true;
+
+                        }
+
                         //36
                         Label lblTotalNetPayableAmount = GVListEmployees.FooterRow.FindControl("lblTotalNetPayableAmount") as Label;
                         lblTotalNetPayableAmount.Text = Math.Round(totalActualamount).ToString();
@@ -3441,6 +3455,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                     ((Label)e.Row.FindControl("lblArrears")).Text = "";
                     ((Label)e.Row.FindControl("lblWashAllowance")).Text = "";
                     ((Label)e.Row.FindControl("lblIncentivs")).Text = "";
+                    ((Label)e.Row.FindControl("lblotamt")).Text = "";
                     ((Label)e.Row.FindControl("lblnetPayableamount")).Text = "";
                 }
             }

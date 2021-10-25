@@ -115,6 +115,18 @@ namespace ShriKartikeya.Portal.Module_Reports
             SPName = "PTReport";
 
             string PTState = ddlPTState.SelectedValue;
+            
+
+            var Type = 0;
+
+            if (ddltype.SelectedIndex == 0)
+            {
+                Type = 0;
+            }
+            if (ddltype.SelectedIndex == 1)
+            {
+                Type = 1;
+            }
 
             if (ddlPTState.SelectedIndex == 0)
             {
@@ -124,19 +136,31 @@ namespace ShriKartikeya.Portal.Module_Reports
             HTPaysheet.Add("@month", month + Year.Substring(2, 2));
             HTPaysheet.Add("@PTState", PTState);
             HTPaysheet.Add("@Branch", dtBranch);
+            HTPaysheet.Add("@type", Type);
 
             DataTable dt = config.ExecuteAdaptorAsyncWithParams(SPName, HTPaysheet).Result;
 
             if (dt.Rows.Count > 0)
             {
-                GVListEmployees.DataSource = dt;
-                GVListEmployees.DataBind();
-                lbtn_Export.Visible = true;
+                if (ddltype.SelectedIndex == 0)
+                {
+                    GVListEmployees.DataSource = dt;
+                    GVListEmployees.DataBind();
+                    lbtn_Export.Visible = true;
+                }
+                else if(ddltype.SelectedIndex == 1)
+                {
+                    GVTDSEmployee.DataSource = dt;
+                    GVTDSEmployee.DataBind();
+                    lbtn_Export.Visible = true;
+                }
             }
             else
             {
                 GVListEmployees.DataSource = null;
                 GVListEmployees.DataBind();
+                GVTDSEmployee.DataSource = null;
+                GVTDSEmployee.DataBind();
                 ScriptManager.RegisterStartupScript(this, GetType(), "showlalert", "alert('No records found');", true);
 
             }
@@ -148,12 +172,21 @@ namespace ShriKartikeya.Portal.Module_Reports
             LblResult.Text = "";
             GVListEmployees.DataSource = null;
             GVListEmployees.DataBind();
+            GVTDSEmployee.DataSource = null;
+            GVTDSEmployee.DataBind();
             lbtn_Export.Visible = false;
         }
 
         protected void lbtn_Export_Click(object sender, EventArgs e)
         {
-            gve.Export("PTReport.xls", this.GVListEmployees);
+            if (ddltype.SelectedIndex == 0)
+            {
+                gve.Export("PTReport.xls", this.GVListEmployees);
+            }
+            else
+            {
+                gve.Export("TDSReport.xls", this.GVTDSEmployee);
+            }
         }
 
         public string GetMonthName()
@@ -541,6 +574,36 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                 Label lblTotalPT = (Label)e.Row.FindControl("lblTotalPT") as Label;
                 lblTotalPT.Text = TotalPT.ToString();
+
+            }
+
+        }
+
+        decimal TotalGross = 0;
+        decimal Totaltds = 0;
+        protected void GVTDSEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[1].Attributes.Add("class", "text");
+
+                decimal Gross = decimal.Parse(((Label)e.Row.FindControl("lblgross")).Text);
+                TotalGross += Gross;
+
+                decimal TDS = decimal.Parse(((Label)e.Row.FindControl("lbltds")).Text);
+                Totaltds += TDS;
+
+
+            }
+
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+
+                Label lblTotalgross = (Label)e.Row.FindControl("lblTotalgross") as Label;
+                lblTotalgross.Text = TotalGross.ToString();
+
+                Label lblTotalTds = (Label)e.Row.FindControl("lblTotaltds") as Label;
+                lblTotalTds.Text = Totaltds.ToString();
 
             }
 

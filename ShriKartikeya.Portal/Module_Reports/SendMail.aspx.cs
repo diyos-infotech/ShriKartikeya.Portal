@@ -9,6 +9,7 @@ using iTextSharp.text.pdf;
 using KLTS.Data;
 using System.Net;
 using System.Net.Mail;
+using System.Web;
 using ShriKartikeya.Portal.DAL;
 
 namespace ShriKartikeya.Portal
@@ -57,6 +58,70 @@ namespace ShriKartikeya.Portal
                 Response.Redirect("~/Login.aspx");
             }
         }
+
+        public class PageEventHelperL : PdfPageEventHelper
+        {
+            PdfContentByte cb;
+            PdfTemplate template;
+
+            BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+
+            public override void OnOpenDocument(PdfWriter writer, Document document)
+            {
+                cb = writer.DirectContent;
+                template = cb.CreateTemplate(10, 10);
+            }
+            public override void OnEndPage(PdfWriter writer, Document document)
+            {
+                base.OnEndPage(writer, document);
+
+
+                iTextSharp.text.Image imghead = iTextSharp.text.Image.GetInstance(HttpContext.Current.Server.MapPath("~/assets/HeaderPayslip.jpg"));
+                iTextSharp.text.Image imgfoot = iTextSharp.text.Image.GetInstance(HttpContext.Current.Server.MapPath("~/assets/FooterPayslip.jpg"));
+                //iTextSharp.text.Image imgmiddile = iTextSharp.text.Image.GetInstance(HttpContext.Current.Server.MapPath("~/assets/middileslip.png"));
+
+                //imgfoot.SetAbsolutePosition(0, 0);
+                imghead.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                imghead.ScalePercent(58f);//55
+                imghead.SetAbsolutePosition(23, 100);
+
+                PdfContentByte cbhead = writer.DirectContent;
+                PdfTemplate tpl = cbhead.CreateTemplate(600, 160);
+                tpl.AddImage(imghead);
+
+
+                //imgmiddile.Alignment = (iTextSharp.text.Image.ALIGN_CENTER | iTextSharp.text.Image.UNDERLYING);
+                //imgmiddile.ScalePercent(50f);//55
+                //imgmiddile.SetAbsolutePosition(5, 100);
+
+                //PdfContentByte cbmiddile = writer.DirectContent;
+                //PdfTemplate tp3 = cbmiddile.CreateTemplate(580, 160);
+                //tp3.AddImage(imgmiddile);
+
+
+
+
+                imgfoot.ScalePercent(58f);//55
+                imgfoot.SetAbsolutePosition(23, 10);
+
+                PdfContentByte cbfoot = writer.DirectContent;
+                PdfTemplate tp = cbfoot.CreateTemplate(600, 120);
+                tp.AddImage(imgfoot);
+
+
+                cbfoot.AddTemplate(tp, 8, 10);
+                //19,27
+                cbhead.AddTemplate(tpl, 8, 790);
+
+                // cbmiddile.AddTemplate(tp3, 8, 600);
+
+
+                Phrase headPhraseImg = new Phrase(cbfoot + "", FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7, iTextSharp.text.Font.NORMAL));
+                Phrase footPhraseImg = new Phrase(cbhead + "", FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7, iTextSharp.text.Font.NORMAL));
+                // Phrase middilePhraseImg = new Phrase(cbmiddile + "", FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7, iTextSharp.text.Font.NORMAL));
+            }
+        }
+
 
         protected void GetWebConfigdata()
         {
@@ -210,8 +275,8 @@ namespace ShriKartikeya.Portal
             else
             {
                 // MessageLabel.Text = "There Is No Name For The Selected Employee";
-            }     
-           
+            }
+
 
 
         }
@@ -318,14 +383,15 @@ namespace ShriKartikeya.Portal
                     return;
                 }
 
-
-
                 var formatInfoinfo = new DateTimeFormatInfo();
                 string[] monthName = formatInfoinfo.MonthNames;
+                // int payMonth = GetMonth(ddlmonth.SelectedValue);
 
                 int month = GetMonthBasedOnSelectionDateorMonth();
+                string selectmonth = string.Empty;
 
-
+                int Fontsize = 10;
+                string fontsyle = "verdana";
 
                 string selectclientaddress = "select * from clients where clientid= '" + ddlClientId.SelectedValue + "'";
                 DataTable dtclientaddress = config.ExecuteAdaptorAsyncWithQueryParams(selectclientaddress).Result;
@@ -409,8 +475,43 @@ namespace ShriKartikeya.Portal
                 }
 
 
-                int Fontsize = 10;
-                string fontsyle = "verdana";
+                //var list = new List<string>();
+
+                //if (gvattendancezero.Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < gvattendancezero.Rows.Count; i++)
+                //    {
+                //        CheckBox chkEmpid = gvattendancezero.Rows[i].FindControl("chkindividual") as CheckBox;
+                //        Label lblempid = gvattendancezero.Rows[i].FindControl("lblempid") as Label;
+
+                //        if (chkEmpid.Checked == true)
+                //        {
+                //            list.Add(lblempid.Text);
+                //        }
+
+                //    }
+                //}
+
+                //string Empids = string.Join(",", list.ToArray());
+
+                //if (list.Count == 0)
+                //{
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "showlalert", "alert('Please Select Empids');", true);
+                //    return;
+                //}
+
+                //DataTable dtEmpidsList = new DataTable();
+                //dtEmpidsList.Columns.Add("Empid");
+                //if (list.Count != 0)
+                //{
+                //    foreach (string s in list)
+                //    {
+                //        DataRow row = dtEmpidsList.NewRow();
+                //        row["Empid"] = s;
+                //        dtEmpidsList.Rows.Add(row);
+                //    }
+                //}
+
 
 
                 int ChkBonus = 0;
@@ -429,22 +530,24 @@ namespace ShriKartikeya.Portal
                 HTPaysheet.Add("@ChkBonus", ChkBonus);
                 HTPaysheet.Add("@option", ddltype.SelectedIndex);
 
+
                 DataTable dt = config.ExecuteAdaptorAsyncWithParams(SPName, HTPaysheet).Result;
 
-                // MemoryStream ms = new MemoryStream();
+
+                MemoryStream ms = new MemoryStream();
 
                 int slipsCount = 0;
                 string UANNumber = "";
 
                 if (dt.Rows.Count > 0)
                 {
-                    //Document document = new Document(PageSize.LEGAL);
-                    //var writer = PdfWriter.GetInstance(document, ms);
-                    //document.Open();
-                    //BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                    //string imagepath1 = Server.MapPath("images");
+                    Document document = new Document(PageSize.LEGAL);
+                    var writer = PdfWriter.GetInstance(document, ms);
+                    document.Open();
+                    BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                    string imagepath1 = Server.MapPath("images");
 
-                    string strQry = "Select * from CompanyInfo  ";
+                    string strQry = "select * from companyinfo where BranchID='" + Session["Branch"].ToString() + "' ";
                     DataTable compInfo = config.ExecuteAdaptorAsyncWithQueryParams(strQry).Result;
                     string companyName = "Your Company Name";
                     string companyAddress = "Your Company Address";
@@ -464,25 +567,18 @@ namespace ShriKartikeya.Portal
                     float PFEmployer = 0;
                     float ESIEmployer = 0;
 
-
-
-                    int nextpagerecordscount = 0;
-                    int targetpagerecors = 4;
-                    int secondpagerecords = targetpagerecors + 2;
-
-
                     DataTable dtdesgn = dt.DefaultView.ToTable(true, "empid");
 
 
 
                     for (int k = 0; k < dtdesgn.Rows.Count; k++)
                     {
-                        MemoryStream ms = new MemoryStream();
+                        // MemoryStream ms = new MemoryStream();
 
 
-                        #region Begin Documet And Pdf Writer objects Creation as on [03-10-2015]
-                        Document document = new Document(PageSize.A4);
-                        PdfWriter writer = PdfWriter.GetInstance(document, ms);
+
+                        // Document document = new Document(PageSize.A4);
+                        //PdfWriter writer = PdfWriter.GetInstance(document, ms);
                         document.Open();
                         document.AddTitle("FaMS");
                         document.AddAuthor("DIYOS");
@@ -492,7 +588,7 @@ namespace ShriKartikeya.Portal
                         document.NewPage();
 
 
-                        #endregion End Documet And Pdf Writer objects Creation as on [03-10-2015]
+
 
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
@@ -569,10 +665,11 @@ namespace ShriKartikeya.Portal
                                     // var output = new FileStream(fileheader2, FileMode., FileAccess.Write, FileShare.None);
                                     #region
 
-                                    //string imagepath = Server.MapPath("~/assets/BillLogo.png");
 
-                                    string imagepath = Server.MapPath("~/assets/" + CmpIDPrefix + "BillLogo.png");
 
+
+                                    PageEventHelperL pageEventHelper = new PageEventHelperL();
+                                    writer.PageEvent = pageEventHelper;
 
                                     PdfPTable tablewageslip = new PdfPTable(5);
                                     tablewageslip.TotalWidth = 550f;
@@ -587,45 +684,48 @@ namespace ShriKartikeya.Portal
                                     cellspace.Border = 0;
                                     tablewageslip.AddCell(cellspace);
 
-                                    if (File.Exists(imagepath))
-                                    {
-                                        iTextSharp.text.Image paysheetlogo = iTextSharp.text.Image.GetInstance(imagepath);
-                                        paysheetlogo.ScaleAbsolute(55f, 55f);
-                                        PdfPCell companylogo = new PdfPCell();
-                                        Paragraph cmplogo = new Paragraph();
-                                        cmplogo.Add(new Chunk(paysheetlogo, -7, 10));
-                                        companylogo.AddElement(cmplogo);
-                                        companylogo.HorizontalAlignment = 0;
-                                        companylogo.Colspan = 1;
-                                        // companylogo.PaddingTop = 16;
-                                        companylogo.Border = 0;
-                                        tablewageslip.AddCell(companylogo);
-                                    }
-
-                                    nextpagerecordscount++;
-
                                     PdfPCell cellHead1 = new PdfPCell(new Phrase("Pay Slip  ", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
-                                    cellHead1.HorizontalAlignment = 0;
-                                    cellHead1.Colspan = 4;
+                                    cellHead1.HorizontalAlignment = 1;
+                                    cellHead1.Colspan = 5;
                                     cellHead1.Border = 0;
-                                    cellHead1.PaddingLeft = 140;
-                                    //cellHead1.PaddingTop = -55;
-                                    tablewageslip.AddCell(cellHead1);
+                                    cellHead1.PaddingLeft = 10;
+                                    cellHead1.PaddingTop = -45;
+                                    //tablewageslip.AddCell(cellHead1);
 
-                                    PdfPCell cellHead2 = new PdfPCell(new Phrase("M/s " + companyName, FontFactory.GetFont(fontsyle, 13, Font.NORMAL, BaseColor.BLACK)));
-                                    cellHead2.HorizontalAlignment = 1;
-                                    cellHead2.Colspan = 5;
-                                    cellHead2.Border = 0;
-                                    cellHead2.PaddingTop = -45;
-                                    tablewageslip.AddCell(cellHead2);
+                                    //PdfPCell cellHead2 = new PdfPCell(new Phrase("M/s " + companyName, FontFactory.GetFont(fontsyle, 13, Font.NORMAL, BaseColor.BLACK)));
+                                    //cellHead2.HorizontalAlignment = 1;
+                                    //cellHead2.Colspan = 5;
+                                    //cellHead2.Border = 0;
+                                    //cellHead2.PaddingTop = -35;
+                                    ////tablewageslip.AddCell(cellHead2);
+
+                                    //  PdfPCell cellHead31C = new PdfPCell(new Phrase("M/s " + companyName, FontFactory.GetFont(fontsyle, 13, Font.NORMAL, BaseColor.BLACK)));
+
+                                    PdfPCell cellHead31C = new PdfPCell(new Phrase(" ", FontFactory.GetFont(fontsyle, 13, Font.NORMAL, BaseColor.BLACK)));
+                                    cellHead31C.HorizontalAlignment = 1;
+                                    cellHead31C.Colspan = 5;
+                                    cellHead31C.Border = 0;
+                                    //if (ChkPerOne.Checked == true)
+                                    //{
+                                    //    cellHead31C.PaddingTop = 35;
+
+                                    //}
+                                    //else
+                                    {
+                                        cellHead31C.PaddingTop = 85;
+
+                                    }
+                                    cellHead31C.SetLeading(0, 1.2f);
+                                    tablewageslip.AddCell(cellHead31C);
+
 
                                     PdfPCell cellHead31 = new PdfPCell(new Phrase(companyAddress, FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                     cellHead31.HorizontalAlignment = 1;
                                     cellHead31.Colspan = 5;
                                     cellHead31.Border = 0;
-                                    cellHead31.PaddingTop = -30;
+                                    //cellHead31.PaddingTop = 5;
                                     cellHead31.SetLeading(0, 1.2f);
-                                    tablewageslip.AddCell(cellHead31);
+                                    //  tablewageslip.AddCell(cellHead31);
 
 
 
@@ -633,7 +733,8 @@ namespace ShriKartikeya.Portal
                                     cellHead4.HorizontalAlignment = 1;
                                     cellHead4.Colspan = 5;
                                     cellHead4.Border = 0;
-                                    cellHead4.PaddingTop = -5;
+                                    //cellHead4.PaddingTop = 5;
+                                    cellHead4.PaddingBottom = 5;
                                     tablewageslip.AddCell(cellHead4);
 
 
@@ -651,12 +752,12 @@ namespace ShriKartikeya.Portal
                                     //cellHead711.MinimumHeight = 20;
                                     tablewageslip.AddCell(cellHead711);
 
-
-                                    PdfPCell cellHead51 = new PdfPCell(new Phrase("GDX ID -  " + dt.Rows[i]["Oldempid"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                                    //"Old ID -  " + dt.Rows[i]["Oldempid"].ToString()
+                                    PdfPCell cellHead51 = new PdfPCell(new Phrase("" + dt.Rows[i]["Oldempid"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
                                     cellHead51.HorizontalAlignment = 0;
                                     cellHead51.Colspan = 1;
                                     cellHead51.SetLeading(0, 1.2f);
-                                    tablewageslip.AddCell(cellHead51);
+                                    //tablewageslip.AddCell(cellHead51);
 
                                     cellHead51 = new PdfPCell(new Phrase("Employee ID -  " + dt.Rows[i]["Empid"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                     cellHead51.HorizontalAlignment = 0;
@@ -664,13 +765,19 @@ namespace ShriKartikeya.Portal
                                     cellHead51.SetLeading(0, 1.2f);
                                     tablewageslip.AddCell(cellHead51);
 
+                                    PdfPCell cellHead51A = new PdfPCell(new Phrase("DOJ - " + dt.Rows[i]["EmpDtofJoining"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                    cellHead51A.HorizontalAlignment = 0;
+                                    cellHead51A.Colspan = 1;
+                                    cellHead51A.SetLeading(0, 1.2f);
+                                    tablewageslip.AddCell(cellHead51A);
+
 
                                     PdfPCell cellHead101 = new PdfPCell(new Phrase("EPF No - " + pfNo, FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                     cellHead101.HorizontalAlignment = 0;
                                     cellHead101.Colspan = 2;
                                     tablewageslip.AddCell(cellHead101);
 
-                                    PdfPCell cellHead71 = new PdfPCell(new Phrase("Bank A/c No - " + dt.Rows[i]["EmpBankAcNo"].ToString() + " & IFSC - " + dt.Rows[i]["EmpIFSCcode"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                    PdfPCell cellHead71 = new PdfPCell(new Phrase("Bank Account No - " + dt.Rows[i]["EmpBankAcNo"].ToString() + " & Bank Name - " + dt.Rows[i]["Bankname"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                     cellHead71.HorizontalAlignment = 0;
                                     cellHead71.Colspan = 3;
                                     //cellHead71.MinimumHeight = 20;
@@ -687,7 +794,7 @@ namespace ShriKartikeya.Portal
                                     if (forConvert > 0)
                                     {
 
-                                        PdfPCell cellHead111 = new PdfPCell(new Phrase("Duties - " + forConvert.ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                        PdfPCell cellHead111 = new PdfPCell(new Phrase("Working Days - " + forConvert.ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                         cellHead111.HorizontalAlignment = 0;
                                         cellHead111.Colspan = 1;
                                         //cellHead111.MinimumHeight = 20;
@@ -727,7 +834,7 @@ namespace ShriKartikeya.Portal
 
                                     if (forConvert > 0)
                                     {
-                                        PdfPCell cellHead1112 = new PdfPCell(new Phrase("GW - " + forConvert.ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                        PdfPCell cellHead1112 = new PdfPCell(new Phrase("OT's - " + forConvert.ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                         cellHead1112.HorizontalAlignment = 0;
                                         cellHead1112.Colspan = 1;
                                         //cellHead1112.MinimumHeight = 20;
@@ -825,7 +932,7 @@ namespace ShriKartikeya.Portal
                                         tablewageslip.AddCell(cellHead111);
 
                                     }
-                                    //if (ChkWithoutClient.Checked == true)
+                                    ////if (ChkWithoutClient.Checked == true)
                                     //{
                                     //    PdfPCell cellHead7 = new PdfPCell(new Phrase(" ", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                     //    cellHead7.HorizontalAlignment = 0;
@@ -878,7 +985,7 @@ namespace ShriKartikeya.Portal
 
                                     if (forConvert > 0)
                                     {
-                                        PdfPCell cellbascic = new PdfPCell(new Phrase("Basic", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                        PdfPCell cellbascic = new PdfPCell(new Phrase("Basic+DA", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                         cellbascic.HorizontalAlignment = 0;
                                         cellbascic.Colspan = 1;
                                         //cellbascic.MinimumHeight = 20;
@@ -1614,7 +1721,7 @@ namespace ShriKartikeya.Portal
 
                                     if (forConvert > 0)
                                     {
-                                        PdfPCell cellIncentives = new PdfPCell(new Phrase("GWR", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                        PdfPCell cellIncentives = new PdfPCell(new Phrase("OT Amt", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                         cellIncentives.HorizontalAlignment = 0;
                                         cellIncentives.Colspan = 1;
                                         //cellIncentives.MinimumHeight = 20;
@@ -1687,7 +1794,7 @@ namespace ShriKartikeya.Portal
                                     forConvert1 = Convert.ToSingle(dt.Rows[i]["FixedADDL4HR"].ToString());
                                     if (forConvert > 0)
                                     {
-                                        PdfPCell cellCCA = new PdfPCell(new Phrase("G.W.R", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                        PdfPCell cellCCA = new PdfPCell(new Phrase("ADDL4HR", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                         cellCCA.HorizontalAlignment = 0;
                                         cellCCA.Colspan = 1;
                                         tableEarnings.AddCell(cellCCA);
@@ -2586,6 +2693,7 @@ namespace ShriKartikeya.Portal
 
 
 
+
                                     slipsCount++;
                                     if (slipsCount == 2)
                                     {
@@ -2660,9 +2768,14 @@ namespace ShriKartikeya.Portal
                                     #endregion End Email sending as on [03-10-2015]
 
                                 }
+
                             }
                         }
+
+
                     }
+
+
 
                     Cleardata();
 
@@ -2675,7 +2788,12 @@ namespace ShriKartikeya.Portal
 
 
             }
+
         }
+
+
+
+
 
 
         protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)

@@ -654,7 +654,7 @@
                                              <%-- 40--%>
                                             <asp:TemplateField HeaderText="PF EMPR" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblPFEMPR" runat="server" Text='<%#Bind("pfempr","{0:0}") %>'> </asp:Label>
+                                                    <asp:Label ID="lblPFEMPR" runat="server" Text='<%#Bind("PF","{0:0}") %>'> </asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label runat="server" ID="lblTotalPFEMPR"></asp:Label>

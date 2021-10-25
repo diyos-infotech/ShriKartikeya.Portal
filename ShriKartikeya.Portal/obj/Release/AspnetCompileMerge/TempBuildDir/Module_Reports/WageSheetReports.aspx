@@ -628,7 +628,17 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                              <%-- 36--%>
+                                             <%-- 36--%>
+                                             <asp:TemplateField HeaderText="OT Amout" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblotamt" runat="server" Text='<%#Bind("OTAmt","{0:0}") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label runat="server" ID="lblTotalotamt"></asp:Label>
+                                                </FooterTemplate>
+                                            </asp:TemplateField>
+
+                                              <%-- 37--%>
                                              <asp:TemplateField HeaderText="Payable Amt" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblnetPayableamount" runat="server" Text='<%#Bind("ActualAmount","{0:0}") %>'> </asp:Label>

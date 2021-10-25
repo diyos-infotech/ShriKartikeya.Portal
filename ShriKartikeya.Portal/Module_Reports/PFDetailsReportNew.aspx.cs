@@ -579,11 +579,53 @@ namespace ShriKartikeya.Portal.Module_Reports
             }
         }
 
+        float totalgross = 0;
+        float totalpfwages = 0;
+        float totalepswagesnew = 0;
+        float totaledliwagesnew = 0;
+        float totalpf = 0;
+        float totalepsduenew = 0;
+        float totalpfdiffnew = 0;
+        float totalncpdays = 0;
+        float totaladvref = 0;
         protected void GVPFDetails_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Cells[2].Attributes.Add("class", "text");
+
+                float Gross = float.Parse(((Label)e.Row.FindControl("lblgross")).Text);
+                totalgross += Gross;
+                float pfwages = float.Parse(((Label)e.Row.FindControl("lblpfwages")).Text);
+                totalpfwages += pfwages;
+                float epswagesnew = float.Parse(((Label)e.Row.FindControl("lblepswages")).Text);
+                totalepswagesnew += epswagesnew;
+
+                float edliwages = float.Parse(((Label)e.Row.FindControl("lbledliwages")).Text);
+                totaledliwagesnew += edliwages;
+                float pf = float.Parse(((Label)e.Row.FindControl("lblpf")).Text);
+                totalpf += pf;
+                float epsduenew = float.Parse(((Label)e.Row.FindControl("lblepsduenew")).Text);
+                totalepsduenew += epsduenew;
+                float pfdiffnew = float.Parse(((Label)e.Row.FindControl("lblpfdiffnew")).Text);
+                totalpfdiffnew += pfdiffnew;
+                float ncpdays = float.Parse(((Label)e.Row.FindControl("lblncpdays")).Text);
+                totalncpdays += ncpdays;
+                float advref = float.Parse(((Label)e.Row.FindControl("lbladvref")).Text);
+                totaladvref += advref;
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ((Label)e.Row.FindControl("lblTotalGross")).Text = totalgross.ToString();
+                ((Label)e.Row.FindControl("lblTotalpfwages")).Text = totalpfwages.ToString();
+                ((Label)e.Row.FindControl("lblTotalepswages")).Text = totalepswagesnew.ToString();
+                ((Label)e.Row.FindControl("lblTotaledliwages")).Text = totaledliwagesnew.ToString();
+                ((Label)e.Row.FindControl("lblTotalpf")).Text = totalpf.ToString();
+                ((Label)e.Row.FindControl("lblTotalepsduenew")).Text = totalepsduenew.ToString();
+                ((Label)e.Row.FindControl("lblTotalpfdiffnew")).Text = totalpfdiffnew.ToString();
+                ((Label)e.Row.FindControl("lblTotalncpdays")).Text = totalncpdays.ToString();
+                ((Label)e.Row.FindControl("lblTotaladvref")).Text = totaladvref.ToString();
+
             }
         }
 
