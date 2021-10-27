@@ -396,7 +396,7 @@
                 </div>
 
 
-                <div class="panel panel-inverse" style="height: 1290px";>
+                <div class="panel panel-inverse" style="height: 1490px";>
                     <div class="panel-heading">
 
 
@@ -454,7 +454,7 @@
                         <div style="text-align: right">
                             <asp:Label ID="txtmodifyempid" runat="server"></asp:Label>
                         </div>
-                        <div id="tabs" style="height: 1290px";>
+                        <div id="tabs" style="height: 1490px";>
                             <ul>
                                 <li><a href="#tabs-1">Personal Information</a></li>
                                 <li><a href="#tabs-2">References</a></li>
@@ -642,10 +642,10 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td>Father Occupation
+                                                    <td>Blood Group
                                                     </td>
                                                     <td>
-                                                        <asp:TextBox ID="txtfatheroccupation" runat="server" MaxLength="50" class="sinput"></asp:TextBox>
+                                                        <asp:TextBox ID="txtbloodgrp" runat="server" MaxLength="50" class="sinput"></asp:TextBox>
                                                     </td>
                                                 </tr>
 
@@ -1237,6 +1237,13 @@
                                                         </td>
                                                         <td>
                                                             <asp:TextBox ID="txtBankAccNum" TabIndex="2" runat="server" class="sinput"></asp:TextBox>
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Emp name as per the Bank Ac
+                                                        </td>
+                                                        <td>
+                                                            <asp:TextBox ID="txtBankempname" TabIndex="3" runat="server" class="sinput"></asp:TextBox>
                                                         </td>
                                                     </tr>
 
@@ -2476,6 +2483,111 @@
                                                 </asp:GridView>
                                             </div>
                                             <asp:Button ID="btnFamilyDetailsAdd" runat="server" Text="Add" Style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" OnClick="btnFamilyDetailsAdd_Click" />
+                                        </asp:Panel>
+
+
+                                         <asp:Panel ID="pnlmediclamdetails" runat="server" GroupingText="<strong>&nbsp;Mediclaim Details&nbsp;</strong>" Style="margin-top: 10px">
+                                            <div style="padding: 10px">
+                                                <asp:GridView ID="gvmediclaimDetails" runat="server" AllowPaging="True" AutoGenerateColumns="false"
+                                                    BorderStyle="Solid" CellPadding="5" ForeColor="#333333" Height="180px" PageSize="25" Visible="true"
+                                                    ShowHeader="true" Style="margin: 0px auto" Width="100%" CellSpacing="5">
+                                                    <HeaderStyle Wrap="True" />
+                                                    <PagerSettings Mode="NextPreviousFirstLast" />
+                                                    <RowStyle />
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderStyle-Font-Size="Small" HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
+                                                            HeaderText="S.No" ItemStyle-Font-Size="Small" ItemStyle-HorizontalAlign="Center" ItemStyle-BackColor="#EFF3FB">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblSno" runat="server" Text="<%# Container.DataItemIndex + 1 %>"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" Font-Size="Small"></HeaderStyle>
+                                                            <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
+                                                        </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderStyle-Font-Size="Small" HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
+                                                            HeaderText="Name" ItemStyle-Font-Size="Small" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtMedEmpName" runat="server" Text=""></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" Font-Size="Small"></HeaderStyle>
+                                                            <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderStyle-Font-Size="Small" HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
+                                                            HeaderText="Date Of Birth" ItemStyle-Font-Size="Small" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtMedRelDtofBirth" runat="server" Width="98%"
+                                                                    MaxLength="10" placeholder="DD/MM/YYYY"></asp:TextBox>
+
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" Font-Size="Small"></HeaderStyle>
+                                                            <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Age" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
+                                                            HeaderStyle-Font-Size="Small" ItemStyle-Font-Size="Small" HeaderStyle-Width="50px">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtMedAge" runat="server" Width="90%"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" Font-Size="Small"></HeaderStyle>
+                                                            <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
+                                                        </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderStyle-Font-Size="Small" HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
+                                                            HeaderText="Relationship" ItemStyle-Font-Size="Small" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:DropDownList ID="ddlMedRelation" runat="server" Width="99%">
+                                                                    <asp:ListItem runat="server" Value="--Select--" />
+                                                                    <asp:ListItem runat="server" Value="Father" />
+                                                                    <asp:ListItem runat="server" Value="Wife" />
+                                                                    <asp:ListItem runat="server" Value="Husband" />
+                                                                    <asp:ListItem runat="server" Value="Son" />
+                                                                    <asp:ListItem runat="server" Value="Daughter" />
+                                                                    <asp:ListItem runat="server" Value="Brother" />
+                                                                    <asp:ListItem runat="server" Value="Sister" />
+                                                                    <asp:ListItem runat="server" Value="Mother" />
+                                                                    <asp:ListItem runat="server" Value="Uncle" />
+                                                                    <asp:ListItem runat="server" Value="Aunty" />
+                                                                    <asp:ListItem runat="server" Value="Other" />
+                                                                </asp:DropDownList>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" Font-Size="Small"></HeaderStyle>
+                                                            <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
+                                                        </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderStyle-Font-Size="Small" HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
+                                                            HeaderText="Occupation" ItemStyle-Font-Size="Small" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtMedReloccupation" runat="server" Text="" Width="98%"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" Font-Size="Small"></HeaderStyle>
+                                                            <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
+                                                        </asp:TemplateField>
+
+                                                       
+                                                        <asp:TemplateField HeaderStyle-Font-Size="Small" HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
+                                                            HeaderText="Whether residing with him/her ?" ItemStyle-Font-Size="Small" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:DropDownList ID="ddlMedresidence" runat="server" Width="80%">
+                                                                    <asp:ListItem runat="server" Value="--Select--" />
+                                                                    <asp:ListItem runat="server" Value="Yes" />
+                                                                    <asp:ListItem runat="server" Value="No" />
+                                                                </asp:DropDownList>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" Font-Size="Small"></HeaderStyle>
+                                                            <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
+                                                        </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderStyle-Font-Size="Small" HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
+                                                            HeaderText="If 'No' Place of Residence" ItemStyle-Font-Size="Small" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtMedplace" runat="server" Text="" Width="98%"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" Font-Size="Small"></HeaderStyle>
+                                                            <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </div>
+                                            <asp:Button ID="btnMediclaimDetailsAdd" runat="server" Text="Add" Style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" OnClick="btnMediclaimDetailsAdd_Click"  />
                                         </asp:Panel>
 
                                     </ContentTemplate>

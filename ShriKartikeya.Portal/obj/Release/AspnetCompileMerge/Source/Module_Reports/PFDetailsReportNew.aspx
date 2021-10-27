@@ -190,13 +190,13 @@
                                     <div id="forExport" class="rounded_corners" runat="server" style="overflow: scroll">
 
                                         <asp:GridView ID="GVPFDetails" runat="server" AutoGenerateColumns="False" ForeColor="Black" CssClass="table table-striped table-bordered table-condensed table-hover"
-                                            Width="100%" CellPadding="5" CellSpacing="5" OnRowDataBound="GVPFDetails_RowDataBound">
+                                            Width="100%" CellPadding="5" CellSpacing="5" OnRowDataBound="GVPFDetails_RowDataBound" ShowFooter="true">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Emp ID" DataField="EmpId" NullDisplayText=" " />
                                                 <asp:BoundField HeaderText="GDX ID" DataField="Oldempid" NullDisplayText=" " />
                                                 <asp:BoundField HeaderText="UAN NUMBER" DataField="EmpUANNumber" NullDisplayText=" " />
                                                 <asp:BoundField HeaderText="MEMBER NAME" DataField="Fullname" />
-                                                <asp:BoundField HeaderText="GROSS_WAGES" DataField="Gross" />
+                                               <%-- <asp:BoundField HeaderText="GROSS_WAGES" DataField="Gross" />
                                                 <asp:BoundField HeaderText="EPF_WAGES" DataField="PFWAGES" />
                                                 <asp:BoundField HeaderText="EPS_WAGES" DataField="EPSWAGESNEW" />
                                                 <asp:BoundField HeaderText="EDLI_WAGES" DataField="EDLIWAGESNEW" />
@@ -204,8 +204,93 @@
                                                 <asp:BoundField HeaderText="EPS_CONTRI_REMITTED" DataField="EPSDuenew" />
                                                 <asp:BoundField HeaderText="EPF_EPS_CONTRI_REMITTED" DataField="pfdiffnew" />
                                                 <asp:BoundField HeaderText="NCP Days" DataField="NCPDAYS" NullDisplayText=" " />
-                                                <asp:BoundField HeaderText="REFUND_OF_ADVANCES" DataField="ADVREF" NullDisplayText=" " />
+                                                <asp:BoundField HeaderText="REFUND_OF_ADVANCES" DataField="ADVREF" NullDisplayText=" " />--%>
+
+                                                 <asp:TemplateField HeaderText="GROSS_WAGES">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lblgross" Text="<%# Bind('Gross') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalGross" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                                 <asp:TemplateField HeaderText="EPF_WAGES">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lblpfwages" Text="<%# Bind('PFWAGES') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalpfwages" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                                
+                                                 <asp:TemplateField HeaderText="EPS_WAGES">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lblepswages" Text="<%# Bind('EPSWAGESNEW') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalepswages" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                                 <asp:TemplateField HeaderText="EDLI_WAGES">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lbledliwages" Text="<%# Bind('EDLIWAGESNEW') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotaledliwages" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                                 <asp:TemplateField HeaderText="EPF_CONTRI_REMITTED">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lblpf" Text="<%# Bind('PF') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalpf" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                                 <asp:TemplateField HeaderText="EPS_CONTRI_REMITTED">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lblepsduenew" Text="<%# Bind('EPSDuenew') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalepsduenew" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="EPF_EPS_CONTRI_REMITTED">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lblpfdiffnew" Text="<%# Bind('pfdiffnew') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalpfdiffnew" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                                 <asp:TemplateField HeaderText="NCP Days">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lblncpdays" Text="<%# Bind('NCPDAYS') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotalncpdays" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+                                                 <asp:TemplateField HeaderText="REFUND_OF_ADVANCES">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lbladvref" Text="<%# Bind('ADVREF') %>"></asp:Label>
+                                                    </ItemTemplate>
+                                                     <FooterTemplate>
+                                                    <asp:Label ID="lblTotaladvref" runat="server" Text=""></asp:Label>
+                                                </FooterTemplate>
+                                                </asp:TemplateField>
+
+
                                             </Columns>
+
                                         </asp:GridView>
 
                                         <asp:GridView ID="GVExportText" runat="server" AutoGenerateColumns="False" ForeColor="Black" CssClass="table table-striped table-bordered table-condensed table-hover"

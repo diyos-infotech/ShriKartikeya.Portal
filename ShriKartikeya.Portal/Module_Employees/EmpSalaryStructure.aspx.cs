@@ -446,6 +446,24 @@ namespace ShriKartikeya.Portal
                     }
 
                     #endregion for Salary Structure
+                    string Sqlqry = "select Department from empdetails where Branch in (" + BranchID + ") and empid='" + txtEmpid.Text + "' ";
+                    DataTable dt = config.ExecuteAdaptorAsyncWithQueryParams(Sqlqry).Result;
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        var Staff = "0";
+                        Staff = dt.Rows[0]["Department"].ToString();
+
+                        if (Staff == "1")
+                        {
+                            ddlNoOfDaysWages.SelectedValue = "30";
+                        }
+                        else if (Staff == "2")
+                        {
+                            ddlNoOfDaysWages.SelectedValue = "26";
+                        }
+                       
+                    }
                 }
             }
             catch (Exception ex)

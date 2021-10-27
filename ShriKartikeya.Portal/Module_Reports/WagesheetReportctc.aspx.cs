@@ -2319,7 +2319,7 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         //40
                         Label lblTotalPFEMPR = GVListEmployees1.FooterRow.FindControl("lblTotalPFEMPR") as Label;
-                        lblTotalPFEMPR.Text = Math.Round(totalpfempr).ToString();
+                        lblTotalPFEMPR.Text = Math.Round(totalPF).ToString();
 
 
 

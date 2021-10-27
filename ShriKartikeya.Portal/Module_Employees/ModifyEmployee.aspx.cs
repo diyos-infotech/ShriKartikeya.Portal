@@ -39,6 +39,7 @@ namespace ShriKartikeya.Portal
 
                     TabContainer1.ActiveTabIndex = 0;
                     SetInitialRow();
+                    SetMediclaimInitialRow();
                     LoadBloodGroups();
                     LoadBanknames();
                     LoadDesignations();
@@ -326,6 +327,67 @@ namespace ShriKartikeya.Portal
             }
         }
 
+        private void SetMediclaimInitialRow()
+        {
+            string username = "";
+            if (Request.QueryString["Empid"] != null)
+            {
+                username = Request.QueryString["Empid"].ToString();
+            }
+
+            string query = "select MedRName,MedRType,convert(varchar(10),MedDOfBirth,103) as MedDOfBirth,Medage,MedRoccupation,MedRResidence,MedRPlace from EmpMediclamDetails where empid='" + username + "' order by id";
+            DataTable dtcount = config.ExecuteAdaptorAsyncWithQueryParams(query).Result;
+            if (dtcount.Rows.Count > 0)
+            {
+
+                ViewState["CurrentTable"] = dtcount;
+                gvmediclaimDetails.DataSource = dtcount;
+                gvmediclaimDetails.DataBind();
+
+
+            }
+
+            else
+            {
+                DataTable dt = new DataTable();
+                DataRow dr = null;
+                dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
+                dt.Columns.Add(new DataColumn("MedRName", typeof(string)));
+                dt.Columns.Add(new DataColumn("MedDOfBirth", typeof(string)));
+                dt.Columns.Add(new DataColumn("Medage", typeof(string)));
+                dt.Columns.Add(new DataColumn("MedRType", typeof(string)));
+                dt.Columns.Add(new DataColumn("MedROccupation", typeof(string)));
+               
+                dt.Columns.Add(new DataColumn("MedRResidence", typeof(string)));
+                dt.Columns.Add(new DataColumn("MedRPlace", typeof(string)));
+
+                for (int i = 1; i < 11; i++)
+                {
+
+                    dr = dt.NewRow();
+                    dr["RowNumber"] = 1;
+                    dr["MedRName"] = string.Empty;
+                    dr["MedDOfBirth"] = string.Empty;
+                    dr["Medage"] = string.Empty;
+                    dr["MedRType"] = string.Empty;
+                    dr["MedROccupation"] = string.Empty;
+                   
+                    dr["MedRResidence"] = string.Empty;
+                    dr["MedRPlace"] = string.Empty;
+
+                    dt.Rows.Add(dr);
+
+                }
+
+
+                //Store the DataTable in ViewState
+                ViewState["CurrentTable"] = dt;
+
+                gvmediclaimDetails.DataSource = dt;
+                gvmediclaimDetails.DataBind();
+            }
+        }
+
         private void SetInitialRowEducation()
         {
             string username = "";
@@ -565,6 +627,7 @@ namespace ShriKartikeya.Portal
                 var Empbankbranchname = string.Empty;
                 var EmpIFSCcode = string.Empty;
                 var EmpBranchCode = string.Empty;
+                var Empnameasperbank = string.Empty;
 
 
                 var EmpBankCode = string.Empty;
@@ -605,6 +668,8 @@ namespace ShriKartikeya.Portal
                 Empbankbranchname = txtbranchname.Text;
                 EmpIFSCcode = txtIFSCcode.Text;
                 EmpBranchCode = txtBranchCode.Text;
+
+                Empnameasperbank = txtBankempname.Text;
                 if (ddlbankname.SelectedIndex == 0)
                 {
                     Empbankname = "0";
@@ -1236,7 +1301,8 @@ namespace ShriKartikeya.Portal
                 }
 
                 var EmpFatherName = txtFatherName.Text;
-                var EmpFatherOccupation = txtfatheroccupation.Text;
+                // var EmpFatherOccupation = txtfatheroccupation.Text;
+                 var  EBloodgroup = txtbloodgrp.Text;
                 var EmpSpouseName = txtSpousName.Text;
                 var EmpMotherName = txtMotherName.Text;
                 var Qualification = txtQualification.Text;
@@ -1848,7 +1914,7 @@ namespace ShriKartikeya.Portal
                 ModifyEmployeeDetails.Add("@EmpDtofLeaving", DateOFLeaving);
                 ModifyEmployeeDetails.Add("@EmpDtofBirth", DateOfBirth);
                 ModifyEmployeeDetails.Add("@EmpFatherName", EmpFatherName);
-                ModifyEmployeeDetails.Add("@EmpFatherOccupation", EmpFatherOccupation);
+              //  ModifyEmployeeDetails.Add("@EmpFatherOccupation", EmpFatherOccupation);
                 ModifyEmployeeDetails.Add("@OldEmpid", OldEmpid);
                 ModifyEmployeeDetails.Add("@EmpSpouseName", EmpSpouseName);
                 ModifyEmployeeDetails.Add("@EmpMotherName", EmpMotherName);
@@ -1861,6 +1927,7 @@ namespace ShriKartikeya.Portal
                 ModifyEmployeeDetails.Add("@EmpPTDeduct", PTDeduct);
                 ModifyEmployeeDetails.Add("@PTState", PTState);
                 ModifyEmployeeDetails.Add("@LWFState", LWFState);
+                ModifyEmployeeDetails.Add("@EBloodGroup", EBloodgroup);
 
                 ModifyEmployeeDetails.Add("@EmpHoldSalary", HoldSalary);
                 ModifyEmployeeDetails.Add("@HoldSalaryDate", HoldSalaryDate);
@@ -1915,6 +1982,7 @@ namespace ShriKartikeya.Portal
 
                 ModifyEmployeeDetails.Add("@EmpRefAddr1", refaddress1);
                 ModifyEmployeeDetails.Add("@BankAddress", Bankaddress);
+                ModifyEmployeeDetails.Add("@EmpnameasperBank", Empnameasperbank);
                 ModifyEmployeeDetails.Add("EmpRefAddr2", refaddress2);
                 ModifyEmployeeDetails.Add("@EmpBloodGroup", BloodGroup);
                 ModifyEmployeeDetails.Add("@EmpRemarks", empremarks);
@@ -2134,6 +2202,7 @@ namespace ShriKartikeya.Portal
                 if (URecordStatus > 0)
                 {
                     modifyfamilydetails();
+                    modifymediclaimdetails();
                     modifyeducationdetails();
                     modifyPreviousExperience();
                     lblMsg.Text = "Employee Details Modified Sucessfully With ID NO  :- " + ExactEmpid + "  -:";
@@ -2162,6 +2231,7 @@ namespace ShriKartikeya.Portal
                 PnlProofsSubmitted1.Enabled = false;
                 PnlExService.Enabled = false;
                 pnlfamilydetails.Enabled = false;
+                pnlmediclamdetails.Enabled = false;
                 pnlEducationDetails.Enabled = false;
                 pnlPreviousExpereince.Enabled = false;
                 PnlPaySheet.Enabled = false;
@@ -2192,7 +2262,7 @@ namespace ShriKartikeya.Portal
         {
             txtEmpDtofInterview.Text = txtEmpDtofJoining.Text = txtEmpDtofBirth.Text = txtDofleaving.Text = "";
             txtEmpFName.Text = txtEmpmiName.Text = txtEmplname.Text =
-            txtQualification.Text = txtPreEmp.Text = txtfatheroccupation.Text =
+            txtQualification.Text = txtPreEmp.Text = txtbloodgrp.Text =txtBankempname.Text=
             // txtEmpFatherName.Text = txtFaocccu.Text = txtFaSpRelation.Text = txtFAge.Text =
             //txtmname.Text = txtmoccupation.Text = 
             txtmtongue.Text = txtPhone.Text = txtnationality.Text = txtreligion.Text = txtLangKnown.Text = txtREfAddr1.Text = txtREfAddr2.Text = txtPhyRem.Text = txtEmpRemarks.Text = txtImark1.Text = txtImark2.Text =
@@ -2361,6 +2431,127 @@ namespace ShriKartikeya.Portal
                     }
 
                     string linksave = "insert into EmpRelationships values('" + txtEmpid.Text + "','" + txtEmpRName.Text + "','" + relationtype + "','" + DOFBirth + "','" + RelationId + "','" + age + "','" + Occupation + "','" + relationresidence + "','" + Relplace + "','" + pfnominee + "','" + esinominee + "')";
+                    int Getbyresult = config.ExecuteNonQueryWithQueryAsync(linksave).Result;
+                }
+
+
+            }
+
+        }
+
+        public void modifymediclaimdetails()
+        {
+            string age = "0";
+            string SqlDelete = "Delete EmpMediclamDetails where EmpId='" + txtEmpid.Text + "'";
+            int del = config.ExecuteNonQueryWithQueryAsync(SqlDelete).Result;
+            foreach (GridViewRow dr in gvmediclaimDetails.Rows)
+            {
+                TextBox txtMedEmpRName = dr.FindControl("txtMedEmpName") as TextBox;
+                DropDownList ddlMedRelationtype = dr.FindControl("ddlMedRelation") as DropDownList;
+                TextBox txtMedDOFBirth = dr.FindControl("txtMedRelDtofBirth") as TextBox;
+                TextBox txtMedAge = dr.FindControl("txtMedAge") as TextBox;
+                TextBox txtMedoccupation = dr.FindControl("txtMedReloccupation") as TextBox;
+                DropDownList ddlMedrelresidence = dr.FindControl("ddlMedresidence") as DropDownList;
+                TextBox txtMedRelplace = dr.FindControl("txtMedplace") as TextBox;
+              
+                string DOFBirth = "";
+                if (txtMedEmpRName.Text != string.Empty || ddlMedRelationtype.SelectedIndex > 0 || txtMedoccupation.Text != string.Empty || txtMedRelplace.Text != string.Empty || ddlMedrelresidence.SelectedIndex > 0)
+                {
+                    var testDate = 0;
+                    #region Begin Validating Date Format
+
+                    if (txtMedDOFBirth.Text.Trim().Length > 0)
+                    {
+                        testDate = GlobalData.Instance.CheckEnteredDate(txtMedDOFBirth.Text);
+                        if (testDate > 0)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "show alert", "alert('You Are Entered Invalid Date Of Birth Date.Date Format Should be [DD/MM/YYYY].Ex.01/01/1990');", true);
+                            return;
+                        }
+                    }
+                    #endregion End Validating Date Format
+
+
+                    if (txtMedDOFBirth.Text.Trim().Length != 0)
+                    {
+                        DOFBirth = Timings.Instance.CheckDateFormat(txtMedDOFBirth.Text);
+                    }
+                    else
+                    {
+                        DOFBirth = "01/01/1900";
+                    }
+
+
+
+                    // #region Begin Getmax Id from DB
+                    int RelationId = 0;
+                    string selectquerycomppanyid = "select max(cast(Id as int )) as Id from EmpMediclamDetails where EmpId='" + txtEmpid.Text + "'";
+                    DataTable dt = config.ExecuteAdaptorAsyncWithQueryParams(selectquerycomppanyid).Result;
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        if (String.IsNullOrEmpty(dt.Rows[0]["Id"].ToString()) == false)
+                        {
+                            RelationId = Convert.ToInt32(dt.Rows[0]["Id"].ToString()) + 1;
+                        }
+                        else
+                        {
+                            RelationId = int.Parse("1");
+                        }
+                    }
+
+
+                    if (txtMedAge.Text.Trim().Length > 0)
+                    {
+                        age = txtMedAge.Text;
+                    }
+                    else
+                    {
+                        age = "0";
+                    }
+
+                    string Occupation = "";
+                    if (txtMedoccupation.Text.Length == 0)
+                    {
+                        Occupation = "";
+                    }
+                    else
+                    {
+                        Occupation = txtMedoccupation.Text;
+                    }
+
+                    string Relplace = "";
+                    if (txtMedRelplace.Text.Length == 0)
+                    {
+                        Relplace = "";
+                    }
+                    else
+                    {
+                        Relplace = txtMedRelplace.Text;
+                    }
+
+                    string relationtype = "";
+                    if (ddlMedRelationtype.SelectedIndex == 0)
+                    {
+                        relationtype = string.Empty;
+                    }
+                    if (ddlMedRelationtype.SelectedIndex > 0)
+                    {
+                        relationtype = ddlMedRelationtype.SelectedValue;
+                    }
+                    string relationresidence = "";
+                    if (ddlMedrelresidence.SelectedIndex == 0)
+                    {
+                        relationresidence = string.Empty;
+                    }
+                    if (ddlMedrelresidence.SelectedIndex > 0)
+                    {
+                        relationresidence = ddlMedrelresidence.SelectedValue;
+                    }
+
+                   
+
+                    string linksave = "insert into EmpMediclamDetails values('" + txtEmpid.Text + "','" + txtMedEmpRName.Text + "','" + relationtype + "','" + DOFBirth + "','" + RelationId + "','" + age + "','" + Occupation + "','" + relationresidence + "','" + Relplace + "')";
                     int Getbyresult = config.ExecuteNonQueryWithQueryAsync(linksave).Result;
                 }
 
@@ -2724,7 +2915,7 @@ namespace ShriKartikeya.Portal
                 txtSpousName.Text = dt.Rows[0]["EmpSpouseName"].ToString();
                 txtMotherName.Text = dt.Rows[0]["EmpMotherName"].ToString();
                 txtFatherName.Text = dt.Rows[0]["EmpFatherName"].ToString();
-                txtfatheroccupation.Text = dt.Rows[0]["EmpFatherOccupation"].ToString();
+                txtbloodgrp.Text = dt.Rows[0]["EBloodGroup"].ToString();
 
 
                 txtsecondBankAccNum.Text = dt.Rows[0]["SecondEmpbankAcNo"].ToString();
@@ -3062,6 +3253,7 @@ namespace ShriKartikeya.Portal
                 txtbankaddres.Text = dt.Rows[0]["Bankaddress"].ToString();
                 txtREfAddr2.Text = dt.Rows[0]["EmpRefAddr2"].ToString();
                 txtEmpRemarks.Text = dt.Rows[0]["EmpRemarks"].ToString();
+                txtBankempname.Text = dt.Rows[0]["EmpnameasperBank"].ToString();
 
                 //txtPrdoor.Text = dt.Rows[0]["prDoorno"].ToString();
 
@@ -4039,10 +4231,77 @@ namespace ShriKartikeya.Portal
 
                     }
 
+                string sqlMediclaimDetails = "select EM.MedRName,EM.MedRType,EM.EmpId,Convert(nvarchar(10),EM.MedDOfBirth,103) as MedDOfBirth,EM.Medage,EM.MedROccupation,EM.MedRResidence,EM.MedRPlace from EmpMediclamDetails as EM join EmpDetails as ED on EM.EmpId=ED.EmpId where ED.EmpID = '" + empid + "' ";
+                DataTable dtMed = config.ExecuteAdaptorAsyncWithQueryParams(sqlMediclaimDetails).Result;
+                if (dtMed.Rows.Count > 0)
+                {
+                    gvmediclaimDetails.DataSource = dtMed;
+                    gvmediclaimDetails.DataBind();
+
+                    foreach (GridViewRow dr in gvmediclaimDetails.Rows)
+                    {
+                        if (dtMed.Rows.Count == dr.RowIndex)
+                        {
+                            break;
+                        }
+                        TextBox txtMedEmpRName = dr.FindControl("txtMedEmpName") as TextBox;
+                        DropDownList ddlMedRelationtype = dr.FindControl("ddlMedRelation") as DropDownList;
+                        TextBox txtMedDOFBirth = dr.FindControl("txtMedRelDtofBirth") as TextBox;
+                        TextBox txtMedAge = dr.FindControl("txtMedAge") as TextBox;
+                        TextBox txtMedoccupation = dr.FindControl("txtMedReloccupation") as TextBox;
+                        DropDownList ddlMedrelresidence = dr.FindControl("ddlMedresidence") as DropDownList;
+                        TextBox txtMedRelplace = dr.FindControl("txtMedplace") as TextBox;
+
+
+                        txtMedEmpRName.Text = dtMed.Rows[dr.RowIndex]["MedRName"].ToString();
+                        ddlMedRelationtype.SelectedValue = dtMed.Rows[dr.RowIndex]["MedRType"].ToString();
+                        txtMedDOFBirth.Text = dtMed.Rows[dr.RowIndex]["MedDOfBirth"].ToString();
+
+                        if (txtMedDOFBirth.Text == "01/01/1900")
+                        {
+                            txtMedDOFBirth.Text = "";
+                        }
+                        txtMedAge.Text = dtMed.Rows[dr.RowIndex]["MedAge"].ToString();
+                        txtMedoccupation.Text = dtMed.Rows[dr.RowIndex]["MedROccupation"].ToString();
+                        ddlMedrelresidence.SelectedValue = dtMed.Rows[dr.RowIndex]["MedRResidence"].ToString();
+                        txtMedRelplace.Text = dtMed.Rows[dr.RowIndex]["MedRPlace"].ToString();
 
 
 
-                    string sqlEducationDetails = "select * from EmpEducationDetails where EmpID = '" + empid + "' order by id ";
+                    }
+
+                }
+                else
+                {
+                    for (int i = 0; i < gvmediclaimDetails.Rows.Count; i++)
+                    {
+                        TextBox txtMedEmpRName = gvmediclaimDetails.Rows[i].FindControl("txtMedEmpName") as TextBox;
+                        DropDownList ddlMedRelationtype = gvmediclaimDetails.Rows[i].FindControl("ddlMedRelation") as DropDownList;
+                        // TextBox txtDOFBirth = gvmediclaimDetails.Rows[i].FindControl("txtMedRelDtofBirth") as TextBox;
+                        TextBox txtMedAge = gvmediclaimDetails.Rows[i].FindControl("txtMedAge") as TextBox;
+                        TextBox txtMedoccupation = gvmediclaimDetails.Rows[i].FindControl("txtMedReloccupation") as TextBox;
+                        DropDownList ddlMedrelresidence = gvmediclaimDetails.Rows[i].FindControl("ddlMedresidence") as DropDownList;
+                        TextBox txtMedRelplace = gvmediclaimDetails.Rows[i].FindControl("txtMedplace") as TextBox;
+
+
+                        txtMedEmpRName.Text = "";
+                        ddlMedRelationtype.SelectedIndex = 0;
+                        //  txtDOFBirth.Text = "";
+                        txtMedAge.Text = "";
+                        txtMedoccupation.Text = "";
+                        ddlMedrelresidence.SelectedIndex = 0;
+                        txtMedRelplace.Text = "";
+
+
+
+                    }
+
+                }
+
+
+
+
+                string sqlEducationDetails = "select * from EmpEducationDetails where EmpID = '" + empid + "' order by id ";
                     DataTable dted = config.ExecuteAdaptorAsyncWithQueryParams(sqlEducationDetails).Result;
                     if (dted.Rows.Count > 0)
                     {
@@ -4571,6 +4830,105 @@ namespace ShriKartikeya.Portal
         }
 
 
+        private void AddMediclaimNewRowToGrid()
+        {
+
+            int rowIndex = 0;
+
+            if (ViewState["CurrentTable"] != null)
+            {
+                DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
+                DataRow drCurrentRow = null;
+                //DataRow drCurrentRow1 = null;
+
+
+                if (dtCurrentTable.Rows.Count > 0)
+                {
+
+
+                    for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
+                    {
+                        //extract the TextBox values
+                        //TextBox lblSno = (TextBox)gvFamilyDetails.Rows[rowIndex].Cells[0].FindControl("lblSno");
+                        TextBox txtMedEmpName = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[1].FindControl("txtMedEmpName");
+                        TextBox txtMedRelDtofBirth = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[2].FindControl("txtMedRelDtofBirth");
+                        TextBox txtMedAge = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[3].FindControl("txtMedAge");
+                        DropDownList ddlMedRelation = (DropDownList)gvmediclaimDetails.Rows[rowIndex].Cells[4].FindControl("ddlMedRelation");
+                        TextBox txtMedReloccupation = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[5].FindControl("txtMedReloccupation");
+
+                        DropDownList ddlMedresidence = (DropDownList)gvmediclaimDetails.Rows[rowIndex].Cells[6].FindControl("ddlMedresidence");
+                        TextBox txtMedplace = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[7].FindControl("txtMedplace");
+
+
+                        drCurrentRow = dtCurrentTable.NewRow();
+
+
+
+                        //dtCurrentTable.Rows[i - 1]["Region"] = lblSno.Text;
+                        dtCurrentTable.Rows[i - 1]["MedRName"] = txtMedEmpName.Text;
+                        dtCurrentTable.Rows[i - 1]["MedDOfBirth"] = txtMedRelDtofBirth.Text;
+                        dtCurrentTable.Rows[i - 1]["Medage"] = txtMedAge.Text;
+                        dtCurrentTable.Rows[i - 1]["MedRType"] = ddlMedRelation.SelectedValue;
+                        dtCurrentTable.Rows[i - 1]["MedROccupation"] = txtMedReloccupation.Text;
+                        dtCurrentTable.Rows[i - 1]["MedRResidence"] = ddlMedresidence.SelectedValue;
+                        dtCurrentTable.Rows[i - 1]["MedRPlace"] = txtMedplace.Text;
+
+
+
+                        rowIndex++;
+
+                    }
+                    dtCurrentTable.Rows.Add(drCurrentRow);
+                    ViewState["CurrentTable"] = dtCurrentTable;
+                    gvmediclaimDetails.DataSource = dtCurrentTable;
+                    gvmediclaimDetails.DataBind();
+                }
+            }
+            else
+            {
+                Response.Write("ViewState is null");
+            }
+
+            //Set Previous Data on Postbacks
+            SetMediclaimPreviousData();
+        }
+
+        private void SetMediclaimPreviousData()
+        {
+            int rowIndex = 0;
+            if (ViewState["CurrentTable"] != null)
+            {
+                DataTable dt = (DataTable)ViewState["CurrentTable"];
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < gvmediclaimDetails.Rows.Count; i++)
+                    {
+
+                        TextBox txtMedEmpName = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[1].FindControl("txtMedEmpName");
+                        TextBox txtMedRelDtofBirth = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[2].FindControl("txtMedRelDtofBirth");
+                        TextBox txtMedAge = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[3].FindControl("txtMedAge");
+                        DropDownList ddlMedRelation = (DropDownList)gvmediclaimDetails.Rows[rowIndex].Cells[4].FindControl("ddlMedRelation");
+                        TextBox txtMedReloccupation = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[5].FindControl("txtMedReloccupation");
+
+                        DropDownList ddlMedresidence = (DropDownList)gvmediclaimDetails.Rows[rowIndex].Cells[6].FindControl("ddlMedresidence");
+                        TextBox txtMedplace = (TextBox)gvmediclaimDetails.Rows[rowIndex].Cells[7].FindControl("txtMedplace");
+
+
+
+                        txtMedEmpName.Text = dt.Rows[i]["MedRName"].ToString();
+                        txtMedRelDtofBirth.Text = dt.Rows[i]["MedDOfBirth"].ToString();
+                        txtMedAge.Text = dt.Rows[i]["Medage"].ToString();
+                        ddlMedRelation.SelectedValue = dt.Rows[i]["MedRType"].ToString();
+                        txtMedReloccupation.Text = dt.Rows[i]["MedROccupation"].ToString();
+                        ddlMedresidence.SelectedValue = dt.Rows[i]["MedRResidence"].ToString();
+                        txtMedplace.Text = dt.Rows[i]["MedRPlace"].ToString();
+
+
+                        rowIndex++;
+                    }
+                }
+            }
+        }
 
 
         private void AddNewRowToGrid()
@@ -4947,6 +5305,7 @@ namespace ShriKartikeya.Portal
             PnlProofsSubmitted1.Enabled = true;
             PnlExService.Enabled = true;
             pnlfamilydetails.Enabled = true;
+            pnlmediclamdetails.Enabled = true;
             pnlEducationDetails.Enabled = true;
             pnlPreviousExpereince.Enabled = true;
             PnlPaySheet.Enabled = true;
@@ -4969,6 +5328,9 @@ namespace ShriKartikeya.Portal
             txtbgvno.Enabled = false;
         }
 
-
+        protected void btnMediclaimDetailsAdd_Click(object sender, EventArgs e)
+        {
+            AddMediclaimNewRowToGrid();
+        }
     }
 }
