@@ -383,7 +383,31 @@ namespace ShriKartikeya.Portal.Module_Reports
             string fday = firstday.ToShortDateString();
 
 
-            
+
+            var list = new List<string>();
+
+            if (GVListClients.Rows.Count > 0)
+            {
+                for (int i = 0; i < GVListClients.Rows.Count; i++)
+                {
+                    CheckBox chkclientid = GVListClients.Rows[i].FindControl("chkindividual") as CheckBox;
+                    Label lblclientid = GVListClients.Rows[i].FindControl("lblclientid") as Label;
+
+                    if (chkclientid.Checked == true)
+                    {
+                        list.Add(lblclientid.Text);
+                    }
+
+                }
+            }
+
+            string Clientids = string.Join(",", list.ToArray());
+
+            if (list.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showlalert", "alert('Please Select clientids');", true);
+                return;
+            }
 
             string Date = "";
             if (month.Length == 1)
@@ -395,10 +419,27 @@ namespace ShriKartikeya.Portal.Module_Reports
                 Date = "01/" + month + "/" + Year;
             }
 
+            string PFBranch = "%";
+            if (ddlPFBranch.SelectedIndex > 0)
+            {
+                PFBranch = ddlPFBranch.SelectedValue;
+            }
+            DataTable dtClientList = new DataTable();
+            dtClientList.Columns.Add("Clientid");
+            if (list.Count != 0)
+            {
+                foreach (string s in list)
+                {
+                    DataRow row = dtClientList.NewRow();
+                    row["Clientid"] = s;
+                    dtClientList.Rows.Add(row);
+                }
+            }
+
             int monthdays = System.DateTime.DaysInMonth(int.Parse(Year), int.Parse(month));
             var datecheck = Timings.Instance.CheckDateFormat(Date);
 
-            string PFBranch = "%";
+          
             if (ddlPFBranch.SelectedIndex > 0)
             {
                 PFBranch = ddlPFBranch.SelectedValue;
@@ -409,7 +450,7 @@ namespace ShriKartikeya.Portal.Module_Reports
             string SPName = "PFESIDetailsReport";
             Hashtable ht = new Hashtable();
             ht.Add("@month", month + Year.Substring(2, 2));
-            //ht.Add("@ClientIDList", dtClientList);
+            ht.Add("@ClientIDList", dtClientList);
             ht.Add("@MonthDays", monthdays);
             ht.Add("@Type", Type);
             ht.Add("@Date", datecheck);

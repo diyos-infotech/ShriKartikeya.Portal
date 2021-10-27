@@ -1366,7 +1366,8 @@ namespace ShriKartikeya.Portal
                 }
 
                 var EmpFatherName = txtFatherName.Text;
-                var EmpFatherOccupation = txtfatheroccupation.Text;
+               // var EmpFatherOccupation = txtfatheroccupation.Text;
+                var EmpBloodgroup = txtbloodgrp.Text;
                 var EmpSpouseName = txtSpousName.Text;
                 var EmpMotherName = txtMotherName.Text;
                 var Qualification = txtQualification.Text;
@@ -1955,7 +1956,8 @@ namespace ShriKartikeya.Portal
                 ModifyEmployeeDetails.Add("@EmpDtofLeaving", DateOFLeaving);
                 ModifyEmployeeDetails.Add("@EmpDtofBirth", DateOfBirth);
                 ModifyEmployeeDetails.Add("@EmpFatherName", EmpFatherName);
-                ModifyEmployeeDetails.Add("@EmpFatherOccupation", EmpFatherOccupation);
+                //ModifyEmployeeDetails.Add("@EmpFatherOccupation", EmpFatherOccupation);
+                ModifyEmployeeDetails.Add("@EBloodGroup", EmpBloodgroup);
                 ModifyEmployeeDetails.Add("@OldEmpid", OldEmpid);
                 ModifyEmployeeDetails.Add("@EmpSpouseName", EmpSpouseName);
                 ModifyEmployeeDetails.Add("@EmpMotherName", EmpMotherName);
@@ -2288,7 +2290,8 @@ namespace ShriKartikeya.Portal
         {
             txtEmpDtofInterview.Text = txtEmpDtofJoining.Text = txtEmpDtofBirth.Text = txtDofleaving.Text = "";
             txtEmpFName.Text = txtEmpmiName.Text = txtEmplname.Text = 
-            txtQualification.Text = txtPreEmp.Text = txtfatheroccupation.Text =
+            txtQualification.Text = txtPreEmp.Text =txtbloodgrp.Text=
+            //txtfatheroccupation.Text =
             // txtEmpFatherName.Text = txtFaocccu.Text = txtFaSpRelation.Text = txtFAge.Text =
             //txtmname.Text = txtmoccupation.Text = 
             txtmtongue.Text = txtPhone.Text = txtnationality.Text = txtreligion.Text = txtLangKnown.Text = txtREfAddr1.Text = txtREfAddr2.Text = txtPhyRem.Text = txtEmpRemarks.Text = txtImark1.Text = txtImark2.Text =
@@ -2860,7 +2863,8 @@ namespace ShriKartikeya.Portal
                 txtSpousName.Text = dt.Rows[0]["EmpSpouseName"].ToString();
                 txtMotherName.Text = dt.Rows[0]["EmpMotherName"].ToString();
                 txtFatherName.Text = dt.Rows[0]["EmpFatherName"].ToString();
-                txtfatheroccupation.Text = dt.Rows[0]["EmpFatherOccupation"].ToString();
+               // txtfatheroccupation.Text = dt.Rows[0]["EmpFatherOccupation"].ToString();
+                txtbloodgrp.Text= dt.Rows[0]["EBloodGroup"].ToString();
 
 
                 txtsecondBankAccNum.Text = dt.Rows[0]["SecondEmpbankAcNo"].ToString();

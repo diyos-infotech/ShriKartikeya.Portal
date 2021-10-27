@@ -38,7 +38,7 @@ namespace ShriKartikeya.Portal.Module_Reports
             {
                 if (Session["UserId"] != null && Session["AccessLevel"] != null)
                 {
-                    
+
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                         emplink.Attributes["class"] = "current";
                     }
                 }
-              
+
                 LoadEsibranches();
             }
         }
@@ -232,6 +232,129 @@ namespace ShriKartikeya.Portal.Module_Reports
                 GVListOfClients.DataBind();
             }
             gve.Export("ESIReport.xls", this.GVListOfClients);
+        }
+
+        protected void lbtn_Export_Text_Click(object sender, EventArgs e)
+        {
+
+            LblResult.Text = "";
+            DataTable dtone = null;
+            string date = "";
+
+
+            string SelectDate = string.Empty;
+            if (txtmonth.Text.Trim().Length > 0)
+            {
+                SelectDate = DateTime.Parse(txtmonth.Text.Trim(), CultureInfo.GetCultureInfo("en-gb")).ToString();
+            }
+
+            string month = DateTime.Parse(SelectDate).Month.ToString();
+            string Year = DateTime.Parse(SelectDate).Year.ToString();
+            string esibranch = "";
+
+            if (ddlEsibranch.SelectedIndex == 0)
+            {
+                esibranch = "%";
+            }
+            else
+            {
+                esibranch = ddlEsibranch.SelectedValue;
+            }
+
+            var list = new List<string>();
+
+            if (GVClientsData.Rows.Count > 0)
+            {
+                for (int i = 0; i < GVClientsData.Rows.Count; i++)
+                {
+                    CheckBox chkclientid = GVClientsData.Rows[i].FindControl("chkindividual") as CheckBox;
+                    Label lblclientid = GVClientsData.Rows[i].FindControl("lblclientid") as Label;
+
+                    if (chkclientid.Checked == true)
+                    {
+                        list.Add(lblclientid.Text);
+                    }
+
+                }
+            }
+
+            string Clientids = string.Join(",", list.ToArray());
+
+            if (list.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showlalert", "alert('Please Select clientids');", true);
+                return;
+            }
+
+            DataTable dtClientList = new DataTable();
+            dtClientList.Columns.Add("Clientid");
+            if (list.Count != 0)
+            {
+                foreach (string s in list)
+                {
+                    DataRow row = dtClientList.NewRow();
+                    row["Clientid"] = s;
+                    dtClientList.Rows.Add(row);
+                }
+            }
+
+            int monthdays = System.DateTime.DaysInMonth(int.Parse(Year), int.Parse(month));
+            string Type = "ESI";
+
+            string SPName = "PFESIDetailsReport";
+            Hashtable ht = new Hashtable();
+            ht.Add("@ClientIDList", dtClientList);
+            ht.Add("@month", month + Year.Substring(2, 2));
+            ht.Add("@ESIBranch", esibranch);
+            ht.Add("@MonthDays", monthdays);
+            ht.Add("@Type", Type);
+            ht.Add("@CurrentMonth", month);
+            ht.Add("@CurrentYear", Year);
+
+
+            dtone = config.ExecuteAdaptorAsyncWithParams(SPName, ht).Result;
+
+            if (dtone.Rows.Count > 0)
+            {
+                GVExportText.DataSource = dtone;
+                GVExportText.DataBind();
+            }
+            else
+            {
+                GVExportText.DataSource = null;
+                GVExportText.DataBind();
+            }
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=ESIdetailsreporttocsv.txt");
+            Response.Charset = "";
+            Response.ContentType = "application/text";
+            StringBuilder sBuilder = new System.Text.StringBuilder();
+
+            for (int i = 0; i < GVExportText.Rows.Count; i++)
+            {
+                for (int k = 0; k < GVExportText.HeaderRow.Cells.Count; k++)
+                {
+                    sBuilder.Append(GVExportText.Rows[i].Cells[k].Text.TrimEnd().Replace(",", "#~#") + "#~#");
+                }
+                sBuilder.Remove(sBuilder.Length - 1, 1);
+                sBuilder.Remove(sBuilder.Length - 1, 1);
+                sBuilder.Remove(sBuilder.Length - 1, 1);
+                sBuilder.Append("\r\n");
+            }
+            Response.Output.Write(sBuilder.ToString());
+            Response.Flush();
+            Response.End();
+
+        }
+
+        protected void GVExportText_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[0].Attributes.Add("class", "text");
+            }
         }
 
         protected void lbtn_Export_PDF_Click(object sender, EventArgs e)
@@ -822,23 +945,23 @@ namespace ShriKartikeya.Portal.Module_Reports
             {
                 date = DateTime.Parse(txtmonth.Text.Trim(), CultureInfo.GetCultureInfo("en-gb")).ToString();
             }
-           
+
             string ESIFBranch = "%";
-           
+
             if (ddlEsibranch.SelectedIndex > 0)
             {
                 ESIFBranch = ddlEsibranch.SelectedValue;
-               
+
             }
 
             string month = DateTime.Parse(txtmonth.Text.Trim(), CultureInfo.GetCultureInfo("en-gb")).Month.ToString();
             string Year = DateTime.Parse(txtmonth.Text.Trim(), CultureInfo.GetCultureInfo("en-gb")).Year.ToString();
-            
 
 
 
-            string pfbranch = "0";          
-            string Type = "PFClients";           
+
+            string pfbranch = "0";
+            string Type = "PFClients";
             string SPName = "PFESIDetailsReport";
             Hashtable ht = new Hashtable();
             ht.Add("@month", month + Year.Substring(2, 2));

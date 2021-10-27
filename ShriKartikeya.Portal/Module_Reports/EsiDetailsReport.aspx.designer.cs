@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShriKartikeya.Portal.Module_Reports {
-    
-    
-    public partial class EsiDetailsReport {
-        
+namespace ShriKartikeya.Portal.Module_Reports
+{
+
+
+    public partial class EsiDetailsReport
+    {
+
         /// <summary>
         /// ScriptEmployReports control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ShriKartikeya.Portal.Module_Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptEmployReports;
-        
+
         /// <summary>
         /// ddlEsibranch control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ShriKartikeya.Portal.Module_Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEsibranch;
-        
+
         /// <summary>
         /// txtmonth control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace ShriKartikeya.Portal.Module_Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtmonth;
-        
+
         /// <summary>
         /// Txt_Month_CalendarExtender control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace ShriKartikeya.Portal.Module_Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender Txt_Month_CalendarExtender;
-        
+
         /// <summary>
         /// lbtn_Export control.
         /// </summary>
@@ -56,7 +58,16 @@ namespace ShriKartikeya.Portal.Module_Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtn_Export;
-        
+
+        /// <summary>
+        /// lbtn_Export_Text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtn_Export_Text;
+
         /// <summary>
         /// lbtn_Export_esiregister control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace ShriKartikeya.Portal.Module_Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtn_Export_esiregister;
-        
+
         /// <summary>
         /// GVClientsData control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace ShriKartikeya.Portal.Module_Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVClientsData;
-        
+
         /// <summary>
         /// GVListOfClients control.
         /// </summary>
@@ -83,7 +94,25 @@ namespace ShriKartikeya.Portal.Module_Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVListOfClients;
-        
+
+        /// <summary>
+        /// GVExportText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GVExportText;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
         /// <summary>
         /// LblResult control.
         /// </summary>

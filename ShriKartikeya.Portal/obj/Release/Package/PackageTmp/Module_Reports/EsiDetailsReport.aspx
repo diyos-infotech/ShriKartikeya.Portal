@@ -181,6 +181,7 @@
 
                                             <td>
                                                 <asp:LinkButton ID="lbtn_Export" runat="server" OnClick="lbtn_Export_Click">Export to Excel</asp:LinkButton>
+                                                &nbsp; &nbsp; &nbsp;<asp:LinkButton ID="lbtn_Export_Text" runat="server" OnClick="lbtn_Export_Text_Click">Export to Text</asp:LinkButton>
                                                 &nbsp; &nbsp; &nbsp;<asp:LinkButton ID="lbtn_Export_esiregister" runat="server" OnClick="lbtn_Export_esiregister_Click">ESI Register</asp:LinkButton>
                                             </td>
                                         </tr>
@@ -293,6 +294,23 @@
                                             <EditRowStyle BackColor="#2461BF" />
                                             <AlternatingRowStyle BackColor="White" />
                                         </asp:GridView>
+
+                                         <asp:GridView ID="GVExportText" runat="server" AutoGenerateColumns="False" ForeColor="Black" CssClass="table table-striped table-bordered table-condensed table-hover"
+                                            Width="100%" CellPadding="5" CellSpacing="5" OnRowDataBound="GVExportText_RowDataBound">
+                                            <Columns>
+                                                
+                                                <asp:BoundField HeaderText="Emp ID" DataField="empid" NullDisplayText=" " />
+                                                <asp:BoundField HeaderText="IP Number" DataField="EmpESINo" />
+                                                <asp:BoundField HeaderText="No of Days for which wages paid/payable during the month" DataField="NoOfDuties" />
+                                                <asp:BoundField HeaderText="Total Monthly Wages" DataField="ESIWAGES" />
+                                                <asp:BoundField HeaderText="Reason Code for Zero working days" DataField="" />
+                                                <asp:BoundField HeaderText="Last Working Day" DataField="" />
+                                              
+                                            </Columns>
+                                        </asp:GridView>
+
+                                        <asp:Label ID="Label1" runat="server" Text="" Style="color: red"></asp:Label>
+
 
                                         <asp:Label ID="LblResult" runat="server" Text="" Style="color: red"></asp:Label>
                                     </div>

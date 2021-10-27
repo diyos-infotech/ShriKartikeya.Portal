@@ -3219,8 +3219,8 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
                         Label lblTotalFixedSpecialAllowance = GVListEmployees.FooterRow.FindControl("lblTotalFixedSpecialAllowance") as Label;
-                        lblTotalFixedSpecialAllowance.Text = Math.Round(totalCdSpecialAllW).ToString();
-                        if (totalCdSpecialAllW > 0)
+                        lblTotalFixedSpecialAllowance.Text = Math.Round(totalSpecialAllowance).ToString();
+                        if (totalSpecialAllowance > 0)
                         {
                             GVListEmployees.Columns[23].Visible = true;
 
@@ -3231,26 +3231,26 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
 
-                        Label lbltotalGross = GVListEmployees.FooterRow.FindControl("lbltotalGross") as Label;
-                        lbltotalGross.Text = Math.Round(totalGross).ToString();
-
-                        if (totalGross > 0)
+                        Label lblTotalotamt = GVListEmployees.FooterRow.FindControl("lblTotalotamt") as Label;
+                        lblTotalotamt.Text = Math.Round(totalOTAmount).ToString();
+                        if (totalOTAmount > 0)
                         {
                             GVListEmployees.Columns[24].Visible = true;
 
                         }
                         else
                         {
-                            GVListEmployees.Columns[24].Visible = false;
+                            GVListEmployees.Columns[24].Visible = true;
 
                         }
 
+                        Label lbltotalGross = GVListEmployees.FooterRow.FindControl("lbltotalGross") as Label;
+                        lbltotalGross.Text = Math.Round(totalGross).ToString();
 
-                        Label lblTotalPF = GVListEmployees.FooterRow.FindControl("lblTotalPF") as Label;
-                        lblTotalPF.Text = Math.Round(totalPF).ToString();
-                        if (totalPF > 0)
+                        if (totalGross > 0)
                         {
                             GVListEmployees.Columns[25].Visible = true;
+
                         }
                         else
                         {
@@ -3258,9 +3258,10 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
 
-                        Label lblTotalESI = GVListEmployees.FooterRow.FindControl("lblTotalESI") as Label;
-                        lblTotalESI.Text = Math.Round(totalESI).ToString();
-                        if (totalESI > 0)
+
+                        Label lblTotalPF = GVListEmployees.FooterRow.FindControl("lblTotalPF") as Label;
+                        lblTotalPF.Text = Math.Round(totalPF).ToString();
+                        if (totalPF > 0)
                         {
                             GVListEmployees.Columns[26].Visible = true;
                         }
@@ -3270,34 +3271,34 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
 
-                        Label lblTotalProfTax = GVListEmployees.FooterRow.FindControl("lblTotalProfTax") as Label;
-                        lblTotalProfTax.Text = Math.Round(totalProfTax).ToString();
-                        if (totalProfTax > 0)
+                        Label lblTotalESI = GVListEmployees.FooterRow.FindControl("lblTotalESI") as Label;
+                        lblTotalESI.Text = Math.Round(totalESI).ToString();
+                        if (totalESI > 0)
                         {
                             GVListEmployees.Columns[27].Visible = true;
-
                         }
                         else
                         {
-                            GVListEmployees.Columns[27].Visible = true;
+                            GVListEmployees.Columns[27].Visible = false;
 
                         }
-                        Label lblTotalPenalty = GVListEmployees.FooterRow.FindControl("lblTotalPenalty") as Label;
-                        lblTotalPenalty.Text = Math.Round(totalPenalty).ToString();
 
-                        if (totalPenalty > 0)
+                        Label lblTotalProfTax = GVListEmployees.FooterRow.FindControl("lblTotalProfTax") as Label;
+                        lblTotalProfTax.Text = Math.Round(totalProfTax).ToString();
+                        if (totalProfTax > 0)
                         {
                             GVListEmployees.Columns[28].Visible = true;
 
                         }
                         else
                         {
-                            GVListEmployees.Columns[28].Visible = false;
+                            GVListEmployees.Columns[28].Visible = true;
 
                         }
-                        Label lblTotalNightRoundDed = GVListEmployees.FooterRow.FindControl("lblTotalNightRoundDed") as Label;
-                        lblTotalNightRoundDed.Text = Math.Round(totalNightRoundDed).ToString();
-                        if (totalNightRoundDed > 0)
+                        Label lblTotalPenalty = GVListEmployees.FooterRow.FindControl("lblTotalPenalty") as Label;
+                        lblTotalPenalty.Text = Math.Round(totalPenalty).ToString();
+
+                        if (totalPenalty > 0)
                         {
                             GVListEmployees.Columns[29].Visible = true;
 
@@ -3307,10 +3308,9 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees.Columns[29].Visible = false;
 
                         }
-                        Label lblTotalUniformDed = GVListEmployees.FooterRow.FindControl("lblTotalUniformDed") as Label;
-                        lblTotalUniformDed.Text = Math.Round(totalUniformDed).ToString();
-
-                        if (totalUniformDed > 0)
+                        Label lblTotalNightRoundDed = GVListEmployees.FooterRow.FindControl("lblTotalNightRoundDed") as Label;
+                        lblTotalNightRoundDed.Text = Math.Round(totalNightRoundDed).ToString();
+                        if (totalNightRoundDed > 0)
                         {
                             GVListEmployees.Columns[30].Visible = true;
 
@@ -3320,13 +3320,26 @@ namespace ShriKartikeya.Portal.Module_Reports
                             GVListEmployees.Columns[30].Visible = false;
 
                         }
-                        //31
+                        Label lblTotalUniformDed = GVListEmployees.FooterRow.FindControl("lblTotalUniformDed") as Label;
+                        lblTotalUniformDed.Text = Math.Round(totalUniformDed).ToString();
+
+                        if (totalUniformDed > 0)
+                        {
+                            GVListEmployees.Columns[31].Visible = true;
+
+                        }
+                        else
+                        {
+                            GVListEmployees.Columns[31].Visible = false;
+
+                        }
+                        //32
                         Label lblTotalDeductions = GVListEmployees.FooterRow.FindControl("lblTotalDeductions") as Label;
                         lblTotalDeductions.Text = Math.Round(totalDed).ToString();
 
                        
 
-                        //32
+                        //33
                         Label lblTotalNetAmount = GVListEmployees.FooterRow.FindControl("lblTotalNetAmount") as Label;
                         lblTotalNetAmount.Text = Math.Round(totalActualamount).ToString();
 
@@ -3336,12 +3349,12 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         if (totalArrears > 0)
                         {
-                            GVListEmployees.Columns[33].Visible = true;
+                            GVListEmployees.Columns[34].Visible = true;
 
                         }
                         else
                         {
-                            GVListEmployees.Columns[33].Visible = true;
+                            GVListEmployees.Columns[34].Visible = true;
 
                         }
                         Label lblTotalWashAllowance = GVListEmployees.FooterRow.FindControl("lblTotalWashAllowance") as Label;
@@ -3349,31 +3362,18 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         if (totalWA > 0)
                         {
-                            GVListEmployees.Columns[34].Visible = true;
+                            GVListEmployees.Columns[35].Visible = true;
 
                         }
                         else
                         {
-                            GVListEmployees.Columns[34].Visible = true;
+                            GVListEmployees.Columns[35].Visible = true;
 
                         }
                         Label lblTotalIncentivs = GVListEmployees.FooterRow.FindControl("lblTotalIncentivs") as Label;
                         lblTotalIncentivs.Text = Math.Round(totalIncentivs).ToString();
                         if (totalIncentivs > 0)
                         {
-                            GVListEmployees.Columns[35].Visible = true;
-
-                        }
-                        else
-                        {
-                            GVListEmployees.Columns[35].Visible = true;
-
-                        }
-
-                        Label lblTotalotamt = GVListEmployees.FooterRow.FindControl("lblTotalotamt") as Label;
-                        lblTotalotamt.Text = Math.Round(totalOTAmount).ToString();
-                        if (totalOTAmount > 0)
-                        {
                             GVListEmployees.Columns[36].Visible = true;
 
                         }
@@ -3383,7 +3383,9 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
 
-                        //36
+                       
+
+                        //37
                         Label lblTotalNetPayableAmount = GVListEmployees.FooterRow.FindControl("lblTotalNetPayableAmount") as Label;
                         lblTotalNetPayableAmount.Text = Math.Round(totalActualamount).ToString();
                       

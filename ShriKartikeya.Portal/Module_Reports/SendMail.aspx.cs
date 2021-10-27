@@ -941,7 +941,7 @@ namespace ShriKartikeya.Portal
                                     //}
                                     //else
                                     {
-                                        PdfPCell cellHead7 = new PdfPCell(new Phrase("Work Location : " + ddlcname.SelectedItem, FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                        PdfPCell cellHead7 = new PdfPCell(new Phrase("Work Location : " + dt.Rows[i]["Sitepostedto"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                                         cellHead7.HorizontalAlignment = 0;
                                         cellHead7.Colspan = 2;
                                         tablewageslip.AddCell(cellHead7);
@@ -2728,7 +2728,7 @@ namespace ShriKartikeya.Portal
                                     if (dt.Rows[i]["EmailId"].ToString().Trim().Length > 0 && String.IsNullOrEmpty(dt.Rows[i]["EmailId"].ToString()) != true)
                                     {
 
-                                        MailMessage mm = new MailMessage("hr@ixoreal.com", dt.Rows[i]["EmailId"].ToString());
+                                        MailMessage mm = new MailMessage("pay.advice@gdxgroup.in", dt.Rows[i]["EmailId"].ToString());
 
                                         mm.Subject = "Salary Slip for the Month " + GetMonthName() + " - " + GetMonthOfYear() + " ";
                                         mm.Body = "Greetings from Team HR!!!  <br><br> Hope you and your family are keeping well ! <br><br> Please find attached your payslip for the month of " + GetMonthName() + " - " + GetMonthOfYear() + "<br><br>Best Regards,<br><br>Payroll Team ";
@@ -2743,7 +2743,7 @@ namespace ShriKartikeya.Portal
                                         mm.DeliveryNotificationOptions = DeliveryNotificationOptions.Never;
                                         mm.DeliveryNotificationOptions = DeliveryNotificationOptions.None;
 
-                                        mm.Headers.Add("Disposition-Notification-To", "hr@ixoreal.com");
+                                        mm.Headers.Add("Disposition-Notification-To", "pay.advice@gdxgroup.in");
 
                                         mm.Priority = System.Net.Mail.MailPriority.High;
                                         smtp.Host = "smtp.gmail.com";

@@ -294,13 +294,13 @@ namespace ShriKartikeya.Portal
         protected global::System.Web.UI.WebControls.TextBox txtFatherName;
 
         /// <summary>
-        /// txtfatheroccupation control.
+        /// txtbloodgrp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfatheroccupation;
+        protected global::System.Web.UI.WebControls.TextBox txtbloodgrp;
 
         /// <summary>
         /// txtSpousName control.

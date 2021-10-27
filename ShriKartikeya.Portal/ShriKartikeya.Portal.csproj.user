@@ -3,12 +3,9 @@
   <PropertyGroup>
     <UseIISExpress>true</UseIISExpress>
     <ProjectView>ShowAllFiles</ProjectView>
-
     <NameOfLastUsedPublishProfile>Shrikartikeya</NameOfLastUsedPublishProfile>
-
-    <NameOfLastUsedPublishProfile>D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\Properties\PublishProfiles\Shrikartikeya.pubxml</NameOfLastUsedPublishProfile>
-
-    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <NameOfLastUsedPublishProfile>Shrikartikeya</NameOfLastUsedPublishProfile>
+    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
