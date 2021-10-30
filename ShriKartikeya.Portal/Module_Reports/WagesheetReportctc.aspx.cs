@@ -1009,6 +1009,7 @@ namespace ShriKartikeya.Portal.Module_Reports
         float totalUnifom = 0;
         float totalOthers = 0;
         float totalTotDeductions = 0;
+        float totalactualctc = 0;
         #endregion Total Variables
 
         protected void DisplayData()
@@ -2054,11 +2055,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     //    totalesiempr += Convert.ToSingle(stresiempr);
                                     //}
 
-                                    //string strctc = dt.Rows[i]["CTC"].ToString();
-                                    //if (strctc.Trim().Length > 0)
-                                    //{
-                                    //    totalctc += Convert.ToSingle(strctc);
-                                    //}
+                                    string stractc = dt.Rows[i]["ActualCTC"].ToString();
+                                    if (stractc.Trim().Length > 0)
+                                    {
+                                        totalactualctc += Convert.ToSingle(stractc);
+                                    }
 
                                 }
                                 #endregion
@@ -2332,6 +2333,10 @@ namespace ShriKartikeya.Portal.Module_Reports
                         //42
                         Label lblTotalTOTALCTC = GVListEmployees1.FooterRow.FindControl("lblTotalTOTALCTC") as Label;
                         lblTotalTOTALCTC.Text = Math.Round(totalCTC).ToString();
+
+                        //43
+                        Label lblTotalActualCTC = GVListEmployees1.FooterRow.FindControl("lblTotalActualCTC") as Label;
+                        lblTotalActualCTC.Text = Math.Round(totalactualctc).ToString();
 
 
 
