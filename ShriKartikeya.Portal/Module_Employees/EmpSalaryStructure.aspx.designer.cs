@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShriKartikeya.Portal {
-    
-    
-    public partial class EmpSalaryStructure {
-        
+namespace ShriKartikeya.Portal
+{
+
+
+    public partial class EmpSalaryStructure
+    {
+
         /// <summary>
         /// lblMsg control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMsg;
-        
+
         /// <summary>
         /// lblSuc control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSuc;
-        
+
         /// <summary>
         /// ScriptEmployReports control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptEmployReports;
-        
+
         /// <summary>
         /// hdempid control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdempid;
-        
+
         /// <summary>
         /// ddlempsalstatus control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlempsalstatus;
-        
+
         /// <summary>
         /// lblempid control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblempid;
-        
+
         /// <summary>
         /// txtEmpid control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmpid;
-        
+
         /// <summary>
         /// ddlID control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlID;
-        
+
         /// <summary>
         /// Btn_Renewal control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_Renewal;
-        
+
         /// <summary>
         /// txtStartingDate control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartingDate;
-        
+
         /// <summary>
         /// CEStartingDate control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CEStartingDate;
-        
+
         /// <summary>
         /// FTBEStartingDate control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FTBEStartingDate;
-        
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// TextBox1 control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
-        
+
         /// <summary>
         /// lblempname control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblempname;
-        
+
         /// <summary>
         /// txtName control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
-        
+
         /// <summary>
         /// txtid control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtid;
-        
+
         /// <summary>
         /// txtdesignation control.
         /// </summary>
@@ -173,7 +175,25 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtdesignation;
-        
+
+        /// <summary>
+        /// lblstaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblstaff;
+
+        /// <summary>
+        /// txtstaffnonstaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtstaffnonstaff;
+
         /// <summary>
         /// txtEndingDate control.
         /// </summary>
@@ -182,7 +202,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndingDate;
-        
+
         /// <summary>
         /// CEEndingDate control.
         /// </summary>
@@ -191,7 +211,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CEEndingDate;
-        
+
         /// <summary>
         /// FTBEEndingDate control.
         /// </summary>
@@ -200,7 +220,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FTBEEndingDate;
-        
+
         /// <summary>
         /// ddlNoOfDaysWages control.
         /// </summary>
@@ -209,7 +229,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNoOfDaysWages;
-        
+
         /// <summary>
         /// TxtBasic control.
         /// </summary>
@@ -218,7 +238,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtBasic;
-        
+
         /// <summary>
         /// FTBBasic control.
         /// </summary>
@@ -227,7 +247,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FTBBasic;
-        
+
         /// <summary>
         /// txthra control.
         /// </summary>
@@ -236,7 +256,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txthra;
-        
+
         /// <summary>
         /// FTBHRA control.
         /// </summary>
@@ -245,7 +265,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FTBHRA;
-        
+
         /// <summary>
         /// txtcca control.
         /// </summary>
@@ -254,7 +274,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtcca;
-        
+
         /// <summary>
         /// FTBCCA control.
         /// </summary>
@@ -263,7 +283,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FTBCCA;
-        
+
         /// <summary>
         /// txtgratuty control.
         /// </summary>
@@ -272,7 +292,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtgratuty;
-        
+
         /// <summary>
         /// F5 control.
         /// </summary>
@@ -281,7 +301,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender F5;
-        
+
         /// <summary>
         /// txtwa control.
         /// </summary>
@@ -290,7 +310,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtwa;
-        
+
         /// <summary>
         /// F7 control.
         /// </summary>
@@ -299,7 +319,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender F7;
-        
+
         /// <summary>
         /// Txtrc control.
         /// </summary>
@@ -308,7 +328,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Txtrc;
-        
+
         /// <summary>
         /// Filterrc control.
         /// </summary>
@@ -317,7 +337,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender Filterrc;
-        
+
         /// <summary>
         /// txtNfhs1 control.
         /// </summary>
@@ -326,7 +346,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNfhs1;
-        
+
         /// <summary>
         /// Fnhs control.
         /// </summary>
@@ -335,7 +355,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender Fnhs;
-        
+
         /// <summary>
         /// TxtOTRate control.
         /// </summary>
@@ -344,7 +364,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtOTRate;
-        
+
         /// <summary>
         /// Filterotrate control.
         /// </summary>
@@ -353,7 +373,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender Filterotrate;
-        
+
         /// <summary>
         /// TxtNHSRate control.
         /// </summary>
@@ -362,7 +382,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtNHSRate;
-        
+
         /// <summary>
         /// FilterNHSrate control.
         /// </summary>
@@ -371,7 +391,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilterNHSrate;
-        
+
         /// <summary>
         /// txtServiceWeightage control.
         /// </summary>
@@ -380,7 +400,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtServiceWeightage;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender17 control.
         /// </summary>
@@ -389,7 +409,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender17;
-        
+
         /// <summary>
         /// txtInsurance control.
         /// </summary>
@@ -398,7 +418,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtInsurance;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender18 control.
         /// </summary>
@@ -407,7 +427,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender18;
-        
+
         /// <summary>
         /// ddlInsuranceType control.
         /// </summary>
@@ -416,7 +436,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlInsuranceType;
-        
+
         /// <summary>
         /// txtunicharges control.
         /// </summary>
@@ -425,7 +445,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtunicharges;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender3 control.
         /// </summary>
@@ -434,7 +454,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender3;
-        
+
         /// <summary>
         /// ddlUniformChargesType control.
         /// </summary>
@@ -443,7 +463,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlUniformChargesType;
-        
+
         /// <summary>
         /// txtwmc control.
         /// </summary>
@@ -452,7 +472,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtwmc;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender4 control.
         /// </summary>
@@ -461,7 +481,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender4;
-        
+
         /// <summary>
         /// txtBillLeaveWages control.
         /// </summary>
@@ -470,7 +490,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBillLeaveWages;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender6 control.
         /// </summary>
@@ -479,7 +499,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender6;
-        
+
         /// <summary>
         /// txtBillBonus control.
         /// </summary>
@@ -488,7 +508,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBillBonus;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender7 control.
         /// </summary>
@@ -497,7 +517,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender7;
-        
+
         /// <summary>
         /// txtoutstationCharges control.
         /// </summary>
@@ -506,7 +526,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtoutstationCharges;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender5 control.
         /// </summary>
@@ -515,7 +535,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender5;
-        
+
         /// <summary>
         /// ddlOutstationChrgCaln control.
         /// </summary>
@@ -524,7 +544,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlOutstationChrgCaln;
-        
+
         /// <summary>
         /// ddlOutStationChargesType control.
         /// </summary>
@@ -533,7 +553,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlOutStationChargesType;
-        
+
         /// <summary>
         /// txtTravellingAllowance control.
         /// </summary>
@@ -542,7 +562,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTravellingAllowance;
-        
+
         /// <summary>
         /// FilteredTextBoxExtendertr17 control.
         /// </summary>
@@ -551,7 +571,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtendertr17;
-        
+
         /// <summary>
         /// txtMobileAllowance control.
         /// </summary>
@@ -560,7 +580,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMobileAllowance;
-        
+
         /// <summary>
         /// FTBMobAllw control.
         /// </summary>
@@ -569,7 +589,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FTBMobAllw;
-        
+
         /// <summary>
         /// txtADDL4HR control.
         /// </summary>
@@ -578,7 +598,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtADDL4HR;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender9 control.
         /// </summary>
@@ -587,7 +607,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender9;
-        
+
         /// <summary>
         /// txtQTRALLOW control.
         /// </summary>
@@ -596,7 +616,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQTRALLOW;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender10 control.
         /// </summary>
@@ -605,7 +625,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender10;
-        
+
         /// <summary>
         /// txtRELALLOW control.
         /// </summary>
@@ -614,7 +634,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRELALLOW;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender11 control.
         /// </summary>
@@ -623,7 +643,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender11;
-        
+
         /// <summary>
         /// txtOTESICWAGES control.
         /// </summary>
@@ -632,7 +652,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtOTESICWAGES;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender19 control.
         /// </summary>
@@ -641,7 +661,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender19;
-        
+
         /// <summary>
         /// ddlotesidays control.
         /// </summary>
@@ -650,7 +670,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlotesidays;
-        
+
         /// <summary>
         /// txtSITEALLOW control.
         /// </summary>
@@ -659,7 +679,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSITEALLOW;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender21 control.
         /// </summary>
@@ -668,7 +688,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender21;
-        
+
         /// <summary>
         /// txtGunAllw control.
         /// </summary>
@@ -677,7 +697,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtGunAllw;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender22 control.
         /// </summary>
@@ -686,7 +706,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender22;
-        
+
         /// <summary>
         /// ddlGunAllwType control.
         /// </summary>
@@ -695,7 +715,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlGunAllwType;
-        
+
         /// <summary>
         /// txtFireAllw control.
         /// </summary>
@@ -704,7 +724,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFireAllw;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender23 control.
         /// </summary>
@@ -713,7 +733,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender23;
-        
+
         /// <summary>
         /// txtshift1Rate control.
         /// </summary>
@@ -722,7 +742,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtshift1Rate;
-        
+
         /// <summary>
         /// Filteretxtshift1Rate7 control.
         /// </summary>
@@ -731,7 +751,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteretxtshift1Rate7;
-        
+
         /// <summary>
         /// txtshift2Rate control.
         /// </summary>
@@ -740,7 +760,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtshift2Rate;
-        
+
         /// <summary>
         /// Filtertxtshift2Rater17 control.
         /// </summary>
@@ -749,7 +769,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender Filtertxtshift2Rater17;
-        
+
         /// <summary>
         /// txtnightshiftRate control.
         /// </summary>
@@ -758,7 +778,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtnightshiftRate;
-        
+
         /// <summary>
         /// FilteredTtxtnightshiftRate control.
         /// </summary>
@@ -767,7 +787,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTtxtnightshiftRate;
-        
+
         /// <summary>
         /// txtlateloginRate control.
         /// </summary>
@@ -776,7 +796,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtlateloginRate;
-        
+
         /// <summary>
         /// FilteredTextxtlateloginRater18 control.
         /// </summary>
@@ -785,7 +805,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextxtlateloginRater18;
-        
+
         /// <summary>
         /// txtExtraOne control.
         /// </summary>
@@ -794,7 +814,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExtraOne;
-        
+
         /// <summary>
         /// FilteredTtxtExtraOne19 control.
         /// </summary>
@@ -803,7 +823,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTtxtExtraOne19;
-        
+
         /// <summary>
         /// txtExta1 control.
         /// </summary>
@@ -812,7 +832,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExta1;
-        
+
         /// <summary>
         /// FilteredTextBoghjxExtender19 control.
         /// </summary>
@@ -821,7 +841,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoghjxExtender19;
-        
+
         /// <summary>
         /// txtExra3 control.
         /// </summary>
@@ -830,7 +850,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExra3;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender20 control.
         /// </summary>
@@ -839,7 +859,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender20;
-        
+
         /// <summary>
         /// txtEducationAllowance control.
         /// </summary>
@@ -848,7 +868,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEducationAllowance;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender13 control.
         /// </summary>
@@ -857,7 +877,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender13;
-        
+
         /// <summary>
         /// ChkSum control.
         /// </summary>
@@ -866,7 +886,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox ChkSum;
-        
+
         /// <summary>
         /// txtsum control.
         /// </summary>
@@ -875,7 +895,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtsum;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender8 control.
         /// </summary>
@@ -884,7 +904,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender8;
-        
+
         /// <summary>
         /// txtda control.
         /// </summary>
@@ -893,7 +913,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtda;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender14 control.
         /// </summary>
@@ -902,7 +922,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender14;
-        
+
         /// <summary>
         /// txtConveyance control.
         /// </summary>
@@ -911,7 +931,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtConveyance;
-        
+
         /// <summary>
         /// F2 control.
         /// </summary>
@@ -920,7 +940,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender F2;
-        
+
         /// <summary>
         /// txtleaveamount control.
         /// </summary>
@@ -929,7 +949,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtleaveamount;
-        
+
         /// <summary>
         /// F4 control.
         /// </summary>
@@ -938,7 +958,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender F4;
-        
+
         /// <summary>
         /// txtbonus control.
         /// </summary>
@@ -947,7 +967,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbonus;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender15 control.
         /// </summary>
@@ -956,7 +976,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender15;
-        
+
         /// <summary>
         /// ddlnbonus control.
         /// </summary>
@@ -965,7 +985,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlnbonus;
-        
+
         /// <summary>
         /// txtoa control.
         /// </summary>
@@ -974,7 +994,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtoa;
-        
+
         /// <summary>
         /// F8 control.
         /// </summary>
@@ -983,7 +1003,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender F8;
-        
+
         /// <summary>
         /// txtSplAllw control.
         /// </summary>
@@ -992,7 +1012,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSplAllw;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender16 control.
         /// </summary>
@@ -1001,7 +1021,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender16;
-        
+
         /// <summary>
         /// TxtCs control.
         /// </summary>
@@ -1010,7 +1030,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtCs;
-        
+
         /// <summary>
         /// Filtercs control.
         /// </summary>
@@ -1019,7 +1039,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender Filtercs;
-        
+
         /// <summary>
         /// ddlNoOfOtsPaysheet control.
         /// </summary>
@@ -1028,7 +1048,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNoOfOtsPaysheet;
-        
+
         /// <summary>
         /// ddlNoOfNhsPaysheet control.
         /// </summary>
@@ -1037,7 +1057,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNoOfNhsPaysheet;
-        
+
         /// <summary>
         /// txtRankAllowance control.
         /// </summary>
@@ -1046,7 +1066,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRankAllowance;
-        
+
         /// <summary>
         /// FilteredTextnBoxExtender19 control.
         /// </summary>
@@ -1055,7 +1075,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextnBoxExtender19;
-        
+
         /// <summary>
         /// txtMobileRecharge control.
         /// </summary>
@@ -1064,7 +1084,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMobileRecharge;
-        
+
         /// <summary>
         /// FilteredTextBoxjnExtender21 control.
         /// </summary>
@@ -1073,7 +1093,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxjnExtender21;
-        
+
         /// <summary>
         /// ddlMobileRechargeType control.
         /// </summary>
@@ -1082,7 +1102,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMobileRechargeType;
-        
+
         /// <summary>
         /// ddlMobileChrgCaln control.
         /// </summary>
@@ -1091,7 +1111,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMobileChrgCaln;
-        
+
         /// <summary>
         /// ddlNunichrges control.
         /// </summary>
@@ -1100,7 +1120,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNunichrges;
-        
+
         /// <summary>
         /// txtmedicalpolicy control.
         /// </summary>
@@ -1109,7 +1129,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtmedicalpolicy;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender1 control.
         /// </summary>
@@ -1118,7 +1138,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender1;
-        
+
         /// <summary>
         /// ddlBillLeaveWagesType control.
         /// </summary>
@@ -1127,7 +1147,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlBillLeaveWagesType;
-        
+
         /// <summary>
         /// ddlBillBonusType control.
         /// </summary>
@@ -1136,7 +1156,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlBillBonusType;
-        
+
         /// <summary>
         /// txtlwf control.
         /// </summary>
@@ -1145,7 +1165,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtlwf;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender2 control.
         /// </summary>
@@ -1154,7 +1174,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender2;
-        
+
         /// <summary>
         /// txtPerformanceAllowance control.
         /// </summary>
@@ -1163,7 +1183,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPerformanceAllowance;
-        
+
         /// <summary>
         /// FilteredTextBoxExtepernder17 control.
         /// </summary>
@@ -1172,7 +1192,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtepernder17;
-        
+
         /// <summary>
         /// txtMedicalAllw control.
         /// </summary>
@@ -1181,7 +1201,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMedicalAllw;
-        
+
         /// <summary>
         /// FilterMedAll control.
         /// </summary>
@@ -1190,7 +1210,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilterMedAll;
-        
+
         /// <summary>
         /// txtbgv control.
         /// </summary>
@@ -1199,7 +1219,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbgv;
-        
+
         /// <summary>
         /// ftbbgv control.
         /// </summary>
@@ -1208,7 +1228,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender ftbbgv;
-        
+
         /// <summary>
         /// txtpvc control.
         /// </summary>
@@ -1217,7 +1237,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtpvc;
-        
+
         /// <summary>
         /// ftbpvc control.
         /// </summary>
@@ -1226,7 +1246,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender ftbpvc;
-        
+
         /// <summary>
         /// txtTelephoneAllw control.
         /// </summary>
@@ -1235,7 +1255,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTelephoneAllw;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender24 control.
         /// </summary>
@@ -1244,7 +1264,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender24;
-        
+
         /// <summary>
         /// txtFoodAllw control.
         /// </summary>
@@ -1253,7 +1273,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFoodAllw;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender25 control.
         /// </summary>
@@ -1262,7 +1282,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender25;
-        
+
         /// <summary>
         /// txtReimbursement control.
         /// </summary>
@@ -1271,7 +1291,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtReimbursement;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender26 control.
         /// </summary>
@@ -1280,7 +1300,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender26;
-        
+
         /// <summary>
         /// txtHardshipAllw control.
         /// </summary>
@@ -1289,7 +1309,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHardshipAllw;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender27 control.
         /// </summary>
@@ -1298,7 +1318,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender27;
-        
+
         /// <summary>
         /// txtPaidHolidayAllw control.
         /// </summary>
@@ -1307,7 +1327,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPaidHolidayAllw;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender28 control.
         /// </summary>
@@ -1316,7 +1336,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender28;
-        
+
         /// <summary>
         /// txtServiceCharge control.
         /// </summary>
@@ -1325,7 +1345,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtServiceCharge;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender29 control.
         /// </summary>
@@ -1334,7 +1354,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender29;
-        
+
         /// <summary>
         /// ddl1shiftdays control.
         /// </summary>
@@ -1343,7 +1363,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl1shiftdays;
-        
+
         /// <summary>
         /// ddl2shiftdays control.
         /// </summary>
@@ -1352,7 +1372,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl2shiftdays;
-        
+
         /// <summary>
         /// ddlNightshiftdays control.
         /// </summary>
@@ -1361,7 +1381,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNightshiftdays;
-        
+
         /// <summary>
         /// ddlLateLogindays control.
         /// </summary>
@@ -1370,7 +1390,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlLateLogindays;
-        
+
         /// <summary>
         /// ddlnotsspl control.
         /// </summary>
@@ -1379,7 +1399,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlnotsspl;
-        
+
         /// <summary>
         /// txtExtra2 control.
         /// </summary>
@@ -1388,7 +1408,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExtra2;
-        
+
         /// <summary>
         /// Filtere4dTextBoxExtender22 control.
         /// </summary>
@@ -1397,7 +1417,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender Filtere4dTextBoxExtender22;
-        
+
         /// <summary>
         /// ddlPFNoOfDaysForWages control.
         /// </summary>
@@ -1406,7 +1426,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPFNoOfDaysForWages;
-        
+
         /// <summary>
         /// TxtPFPayRate control.
         /// </summary>
@@ -1415,7 +1435,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtPFPayRate;
-        
+
         /// <summary>
         /// Filterpfpayrate control.
         /// </summary>
@@ -1424,7 +1444,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender Filterpfpayrate;
-        
+
         /// <summary>
         /// TxtESIPayRate control.
         /// </summary>
@@ -1433,7 +1453,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtESIPayRate;
-        
+
         /// <summary>
         /// FilteredTextBoxExtender12 control.
         /// </summary>
@@ -1442,7 +1462,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender12;
-        
+
         /// <summary>
         /// btnSubmit control.
         /// </summary>
@@ -1451,7 +1471,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
+
         /// <summary>
         /// txtExtraTwo control.
         /// </summary>
@@ -1460,7 +1480,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExtraTwo;
-        
+
         /// <summary>
         /// FilteredTextxtExtraTwor19 control.
         /// </summary>
@@ -1469,7 +1489,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextxtExtraTwor19;
-        
+
         /// <summary>
         /// TxtPFVoluntary control.
         /// </summary>
@@ -1478,7 +1498,7 @@ namespace ShriKartikeya.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtPFVoluntary;
-        
+
         /// <summary>
         /// FilterpfVoluntary control.
         /// </summary>

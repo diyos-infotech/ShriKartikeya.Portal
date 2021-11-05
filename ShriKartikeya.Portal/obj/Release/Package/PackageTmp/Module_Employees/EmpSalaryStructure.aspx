@@ -289,7 +289,15 @@
                                                               </tr>
                                                               
                                                               <tr>
-                                                                  <td></td><td></td>
+                                                                  <td style="width:120px"">
+                                                                <asp:Label runat="server" ID="lblstaff" Text="Staff/Non-Staff" Width="104px"></asp:Label>
+
+                                                                  </td>
+
+                                                                  <td style="padding-left:35px"> 
+                                                                      <asp:TextBox ID="txtstaffnonstaff" runat="server"  TabIndex="3" class="form-control" Width="190px" ></asp:TextBox>
+
+                                                                  </td>
                                                               </tr>
                                                               
                                                               <tr>

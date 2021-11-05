@@ -451,12 +451,24 @@ namespace ShriKartikeya.Portal
 
                     if (dt.Rows.Count > 0)
                     {
+                        var staffnonstaff = "0";
+                        staffnonstaff = dt.Rows[0]["Department"].ToString();
+
+                        if(staffnonstaff=="1")
+                        {
+                            txtstaffnonstaff.Text = "STAFF";
+                        }
+                        else if (staffnonstaff == "2")
+                        {
+                            txtstaffnonstaff.Text = "NON-STAFF";
+                        }
+
                         var Staff = "0";
                         Staff = dt.Rows[0]["Department"].ToString();
 
                         if (Staff == "1")
                         {
-                            ddlNoOfDaysWages.SelectedValue = "30";
+                            ddlNoOfDaysWages.SelectedValue = "Gen";
                         }
                         else if (Staff == "2")
                         {
