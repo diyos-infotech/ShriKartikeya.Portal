@@ -2185,7 +2185,7 @@ public class GridViewExportUtil
 
         HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count  + ">");
         HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("For Om Systems & Services (P) Ltd.,");
+        HttpContext.Current.Response.Write("For " + line + ".,");
         HttpContext.Current.Response.Write("</B>");
         HttpContext.Current.Response.Write("</Td>");
 
@@ -2203,7 +2203,7 @@ public class GridViewExportUtil
 
         HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("K.Ramesam ");
+        HttpContext.Current.Response.Write("");
         HttpContext.Current.Response.Write("</B>");
         HttpContext.Current.Response.Write("</Td>");
 
