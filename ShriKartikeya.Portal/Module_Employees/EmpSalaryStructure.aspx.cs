@@ -73,7 +73,7 @@ namespace ShriKartikeya.Portal
            TxtPFVoluntary.Text = TxtCs.Text = txtSplAllw.Text = txtda.Text = txtEducationAllowance.Text = txtwa.Text = txtNfhs1.Text = Txtrc.Text = TxtPFPayRate.Text = TxtESIPayRate.Text = TxtOTRate.Text = txtPerformanceAllowance.Text = txtTravellingAllowance.Text = txtpvc.Text = txtbgv.Text =
            txtshift1Rate.Text = txtshift2Rate.Text = txtlateloginRate.Text = txtExtraOne.Text = txtServiceWeightage.Text = txtRankAllowance.Text = txtInsurance.Text = txtMobileRecharge.Text = txtExta1.Text = txtExtra2.Text = txtExra3.Text = TxtNHSRate.Text = txtADDL4HR.Text = txtQTRALLOW.Text = txtRELALLOW.Text = txtOTESICWAGES.Text = txtSITEALLOW.Text = txtGunAllw.Text = txtFireAllw.Text = txtTelephoneAllw.Text =
      txtFoodAllw.Text = txtReimbursement.Text = txtHardshipAllw.Text = txtPaidHolidayAllw.Text = txtServiceCharge.Text = "0";
-            ddlID.SelectedIndex=ddlGunAllwType.SelectedIndex = ddlNoOfDaysWages.SelectedIndex = ddl1shiftdays.SelectedIndex = ddlPFNoOfDaysForWages.SelectedIndex = ddlNoOfOtsPaysheet.SelectedIndex = ddlID.SelectedIndex = ddlnbonus.SelectedIndex = ddlNoOfDaysWages.SelectedIndex = ddlNightshiftdays.SelectedIndex = ddl2shiftdays.SelectedIndex = ddlnotsspl.SelectedIndex = ddlLateLogindays.SelectedIndex = ddlNunichrges.SelectedIndex = ddlNoOfNhsPaysheet.SelectedIndex = 0;
+            ddlID.SelectedIndex = ddlGunAllwType.SelectedIndex = ddlNoOfDaysWages.SelectedIndex = ddl1shiftdays.SelectedIndex = ddlPFNoOfDaysForWages.SelectedIndex = ddlNoOfOtsPaysheet.SelectedIndex = ddlID.SelectedIndex = ddlnbonus.SelectedIndex = ddlNoOfDaysWages.SelectedIndex = ddlNightshiftdays.SelectedIndex = ddl2shiftdays.SelectedIndex = ddlnotsspl.SelectedIndex = ddlLateLogindays.SelectedIndex = ddlNunichrges.SelectedIndex = ddlNoOfNhsPaysheet.SelectedIndex = 0;
 
         }
 
@@ -454,7 +454,7 @@ namespace ShriKartikeya.Portal
                         var staffnonstaff = "0";
                         staffnonstaff = dt.Rows[0]["Department"].ToString();
 
-                        if(staffnonstaff=="1")
+                        if (staffnonstaff == "1")
                         {
                             txtstaffnonstaff.Text = "STAFF";
                         }
@@ -463,18 +463,18 @@ namespace ShriKartikeya.Portal
                             txtstaffnonstaff.Text = "NON-STAFF";
                         }
 
-                        var Staff = "0";
-                        Staff = dt.Rows[0]["Department"].ToString();
+                        //    var Staff = "0";
+                        //    Staff = dt.Rows[0]["Department"].ToString();
 
-                        if (Staff == "1")
-                        {
-                            ddlNoOfDaysWages.SelectedValue = "Gen";
-                        }
-                        else if (Staff == "2")
-                        {
-                            ddlNoOfDaysWages.SelectedValue = "26";
-                        }
-                       
+                        //    if (Staff == "1")
+                        //    {
+                        //        ddlNoOfDaysWages.SelectedValue = "Gen";
+                        //    }
+                        //    else if (Staff == "2")
+                        //    {
+                        //        ddlNoOfDaysWages.SelectedValue = "26";
+                        //    }
+
                     }
                 }
             }
@@ -562,7 +562,7 @@ namespace ShriKartikeya.Portal
                     if (ddlID.SelectedIndex == 0)
                     {
                         CheckStartDate = " select empid from EmpSalaryStructure  where todate>='" +
-                            CheckSD + "'  and empid='" + txtEmpid.Text+ "'";
+                            CheckSD + "'  and empid='" + txtEmpid.Text + "'";
 
                         DataTable Dt = config.ExecuteAdaptorAsyncWithQueryParams(CheckStartDate).Result;
                         if (Dt.Rows.Count > 0)
@@ -581,7 +581,7 @@ namespace ShriKartikeya.Portal
                             if (CIDForCheck != "")
                             {
                                 CheckStartDate = " select empid from EmpSalaryStructure  where todate>='" +
-                                    CheckSD + "'  and empid='" + txtEmpid.Text+ "'  and id<" + CIDForCheck;
+                                    CheckSD + "'  and empid='" + txtEmpid.Text + "'  and id<" + CIDForCheck;
 
                                 DataTable Dt = config.ExecuteAdaptorAsyncWithQueryParams(CheckStartDate).Result;
                                 if (Dt.Rows.Count > 0)
@@ -593,7 +593,7 @@ namespace ShriKartikeya.Portal
                             }
                             else
                             {
-                                CheckStartDate = " select empid from EmpSalaryStructure  where '" + CheckSD + "' between FromDate and todate  and empid='" + txtEmpid.Text+ "'  and id!=" + ddlID.SelectedValue;
+                                CheckStartDate = " select empid from EmpSalaryStructure  where '" + CheckSD + "' between FromDate and todate  and empid='" + txtEmpid.Text + "'  and id!=" + ddlID.SelectedValue;
 
                                 DataTable Dt = config.ExecuteAdaptorAsyncWithQueryParams(CheckStartDate).Result;
                                 if (Dt.Rows.Count > 0)
@@ -603,7 +603,7 @@ namespace ShriKartikeya.Portal
                                     return;
                                 }
 
-                                CheckStartDate = " select empid from EmpSalaryStructure  where '" + CheckED + "' between FromDate and todate  and empid='" + txtEmpid.Text+ "'  and id!=" + ddlID.SelectedValue;
+                                CheckStartDate = " select empid from EmpSalaryStructure  where '" + CheckED + "' between FromDate and todate  and empid='" + txtEmpid.Text + "'  and id!=" + ddlID.SelectedValue;
 
                                 DataTable Dts = config.ExecuteAdaptorAsyncWithQueryParams(CheckStartDate).Result;
                                 if (Dts.Rows.Count > 0)
@@ -1057,7 +1057,7 @@ namespace ShriKartikeya.Portal
             string ID = "";
 
 
-            string Checkempid = " select empid from EmpSalaryStructure  where empid='" + txtEmpid.Text+ "'";
+            string Checkempid = " select empid from EmpSalaryStructure  where empid='" + txtEmpid.Text + "'";
             DataTable dtCheckempid = config.ExecuteAdaptorAsyncWithQueryParams(Checkempid).Result;
             string ChkEMpid = "";
             if (dtCheckempid.Rows.Count > 0)
@@ -1085,11 +1085,11 @@ namespace ShriKartikeya.Portal
               " EducationAllowance,BonusType,fromdate,todate," +
               "Extra1,Extra2,Extra3,Extra4,Extra5,LWF,nhsrate,nnhs,ServiceWeightage,BGVAmt,PVCAmt,ADDL4HR,QTRALLOW,RELALLOW,OTESICWAGES,SITEALLOW,GunAllw,FireAllw, " +
 "TelephoneAllw,FoodAllw ,Reimbursement,HardshipAllw,PaidHolidayAllw,ServiceCharge,Pfpayrate,ESIpayrate,PFNoOfDays,PerformanceAllowance,TravellingAllowance,Status,otesiwagesdays,GunAllwType,RankAllw)" +
-              "values ('" + txtEmpid.Text+ "','" + txtdesignation.Text + "','" + ID + "','" + NoofDays + "','" + Basic + "','" + HRA + "','" + DA + "','" + Conveyance + "','" + CCA + "','" + WA + "','" + OA + "','" + LA + "','" + Bonus + "','" + Gratuity + "','" + NFHs + "','" + RC + "','" + CS + "','" + SplAllowance + "','" + MedicalAllw + "','" + MobileAllw + "'," +
+              "values ('" + txtEmpid.Text + "','" + txtdesignation.Text + "','" + ID + "','" + NoofDays + "','" + Basic + "','" + HRA + "','" + DA + "','" + Conveyance + "','" + CCA + "','" + WA + "','" + OA + "','" + LA + "','" + Bonus + "','" + Gratuity + "','" + NFHs + "','" + RC + "','" + CS + "','" + SplAllowance + "','" + MedicalAllw + "','" + MobileAllw + "'," +
               "  '" + OTRate + "','" + NoOfOts + "'," +
                " '" + EducationAllw + "'," +
               "  '" + Nbonus + "', '" + ContractStartDate + "', '" + ContractEndDate + "', " +
-              " '" + Extra1 + "', '" + Extra2 + "', '" + Extra3 + "', '" + Extra3 + "', '" + Extra3 + "', '" + LWF + "','" + NHSRate + "','" + NNhs + "','" + ServiceWeightage + "','" + BGVAmount + "','" + PVCAmount + "','" + ADDL4HR + "','" + QTRALLOW + "','" + RELALLOW + "','" + OTESICWAGES + "','" + SITEALLOW + "','" + GunAllw + "','" + FireAllw + "','" + TelephoneAllw + "','" + FoodAllw + "','" + Reimbursement + "','" + HardshipAllw + "','" + PaidHolidayAllw + "','" + ServiceCharge + "','" + PFPayrate + "','" + ESIPayrate + "','" + pfnods + "','" + PerformanceAllowance + "','" + TravellingAllowance + "','" + Status + "','" + NoOfOTESIDays + "','"+ GunAllwType + "','"+ RankAllowance+"')";
+              " '" + Extra1 + "', '" + Extra2 + "', '" + Extra3 + "', '" + Extra3 + "', '" + Extra3 + "', '" + LWF + "','" + NHSRate + "','" + NNhs + "','" + ServiceWeightage + "','" + BGVAmount + "','" + PVCAmount + "','" + ADDL4HR + "','" + QTRALLOW + "','" + RELALLOW + "','" + OTESICWAGES + "','" + SITEALLOW + "','" + GunAllw + "','" + FireAllw + "','" + TelephoneAllw + "','" + FoodAllw + "','" + Reimbursement + "','" + HardshipAllw + "','" + PaidHolidayAllw + "','" + ServiceCharge + "','" + PFPayrate + "','" + ESIPayrate + "','" + pfnods + "','" + PerformanceAllowance + "','" + TravellingAllowance + "','" + Status + "','" + NoOfOTESIDays + "','" + GunAllwType + "','" + RankAllowance + "')";
                 status = config.ExecuteNonQueryWithQueryAsync(qryinsert).Result;
                 if (status > 0)
                 {
@@ -1102,7 +1102,7 @@ namespace ShriKartikeya.Portal
                 string qry = "  update EmpSalaryStructure set NoOfDays='" + NoofDays + "',Basic='" + Basic + "',HRA='" + HRA + "' ,DA='" + DA + "',Conveyance='" + Conveyance + "',CCA='" + CCA + "',WashAllowance='" + WA + "',OtherAllowance='" + OA + "',LeaveAmount='" + LA + "',Bonus='" + Bonus + "',Gratuity='" + Gratuity + "',NFhs='" + NFHs + "',RC='" + RC + "',CS='" + CS + "',SplAllowance='" + SplAllowance + "',MedicalAllowance='" + MedicalAllw + "',MobileAllowance='" + MobileAllw + "',ServiceWeightage='" + ServiceWeightage + "',BGVAmt='" + BGVAmount + "',PVCAmt='" + PVCAmount + "'," +
                                 "OTRate='" + OTRate + "',Nots='" + NoOfOts + "' ," +
                                 "BonusType ='" + Nbonus + "',fromdate='" + ContractStartDate + "',todate='" + ContractEndDate + "',Extra1='" + Extra1 + "',Extra2='" + Extra2 + "',Extra3='" + Extra3 + "'," +
-                                "LWF='" + LWF + "',nhsrate='" + NHSRate + "',nnhs='" + NNhs + "',ADDL4HR='" + ADDL4HR + "',QTRALLOW='" + QTRALLOW + "',RELALLOW='" + RELALLOW + "',OTESICWAGES='" + OTESICWAGES + "',SITEALLOW='" + SITEALLOW + "',GunAllw='" + GunAllw + "',FireAllw='" + FireAllw + "',TelephoneAllw='" + TelephoneAllw + "',FoodAllw='" + FoodAllw + "',Reimbursement='" + Reimbursement + "',HardshipAllw='" + HardshipAllw + "',PaidHolidayAllw='" + PaidHolidayAllw + "',ServiceCharge='" + ServiceCharge + "',Pfpayrate='" + PFPayrate + "',ESIpayrate='" + ESIPayrate + "',PFNoOfDays='" + pfnods + "',PerformanceAllowance='" + PerformanceAllowance + "',TravellingAllowance='" + TravellingAllowance + "',Status='" + Status + "',otesiwagesdays='" + NoOfOTESIDays + "',GunAllwType='"+ GunAllwType + "',RankAllw='" + RankAllowance + "' where empid='" + txtEmpid.Text+ "' and id='" + ddlID.SelectedValue + "'";
+                                "LWF='" + LWF + "',nhsrate='" + NHSRate + "',nnhs='" + NNhs + "',ADDL4HR='" + ADDL4HR + "',QTRALLOW='" + QTRALLOW + "',RELALLOW='" + RELALLOW + "',OTESICWAGES='" + OTESICWAGES + "',SITEALLOW='" + SITEALLOW + "',GunAllw='" + GunAllw + "',FireAllw='" + FireAllw + "',TelephoneAllw='" + TelephoneAllw + "',FoodAllw='" + FoodAllw + "',Reimbursement='" + Reimbursement + "',HardshipAllw='" + HardshipAllw + "',PaidHolidayAllw='" + PaidHolidayAllw + "',ServiceCharge='" + ServiceCharge + "',Pfpayrate='" + PFPayrate + "',ESIpayrate='" + ESIPayrate + "',PFNoOfDays='" + pfnods + "',PerformanceAllowance='" + PerformanceAllowance + "',TravellingAllowance='" + TravellingAllowance + "',Status='" + Status + "',otesiwagesdays='" + NoOfOTESIDays + "',GunAllwType='" + GunAllwType + "',RankAllw='" + RankAllowance + "' where empid='" + txtEmpid.Text + "' and id='" + ddlID.SelectedValue + "'";
                 status = config.ExecuteNonQueryWithQueryAsync(qry).Result;
                 if (status > 0)
                 {

@@ -341,7 +341,7 @@ namespace ShriKartikeya.Portal
                         string strcompanyName = compInfo.Rows[0]["CompanyName"].ToString();
                         string line = strcompanyName;
                         Label lblclientname = GVListEmployees.Rows[0].FindControl("lblclientname") as Label;
-                        string line1 = "Salary Register For The Month of " +"-"+ txtmonth.Text+"-"+ lblclientname.Text; 
+                        string line1 = "Salary Register For The Month of " +"-"+ txtmonth.Text; 
                         gve.ExporttoExcelForBankUploadbank("BankUploadFormat.xls", this.GVListClients, line, line1, count);
                     }
                    
@@ -361,24 +361,18 @@ namespace ShriKartikeya.Portal
                 }
                 if (ddlOptions.SelectedIndex == 1)
                 {
-                    e.Row.Cells[3].Attributes.Add("class", "text");
-                    e.Row.Cells[4].Attributes.Add("class", "text");
-                    e.Row.Cells[5].Attributes.Add("class", "text");
-                    e.Row.Cells[6].Attributes.Add("class", "text");
-                    e.Row.Cells[13].Attributes.Add("class", "text");
-                    e.Row.Cells[15].Attributes.Add("class", "text");
+                    e.Row.Cells[7].Attributes.Add("class", "text");
                     e.Row.Cells[14].Attributes.Add("class", "text");
+
                 }
-                else
+                if (ddlOptions.SelectedIndex == 2)
                 {
                     e.Row.Cells[3].Attributes.Add("class", "text");
-                    e.Row.Cells[4].Attributes.Add("class", "text");
                 }
 
                 if (ddlOptions.SelectedIndex == 3 )
                 {
                     e.Row.Cells[3].Attributes.Add("class", "text");
-                    e.Row.Cells[4].Attributes.Add("class", "text");
                 }
                 if (ddlOptions.SelectedIndex == 4)
                 {
