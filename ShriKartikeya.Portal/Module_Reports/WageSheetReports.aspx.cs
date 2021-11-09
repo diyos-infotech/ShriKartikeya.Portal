@@ -3383,7 +3383,20 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         }
 
-                       
+                        Label lblTotalReimbursement = GVListEmployees.FooterRow.FindControl("lblTotalReimbursement") as Label;
+                        lblTotalReimbursement.Text = Math.Round(totalReimbursement).ToString();
+                        if (totalReimbursement > 0)
+                        {
+                            GVListEmployees.Columns[37].Visible = true;
+
+                        }
+                        else
+                        {
+                            GVListEmployees.Columns[37].Visible = true;
+
+                        }
+
+
 
                         //37
                         Label lblTotalNetPayableAmount = GVListEmployees.FooterRow.FindControl("lblTotalNetPayableAmount") as Label;
@@ -3458,6 +3471,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                     ((Label)e.Row.FindControl("lblWashAllowance")).Text = "";
                     ((Label)e.Row.FindControl("lblIncentivs")).Text = "";
                     ((Label)e.Row.FindControl("lblotamt")).Text = "";
+                    ((Label)e.Row.FindControl("lblReimbursement")).Text = "";
                     ((Label)e.Row.FindControl("lblnetPayableamount")).Text = "";
                 }
             }

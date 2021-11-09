@@ -47,7 +47,8 @@ namespace ShriKartikeya.Portal
                                  <td><input type='text' class='form-control num-txt txt-candav' value='##CANADV##'></td>
                                  <td><input type='text' class='form-control num-txt txt-pen' value='##PEN##'></td>
                                  <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td> 
-                                 <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>           
+                                 <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>
+                                 <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td> 
                                  <td><label class='txt-linetotal'/></td>           
                                  <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>
                                 </tr>";
@@ -64,7 +65,8 @@ namespace ShriKartikeya.Portal
 			                   EA.CanteenAdv as CanAdv,
 			                   EA.Penalty as Pen,
 			                   EA.Incentivs as Inctvs ,
-                               EA.Arrears as Arrears 
+                               EA.Arrears as Arrears,
+                               EA.Reimbursement as Reimbursement,
 		                from EmpAttendance EA join EmpDetails ED on Ed.EmpId=EA.EmpId join Designations D on D.DesignId=EA.Design 
 		                and EA.ClientId='##CLIENTID##' and EA.Month=##MONTH## and EA.ContractId='##CONTRACTID##'
 		                union all
@@ -80,7 +82,8 @@ namespace ShriKartikeya.Portal
 			                   0 as CanAdv,
 			                   0 as Pen,
 			                   0 as Inctvs ,
-			                   0 as Arrears 
+			                   0 as Arrears,
+                               0 as Reimbursement
 		                from EmpPostingOrder ep
 		                inner join EmpDetails ed on ep.EmpId = ed.EmpId
 		                inner join Designations d on ep.Desgn = d.DesignId
@@ -96,7 +99,8 @@ namespace ShriKartikeya.Portal
 	                                                           cast(sum(ea.Penalty)as nvarchar) PenTotal,
 	                                                           cast(sum(ea.Incentivs)as nvarchar) InctvsTotal,
 	                                                           cast(sum(ea.CanteenAdv)as nvarchar) CanAdvTotal,
-	                                                           cast(sum(ea.Arrears)as nvarchar) ArrearsTotal
+	                                                           cast(sum(ea.Arrears)as nvarchar) ArrearsTotal,
+                                                               cast(sum(ea.Reimbursement)as nvarchar) ReimbursementTotal
                                                         from EmpAttendance ea 
                                                         inner join Designations d on d.DesignId = ea.Design
                                                         inner join EmpPostingOrder ep on ea.EmpId = ep.EmpId
@@ -289,7 +293,8 @@ namespace ShriKartikeya.Portal
                                    CanteenAdv = row.Field<float>("CanAdv"),
                                    Penalty = row.Field<float>("Pen"),
                                    Incentivs = row.Field<float>("Inctvs"),
-                                   Arrears = row.Field<float>("Arrears")
+                                   Arrears = row.Field<float>("Arrears"),
+                                   Reimbursement = row.Field<float>("Reimbursement")
                                }).ToList();
 
                     resultobj = new JavaScriptSerializer().Serialize(obj);
@@ -363,7 +368,8 @@ namespace ShriKartikeya.Portal
                                    PenTotal = row.Field<string>("PenTotal"),
                                    InctvsTotal = row.Field<string>("InctvsTotal"),
                                    CanAdvTotal = row.Field<string>("CanAdvTotal"),
-                                   ArrearsTotal = row.Field<string>("ArrearsTotal")
+                                   ArrearsTotal = row.Field<string>("ArrearsTotal"),
+                                   ReimbursementTotal = row.Field<string>("ReimbursementTotal")
                                }).ToList();
                     resultobj = new JavaScriptSerializer().Serialize(obj);
                     result = "success";
@@ -430,6 +436,7 @@ namespace ShriKartikeya.Portal
                                                     + "',WO=" + item.WO
                                                     + ",NHS=" + item.NHS
                                                     + ",NPOTS=" + item.Nposts
+                                                    + ",Reimbursement=" + item.Reimbursement
                                                     + " Where empid='" + item.EmpId
                                                     + "' and ClientId='" + item.ClientId
                                                     + "' and [Month]=" + Month
@@ -438,8 +445,8 @@ namespace ShriKartikeya.Portal
                             }
                             else
                             {
-                                query = "insert  EmpAttendance(clientid,empid,[month],Design,contractId,NoofDuties,OT,Penalty,CanteenAdv,WO,NHS,NPOTS,Incentivs,Arrears,DateCreated)" +
-                                "values('" + item.ClientId + "','" + item.EmpId + "'," + Month + ",'" + item.EmpDesg + "','" + contractId + "'," + item.NOD + "," + item.OT + "," + item.Penality + "," + item.CanAdv + "," + item.WO + "," + item.NHS + "," + item.Nposts + "," + item.Incentives + "," + item.Arrears + ",GETDATE() )";
+                                query = "insert  EmpAttendance(clientid,empid,[month],Design,contractId,NoofDuties,OT,Penalty,CanteenAdv,WO,NHS,NPOTS,Incentivs,Arrears,Reimbursement,DateCreated)" +
+                                "values('" + item.ClientId + "','" + item.EmpId + "'," + Month + ",'" + item.EmpDesg + "','" + contractId + "'," + item.NOD + "," + item.OT + "," + item.Penality + "," + item.CanAdv + "," + item.WO + "," + item.NHS + "," + item.Nposts + "," + item.Incentives + "," + item.Arrears + "," + item.Reimbursement + ",GETDATE())";
                             }
                             var res = SqlHelper.Instance.ExecuteDMLQry(query);
                         }
@@ -1277,6 +1284,7 @@ namespace ShriKartikeya.Portal
         public decimal Penality { get; set; }
         public decimal Incentives { get; set; }
         public decimal Arrears { get; set; }
+        public decimal Reimbursement { get; set; }
 
     }
 }

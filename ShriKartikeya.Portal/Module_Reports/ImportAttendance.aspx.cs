@@ -205,7 +205,7 @@ namespace ShriKartikeya.Portal
         public void ImportedAttendance(string Excelno)
         {
             string qry1 = @"select ea.clientid as 'clientid',ea.EmpId as 'empid',(ed.empfname+' '+ed.empmname+' '+ed.emplname) as fullname,isnull(d.Design,'') as 'Design',isnull(NoOfDuties,0) as NoOfDuties,isnull(ot,0) as ot,isnull(nhs,0) as nhs,isnull(wo,0) as WO,isnull(OTHours,0) as OTHours,isnull(ea.UniformDed,0) as UniformDed,isnull(ea.ATMDed,0) as  ATMDed,isnull(ea.CanteenAdv,0) as CanteenAdv,isnull(ea.Penalty,0) as Penalty,isnull(ea.Incentivs,0) as Incentives,
-isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattendance ea inner join empdetails ed on ea.empid=ed.empid inner join designations d on d.DesignId=ea.Design where  excelnumber='" + Excelno + "'";
+isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus,,isnull(ea.Reimbursement,0) as Reimbursement from empattendance ea inner join empdetails ed on ea.empid=ed.empid inner join designations d on d.DesignId=ea.Design where  excelnumber='" + Excelno + "'";
             DataTable dt = SqlHelper.Instance.GetTableByQuery(qry1);
             if (dt.Rows.Count > 0)
             {
@@ -2336,12 +2336,12 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
 
                     if (ddlempidtype.SelectedIndex == 0)
                     {
-                        qry = "select [Client Id],[Emp Id],[OldEmpId],[Designation],[Duties],[OTs],[WOs],[NHS],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Stop Payment] " +
+                        qry = "select [Client Id],[Emp Id],[OldEmpId],[Designation],[Duties],[OTs],[WOs],[NHS],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Reimbursement],[Stop Payment]" +
                                            "  from  [" + GetExcelSheetNames() + "]" + "";
                     }
                     else
                     {
-                        qry = "select [Client Id],[Emp Id],[OldEmpId],[Designation],[Duties],[OTs],[WOs],[NHS],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Stop Payment] " +
+                        qry = "select [Client Id],[Emp Id],[OldEmpId],[Designation],[Duties],[OTs],[WOs],[NHS],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Reimbursement],[Stop Payment]" +
                    "  from  [" + GetExcelSheetNames() + "]" + "";
                     }
 
@@ -2399,6 +2399,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
                         float dayduties = 0;
                         float dayots = 0;
                         float daywos = 0;
+                        float Reimbursement = 0;
                         string stoppayment = "";
                         float pldays = 0;
                         #endregion
@@ -2643,6 +2644,11 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
                                     AttBonus = float.Parse(ds.Tables[0].Rows[i]["Attendance Bonus"].ToString());
                                 }
 
+                                if (String.IsNullOrEmpty(ds.Tables[0].Rows[i]["Reimbursement"].ToString().Trim()) == false)
+                                {
+                                    Reimbursement = float.Parse(ds.Tables[0].Rows[i]["Reimbursement"].ToString());
+                                }
+
                                 stoppayment = ds.Tables[0].Rows[i]["Stop Payment"].ToString();
                                 if (stoppayment == "Y" || stoppayment == "YES" || stoppayment == "y" || stoppayment == "yes" || stoppayment == "Yes")
                                 {
@@ -2711,6 +2717,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
                                 Httable.Add("@RemarksText", RemarksText);
                                 Httable.Add("@oldempid", oldempid);
                                 Httable.Add("@Stoppayment", stoppayment);
+                                Httable.Add("@Reimbursement", Reimbursement);
 
                                 #endregion
 
@@ -2763,25 +2770,25 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
                     if (days == 31)
                     {
                         qry = "select [Client Id],[Emp Id],[OldEmpId],[Designation],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18]," +
-                 " [19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[OTs],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Stop Payment] " +
+                 " [19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[OTs],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Reimbursement],[Stop Payment] " +
                  "  from  [" + GetExcelSheetNames() + "]" + "";
                     }
                     if (days == 30)
                     {
                         qry = "select [Client Id],[Emp Id],[OldEmpId],[Designation],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18]," +
-                 " [19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[OTs],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Stop Payment] " +
+                 " [19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[OTs],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Reimbursement],[Stop Payment] " +
                  "  from  [" + GetExcelSheetNames() + "]" + "";
                     }
                     if (days == 29)
                     {
                         qry = "select [Client Id],[Emp Id],[OldEmpId],[Designation],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18]," +
-                                         " [19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[29],[OTs],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Stop Payment] " +
+                                         " [19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[29],[OTs],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Reimbursement],[Stop Payment] " +
                                          "  from  [" + GetExcelSheetNames() + "]" + "";
                     }
                     if (days == 28)
                     {
                         qry = "select [Client Id],[Emp Id],[OldEmpId],[Designation],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18]," +
-                                         " [19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[OTs],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Stop Payment] " +
+                                         " [19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[OTs],[PL Days],[Canteen Advance],[Advance],[Incentives],[OT Hrs],[Uniform Ded],[Other Ded],[Arrears],[Attendance Bonus],[Reimbursement],[Stop Payment] " +
                                          "  from  [" + GetExcelSheetNames() + "]" + "";
                     }
                     OleDbConnection con = new OleDbConnection(constring);
@@ -2834,6 +2841,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
                         float OTHrs = 0;
                         float Arrears = 0;
                         float AttBonus = 0;
+                        float Reimbursement = 0;
                         string stoppayment = "";
 
 
@@ -3152,6 +3160,10 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
                                     if (String.IsNullOrEmpty(dr["Attendance Bonus"].ToString()) == false)
                                     {
                                         AttBonus = float.Parse(dr["Attendance Bonus"].ToString());
+                                    }
+                                    if (String.IsNullOrEmpty(dr["Reimbursement"].ToString()) == false)
+                                    {
+                                        Reimbursement = float.Parse(dr["Reimbursement"].ToString());
                                     }
                                     if (String.IsNullOrEmpty(dr["Stop Payment"].ToString()) == false)
                                     {
@@ -4902,6 +4914,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
                                 Httable.Add("@Arrears", Arrears);
                                 Httable.Add("@AttBonus", AttBonus);
                                 Httable.Add("@RemarksText", RemarksText);
+                                Httable.Add("@Reimbursement", Reimbursement);
                                 Httable.Add("@Stoppayment", stoppayment);
                                 #endregion
 
@@ -4928,7 +4941,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus from empattend
                     DataTable dtBillstatus = SqlHelper.Instance.ExecuteStoredProcedureWithParams(SPBillName, HtBilltable);
                 }
 
-                string qry1 = "select ea.clientid,ea.EmpId,(ed.empfname+' '+ed.empmname+' '+ed.emplname) as fullname,isnull(d.Design,'') as Design,isnull(NoOfDuties,0) as NoOfDuties,isnull(ot,0) as OT,isnull(nhs,0) as Nhs,isnull(wo,0) as WO,isnull(UniformDed,0) as UniformDed,isnull(OtherDed,0) as OtherDed,isnull(OTHours,0) as OTHours,isnull(ea.CanteenAdv,0) as CanteenAdv,isnull(ea.Penalty,0) as Penalty,isnull(ea.Incentivs,0) as Incentives,isnull(ea.Arrears, 0) as Arrears,isnull(ea.AttBonus, 0) as AttBonus,isnull(ea.pl,0) as pldays from empattendance ea inner join empdetails ed on ea.empid=ed.empid inner join designations d on d.DesignId=ea.Design where month='" + Month + "' and excelnumber='" + ExcelNo + "'";
+                string qry1 = "select ea.clientid,ea.EmpId,(ed.empfname+' '+ed.empmname+' '+ed.emplname) as fullname,isnull(d.Design,'') as Design,isnull(NoOfDuties,0) as NoOfDuties,isnull(ot,0) as OT,isnull(nhs,0) as Nhs,isnull(wo,0) as WO,isnull(UniformDed,0) as UniformDed,isnull(OtherDed,0) as OtherDed,isnull(OTHours,0) as OTHours,isnull(ea.CanteenAdv,0) as CanteenAdv,isnull(ea.Penalty,0) as Penalty,isnull(ea.Incentivs,0) as Incentives,isnull(ea.Arrears, 0) as Arrears,isnull(ea.AttBonus, 0) as AttBonus,isnull(ea.pl,0) as pldays,isnull(ea.Reimbursement,0) as Reimbursement from empattendance ea inner join empdetails ed on ea.empid=ed.empid inner join designations d on d.DesignId=ea.Design where month='" + Month + "' and excelnumber='" + ExcelNo + "'";
                 DataTable dt = SqlHelper.Instance.GetTableByQuery(qry1);
                 if (dt.Rows.Count > 0)
                 {

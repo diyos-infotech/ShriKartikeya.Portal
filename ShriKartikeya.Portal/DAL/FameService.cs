@@ -57,7 +57,7 @@ public class FameService : System.Web.Services.WebService
                                isnull(EA.UniformDed,0) as UNIDED,
                                isnull(EA.OtherDed,0) as ATMDED,
 			                   isnull(EA.Incentivs,0) as Inctvs,
-                               isnull(EA.Arrears,0) as Arrears,isnull(cast(EA.stoppayment as bit),1) as stoppayment 
+                               isnull(EA.Arrears,0) as Arrears,isnull(EA.Reimbursement,0) as Reimbursement,isnull(cast(EA.stoppayment as bit),1) as stoppayment 
 		                from EmpAttendance EA join EmpDetails ED on Ed.EmpId=EA.EmpId join Designations D on D.DesignId=EA.Design 
 		                and EA.ClientId='##CLIENTID##' and EA.Month=##MONTH## and EA.ContractId='##CONTRACTID##' and ( (ea.NoOfDuties+EA.Ot+EA.WO+EA.NHS+ EA.Npots)>0  or ed.empstatus=1) ";
 
@@ -78,6 +78,7 @@ public class FameService : System.Web.Services.WebService
                                0 as ATMDED,
 			                   0 as Inctvs,
                                0 as Arrears,
+                               0 as Reimbursement,
                                cast(0 as bit) as stoppayment 
 		                from EmpPostingOrder ep
 		                inner join EmpDetails ed on ep.EmpId = ed.EmpId
@@ -101,6 +102,7 @@ public class FameService : System.Web.Services.WebService
                                0 as ATMDED,
 			                   0 as Inctvs,
                                0 as Arrears,
+                               0 as Reimbursement,
                                cast(0 as bit) as  stoppayment
 		                from EmpPostingOrder ep
 		                inner join EmpDetails ed on ep.EmpId = ed.EmpId
@@ -120,7 +122,8 @@ public class FameService : System.Web.Services.WebService
                                                                isnull(cast(sum(ea.UniformDed)as nvarchar),0) UNIDEDTotal, 
                                                                isnull(cast(sum(ea.OtherDed)as nvarchar),0) ATMDEDTotal,
 	                                                           isnull(cast(sum(ea.CanteenAdv)as nvarchar),0) CanAdvTotal,
-	                                                           isnull(cast(sum(ea.Arrears)as nvarchar),0) ArrearsTotal
+	                                                           isnull(cast(sum(ea.Arrears)as nvarchar),0) ArrearsTotal,
+                                                                isnull(cast(sum(ea.Reimbursement)as nvarchar),0) ReimbursementTotal
                                                         from EmpAttendance ea 
                                                         inner join Designations d on d.DesignId = ea.Design
                                                         where ea.ClientId = '##CLIENTID##' and ea.[MONTH]= ##MONTH##
@@ -714,6 +717,7 @@ public class FameService : System.Web.Services.WebService
                                    ATMDED = row.Field<float>("ATMDED"),
                                    Incentivs = row.Field<float>("Inctvs"),
                                    Arrears = row.Field<float>("Arrears"),
+                                   Reimbursement = row.Field<float>("Reimbursement"),
                                    stoppayment = row.Field<bool>("stoppayment")
                                }).ToList();
                     empdata.AddRange(obj);
@@ -765,6 +769,7 @@ public class FameService : System.Web.Services.WebService
                                 ATMDED = float.Parse(item["ATMDED"].ToString()),
                                 Incentivs = float.Parse(item["Inctvs"].ToString()),
                                 Arrears = float.Parse(item["Arrears"].ToString()),
+                                Reimbursement = float.Parse(item["Reimbursement"].ToString()),
                                 stoppayment = bool.Parse(item["stoppayment"].ToString()),
                             });
                         }
@@ -844,7 +849,8 @@ public class FameService : System.Web.Services.WebService
                                ATMDEDTotal = row.Field<string>("ATMDEDTotal"),
                                InctvsTotal = row.Field<string>("InctvsTotal"),
                                CanAdvTotal = row.Field<string>("CanAdvTotal"),
-                               ArrearsTotal = row.Field<string>("ArrearsTotal")
+                               ArrearsTotal = row.Field<string>("ArrearsTotal"),
+                               ReimbursementTotal = row.Field<string>("ReimbursementTotal")
 
                            }).ToList();
                 resultobj = new JavaScriptSerializer().Serialize(obj);
@@ -966,6 +972,7 @@ public class FameService : System.Web.Services.WebService
                                             + ",NHS=" + item.NHS
                                             + ",PL=" + item.Nposts
                                               + ",OTHours=" + item.OTHRS
+                                              + ",Reimbursement=" + item.Reimbursement
                                             + " Where empid='" + item.EmpId
                                             + "' and ClientId='" + item.ClientId
                                             + "' and [Month]=" + Month
@@ -974,8 +981,8 @@ public class FameService : System.Web.Services.WebService
                     }
                     else if (attendancetotal > 0)
                     {
-                        query = "insert  EmpAttendance(clientid,empid,[month],Design,contractId,NoofDuties,OT,Penalty,CanteenAdv,WO,NHS,PL,Incentivs,Arrears,DateCreated,stoppayment, UniformDed,OtherDed,OTHours)" +
-                        "values('" + item.ClientId + "','" + item.EmpId + "'," + Month + ",'" + item.EmpDesg + "','" + contractId + "'," + item.NOD + "," + item.OT + "," + item.Penality + "," + item.CanAdv + "," + item.WO + "," + item.NHS + "," + item.Nposts + "," + item.Incentives + "," + item.Arrears + ",GETDATE(),'" + item.stoppayment + "','" + item.UNIDED + "','" + item.ATMDED + "','" + item.OTHRS + "')";
+                        query = "insert  EmpAttendance(clientid,empid,[month],Design,contractId,NoofDuties,OT,Penalty,CanteenAdv,WO,NHS,PL,Incentivs,Arrears,DateCreated,stoppayment, UniformDed,OtherDed,OTHours,Reimbursement)" +
+                        "values('" + item.ClientId + "','" + item.EmpId + "'," + Month + ",'" + item.EmpDesg + "','" + contractId + "'," + item.NOD + "," + item.OT + "," + item.Penality + "," + item.CanAdv + "," + item.WO + "," + item.NHS + "," + item.Nposts + "," + item.Incentives + "," + item.Arrears + ",GETDATE(),'" + item.stoppayment + "','" + item.UNIDED + "','" + item.ATMDED + "','" + item.OTHRS + "','" + item.Reimbursement + "')";
                     }
                     if (!string.IsNullOrEmpty(query))
                     {
@@ -1797,6 +1804,7 @@ public class EmpAttendanceGrid
     public float OTHRS { get; set; }
     public float UNIDED { get; set; }
     public float ATMDED { get; set; }
+    public float Reimbursement { get; set; }
 }
 
 
@@ -1830,6 +1838,7 @@ public class EmpAttendance
     public decimal OTHRS { get; set; }
     public decimal UNIDED { get; set; }
     public decimal ATMDED { get; set; }
+    public decimal Reimbursement { get; set; }
 }
 
 
