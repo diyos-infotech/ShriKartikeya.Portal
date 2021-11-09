@@ -1562,6 +1562,12 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Reimbursement" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="5px">
+                                            <ItemTemplate>
+                                                <asp:Label runat="server" ID="txtReimbursement" Style="text-align: center" Width="5px" Text=""></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Stop Payment" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="5px">
                                             <ItemTemplate>
                                                 <asp:Label runat="server" ID="txtStopPayment" Style="text-align: center" Width="5px" Text=""></asp:Label>
@@ -1831,6 +1837,12 @@
                                             <asp:TemplateField HeaderText="Attendance Bonus">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAttBonus" runat="server" Text='<%#Bind("AttBonus")%>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Reimbursement">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblReimbursement" runat="server" Text='<%#Bind("Reimbursement")%>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 

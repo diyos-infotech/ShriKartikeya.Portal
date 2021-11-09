@@ -583,6 +583,7 @@
             var atmded = $("#txt-add-atmded").val();
             var inctvs = $("#txt-add-inctvs").val();
             var Arrears = $("#txt-add-arrears").val();
+            var Reimbursement = $("#txt-add-reimbursement").val();
 
             var empstatus = $("#<%=lblempstatus.ClientID %>").val();
                        var stoppayment = $("#chkstoppayment").is(":checked");
@@ -628,6 +629,7 @@
                                    $(row).find(".txt-atmded").val(atmded);
                                    $(row).find(".txt-inctvs").val(inctvs);
                                    $(row).find(".txt-Arrears").val(Arrears);
+                                   $(row).find(".txt-Reimbursement").val(Reimbursement);
                                    $(row).find("#chkstoppayment").val(stoppayment);
                                    alert("Employee attendance updated.");
                                    updated = true;
@@ -650,6 +652,7 @@
                                              " <td><input type='text' class='form-control num-txt txt-atmded' value='##ATMDED##'></td>" +
                                            " <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td>  " +
                                            " <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>  " +
+                                           " <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td>  " +
                                            " <td><label class='txt-linetotal'/> " +
                                            " <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>" +
                                           " </tr>";
@@ -678,6 +681,7 @@
                                         .replace('##ATMDED##', atmded)
                                              .replace('##INCTVS##', inctvs)
                                        .replace('##ARREARS##', Arrears)
+                                       .replace('##REIMBURSEMENT##', Reimbursement)
                                        .replace('##STOPPAYMENT##', stoppayment);
 
                                    $("#tblattendancegrid >tbody").append(newrow);
@@ -723,6 +727,7 @@
                        $("#txt-add-atmded").val("0");
                        $("#txt-add-inctvs").val("0");
                        $("#txt-add-arrears").val("0");
+                       $("#txt-add-reimbursement").val("0");
                        $("#<%=lblempstatus.ClientID %>").val("");
                  <%-- $("#<%=txtEmpId.ClientID %>").focus();--%>
                        $("#<%=txtoldEmpId.ClientID %>").focus();
@@ -912,6 +917,7 @@
                                   " <td><input type='text' class='form-control num-txt txt-atmded' value='##ATMDED##'></td>" +
                                 " <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td>  " +
                                 " <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>  " +
+                               " <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td>  " +
                                 " <td><label class='txt-linetotal'/> " +
                                 " <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>" +
                                " </tr>";
@@ -932,7 +938,8 @@
                       .replace('##UNIDED##', item.UNIDED)
                       .replace('##ATMDED##', item.ATMDED)
                           .replace('##INCTVS##', item.Incentivs)
-                          .replace('##ARREARS##', item.Arrears);
+                    .replace('##ARREARS##', item.Arrears)
+                    .replace('##REIMBURSEMENT##', item.Reimbursement);
                 $("#tblattendancegrid >tbody").append(newrow);
                 if (item.stoppayment == false) {
                     $("#tblattendancegrid > tbody >tr[data-emp-id=" + item.EmpId + "]").find("input[type=checkbox]").prop("checked", false);
@@ -1003,7 +1010,8 @@
                       "<td><label class='lbl-tunided lbl-thin'>##TUNIDED##</label></td>" +
                         "<td><label class='lbl-tatmded lbl-thin'>##TATMDED##</label></td>" +
                     "<td><label class='lbl-tinctvs lbl-thin'>##TINTVS##</label></td>" +
-                    "<td><label class='lbl-tarrears lbl-thin'>##TARREARS##</label></td></tr>";
+                    "<td><label class='lbl-tarrears lbl-thin'>##TARREARS##</label></td>" + 
+                "<td><label class='lbl-treimbursement lbl-thin'>##TREIMBURSEMENT##</label></td></tr>";
                 var newrow = strr.replace("##Designation##", item.DesgName)
                             .replace('##TNOD##', item.NODTotal)
                             .replace('##TOT##', item.OTTotal)
@@ -1016,7 +1024,8 @@
                      .replace('##TUNIDED##', item.UNIDEDTotal)
                      .replace('##TATMDED##', item.ATMDEDTotal)
                             .replace('##TINTVS##', item.CanAdvTotal)
-                            .replace('##TARREARS##', item.ArrearsTotal);
+                             .replace('##TARREARS##', item.ArrearsTotal)
+                            .replace('##TREIMBURSEMENT##', item.ReimbursementTotal);
                 $("#tblSummary >tbody").append(newrow);
             });
             CalculateSummaryTotals();
@@ -1124,6 +1133,14 @@
             });
             $("#lblArrears").text(Arrearstotal);
 
+            var Reimbursementtotal = 0;
+            $('.txt-Reimbursement').each(function () {
+                if ($(this).val() != "" && $(this).val() != undefined) {
+                    Reimbursementtotal += parseFloat($(this).val());
+                }
+            });
+            $("#lblReimbursement").text(Reimbursementtotal);
+
 
             $(".tr-emp-att").each(function () {
                 var linetotal = 0;
@@ -1227,6 +1244,11 @@
             $("#lblTARREARS").text(Arrearstotal);
 
 
+            var Reimbursementtotal = 0;
+            $('.lbl-treimbursement').each(function () {
+                Reimbursementtotal += parseFloat($(this).text());
+            });
+            $("#lblTREIMBURSEMENT").text(Reimbursementtotal);
 
 
             $(".tr-emp-summary").each(function () {
@@ -1296,6 +1318,7 @@
                                ATMDED: parseFloat($(row).find(".txt-atmded").val()),
                                Incentives: parseFloat($(row).find(".txt-inctvs").val()),
                                Arrears: parseFloat($(row).find(".txt-Arrears").val()),
+                               Reimbursement: parseFloat($(row).find(".txt-Reimbursement").val()),
                                stoppayment: $(row).find("#chkstoppayment").is(":checked"),
                                OTtype: ottype
                            };
@@ -1425,7 +1448,8 @@
                  var UNIDED = $("#txt-add-unided").val();
                  var ATMDED = $("#txt-add-atmded").val();
                  var inctvs = $("#txt-add-inctvs").val();
-                 var Arrears = $("#txt-add-arrears").val();
+                   var Arrears = $("#txt-add-arrears").val();
+                   var Arrears = $("#txt-add-reimbursement").val();
 
                  //var isnewrow = $(row).hasClass("new-row");
                  var TempEmpAttendance = {
@@ -1451,6 +1475,7 @@
                      ATMDED: ATMDED,
                      Incentives: inctvs,
                      Arrears: Arrears,
+                     Reimbursement: Reimbursement,
                      OTtype: ottype
                  };
                  datalst.push(TempEmpAttendance);
@@ -1834,6 +1859,8 @@
                                 </th>
                                 <th>Arrears
                                 </th>
+                                 <th>Reimbursement
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1894,6 +1921,10 @@
                                 </td>
                                 <td>
                                     <label id="lblTARREARS">
+                                    </label>
+                                </td>
+                                 <td>
+                                    <label id="lblTREIMBURSEMENT">
                                     </label>
                                 </td>
                             </tr>
@@ -1995,6 +2026,9 @@
                                     <td>
                                         <input type="text" class="form-control num-txt" id="txt-add-arrears" value="0" />
                                     </td>
+                                     <td>
+                                        <input type="text" class="form-control num-txt" id="txt-add-reimbursement" value="0" />
+                                    </td>
                                     <td rowspan="2"></td>
                                     <td rowspan="2">
                                         <button class="btn btn-primary" onclick="AddNewEmp(this);return false;" style="height: 60px;">
@@ -2029,6 +2063,7 @@
                                         <input type="checkbox" id="chkPT" checked="checked" />
                                         &nbsp; PT
                                     </td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -2074,6 +2109,8 @@
                                     <th>Incentives <%--Incen  change to Reimbursement--%>
                                     </th>
                                     <th>Arrears
+                                    </th>
+                                     <th>Reimbursement
                                     </th>
 
                                     <th>Totals
@@ -2142,6 +2179,10 @@
                                     </th>
                                     <th>
                                         <label id="lblArrears">
+                                        </label>
+                                    </th>
+                                    <th>
+                                        <label id="lblReimbursement">
                                         </label>
                                     </th>
                                     <th>

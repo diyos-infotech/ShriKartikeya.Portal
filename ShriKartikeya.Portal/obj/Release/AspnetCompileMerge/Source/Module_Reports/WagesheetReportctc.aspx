@@ -566,6 +566,16 @@
                                             </asp:TemplateField>
 
                                               <%-- 32--%>
+                                           <asp:TemplateField HeaderText="Reimbursement" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblReimbursement" runat="server" Text='<%#Bind("Reimbursement","{0:0}") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label runat="server" ID="lblTotalReimbursement"></asp:Label>
+                                                </FooterTemplate>
+                                            </asp:TemplateField>
+
+                                              <%-- 33--%>
                                             <asp:TemplateField HeaderText="Gross" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblGross" runat="server" Text='<%#Bind("Gross","{0:0}") %>'></asp:Label>
@@ -575,7 +585,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                              <%-- 33--%>
+                                              <%-- 34--%>
                                             <asp:TemplateField HeaderText="PF" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPF" runat="server" Text='<%#Bind("PF","{0:0}") %>'></asp:Label>
@@ -586,7 +596,7 @@
                                             </asp:TemplateField>
 
 
-                                            <%-- 34--%>
+                                            <%-- 35--%>
                                             <asp:TemplateField HeaderText="ESI" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblESI" runat="server" Text='<%#Bind("ESI","{0:0}") %>'></asp:Label>
@@ -597,7 +607,7 @@
                                             </asp:TemplateField>
 
 
-                                            <%-- 35--%>
+                                            <%-- 36--%>
                                             <asp:TemplateField HeaderText="ProfTax" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblProfTax" runat="server" Text='<%#Bind("ProfTax","{0:0}") %>'></asp:Label>
@@ -607,7 +617,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                             <%-- 36--%>
+                                             <%-- 37--%>
                                             <asp:TemplateField HeaderText="Advance" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPenalty" runat="server" Text='<%#Bind("Penalty","{0:0}") %>'></asp:Label>
@@ -619,7 +629,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                             <%-- 37--%>
+                                             <%-- 38--%>
                                             <asp:TemplateField HeaderText="TDS Ded" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblNightRoundDed" runat="server" Text='<%#Bind("Extra","{0:0}") %>'></asp:Label>
@@ -631,7 +641,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                              <%-- 38--%>
+                                              <%-- 39--%>
                                             <asp:TemplateField HeaderText="Total Ded" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblDeductions" runat="server" Text='<%#Bind("TotalDeductions","{0:0}") %>'></asp:Label>
@@ -641,7 +651,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                              <%-- 39--%>
+                                              <%-- 40--%>
                                             <asp:TemplateField HeaderText="Net Pay" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblnetamount" runat="server" Text='<%#Bind("ActualAmount","{0:0}") %>'> </asp:Label>
@@ -651,7 +661,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                             <%-- 40--%>
+                                             <%-- 41--%>
                                             <asp:TemplateField HeaderText="PF EMPR" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPFEMPR" runat="server" Text='<%#Bind("PF","{0:0}") %>'> </asp:Label>
@@ -661,7 +671,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <%-- 41--%>
+                                            <%-- 42--%>
                                             <asp:TemplateField HeaderText="ESI EMPR" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblESIEMPR" runat="server" Text='<%#Bind("esiempr","{0:0}") %>'> </asp:Label>
@@ -671,7 +681,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                               <%-- 42--%>
+                                               <%-- 43--%>
                                             <asp:TemplateField HeaderText="TOTAL CTC" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblTOTALCTC" runat="server" Text='<%#Bind("CTC","{0:0}") %>'> </asp:Label>
@@ -681,7 +691,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                             <%-- 43--%>
+                                             <%-- 44--%>
                                             <asp:TemplateField HeaderText="ACTUAL CTC" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblActualCTC" runat="server" Text='<%#Bind("ActualCTC","{0:0}") %>'> </asp:Label>
@@ -691,7 +701,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                              <%-- 44--%>
+                                              <%-- 45--%>
                                             <asp:TemplateField HeaderText="Department" ItemStyle-HorizontalAlign="Left">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblDepartment" runat="server" Text='<%#Bind("Department") %>'></asp:Label>
@@ -699,7 +709,7 @@
                                                 <ItemStyle HorizontalAlign="Left" />
                                             </asp:TemplateField>
 
-                                              <%-- 45--%>
+                                              <%-- 46--%>
                                               <asp:TemplateField HeaderText="Signature orThumb Impression of the Workman" ItemStyle-HorizontalAlign="Left">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblRemarks" runat="server" Text='<%#Bind("Remarks") %>'></asp:Label>

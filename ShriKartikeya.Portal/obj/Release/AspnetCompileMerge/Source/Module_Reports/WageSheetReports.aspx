@@ -638,9 +638,19 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
+                                              <%-- 37--%>
+                                             <asp:TemplateField HeaderText="Reimbursement" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblReimbursement" runat="server" Text='<%#Bind("Reimbursement","{0:0}") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label runat="server" ID="lblTotalReimbursement"></asp:Label>
+                                                </FooterTemplate>
+                                            </asp:TemplateField>
+
                                              
 
-                                              <%-- 37--%>
+                                              <%-- 38--%>
                                              <asp:TemplateField HeaderText="Payable Amt" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblnetPayableamount" runat="server" Text='<%#Bind("ActualAmount","{0:0}") %>'> </asp:Label>
