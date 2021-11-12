@@ -11,6 +11,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using ShriKartikeya.Portal.DAL;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 
 namespace ShriKartikeya.Portal
 {
@@ -385,13 +387,14 @@ namespace ShriKartikeya.Portal
 
                 var formatInfoinfo = new DateTimeFormatInfo();
                 string[] monthName = formatInfoinfo.MonthNames;
-                // int payMonth = GetMonth(ddlmonth.SelectedValue);
 
                 int month = GetMonthBasedOnSelectionDateorMonth();
                 string selectmonth = string.Empty;
 
                 int Fontsize = 10;
                 string fontsyle = "verdana";
+
+                #region CLIENT ADDRESS
 
                 string selectclientaddress = "select * from clients where clientid= '" + ddlClientId.SelectedValue + "'";
                 DataTable dtclientaddress = config.ExecuteAdaptorAsyncWithQueryParams(selectclientaddress).Result;
@@ -474,45 +477,10 @@ namespace ShriKartikeya.Portal
                     Address1 += "  " + ClientAdress[i];
                 }
 
+                #endregion CLIENT ADDRESS                
 
-                //var list = new List<string>();
-
-                //if (gvattendancezero.Rows.Count > 0)
-                //{
-                //    for (int i = 0; i < gvattendancezero.Rows.Count; i++)
-                //    {
-                //        CheckBox chkEmpid = gvattendancezero.Rows[i].FindControl("chkindividual") as CheckBox;
-                //        Label lblempid = gvattendancezero.Rows[i].FindControl("lblempid") as Label;
-
-                //        if (chkEmpid.Checked == true)
-                //        {
-                //            list.Add(lblempid.Text);
-                //        }
-
-                //    }
-                //}
-
-                //string Empids = string.Join(",", list.ToArray());
-
-                //if (list.Count == 0)
-                //{
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "showlalert", "alert('Please Select Empids');", true);
-                //    return;
-                //}
-
-                //DataTable dtEmpidsList = new DataTable();
-                //dtEmpidsList.Columns.Add("Empid");
-                //if (list.Count != 0)
-                //{
-                //    foreach (string s in list)
-                //    {
-                //        DataRow row = dtEmpidsList.NewRow();
-                //        row["Empid"] = s;
-                //        dtEmpidsList.Rows.Add(row);
-                //    }
-                //}
-
-
+                string EmpIds = "select EmpId from emppaysheet where clientid='" + ddlClientId.SelectedValue + "' and Month='" + month + "' and isnull(mailstatus,0)=0";
+                DataTable dtEmpIds = SqlHelper.Instance.GetTableByQuery(EmpIds);
 
                 int ChkBonus = 0;
                 if (chkbonus.Checked == true)
@@ -520,30 +488,35 @@ namespace ShriKartikeya.Portal
                     ChkBonus = 1;
                 }
 
-
                 var SPName = "";
                 Hashtable HTPaysheet = new Hashtable();
                 SPName = "SendMailWageSlips";
-                HTPaysheet.Add("@ClientId", ddlClientId.SelectedValue);
-                HTPaysheet.Add("@EmpID", txtEmpid.Text.Substring(0, 9));
-                HTPaysheet.Add("@month", month);
-                HTPaysheet.Add("@ChkBonus", ChkBonus);
                 HTPaysheet.Add("@option", ddltype.SelectedIndex);
+                HTPaysheet.Add("@ChkBonus", ChkBonus);
+                HTPaysheet.Add("@month", month);
 
+                if (ddltype.SelectedIndex == 0)
+                {
+                    HTPaysheet.Add("@EmpIDList", dtEmpIds);
+                }
+                if (ddltype.SelectedIndex == 1)
+                {
+                    HTPaysheet.Add("@EmpID", txtEmpid.Text.Substring(0, 9));
+                }
 
                 DataTable dt = config.ExecuteAdaptorAsyncWithParams(SPName, HTPaysheet).Result;
 
 
-                MemoryStream ms = new MemoryStream();
+                //MemoryStream ms = new MemoryStream();
 
                 int slipsCount = 0;
                 string UANNumber = "";
 
                 if (dt.Rows.Count > 0)
                 {
-                    Document document = new Document(PageSize.LEGAL);
-                    var writer = PdfWriter.GetInstance(document, ms);
-                    document.Open();
+                    //Document document = new Document(PageSize.LEGAL);
+                    //var writer = PdfWriter.GetInstance(document, ms);
+                    //document.Open();
                     BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                     string imagepath1 = Server.MapPath("images");
 
@@ -573,22 +546,16 @@ namespace ShriKartikeya.Portal
 
                     for (int k = 0; k < dtdesgn.Rows.Count; k++)
                     {
-                        // MemoryStream ms = new MemoryStream();
+                        MemoryStream ms = new MemoryStream();
 
-
-
-                        // Document document = new Document(PageSize.A4);
-                        //PdfWriter writer = PdfWriter.GetInstance(document, ms);
+                        Document document = new Document(PageSize.LEGAL);
+                        var writer = PdfWriter.GetInstance(document, ms);
                         document.Open();
                         document.AddTitle("FaMS");
                         document.AddAuthor("DIYOS");
                         document.AddSubject("Wage Slips");
-                        document.AddKeywords("Keyword1, keyword2, …");//
-                                                                      // hasPages = true;
+                        document.AddKeywords("Keyword1, keyword2, …");
                         document.NewPage();
-
-
-
 
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
@@ -596,17 +563,13 @@ namespace ShriKartikeya.Portal
                             ESIEmployer = 0;
                             if (dt.Rows[i]["empid"].ToString() == dtdesgn.Rows[k]["empid"].ToString())
                             {
-
                                 if (dt.Rows[i]["ActualAmount"].ToString().Trim().Length > 0)
                                     forConvert = Convert.ToSingle(dt.Rows[i]["ActualAmount"].ToString());
 
                                 forConvert = Convert.ToSingle(dt.Rows[i]["noofduties"].ToString()) + Convert.ToSingle(dt.Rows[i]["wo"].ToString()) + Convert.ToSingle(dt.Rows[i]["ots"].ToString()) + Convert.ToSingle(dt.Rows[i]["nhs"].ToString());
 
-
                                 if (forConvert > 0)
                                 {
-
-
                                     strQry = "Select p.EmpEpfNo,e.EmpESINo from EMPESICodes AS e INNER JOIN EMPEPFCodes as p ON e.Empid = p.Empid AND e.Empid='" + dt.Rows[i]["EmpId"].ToString() + "'";
                                     string pfNo = "";
                                     string esiNo = "";
@@ -616,6 +579,8 @@ namespace ShriKartikeya.Portal
                                         pfNo = PfTable.Rows[0]["EmpEpfNo"].ToString();
                                         esiNo = PfTable.Rows[0]["EmpESINo"].ToString();
                                     }
+
+                                    #region TOTAL VARIABLES
 
                                     float totalotrate = 0;
                                     float totalcdBasic = 0;
@@ -662,7 +627,8 @@ namespace ShriKartikeya.Portal
                                     //float totalcdTravellingAllowance = 0;
                                     //float totalcdPerformanceAllowance = 0;
 
-                                    // var output = new FileStream(fileheader2, FileMode., FileAccess.Write, FileShare.None);
+                                    #endregion TOTAL VARIABLES
+
                                     #region
 
 
@@ -2704,13 +2670,11 @@ namespace ShriKartikeya.Portal
 
                                     #endregion Basic Information of the Employee
 
+                                    document.Close();
 
                                     #region Begin Email sending as on [03-10-2015]
 
-                                    document.Close();
-
                                     byte[] bytes = ms.ToArray();
-
 
                                     ms.Close();
 
@@ -2724,10 +2688,8 @@ namespace ShriKartikeya.Portal
                                         CmpyPassword = dtMail.Rows[0]["password"].ToString();
                                     }
 
-
                                     if (dt.Rows[i]["EmailId"].ToString().Trim().Length > 0 && String.IsNullOrEmpty(dt.Rows[i]["EmailId"].ToString()) != true)
                                     {
-
                                         MailMessage mm = new MailMessage("pay.advice@gdxgroup.in", dt.Rows[i]["EmailId"].ToString());
 
                                         mm.Subject = "Salary Slip for the Month " + GetMonthName() + " - " + GetMonthOfYear() + " ";
@@ -2755,46 +2717,27 @@ namespace ShriKartikeya.Portal
                                         smtp.Credentials = NetworkCred;
                                         smtp.Send(mm);
 
-
                                         string UpdateMailstatus = "";
 
                                         UpdateMailstatus = "update emppaysheet set MailStatus=1 where empid='" + dt.Rows[i]["Empid"].ToString() + "' and month='" + month + "' and clientid='" + dt.Rows[i]["ClientId"].ToString() + "'";
                                         DataTable dtMails = SqlHelper.Instance.GetTableByQuery(UpdateMailstatus);
-
-
                                     }
 
-
                                     #endregion End Email sending as on [03-10-2015]
-
                                 }
-
                             }
                         }
-
-
                     }
 
-
-
                     Cleardata();
-
                 }
-
-
             }
             catch (Exception Ex)
             {
 
-
             }
 
         }
-
-
-
-
-
 
         protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2855,7 +2798,7 @@ namespace ShriKartikeya.Portal
             {
                 MailQry = "select * from emppaysheet where clientid='" + ddlClientId.SelectedValue + "' and Month='" + month + "' and isnull(mailstatus,0)=0";
 
-                PaysheetMailStatus = " select eps.empid 'Emp ID',ed.EmpFName+' ' +ed.EmpMName+' '+ed.EmpLName 'Name',eps.Gross 'Gross',TotalDeductions 'Total Deductions',ActualAmount 'Net Amount', " +
+                PaysheetMailStatus = " select eps.empid 'Emp ID',ed.EmpFName+' ' +ed.EmpMName+' '+ed.EmpLName 'Name', ed.EmailId 'Email ID', eps.Gross 'Gross',TotalDeductions 'Total Deductions',ActualAmount 'Net Amount', " +
                                    " case isnull(MailStatus,0) when 0 then 'No' when 1 then 'Yes' end 'Mail Status'  from EmpPaySheet eps " +
                                    " inner join EmpDetails ed on ed.EmpId=eps.EmpId where MONTH='" + month + "' and ClientId='" + ddlClientId.SelectedValue + "'";
             }
@@ -2863,7 +2806,7 @@ namespace ShriKartikeya.Portal
             {
                 MailQry = "select * from emppaysheet where empid='" + txtEmpid.Text.Substring(0, 9) + "' and Month='" + month + "'";
 
-                PaysheetMailStatus = " select eps.empid 'Emp ID',ed.EmpFName+' ' +ed.EmpMName+' '+ed.EmpLName 'Name',eps.Gross 'Gross',TotalDeductions 'Total Deductions',ActualAmount 'Net Amount', " +
+                PaysheetMailStatus = " select eps.empid 'Emp ID',ed.EmpFName+' ' +ed.EmpMName+' '+ed.EmpLName 'Name', ed.EmailId 'Email ID', eps.Gross 'Gross',TotalDeductions 'Total Deductions',ActualAmount 'Net Amount', " +
                                  " case isnull(MailStatus,0) when 0 then 'No' when 1 then 'Yes' end 'Mail Status'  from EmpPaySheet eps " +
                                  " inner join EmpDetails ed on ed.EmpId=eps.EmpId where MONTH='" + month + "' and eps.empid='" + txtEmpid.Text.Substring(0, 9) + "'";
             }

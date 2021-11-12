@@ -372,7 +372,7 @@ namespace ShriKartikeya.Portal
 
                 if (ddlOptions.SelectedIndex == 3 )
                 {
-                    e.Row.Cells[3].Attributes.Add("class", "text");
+                    e.Row.Cells[4].Attributes.Add("class", "text");
                 }
                 if (ddlOptions.SelectedIndex == 4)
                 {

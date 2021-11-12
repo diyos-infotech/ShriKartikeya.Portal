@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="RightOne" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
 
-   <link href="css/global.css" rel="stylesheet" type="text/css" />
+    <link href="css/global.css" rel="stylesheet" type="text/css" />
     <link href="css/boostrap/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -12,7 +12,7 @@
         .style1 {
             width: 135px;
         }
-    
+
         .style2 {
             font-size: 10pt;
             font-weight: bold;
@@ -263,32 +263,32 @@
         function GetEmpid() {
 
             $("#<%=txtEmpid.ClientID %>").autocomplete({
-                    source: function (request, response) {
-                        var Url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-                        var ajaxUrl = Url.substring(0, Url.lastIndexOf('/')) + "/Autocompletion.asmx/GetFormEmpIDs";
-                        $.ajax({
-                            url: ajaxUrl,
-                            method: 'post',
-                            contentType: 'application/json;charset=utf-8',
+                source: function (request, response) {
+                    var Url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+                    var ajaxUrl = Url.substring(0, Url.lastIndexOf('/')) + "/Autocompletion.asmx/GetFormEmpIDs";
+                    $.ajax({
+                        url: ajaxUrl,
+                        method: 'post',
+                        contentType: 'application/json;charset=utf-8',
 
-                            data: JSON.stringify({
-                                term: request.term,
-                            }),
-                            datatype: 'json',
-                            success: function (data) {
-                                response(data.d);
-                            },
-                            error: function (err) {
-                                alert(err);
-                            }
-                        });
-                    },
-                    minLength: 4,
-                    select: function (event, ui) {
+                        data: JSON.stringify({
+                            term: request.term,
+                        }),
+                        datatype: 'json',
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (err) {
+                            alert(err);
+                        }
+                    });
+                },
+                minLength: 4,
+                select: function (event, ui) {
 
-                        $("#<%=txtEmpid.ClientID %>").attr("data-Empid", ui.item.value); OnAutoCompletetxtEmpidchange(event, ui);
+                    $("#<%=txtEmpid.ClientID %>").attr("data-Empid", ui.item.value); OnAutoCompletetxtEmpidchange(event, ui);
                 }
-                });
+            });
             }
 
             function GetEmpName() {
@@ -317,25 +317,25 @@
                     minLength: 4,
                     select: function (event, ui) {
                         $("#<%=txtName.ClientID %>").attr("data-EmpName", ui.item.value); OnAutoCompletetxtEmpNamechange(event, ui);
-                }
+                    }
                 });
 
-            }
+                }
 
-            function OnAutoCompletetxtEmpidchange(event, ui) {
-                $("#<%=txtEmpid.ClientID %>").trigger('change');
+                function OnAutoCompletetxtEmpidchange(event, ui) {
+                    $("#<%=txtEmpid.ClientID %>").trigger('change');
 
-            }
-            function OnAutoCompletetxtEmpNamechange(event, ui) {
-                $("#<%=txtName.ClientID %>").trigger('change');
+                    }
+                    function OnAutoCompletetxtEmpNamechange(event, ui) {
+                        $("#<%=txtName.ClientID %>").trigger('change');
 
-        }
+                }
 
-        $(document).ready(function () {
+                $(document).ready(function () {
 
-            GetEmpid();
-            GetEmpName();
-        });
+                    GetEmpid();
+                    GetEmpName();
+                });
 
     </script>
 
@@ -372,126 +372,122 @@
     </style>
 
     <!-- CONTENT AREA BEGIN -->
-        <div id="content-holder">
-            <div class="content-holder">
-                <div id="breadcrumb">
-                    <ul class="crumbs">
-                        <li class="first"><a href="#" style="z-index: 9;"><span></span>Reports</a></li>
-                        <li><a href="Reports.aspx" style="z-index: 8;">Employee Reports</a></li>
-                        <li class="active"><a href="EmpBioData.aspx" style="z-index: 7;" class="active_bread">EMPLOYEE WAGE SLIPS</a></li>
-                    </ul>
-                </div>
-                <!-- DASHBOARD CONTENT BEGIN -->
-                <div class="contentarea" id="contentarea">
-                    <div class="dashboard_center">
-                        <div class="sidebox">
-                            <div class="boxhead">
-                                <h2 style="text-align: center">WAGE SLIPS
-                                </h2>
-                            </div>
-                            <div class="boxbody" style="padding: 5px 5px 5px 5px;">
-                                <div class="boxin">
-                                    <asp:ScriptManager runat="server" ID="ScriptEmployReports">
-                                    </asp:ScriptManager>
-                                    <div style="margin-left: 20px">
-                                        <div style="width: 800px">
-                                            <table style="width: 912px; height: 24px;">
-                                                <tr>
-                                                    <td>Type : </td>
-                                                    <td>
-                                                        <asp:DropDownList ID="ddltype" runat="server" class="sdrop" OnSelectedIndexChanged="ddltype_SelectedIndexChanged" AutoPostBack="true">
-                                                            <asp:ListItem>Client Wise</asp:ListItem>
-                                                            <asp:ListItem>Employee Wise</asp:ListItem>
-                                                        </asp:DropDownList>
-                                                    </td>
-                                                </tr>
-                                                <tr runat="server" style="visibility: hidden; height: 9px;">
-                                                    <td>
-                                                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 80px">
-                                                        <asp:Label ID="lblclientid" runat="server" Text=" Client ID :"></asp:Label>
-                                                        <asp:Label runat="server" ID="lblempid" Width="50px" Visible="false" Text="Emp ID"></asp:Label>
-                                                        <span style="color: Red">*</span>
-                                                    </td>
-                                                    <td>
-                                                        <asp:DropDownList ID="ddlClientId" runat="server" class="ddlautocomplete chosen-select" TabIndex="1" AutoPostBack="True"
-                                                            OnSelectedIndexChanged="ddlClientId_SelectedIndexChanged">
-                                                        </asp:DropDownList>
-                                                        <asp:TextBox ID="txtEmpid" runat="server" CssClass="form-control" AutoPostBack="true" Visible="false" Style="width: 200px" OnTextChanged="txtEmpid_TextChanged"></asp:TextBox>
-
-                                                    </td>
-                                                    &nbsp;
-                                        <td style="width: 80px">
-                                            <asp:Label ID="lblclientName" runat="server" Text=" Client Name :"></asp:Label>
-                                            <asp:Label runat="server" ID="lblempname" Width="50px" Visible="false" Text="Name"></asp:Label>
-                                        </td>
-                                                    <td>
-                                                        <asp:DropDownList ID="ddlcname" runat="server" class="ddlautocomplete chosen-select" AutoPostBack="True" TabIndex="2"
-                                                            OnSelectedIndexChanged="ddlcname_OnSelectedIndexChanged">
-                                                        </asp:DropDownList>
-                                                        <asp:TextBox ID="txtName" runat="server" CssClass="form-control" AutoPostBack="true" Visible="false" Style="width: 200px" OnTextChanged="txtName_TextChanged"></asp:TextBox>
-
-
-                                                    </td>
-                                                    &nbsp;
-                                       
-                                        <td>
-                                            <asp:Label ID="Label1" runat="server" Text="Month :"></asp:Label></td>
-                                                    <td>
-
-                                                        <asp:TextBox ID="Txt_Month" runat="server" CssClass="form-control" OnTextChanged="Txt_Month_TextChanged" AutoPostBack="true"></asp:TextBox>
-
-                                                        <cc1:CalendarExtender ID="Txt_Month_CalendarExtender" runat="server" BehaviorID="calendar1"
-                                                            Enabled="true" Format="MMM-yyyy" TargetControlID="Txt_Month" DefaultView="Months" OnClientHidden="onCalendarHidden" OnClientShown="onCalendarShown">
-                                                        </cc1:CalendarExtender>
-
-                                                    </td>
-                                                </tr>
-
-                                            </table>
-                                        </div>
-                                       
-                                        <table style="margin-top: 15px; width: 102%">
-
+    <div id="content-holder">
+        <div class="content-holder">
+            <div id="breadcrumb">
+                <ul class="crumbs">
+                    <li class="first"><a href="#" style="z-index: 9;"><span></span>Reports</a></li>
+                    <li><a href="Reports.aspx" style="z-index: 8;">Employee Reports</a></li>
+                    <li class="active"><a href="EmpBioData.aspx" style="z-index: 7;" class="active_bread">EMPLOYEE WAGE SLIPS</a></li>
+                </ul>
+            </div>
+            <!-- DASHBOARD CONTENT BEGIN -->
+            <div class="contentarea" id="contentarea">
+                <div class="dashboard_center">
+                    <div class="sidebox">
+                        <div class="boxhead">
+                            <h2 style="text-align: center">WAGE SLIPS
+                            </h2>
+                        </div>
+                        <div class="boxbody" style="padding: 5px 5px 5px 5px;">
+                            <div class="boxin">
+                                <asp:ScriptManager runat="server" ID="ScriptEmployReports">
+                                </asp:ScriptManager>
+                                <div style="margin-left: 10px">
+                                    <div style="width: 980px">
+                                        <table style="width: 960px; height: 24px;">
                                             <tr>
-                                                 <td>
-                                                <asp:CheckBox runat="server" ID="chkbonus" Text="Bonus" Visible="false" />
-                                                 </td>
-                                                  
-                                                <td style="float: right">
-                                                    <asp:Button ID="btnsendmail" runat="server" Text="Send mail" class="btn save" Style="float: right; /* margin-left: -20px; */margin-right: 40px;" OnClick="btnWageSlips_Click" /></td>
+                                                <td>Type </td>
+                                                <td>
+                                                    <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddltype_SelectedIndexChanged" AutoPostBack="true" Width="230px">
+                                                        <asp:ListItem>Client Wise</asp:ListItem>
+                                                        <asp:ListItem>Employee Wise</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </td>
                                             </tr>
+                                            <tr runat="server" style="visibility: hidden; height: 9px;">
+                                                <td>
+                                                    <asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 62px">
+                                                    <asp:Label ID="lblclientid" runat="server" Text=" Client ID"></asp:Label>
+                                                    <asp:Label runat="server" ID="lblempid" Visible="false" Text=" Emp ID" ></asp:Label>
+                                                    <span style="color: Red">*</span>
+                                                </td>
+                                                <td>
+                                                    <asp:DropDownList ID="ddlClientId" runat="server" class="ddlautocomplete chosen-select" TabIndex="1" AutoPostBack="True" Width="180px"
+                                                        OnSelectedIndexChanged="ddlClientId_SelectedIndexChanged">
+                                                    </asp:DropDownList>
+                                                    <asp:TextBox ID="txtEmpid" runat="server" CssClass="form-control" AutoPostBack="true" Visible="false" Width="204px" OnTextChanged="txtEmpid_TextChanged"></asp:TextBox>
+
+                                                </td>
+                                                &nbsp;
+                                        <td style="width: 80px">
+                                            <asp:Label ID="lblclientName" runat="server" Text=" Client Name"></asp:Label>
+                                            <asp:Label runat="server" ID="lblempname" Visible="false" Text=" Emp Name"></asp:Label>
+                                        </td>
+                                                <td>
+                                                    <asp:DropDownList ID="ddlcname" runat="server" class="ddlautocomplete chosen-select" AutoPostBack="True" TabIndex="2" Width="180px"
+                                                        OnSelectedIndexChanged="ddlcname_OnSelectedIndexChanged">
+                                                    </asp:DropDownList>
+                                                    <asp:TextBox ID="txtName" runat="server" CssClass="form-control" AutoPostBack="true" Visible="false" Width="204px" OnTextChanged="txtName_TextChanged"></asp:TextBox>
+                                                </td>
+                                                &nbsp;
+                                       
+                                                <td style="padding-left:38px">
+                                                    <asp:Label ID="Label1" runat="server" Text="Month" ></asp:Label>
+                                                </td>
+                                                <td >
+                                                    <asp:TextBox ID="Txt_Month" runat="server" CssClass="form-control" OnTextChanged="Txt_Month_TextChanged" AutoPostBack="true" Width="180px"></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="Txt_Month_CalendarExtender" runat="server" BehaviorID="calendar1"
+                                                        Enabled="true" Format="MMM-yyyy" TargetControlID="Txt_Month" DefaultView="Months" OnClientHidden="onCalendarHidden" OnClientShown="onCalendarShown">
+                                                    </cc1:CalendarExtender>
+                                                </td>
+                                            </tr>
+
                                         </table>
-
                                     </div>
+
+                                    <table style="margin-top: 15px; width: 980px">
+
+                                        <tr>
+                                            <td>
+                                                <asp:CheckBox runat="server" ID="chkbonus" Text="Bonus" Visible="false" />
+                                            </td>
+
+                                            <td style="float: right">
+                                                <asp:Button ID="btnsendmail" runat="server" Text="Send mail" class="btn save" Style="float: right; /* margin-left: -20px; */margin-right: 40px;" OnClick="btnWageSlips_Click" /></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <br />
+
+                                <div class="rounded_corners" style="overflow: auto; width: 99%">
+                                    <asp:GridView ID="GVPaysheetdata" runat="server" AutoGenerateColumns="true" Width="100%" CssClass="table table-striped table-bordered table-condensed table-hover"
+                                        CellSpacing="3" CellPadding="5" ForeColor="#333333" GridLines="none" Style="margin-left: -2px">
+                                        <Columns>
+                                    
+                                        </Columns>
+                                    </asp:GridView>
                                     <br />
-
-                                    <div class="rounded_corners" style="overflow: auto; width: 99%">
-                                        <asp:GridView ID="GVPaysheetdata" runat="server" AutoGenerateColumns="true" Width="100%" CssClass="table table-striped table-bordered table-condensed table-hover"
-                                            CellSpacing="3" CellPadding="5" ForeColor="#333333" GridLines="none" Style="margin-left: -2px">
-                                            <Columns>
-
-                                            </Columns>
-                                        </asp:GridView>
-                                        <br />
-                                    </div>
-
-
                                 </div>
 
 
                             </div>
+
+
                         </div>
                     </div>
-                    <div class="clear">
-                    </div>
+                </div>
+                <div class="clear">
                 </div>
             </div>
-            <!-- DASHBOARD CONTENT END -->
-            <!-- CONTENT AREA END -->
         </div>
+        <!-- DASHBOARD CONTENT END -->
+        <!-- CONTENT AREA END -->
+    </div>
     <script type="text/javascript">
         Sys.Browser.WebKit = {};
         if (navigator.userAgent.indexOf('WebKit/') > -1) {
