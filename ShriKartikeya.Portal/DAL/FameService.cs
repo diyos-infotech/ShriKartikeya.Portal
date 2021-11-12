@@ -130,7 +130,7 @@ public class FameService : System.Web.Services.WebService
                                                         group by ea.Design,d.Design";
 
 
-    private const string _attendanceDuplicates = @"select ea.ClientID,Ed.EmpFName,ED.OldEmpid,d.Design DesName,
+    private const string _attendanceDuplicates = @"select ea.ClientID,Ed.EmpFName,ED.OldEmpid,d.Design DesName,D.DesignId,Design,
 	                                                           isnull(cast((ea.NoOfDuties)as nvarchar),0) NODTotal,
 	                                                           isnull(cast((ea.OT)as nvarchar),0) OTTotal,
 	                                                           isnull(cast((ea.WO)as nvarchar),0) WOTotal,
@@ -248,6 +248,8 @@ public class FameService : System.Web.Services.WebService
                                EmpFName = row.Field<string>("EmpFName"),
                                OldEmpid = row.Field<string>("OldEmpid"),
                                DesgName = row.Field<string>("DesName"),
+                               DesignId = row.Field<int>("DesignId"),
+                               Design = row.Field<string>("Design"),
                                NODTotal = row.Field<string>("NODTotal"),
                                OTTotal = row.Field<string>("OTTotal"),
                                WOTotal = row.Field<string>("WOTotal"),
@@ -378,7 +380,7 @@ public class FameService : System.Web.Services.WebService
     [WebMethod(EnableSession = true)]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void GetEmployessData(string strid, string month, bool Chk)
-    {
+   {
         //strid = strid == "" ? "" : strid;
         Context.Response.Clear();
         var result = string.Empty;

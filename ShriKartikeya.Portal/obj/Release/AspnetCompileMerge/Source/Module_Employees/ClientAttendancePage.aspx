@@ -19,8 +19,8 @@
             $.widget("custom.combobox", {
                 _create: function () {
                     this.wrapper = $("<span>")
-          .addClass("custom-combobox")
-          .insertAfter(this.element);
+                        .addClass("custom-combobox")
+                        .insertAfter(this.element);
 
                     this.element.hide();
                     this._createAutocomplete();
@@ -30,21 +30,21 @@
 
                 _createAutocomplete: function () {
                     var selected = this.element.children(":selected"),
-          value = selected.val() ? selected.text() : "";
+                        value = selected.val() ? selected.text() : "";
 
                     this.input = $("<input>")
-          .appendTo(this.wrapper)
-          .val(value)
-          .attr("title", "")
-          .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
-          .autocomplete({
-              delay: 0,
-              minLength: 0,
-              source: $.proxy(this, "_source")
-          })
-          .tooltip({
-              tooltipClass: "ui-state-highlight"
-          });
+                        .appendTo(this.wrapper)
+                        .val(value)
+                        .attr("title", "")
+                        .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                        .autocomplete({
+                            delay: 0,
+                            minLength: 0,
+                            source: $.proxy(this, "_source")
+                        })
+                        .tooltip({
+                            tooltipClass: "ui-state-highlight"
+                        });
 
                     this._on(this.input, {
                         autocompleteselect: function (event, ui) {
@@ -60,35 +60,35 @@
 
                 _createShowAllButton: function () {
                     var input = this.input,
-          wasOpen = false;
+                        wasOpen = false;
 
                     $("<a>")
-          .attr("tabIndex", -1)
-          .attr("title", "Show All")
-          .tooltip()
-          .appendTo(this.wrapper)
-          .button({
-              icons: {
-                  primary: "ui-icon-triangle-1-s"
-              },
-              text: false
-          })
-          .removeClass("ui-corner-all")
-          .addClass("custom-combobox-toggle ui-corner-right btnhgtwt")
-          .mousedown(function () {
-              wasOpen = input.autocomplete("widget").is(":visible");
-          })
-          .click(function () {
-              input.focus();
+                        .attr("tabIndex", -1)
+                        .attr("title", "Show All")
+                        .tooltip()
+                        .appendTo(this.wrapper)
+                        .button({
+                            icons: {
+                                primary: "ui-icon-triangle-1-s"
+                            },
+                            text: false
+                        })
+                        .removeClass("ui-corner-all")
+                        .addClass("custom-combobox-toggle ui-corner-right btnhgtwt")
+                        .mousedown(function () {
+                            wasOpen = input.autocomplete("widget").is(":visible");
+                        })
+                        .click(function () {
+                            input.focus();
 
-              // Close if already visible
-              if (wasOpen) {
-                  return;
-              }
+                            // Close if already visible
+                            if (wasOpen) {
+                                return;
+                            }
 
-              // Pass empty string as value to search for, displaying all results
-              input.autocomplete("search", "");
-          });
+                            // Pass empty string as value to search for, displaying all results
+                            input.autocomplete("search", "");
+                        });
                 },
 
                 _source: function (request, response) {
@@ -113,8 +113,8 @@
 
                     // Search for a match (case-insensitive)
                     var value = this.input.val(),
-          valueLowerCase = value.toLowerCase(),
-          valid = false;
+                        valueLowerCase = value.toLowerCase(),
+                        valid = false;
                     this.element.children("option").each(function () {
                         if ($(this).text().toLowerCase() === valueLowerCase) {
                             this.selected = valid = true;
@@ -129,9 +129,9 @@
 
                     // Remove invalid value
                     this.input
-          .val("")
-          .attr("title", value + " didn't match any item")
-          .tooltip("open");
+                        .val("")
+                        .attr("title", value + " didn't match any item")
+                        .tooltip("open");
                     this.element.val("");
                     this._delay(function () {
                         this.input.tooltip("close").attr("title", "");
@@ -155,9 +155,9 @@
 
                     if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
                         // numbers   
-                         key >= 48 && key <= 57 ||
+                        key >= 48 && key <= 57 ||
                         // Numeric keypad
-                         key >= 96 && key <= 105 ||
+                        key >= 96 && key <= 105 ||
                         // comma, period and minus, . on keypad
                         key == 190 || key == 188 || key == 109 || key == 110 ||
                         // Backspace and Tab and Enter
@@ -264,7 +264,7 @@
                             if (json != "") {
 
                                 response($.map(json, function (item) {
-                                    var obj = { value: item.EmpName + "|<>|" + item.empstatus + "|<>|" + item.EmpId, label: item.OLDEMPID };
+                                    var obj = { value: item.EmpName + "|<>|" + item.empstatus + "|<>|" + item.EmpId+ "|<>|" + item.EmpDesg, label: item.OLDEMPID };
                                     return obj;
                                 }));
                             }
@@ -277,19 +277,19 @@
 
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-id");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-name");
-                   <%-- $("#<%=trAddData.ClientID %>").removeAttr("data-emp-desg");--%>
+                   $("#<%=trAddData.ClientID %>").removeAttr("data-emp-desg");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-empstatus");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-oldemp-id");
 
                     var vals = ui.item.value.split('|<>|');
                     $("#<%=txtEmpName.ClientID %>").val(vals[0]);
-                   <%-- $("#<%=ddlEmpDesg.ClientID %>").val(vals[0]);--%>
+                    $("#<%=ddlEmpDesg.ClientID %>").val(vals[3]);
                     $("#<%=lblempstatus.ClientID %>").val(vals[1]);
                     $("#<%=txtEmpId.ClientID %>").val(vals[2]);
 
                     $("#<%=trAddData.ClientID %>").attr("data-emp-id", vals[2]);
                     $("#<%=trAddData.ClientID %>").attr("data-emp-name", vals[0]);
-                   <%-- $("#<%=trAddData.ClientID %>").attr("data-emp-desg", vals[0]);--%>
+                   $("#<%=trAddData.ClientID %>").attr("data-emp-desg", vals[3]);
                     $("#<%=trAddData.ClientID %>").attr("data-emp-status", vals[1]);
                     $("#<%=trAddData.ClientID %>").attr("data-oldemp-id", ui.item.label);
 
@@ -327,7 +327,7 @@
                             if (json != "") {
 
                                 response($.map(json, function (item) {
-                                    var obj = { value: item.EmpName + "|<>|" + item.empstatus + "|<>|" + item.OLDEMPID, label: item.EmpId };
+                                     var obj = { value: item.EmpName + "|<>|" + item.empstatus + "|<>|" + item.EmpId+ "|<>|" + item.EmpDesg, label: item.OLDEMPID };
                                     return obj;
                                 }));
                             }
@@ -340,19 +340,19 @@
 
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-id");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-name");
-                   <%-- $("#<%=trAddData.ClientID %>").removeAttr("data-emp-desg");--%>
+                   $("#<%=trAddData.ClientID %>").removeAttr("data-emp-desg");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-empstatus");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-oldemp-id");
 
                     var vals = ui.item.value.split('|<>|');
                     $("#<%=txtEmpName.ClientID %>").val(vals[0]);
-                   <%-- $("#<%=ddlEmpDesg.ClientID %>").val(vals[0]);--%>
+                    $("#<%=ddlEmpDesg.ClientID %>").val(vals[3]);
                     $("#<%=lblempstatus.ClientID %>").val(vals[1]);
                     $("#<%=txtoldEmpId.ClientID %>").val(vals[2]);
 
                     $("#<%=trAddData.ClientID %>").attr("data-oldemp-id", vals[2]);
                     $("#<%=trAddData.ClientID %>").attr("data-emp-name", vals[0]);
-                   <%-- $("#<%=trAddData.ClientID %>").attr("data-emp-desg", vals[0]);--%>
+                    $("#<%=trAddData.ClientID %>").attr("data-emp-desg", vals[3]);
                     $("#<%=trAddData.ClientID %>").attr("data-emp-status", vals[1]);
                     $("#<%=trAddData.ClientID %>").attr("data-emp-id", ui.item.label);
 
@@ -395,7 +395,7 @@
                             if (json != "") {
 
                                 response($.map(json, function (item) {
-                                    var obj = { value: item.OLDEMPID + "|<>|" + item.empstatus + "|<>|" + item.EmpId, label: item.EmpName };
+                                     var obj = { value: item.EmpName + "|<>|" + item.empstatus + "|<>|" + item.EmpId+ "|<>|" + item.EmpDesg, label: item.OLDEMPID };
                                     return obj;
                                 }));
                             }
@@ -408,19 +408,19 @@
 
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-id");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-name");
-                   <%-- $("#<%=trAddData.ClientID %>").removeAttr("data-emp-desg");--%>
+                   $("#<%=trAddData.ClientID %>").removeAttr("data-emp-desg");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-emp-empstatus");
                     $("#<%=trAddData.ClientID %>").removeAttr("data-oldemp-id");
 
                     var vals = ui.item.value.split('|<>|');
                     $("#<%=txtoldEmpId.ClientID %>").val(vals[0]);
-                   <%-- $("#<%=ddlEmpDesg.ClientID %>").val(vals[0]);--%>
+                    $("#<%=ddlEmpDesg.ClientID %>").val(vals[3]);
                     $("#<%=lblempstatus.ClientID %>").val(vals[1]);
                     $("#<%=txtEmpId.ClientID %>").val(vals[2]);
 
                     $("#<%=trAddData.ClientID %>").attr("data-emp-id", vals[2]);
                     $("#<%=trAddData.ClientID %>").attr("data-emp-name", ui.item.label);
-                   <%-- $("#<%=trAddData.ClientID %>").attr("data-emp-desg", vals[0]);--%>
+                  $("#<%=trAddData.ClientID %>").attr("data-emp-desg", vals[3]);
                     $("#<%=trAddData.ClientID %>").attr("data-emp-status", vals[1]);
                     $("#<%=trAddData.ClientID %>").attr("data-oldemp-id", vals[0]);
 
@@ -456,30 +456,30 @@
 
         function BindClientIdDDL(data) {
             $("#<%=ddlClientID.ClientID %>").html("");
-           $("#<%=ddlClientID.ClientID %>").append("<option value='-1'></option>");
+            $("#<%=ddlClientID.ClientID %>").append("<option value='-1'></option>");
 
-           var databs = [];
-           $.each(data, function (index, element) {
-               databs.push(element.ClientId);
-           });
-           databs.sort();
-           $.each(databs, function (index, element) {
-               $("#<%=ddlClientID.ClientID %>").append("<option value=" + element + ">" + element + "</option>");
+            var databs = [];
+            $.each(data, function (index, element) {
+                databs.push(element.ClientId);
             });
-            }
+            databs.sort();
+            $.each(databs, function (index, element) {
+                $("#<%=ddlClientID.ClientID %>").append("<option value=" + element + ">" + element + "</option>");
+            });
+        }
 
-            function BindClientNameDDL(data) {
-                $("#<%=ddlClientName.ClientID %>").html("");
+        function BindClientNameDDL(data) {
+            $("#<%=ddlClientName.ClientID %>").html("");
                 $("#<%=ddlClientName.ClientID %>").append("<option value='-1'></option>");
                 $.each(data, function (index, element) {
                     $("#<%=ddlClientName.ClientID %>").append("<option value=" + element.ClientId + ">" + element.ClientName + "</option>");
-                });
-                }
+            });
+        }
 
-                function SetAutoCompleteValue(ddlid, defValue) {
+        function SetAutoCompleteValue(ddlid, defValue) {
 
-                    if (ddlid == "id") {
-                        $("#<%=ddlClientName.ClientID %>").combobox("destroy");
+            if (ddlid == "id") {
+                $("#<%=ddlClientName.ClientID %>").combobox("destroy");
                         $("#<%=ddlClientName.ClientID %>").val(defValue);
                         $("#<%=ddlClientName.ClientID %>").combobox({
                             select: function (event, ui) { OnAutoCompleteDDLchange(event, ui); }
@@ -489,27 +489,27 @@
                         $("#<%=ddlClientID.ClientID %>").combobox("destroy");
                         $("#<%=ddlClientID.ClientID %>").val(defValue);
                         $("#<%=ddlClientID.ClientID %>").combobox({
-                            select: function (event, ui) { OnAutoCompleteDDLchange(event, ui); }
-                        });
-                    }
-                }
+                    select: function (event, ui) { OnAutoCompleteDDLchange(event, ui); }
+                });
+            }
+        }
 
-                function Reset() {
-                    var dropDown = document.getElementById("ddlMonth");
-                    dropDown.selectedIndex = 0;
-                }
+        function Reset() {
+            var dropDown = document.getElementById("ddlMonth");
+            dropDown.selectedIndex = 0;
+        }
 
-                function OnAutoCompleteDDLchange(event, ui) {
+        function OnAutoCompleteDDLchange(event, ui) {
 
-                    var targetddlid = "";
-                    console.log(event.target.id);
-                    if (event.target.id === "ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder3_ddlClientID") { targetddlid = "id"; }
-                    else if (event.target.id === "ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder3_ddlClientName") targetddlid = "name";
-                    SetAutoCompleteValue(targetddlid, ui.item.value);
-                    $("#<%=ddlMonth.ClientID %>").val(0);
-                   $("#tblattendancegrid>tbody").html("");  //tblattendancegrid
-                   $("#tblSummary >tbody").html("");
-                   if (targetddlid == '#<%=ddlClientName.ClientID %>' || targetddlid == '#<%=ddlClientID.ClientID %>') { ChangeClientValues(ui.item.value); }
+            var targetddlid = "";
+            console.log(event.target.id);
+            if (event.target.id === "ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder3_ddlClientID") { targetddlid = "id"; }
+            else if (event.target.id === "ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder3_ddlClientName") targetddlid = "name";
+            SetAutoCompleteValue(targetddlid, ui.item.value);
+            $("#<%=ddlMonth.ClientID %>").val(0);
+                    $("#tblattendancegrid>tbody").html("");  //tblattendancegrid
+                    $("#tblSummary >tbody").html("");
+                    if (targetddlid == '#<%=ddlClientName.ClientID %>' || targetddlid == '#<%=ddlClientID.ClientID %>') { ChangeClientValues(ui.item.value); }
         }
 
         function ChangeClientValues(cid) {
@@ -533,61 +533,61 @@
             var o = new Option("Select", "0");
             $(o).html("Select");
             $("#<%=ddlEmpDesg.ClientID %>").append(o);
-                    $.ajax
-                          ({
-                              type: "POST",
-                              url: "/FameService.asmx/BindDesgnTempAttendance",
-                              data: "{clientId:'" + cid + "',month:'" + month + "'}",
-                              contentType: "application/json;charset=utf-8",
-                              dataType: "json",
-                              success: function (r) {
-                                  $.each(r, function () {
-                                      debugger
-                                      $("#<%=ddlEmpDesg.ClientID %>").append($('<option>').text(this.Design).attr('value', this.DesignId));
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "/FameService.asmx/BindDesgnTempAttendance",
+                    data: "{clientId:'" + cid + "',month:'" + month + "'}",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        $.each(r, function () {
+                            debugger
+                            $("#<%=ddlEmpDesg.ClientID %>").append($('<option>').text(this.Design).attr('value', this.DesignId));
 
-                               });
-                           },
+                        });
+                    },
 
-                           error: function (err) {
+                    error: function (err) {
 
-                           }
-                       });
-
-
-                   }
+                    }
+                });
 
 
-                   function AddNewEmp(ele) {
+        }
 
-                       debugger
-                       var empid = $("#<%=txtEmpId.ClientID %>").val();
-            var oldempid = $("#<%=txtoldEmpId.ClientID %>").val();
-            var empname = $("#<%=txtEmpName.ClientID %>").val();
-            var empdesgid = $("#<%=ddlEmpDesg.ClientID %>").val();
-            var empdesgname = $('#<%= ddlEmpDesg.ClientID %> option:selected').text();
-            var empttype = $('#<%= ddlTransfertype.ClientID %> option:selected').val();
-            var jdate = $("#txtJoingingDate").val();
-            var rdate = $("#txtRelievingDate").val();
-            var esi = $("#chkESI").is(":checked");
-            var pt = $("#chkPT").is(":checked");
-            var pf = $("#chkPF").is(":checked");
-            var nod = $("#txt-add-nod").val();
-            var ot = $("#txt-add-ot").val();
-            var wo = $("#txt-add-wo").val();
-            var nhs = $("#txt-add-nhs").val();
-            var npots = $("#txt-add-npots").val();
-            var othrs = $("#txt-add-othrs").val();
-            var canadv = $("#txt-add-canadv").val();
-            var pen = $("#txt-add-pen").val();
-            var unided = $("#txt-add-unided").val();
-            var atmded = $("#txt-add-atmded").val();
-            var inctvs = $("#txt-add-inctvs").val();
-            var Arrears = $("#txt-add-arrears").val();
-            var Reimbursement = $("#txt-add-reimbursement").val();
 
-            var empstatus = $("#<%=lblempstatus.ClientID %>").val();
-                       var stoppayment = $("#chkstoppayment").is(":checked");
-                       var updated = false;
+        function AddNewEmp(ele) {
+
+            debugger
+            var empid = $("#<%=txtEmpId.ClientID %>").val();
+                       var oldempid = $("#<%=txtoldEmpId.ClientID %>").val();
+                       var empname = $("#<%=txtEmpName.ClientID %>").val();
+                       var empdesgid = $("#<%=ddlEmpDesg.ClientID %>").val();
+                       var empdesgname = $('#<%= ddlEmpDesg.ClientID %> option:selected').text();
+                       var empttype = $('#<%= ddlTransfertype.ClientID %> option:selected').val();
+                       var jdate = $("#txtJoingingDate").val();
+                       var rdate = $("#txtRelievingDate").val();
+                       var esi = $("#chkESI").is(":checked");
+                       var pt = $("#chkPT").is(":checked");
+                       var pf = $("#chkPF").is(":checked");
+                       var nod = $("#txt-add-nod").val();
+                       var ot = $("#txt-add-ot").val();
+                       var wo = $("#txt-add-wo").val();
+                       var nhs = $("#txt-add-nhs").val();
+                       var npots = $("#txt-add-npots").val();
+                       var othrs = $("#txt-add-othrs").val();
+                       var canadv = $("#txt-add-canadv").val();
+                       var pen = $("#txt-add-pen").val();
+                       var unided = $("#txt-add-unided").val();
+                       var atmded = $("#txt-add-atmded").val();
+                       var inctvs = $("#txt-add-inctvs").val();
+                       var Arrears = $("#txt-add-arrears").val();
+                       var Reimbursement = $("#txt-add-reimbursement").val();
+
+                       var empstatus = $("#<%=lblempstatus.ClientID %>").val();
+            var stoppayment = $("#chkstoppayment").is(":checked");
+            var updated = false;
 
 
             //var ajaxUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + "/FameService.asmx/CheckSite";
@@ -612,103 +612,103 @@
             //            }
             //            else if (json.msg == "fail") {
 
-                       if ($('#tblattendancegrid > tbody > tr').length > 0) {
-                           $('#tblattendancegrid > tbody > tr').each(function (i, row) {
-                               var trempid = $(row).attr("data-emp-id");
-                               var trempdesg = $(row).attr("data-emp-desg");
-                               if (empid == trempid && empdesgid == trempdesg) {
-                                   $(row).find(".txt-nod").val(nod);
-                                   $(row).find(".txt-ot").val(ot);
-                                   $(row).find(".txt-wo").val(wo);
-                                   $(row).find(".txt-nhs").val(nhs);
-                                   $(row).find(".txt-nposts").val(npots);
-                                   $(row).find(".txt-othrs").val(othrs);
-                                   $(row).find(".txt-candav").val(canadv);
-                                   $(row).find(".txt-pen").val(pen);
-                                   $(row).find(".txt-unided").val(unided);
-                                   $(row).find(".txt-atmded").val(atmded);
-                                   $(row).find(".txt-inctvs").val(inctvs);
-                                   $(row).find(".txt-Arrears").val(Arrears);
-                                   $(row).find(".txt-Reimbursement").val(Reimbursement);
-                                   $(row).find("#chkstoppayment").val(stoppayment);
-                                   alert("Employee attendance updated.");
-                                   updated = true;
-                               }
-                           });
-                       }
+            if ($('#tblattendancegrid > tbody > tr').length > 0) {
+                $('#tblattendancegrid > tbody > tr').each(function (i, row) {
+                    var trempid = $(row).attr("data-emp-id");
+                    var trempdesg = $(row).attr("data-emp-desg");
+                    if (empid == trempid && empdesgid == trempdesg) {
+                        $(row).find(".txt-nod").val(nod);
+                        $(row).find(".txt-ot").val(ot);
+                        $(row).find(".txt-wo").val(wo);
+                        $(row).find(".txt-nhs").val(nhs);
+                        $(row).find(".txt-nposts").val(npots);
+                        $(row).find(".txt-othrs").val(othrs);
+                        $(row).find(".txt-candav").val(canadv);
+                        $(row).find(".txt-pen").val(pen);
+                        $(row).find(".txt-unided").val(unided);
+                        $(row).find(".txt-atmded").val(atmded);
+                        $(row).find(".txt-inctvs").val(inctvs);
+                        $(row).find(".txt-Arrears").val(Arrears);
+                        $(row).find(".txt-Reimbursement").val(Reimbursement);
+                        $(row).find("#chkstoppayment").val(stoppayment);
+                        alert("Employee attendance updated.");
+                        updated = true;
+                    }
+                });
+            }
 
-                       if (!updated) {
-                           var nr = "<tr class='tr-emp-att new-row' data-emp-id='##EMPID##' data-emp-desg='##EMPDESG##' data-emp-status='##EMPSTATUS##' data-emp-ttype='##EMPTTYPE##' data-emp-jdate='##EMPJDATE##' data-emp-rdate='##EMPRDATE##' data-emp-pf='##EMPPF##' data-emp-pt='##EMPPT##' data-emp-esi='##EMPESI##' >" +
-                                            "<td></td><td><input type='checkbox' id='chkstoppayment' value='##STOPPAYMENT##' /><td>##EMPID##<br/>##OLDEMPLID##</td><td>##EMPNAME##</td><td>##EMPDESGNAME##</td>" +
-                                            "<td><input type='text' class='form-control num-txt txt-nod line-cal' value='##NOD##'></td>" +
-                                           " <td><input type='text' class='form-control num-txt txt-ot line-cal' value='##OT##'></td>" +
-                                            "<td><input type='text' class='form-control num-txt txt-wo line-cal' value='##WO##'></td>" +
-                                           " <td><input type='text' class='form-control num-txt txt-nhs line-cal' value='##NHS##'></td>" +
-                                           " <td><input type='text' class='form-control num-txt txt-nposts line-cal' value='##NPOSTS##'></td>" +
-                                           " <td><input type='text' class='form-control num-txt txt-othrs line-cal' value='##OTHRS##'></td>" +
-                                           " <td><input type='text' class='form-control num-txt txt-candav' value='##CANADV##'></td>" +
-                                           " <td><input type='text' class='form-control num-txt txt-pen' value='##PEN##'></td>" +
-                                            " <td><input type='text' class='form-control num-txt txt-unided' value='##UNIDED##'></td>" +
-                                             " <td><input type='text' class='form-control num-txt txt-atmded' value='##ATMDED##'></td>" +
-                                           " <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td>  " +
-                                           " <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>  " +
-                                           " <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td>  " +
-                                           " <td><label class='txt-linetotal'/> " +
-                                           " <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>" +
-                                          " </tr>";
-                           if (empstatus != "false") {
-                               if (empid != "" && empdesgid != "0") {
-                                   var newrow = nr.replace("##EMPID##", empid).replace("##EMPID##", empid)
-                                              .replace('##OLDEMPLID##', oldempid)
-                                             .replace('##EMPNAME##', empname)
-                                             .replace('##EMPDESG##', empdesgid)
-                                             .replace('##EMPDESGNAME##', empdesgname)
-                                             .replace('##EMPJDATE##', jdate)
-                                             .replace('##EMPRDATE##', rdate)
-                                             .replace('##EMPPF##', pf)
-                                             .replace('##EMPPT##', pt)
-                                             .replace('##EMPESI##', esi)
-                                             .replace('##EMPTTYPE##', empttype)
-                                             .replace('##NOD##', nod)
-                                             .replace('##OT##', ot)
-                                             .replace('##WO##', wo)
-                                             .replace('##NHS##', nhs)
-                                             .replace('##NPOSTS##', npots)
-                                       .replace('##OTHRS##', othrs)
-                                             .replace('##CANADV##', canadv)
-                                             .replace('##PEN##', pen)
-                                        .replace('##UNIDED##', unided)
-                                        .replace('##ATMDED##', atmded)
-                                             .replace('##INCTVS##', inctvs)
-                                       .replace('##ARREARS##', Arrears)
-                                       .replace('##REIMBURSEMENT##', Reimbursement)
-                                       .replace('##STOPPAYMENT##', stoppayment);
+            if (!updated) {
+                var nr = "<tr class='tr-emp-att new-row' data-emp-id='##EMPID##' data-emp-desg='##EMPDESG##' data-emp-status='##EMPSTATUS##' data-emp-ttype='##EMPTTYPE##' data-emp-jdate='##EMPJDATE##' data-emp-rdate='##EMPRDATE##' data-emp-pf='##EMPPF##' data-emp-pt='##EMPPT##' data-emp-esi='##EMPESI##' >" +
+                    "<td></td><td><input type='checkbox' id='chkstoppayment' value='##STOPPAYMENT##' /><td>##EMPID##<br/>##OLDEMPLID##</td><td>##EMPNAME##</td><td>##EMPDESGNAME##</td>" +
+                    "<td><input type='text' class='form-control num-txt txt-nod line-cal' value='##NOD##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-ot line-cal' value='##OT##'></td>" +
+                    "<td><input type='text' class='form-control num-txt txt-wo line-cal' value='##WO##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-nhs line-cal' value='##NHS##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-nposts line-cal' value='##NPOSTS##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-othrs line-cal' value='##OTHRS##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-candav' value='##CANADV##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-pen' value='##PEN##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-unided' value='##UNIDED##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-atmded' value='##ATMDED##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td>  " +
+                    " <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>  " +
+                    " <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td>  " +
+                    " <td><label class='txt-linetotal'/> " +
+                    " <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>" +
+                    " </tr>";
+                if (empstatus != "false") {
+                    if (empid != "" && empdesgid != "0") {
+                        var newrow = nr.replace("##EMPID##", empid).replace("##EMPID##", empid)
+                            .replace('##OLDEMPLID##', oldempid)
+                            .replace('##EMPNAME##', empname)
+                            .replace('##EMPDESG##', empdesgid)
+                            .replace('##EMPDESGNAME##', empdesgname)
+                            .replace('##EMPJDATE##', jdate)
+                            .replace('##EMPRDATE##', rdate)
+                            .replace('##EMPPF##', pf)
+                            .replace('##EMPPT##', pt)
+                            .replace('##EMPESI##', esi)
+                            .replace('##EMPTTYPE##', empttype)
+                            .replace('##NOD##', nod)
+                            .replace('##OT##', ot)
+                            .replace('##WO##', wo)
+                            .replace('##NHS##', nhs)
+                            .replace('##NPOSTS##', npots)
+                            .replace('##OTHRS##', othrs)
+                            .replace('##CANADV##', canadv)
+                            .replace('##PEN##', pen)
+                            .replace('##UNIDED##', unided)
+                            .replace('##ATMDED##', atmded)
+                            .replace('##INCTVS##', inctvs)
+                            .replace('##ARREARS##', Arrears)
+                            .replace('##REIMBURSEMENT##', Reimbursement)
+                            .replace('##STOPPAYMENT##', stoppayment);
 
-                                   $("#tblattendancegrid >tbody").append(newrow);
-                                   alert("Employee added.");
+                        $("#tblattendancegrid >tbody").append(newrow);
+                        alert("Employee added.");
 
-                                   reorder();
-                               }
-                               else {
-                                   alert("Select Employee and Designation");
-                               }
-                           }
-                           else {
-                               alert("Employee Cannot be posted to the unit as the selected employee is inactive");
+                        reorder();
+                    }
+                    else {
+                        alert("Select Employee and Designation");
+                    }
+                }
+                else {
+                    alert("Employee Cannot be posted to the unit as the selected employee is inactive");
 
-                           }
-                       }
-                       $(".num-txt").forceNumeric();
-                       CalculateTotals();
-                       ClearEmpAddValues();
-                   }
+                }
+            }
+            $(".num-txt").forceNumeric();
+            CalculateTotals();
+            ClearEmpAddValues();
+        }
 
 
-                   function ClearEmpAddValues() {
-                       $("#<%=txtEmpId.ClientID %>").val("");
+        function ClearEmpAddValues() {
+            $("#<%=txtEmpId.ClientID %>").val("");
                        $("#<%=txtEmpName.ClientID %>").val("");
                        $("#<%=txtoldEmpId.ClientID %>").val("");
-                <%--$("#<%=ddlEmpDesg.ClientID %>").val(0);--%>
+                       $("#<%=ddlEmpDesg.ClientID %>").val(0);
                        $("#<%=ddlTransfertype.ClientID %>").val(0);
                        // var tdate = new Date();
                        //$(".txt-calender").val(getFormattedDate(tdate));
@@ -731,135 +731,135 @@
                        $("#<%=lblempstatus.ClientID %>").val("");
                  <%-- $("#<%=txtEmpId.ClientID %>").focus();--%>
                        $("#<%=txtoldEmpId.ClientID %>").focus();
-                       $("#divDuplicates").hide();
+            $("#divDuplicates").hide();
 
-                   }
+        }
 
-                   function DeleteRow(ele) {
-                       if (confirm("Are you sure you want to remove the employee from this unit?")) {
-                           if ($(ele).parent().parent().hasClass("new-row")) {
-                               $(ele).parent().parent().remove();
-                               alert("Employee deleted for current month.");
-                           }
-                           else {
-                               var trclientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
+        function DeleteRow(ele) {
+            if (confirm("Are you sure you want to remove the employee from this unit?")) {
+                if ($(ele).parent().parent().hasClass("new-row")) {
+                    $(ele).parent().parent().remove();
+                    alert("Employee deleted for current month.");
+                }
+                else {
+                    var trclientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
                                // var trmonth = $("#ddlMonth option:selected").index();
                                var trmonth = 0;
                                var trChk = $("#<%=chkold.ClientID %>").is(":checked");
-                                 if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
+                               if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
                                    trmonth = $("#<%=txtmonth.ClientID %>").val();
+                                 }
+                                 else {
+                                     trmonth = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
+                    }
+                    var trempid = $(ele).parent().parent().attr("data-emp-id");
+                    var trempdesg = $(ele).parent().parent().attr("data-emp-desg");
+                    var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+                    var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/DeleteAttendance";
+                    if (trclientId != undefined && trclientId != "0" && trclientId != "" && trmonth != undefined && trmonth != "0") {
+                        var dataparam = JSON.stringify({ empId: trempid, empDesgId: trempdesg, clientId: trclientId, month: trmonth });
+                        $.ajax({
+                            type: "POST",
+                            url: ajaxUrl,
+                            data: dataparam,
+                            async: false,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (json) {
+                                if (json != "") {
+                                    $(ele).parent().parent().remove();
+                                    alert("Employee deleted for current month.");
+                                }
+                            },
+                            error: function (json) { alert(json); }
+                        });
+                    } else {
+                        alert('select ClientID');
+                    }
+                }
+                CalculateTotals();
+            }
+            reorder();
+        }
+
+        function Empddlchange(ele) {
+            var id = $(ele).attr("id");
+            if (id == "ddlEmpId") {
+                var val = $("#ddlEmpId option:selected").val();
+                var txt = $("#ddlEmpId option:selected").text();
+                $("#ddlEmpName").val(txt);
+                $("#<%=ddlEmpDesg.ClientID %>").val(val);
+                  }
+                  if (id == "ddlEmpName") {
+                      $("#ddlEmpId option").removeAttr("selected");
+                      var val = $("#ddlEmpName option:selected").val();
+                      var empdes = $("#ddlEmpId option:contains(" + val + ")").val();
+                      var empid = $("#ddlEmpId option:contains(" + val + ")").text();
+                      $("#ddlEmpId option").each(function () {
+                          if ($(this).text() == empid) {
+                              $(this).attr('selected', 'selected');
                           }
-                          else {
-                              trmonth = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
-                          }
-                          var trempid = $(ele).parent().parent().attr("data-emp-id");
-                          var trempdesg = $(ele).parent().parent().attr("data-emp-desg");
-                          var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-                          var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/DeleteAttendance";
-                          if (trclientId != undefined && trclientId != "0" && trclientId != "" && trmonth != undefined && trmonth != "0") {
-                              var dataparam = JSON.stringify({ empId: trempid, empDesgId: trempdesg, clientId: trclientId, month: trmonth });
-                              $.ajax({
-                                  type: "POST",
-                                  url: ajaxUrl,
-                                  data: dataparam,
-                                  async: false,
-                                  contentType: "application/json; charset=utf-8",
-                                  dataType: "json",
-                                  success: function (json) {
-                                      if (json != "") {
-                                          $(ele).parent().parent().remove();
-                                          alert("Employee deleted for current month.");
-                                      }
-                                  },
-                                  error: function (json) { alert(json); }
-                              });
-                          } else {
-                              alert('select ClientID');
-                          }
-                      }
-                      CalculateTotals();
-                  }
-                  reorder();
-              }
-
-              function Empddlchange(ele) {
-                  var id = $(ele).attr("id");
-                  if (id == "ddlEmpId") {
-                      var val = $("#ddlEmpId option:selected").val();
-                      var txt = $("#ddlEmpId option:selected").text();
-                      $("#ddlEmpName").val(txt);
-                      $("#<%=ddlEmpDesg.ClientID %>").val(val);
-                 }
-                 if (id == "ddlEmpName") {
-                     $("#ddlEmpId option").removeAttr("selected");
-                     var val = $("#ddlEmpName option:selected").val();
-                     var empdes = $("#ddlEmpId option:contains(" + val + ")").val();
-                     var empid = $("#ddlEmpId option:contains(" + val + ")").text();
-                     $("#ddlEmpId option").each(function () {
-                         if ($(this).text() == empid) {
-                             $(this).attr('selected', 'selected');
-                         }
-                     });
-                     $("#<%=ddlEmpDesg.ClientID %>").val(empdes);
-                  }
-              }
-
-
-              function DownloadPDF() {
-                  debugger
-                  // openModal();
-                  var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
-                 var month = 0;
-                 var Chk = $("#<%=chkold.ClientID %>").is(":checked");
-                 if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
-                     month = $("#<%=txtmonth.ClientID %>").val();
-                  }
-                  else {
-                      month = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
-                  }
-                  var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-                  var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/DownloadPDF";
-                  if (clientId != undefined && clientId != "0" && clientId != "" && month != undefined && month != "0") {
-                      $.ajax({
-                          type: "POST",
-                          url: ajaxUrl,
-                          data: "{clientId:'" + clientId + "',month:'" + month + "',Chk:'" + Chk + "'}",
-                          async: false,
-                          contentType: "application/json; charset=utf-8",
-                          dataType: "json",
-                          success: function (json) {
-
-                          },
-                          error: function (json) { alert('fail'); }
                       });
-                  } else {
-                      alert("Select ClientId and month");
-                  }
-              }
+                      $("#<%=ddlEmpDesg.ClientID %>").val(empdes);
+            }
+        }
 
-              function GetAttendance() {
-                  GetEmpAttendanceData();
 
-                  var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
-                    var month = 0;
-                    var Chk = $("#<%=chkold.ClientID %>").is(":checked");
-                 if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
-                        month = $("#<%=txtmonth.ClientID %>").val();
-                }
-                else {
-                    month = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
-                }
+        function DownloadPDF() {
+            debugger
+            // openModal();
+            var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
+                  var month = 0;
+                  var Chk = $("#<%=chkold.ClientID %>").is(":checked");
+                  if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
+                      month = $("#<%=txtmonth.ClientID %>").val();
+                 }
+                 else {
+                     month = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
+            }
+            var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+            var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/DownloadPDF";
+            if (clientId != undefined && clientId != "0" && clientId != "" && month != undefined && month != "0") {
+                $.ajax({
+                    type: "POST",
+                    url: ajaxUrl,
+                    data: "{clientId:'" + clientId + "',month:'" + month + "',Chk:'" + Chk + "'}",
+                    async: false,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (json) {
 
-                ChangeDesgnValues(clientId, month);
+                    },
+                    error: function (json) { alert('fail'); }
+                });
+            } else {
+                alert("Select ClientId and month");
+            }
+        }
+
+        function GetAttendance() {
+            GetEmpAttendanceData();
+
+            var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
+                  var month = 0;
+                  var Chk = $("#<%=chkold.ClientID %>").is(":checked");
+                  if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
+                      month = $("#<%=txtmonth.ClientID %>").val();
+                 }
+                 else {
+                     month = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
             }
 
-            function GetEmpAttendanceData() {
-                // openModal();
-                var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
-                 var month = 0;
-                 var Chk = $("#<%=chkold.ClientID %>").is(":checked");
-            if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
-                     month = $("#<%=txtmonth.ClientID %>").val();
+            ChangeDesgnValues(clientId, month);
+        }
+
+        function GetEmpAttendanceData() {
+            // openModal();
+            var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
+                var month = 0;
+                var Chk = $("#<%=chkold.ClientID %>").is(":checked");
+                if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
+                    month = $("#<%=txtmonth.ClientID %>").val();
             }
             else {
                 month = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
@@ -892,7 +892,7 @@
             } else {
                 alert("Select ClientId and month");
             }
-                 //closeModal();
+            //closeModal();
             GetEmpAttendanceDataSummarry();
 
             reorder();
@@ -904,40 +904,40 @@
             $("#tblattendancegrid >tbody").html("");
             $.each(data, function (i, item) {
                 var nr = "<tr class='tr-emp-att' data-emp-id='##EMPID##' data-emp-desg='##EMPDESG##' data-emp-ttype='##EMPTTYPE##' data-emp-jdate='##EMPJDATE##' data-emp-rdate='##EMPRDATE##' data-emp-pf='##EMPPF##' data-emp-pt='##EMPPT##' data-emp-esi='##EMPESI##' >" +
-                                 " <td></td> <td><input type='checkbox' id='chkstoppayment'  /></td><td>##EMPID##<br/>##OLDEMPLID##</td><td>##EMPNAME##</td><td>##EMPDESGNAME##</td>" +
-                                 "<td><input type='text' class='form-control num-txt txt-nod line-cal' value='##NOD##'></td>" +
-                                " <td><input type='text' class='form-control num-txt txt-ot line-cal' value='##OT##'></td>" +
-                                 "<td><input type='text' class='form-control num-txt txt-wo line-cal' value='##WO##'></td>" +
-                                " <td><input type='text' class='form-control num-txt txt-nhs line-cal' value='##NHS##'></td>" +
-                                " <td><input type='text' class='form-control num-txt txt-nposts line-cal' value='##NPOSTS##'></td>" +
-                                 " <td><input type='text' class='form-control num-txt txt-othrs line-cal' value='##OTHRS##'></td>" +
-                                " <td><input type='text' class='form-control num-txt txt-candav' value='##CANADV##'></td>" +
-                                " <td><input type='text' class='form-control num-txt txt-pen' value='##PEN##'></td>" +
-                                  " <td><input type='text' class='form-control num-txt txt-unided' value='##UNIDED##'></td>" +
-                                  " <td><input type='text' class='form-control num-txt txt-atmded' value='##ATMDED##'></td>" +
-                                " <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td>  " +
-                                " <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>  " +
-                               " <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td>  " +
-                                " <td><label class='txt-linetotal'/> " +
-                                " <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>" +
-                               " </tr>";
+                    " <td></td> <td><input type='checkbox' id='chkstoppayment'  /></td><td>##EMPID##<br/>##OLDEMPLID##</td><td>##EMPNAME##</td><td>##EMPDESGNAME##</td>" +
+                    "<td><input type='text' class='form-control num-txt txt-nod line-cal' value='##NOD##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-ot line-cal' value='##OT##'></td>" +
+                    "<td><input type='text' class='form-control num-txt txt-wo line-cal' value='##WO##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-nhs line-cal' value='##NHS##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-nposts line-cal' value='##NPOSTS##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-othrs line-cal' value='##OTHRS##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-candav' value='##CANADV##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-pen' value='##PEN##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-unided' value='##UNIDED##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-atmded' value='##ATMDED##'></td>" +
+                    " <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td>  " +
+                    " <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>  " +
+                    " <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td>  " +
+                    " <td><label class='txt-linetotal'/> " +
+                    " <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>" +
+                    " </tr>";
 
                 var newrow = nr.replace("##EMPID##", item.EmpId).replace("##EMPID##", item.EmpId)
-                          .replace('##OLDEMPLID##', item.OLDEMPID)
-                          .replace('##EMPNAME##', item.EmpName)
-                          .replace('##EMPDESG##', item.DesgId)
-                          .replace('##EMPDESGNAME##', item.DesgName)
-                          .replace('##NOD##', item.NoOfDuties)
-                          .replace('##OT##', item.OT)
-                          .replace('##WO##', item.WO)
-                          .replace('##NHS##', item.NHS)
-                          .replace('##NPOSTS##', item.NPosts)
+                    .replace('##OLDEMPLID##', item.OLDEMPID)
+                    .replace('##EMPNAME##', item.EmpName)
+                    .replace('##EMPDESG##', item.DesgId)
+                    .replace('##EMPDESGNAME##', item.DesgName)
+                    .replace('##NOD##', item.NoOfDuties)
+                    .replace('##OT##', item.OT)
+                    .replace('##WO##', item.WO)
+                    .replace('##NHS##', item.NHS)
+                    .replace('##NPOSTS##', item.NPosts)
                     .replace('##OTHRS##', item.OTHRS)
-                          .replace('##CANADV##', item.CanteenAdv)
-                          .replace('##PEN##', item.Penalty)
-                      .replace('##UNIDED##', item.UNIDED)
-                      .replace('##ATMDED##', item.ATMDED)
-                          .replace('##INCTVS##', item.Incentivs)
+                    .replace('##CANADV##', item.CanteenAdv)
+                    .replace('##PEN##', item.Penalty)
+                    .replace('##UNIDED##', item.UNIDED)
+                    .replace('##ATMDED##', item.ATMDED)
+                    .replace('##INCTVS##', item.Incentivs)
                     .replace('##ARREARS##', item.Arrears)
                     .replace('##REIMBURSEMENT##', item.Reimbursement);
                 $("#tblattendancegrid >tbody").append(newrow);
@@ -954,10 +954,10 @@
         function GetEmpAttendanceDataSummarry() {
             // openModal();
             var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
-                 var month = 0;
-                 var Chk = $("#<%=chkold.ClientID %>").is(":checked");
+            var month = 0;
+            var Chk = $("#<%=chkold.ClientID %>").is(":checked");
             if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
-                     month = $("#<%=txtmonth.ClientID %>").val();
+                month = $("#<%=txtmonth.ClientID %>").val();
             }
             else {
                 month = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
@@ -989,7 +989,7 @@
                     error: function (json) { alert('fail'); }
                 });
             }
-                 // closeModal();
+            // closeModal();
         }
 
         function AddSummaryTbl(data) {
@@ -997,35 +997,35 @@
             $("#tblSummary >tbody").html("");
             $.each(data, function (i, item) {
                 var strr = "<tr class='tr-emp-summary'>" +
-                   " <td><label class='lbl-tdesg lbl-thin'>##Designation##</label></td>" +
+                    " <td><label class='lbl-tdesg lbl-thin'>##Designation##</label></td>" +
                     "<td><label class='lbl-tnod lbl-thin lbl-tots'>##TNOD##</label></td>" +
                     "<td><label class='lbl-tot lbl-thin lbl-tots'>##TOT##</label></td>" +
                     "<td><label class='lbl-two lbl-thin lbl-tots'>##TWO##</label></td>" +
                     "<td><label class='lbl-tnhs lbl-thin lbl-tots'>##TNHS##</label></td>" +
                     "<td><label class='lbl-tnpots lbl-thin lbl-tots'>##TNPOTS##</label></td>" +
-                     "<td><label class='lbl-tothrs lbl-thin lbl-tothrs'>##TOTHRS##</label></td>" +
+                    "<td><label class='lbl-tothrs lbl-thin lbl-tothrs'>##TOTHRS##</label></td>" +
                     "<td><label class='lbl-Totals'></label></td>" +
                     "<td><label class='lbl-tcadv lbl-thin'>##TCADV##</label></td>" +
                     "<td><label class='lbl-tpen lbl-thin'>##TPEN##</label></td>" +
-                      "<td><label class='lbl-tunided lbl-thin'>##TUNIDED##</label></td>" +
-                        "<td><label class='lbl-tatmded lbl-thin'>##TATMDED##</label></td>" +
+                    "<td><label class='lbl-tunided lbl-thin'>##TUNIDED##</label></td>" +
+                    "<td><label class='lbl-tatmded lbl-thin'>##TATMDED##</label></td>" +
                     "<td><label class='lbl-tinctvs lbl-thin'>##TINTVS##</label></td>" +
-                    "<td><label class='lbl-tarrears lbl-thin'>##TARREARS##</label></td>" + 
-                "<td><label class='lbl-treimbursement lbl-thin'>##TREIMBURSEMENT##</label></td></tr>";
+                    "<td><label class='lbl-tarrears lbl-thin'>##TARREARS##</label></td>" +
+                    "<td><label class='lbl-treimbursement lbl-thin'>##TREIMBURSEMENT##</label></td></tr>";
                 var newrow = strr.replace("##Designation##", item.DesgName)
-                            .replace('##TNOD##', item.NODTotal)
-                            .replace('##TOT##', item.OTTotal)
-                            .replace('##TWO##', item.WOTotal)
-                            .replace('##TNHS##', item.NHSTotal)
-                            .replace('##TNPOTS##', item.NpotsTotal)
+                    .replace('##TNOD##', item.NODTotal)
+                    .replace('##TOT##', item.OTTotal)
+                    .replace('##TWO##', item.WOTotal)
+                    .replace('##TNHS##', item.NHSTotal)
+                    .replace('##TNPOTS##', item.NpotsTotal)
                     .replace('##TOTHRS##', item.OTHRSTotal)
-                            .replace('##TCADV##', item.PenTotal)
-                            .replace('##TPEN##', item.InctvsTotal)
-                     .replace('##TUNIDED##', item.UNIDEDTotal)
-                     .replace('##TATMDED##', item.ATMDEDTotal)
-                            .replace('##TINTVS##', item.CanAdvTotal)
-                             .replace('##TARREARS##', item.ArrearsTotal)
-                            .replace('##TREIMBURSEMENT##', item.ReimbursementTotal);
+                    .replace('##TCADV##', item.CanAdvTotal)
+                    .replace('##TPEN##', item.PenTotal)
+                    .replace('##TUNIDED##', item.UNIDEDTotal)
+                    .replace('##TATMDED##', item.ATMDEDTotal)
+                    .replace('##TINTVS##', item.InctvsTotal)
+                    .replace('##TARREARS##', item.ArrearsTotal)
+                    .replace('##TREIMBURSEMENT##', item.ReimbursementTotal);
                 $("#tblSummary >tbody").append(newrow);
             });
             CalculateSummaryTotals();
@@ -1117,7 +1117,7 @@
 
 
             var inctvstotal = 0;
-            $('.txt-candav').each(function () {
+            $('.txt-inctvs').each(function () {
                 if ($(this).val() != "" && $(this).val() != undefined) {
                     inctvstotal += parseFloat($(this).val());
                 }
@@ -1272,144 +1272,8 @@
             var datalst = [];
             // openModal();
             var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
-                 var month = "0";
-                 var Chk = $("#<%=chkold.ClientID %>").is(":checked");
-            if (Chk == true) {
-                var date = $("#<%=txtmonth.ClientID %>").datepicker('getDate');
-                       var year = date.getFullYear().toString();
-                       var monthv = date.getMonth();
-                       if (monthv == 11) {
-                           monthv = 12;
-                       }
-                       else {
-                           monthv = date.getMonth() + 1;
-                       }
-                       month = monthv + year.substr(2, 2);
-                   }
-                   else {
-                       month = $("#<%=ddlMonth.ClientID %>").find(":selected").index().toString();
-                   }
-                   var ottype = parseInt($("#ddlOTtype").val());
-                   if ($('#tblattendancegrid > tbody > tr').length != undefined && $('#tblattendancegrid > tbody > tr').length > 0) {
-                       $('#tblattendancegrid > tbody > tr').each(function (i, row) {
-                           var isnewrow = $(row).hasClass("new-row");
-                           var EmpAttendance = {
-                               ClientId: clientId,
-                               MonthIndex: month,
-                               Chkbox: Chk,
-                               NewAdd: isnewrow,
-                               EmpId: $(row).attr("data-emp-id"),
-                               EmpDesg: $(row).attr("data-emp-desg"),
-                               JoiningDate: (isnewrow) ? $(row).attr("data-emp-jdate") : "",
-                               RelievingDate: (isnewrow) ? $(row).attr("data-emp-rdate") : "",
-                               PF: (isnewrow) ? $(row).attr("data-emp-pf") : false,
-                               PT: (isnewrow) ? $(row).attr("data-emp-pt") : false,
-                               ESI: (isnewrow) ? $(row).attr("data-emp-esi") : false,
-                               TransferType: (isnewrow) ? $(row).attr("data-emp-ttype") : 1,
-                               NOD: parseFloat($(row).find(".txt-nod").val()),
-                               OT: parseFloat($(row).find(".txt-ot").val()),
-                               WO: parseFloat($(row).find(".txt-wo").val()),
-                               NHS: parseFloat($(row).find(".txt-nhs").val()),
-                               Nposts: parseFloat($(row).find(".txt-nposts").val()),
-                               OTHRS: parseFloat($(row).find(".txt-othrs").val()),
-                               CanAdv: parseFloat($(row).find(".txt-candav").val()),
-                               Penality: parseFloat($(row).find(".txt-pen").val()),
-                               UNIDED: parseFloat($(row).find(".txt-unided").val()),
-                               ATMDED: parseFloat($(row).find(".txt-atmded").val()),
-                               Incentives: parseFloat($(row).find(".txt-inctvs").val()),
-                               Arrears: parseFloat($(row).find(".txt-Arrears").val()),
-                               Reimbursement: parseFloat($(row).find(".txt-Reimbursement").val()),
-                               stoppayment: $(row).find("#chkstoppayment").is(":checked"),
-                               OTtype: ottype
-                           };
-                           datalst.push(EmpAttendance);
-                       });
-
-
-                       var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-                       var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/SaveAttendance";
-
-                       if (clientId != undefined && clientId != "0" && clientId != "" && month != undefined && month != "0") {
-                           if (datalst.length > 200) {
-                               var lstdata = [];
-                               var startindx = 0; var looplength = 200; var nxtlooplength = 200;
-                               do {
-                                   if (startindx > 0 && looplength < datalst.length) {
-                                       nxtlooplength = datalst.length - looplength;
-                                       looplength += nxtlooplength
-                                   }
-                                   lstdata = datalst.slice(startindx, looplength);
-                                   var dataparam = JSON.stringify({ lst: lstdata });
-                                   $.ajax({
-                                       type: "POST",
-                                       url: ajaxUrl,
-                                       data: dataparam,
-                                       async: false,
-                                       contentType: "application/json; charset=utf-8",
-                                       dataType: "json",
-                                       success: function (json) {
-                                           if (json != "") {
-                                               if (json.msg == "success") {
-                                                   console.log("startindx:" + startindx + " looplenth:" + looplength);
-                                               }
-                                               else {
-                                                   console.log("startindx:" + startindx + " looplenth:" + looplength);
-                                                   console.log(json.Obj);
-                                               }
-                                           }
-                                       },
-                                       error: function (json) { alert('fail'); }
-                                   });
-                                   startindx += looplength;
-
-                               } while (startindx < datalst.length);
-
-                               alert("Employees Attendance Saved.");
-                               GetEmpAttendanceData();
-                           }
-                           else if (datalst.length > 0) {
-                               var dataparam = JSON.stringify({ lst: datalst });
-                               $.ajax({
-                                   type: "POST",
-                                   url: ajaxUrl,
-                                   data: dataparam,
-                                   async: false,
-                                   contentType: "application/json; charset=utf-8",
-                                   dataType: "json",
-                                   success: function (json) {
-                                       if (json != "") {
-                                           if (json.msg == "success") {
-                                               alert("Employees Attendance Saved.");
-                                               GetEmpAttendanceData();
-                                           }
-                                           else {
-                                               alert(json.Obj);
-                                           }
-                                       }
-                                   },
-                                   error: function (json) { alert('fail'); }
-                               });
-                           }
-                       } else {
-                           alert("Select ClientId and month.");
-                       }
-                   }
-                   else {
-                       alert("Enter Employee to Save Attendance.");
-                   }
-                 //closeModal();
-
-                   reorder();
-               }
-
-
-               function SaveTempAttendance() {
-                   debugger;
-                   var datalst = [];
-                   //openModal();
-                   var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
-                 var month = "0";
-                 var Chk = $("#<%=chkold.ClientID %>").is(":checked");
+            var month = "0";
+            var Chk = $("#<%=chkold.ClientID %>").is(":checked");
             if (Chk == true) {
                 var date = $("#<%=txtmonth.ClientID %>").datepicker('getDate');
                 var year = date.getFullYear().toString();
@@ -1426,226 +1290,362 @@
                 month = $("#<%=ddlMonth.ClientID %>").find(":selected").index().toString();
             }
             var ottype = parseInt($("#ddlOTtype").val());
+            if ($('#tblattendancegrid > tbody > tr').length != undefined && $('#tblattendancegrid > tbody > tr').length > 0) {
+                $('#tblattendancegrid > tbody > tr').each(function (i, row) {
+                    var isnewrow = $(row).hasClass("new-row");
+                    var EmpAttendance = {
+                        ClientId: clientId,
+                        MonthIndex: month,
+                        Chkbox: Chk,
+                        NewAdd: isnewrow,
+                        EmpId: $(row).attr("data-emp-id"),
+                        EmpDesg: $(row).attr("data-emp-desg"),
+                        JoiningDate: (isnewrow) ? $(row).attr("data-emp-jdate") : "",
+                        RelievingDate: (isnewrow) ? $(row).attr("data-emp-rdate") : "",
+                        PF: (isnewrow) ? $(row).attr("data-emp-pf") : false,
+                        PT: (isnewrow) ? $(row).attr("data-emp-pt") : false,
+                        ESI: (isnewrow) ? $(row).attr("data-emp-esi") : false,
+                        TransferType: (isnewrow) ? $(row).attr("data-emp-ttype") : 1,
+                        NOD: parseFloat($(row).find(".txt-nod").val()),
+                        OT: parseFloat($(row).find(".txt-ot").val()),
+                        WO: parseFloat($(row).find(".txt-wo").val()),
+                        NHS: parseFloat($(row).find(".txt-nhs").val()),
+                        Nposts: parseFloat($(row).find(".txt-nposts").val()),
+                        OTHRS: parseFloat($(row).find(".txt-othrs").val()),
+                        CanAdv: parseFloat($(row).find(".txt-candav").val()),
+                        Penality: parseFloat($(row).find(".txt-pen").val()),
+                        UNIDED: parseFloat($(row).find(".txt-unided").val()),
+                        ATMDED: parseFloat($(row).find(".txt-atmded").val()),
+                        Incentives: parseFloat($(row).find(".txt-inctvs").val()),
+                        Arrears: parseFloat($(row).find(".txt-Arrears").val()),
+                        Reimbursement: parseFloat($(row).find(".txt-Reimbursement").val()),
+                        stoppayment: $(row).find("#chkstoppayment").is(":checked"),
+                        OTtype: ottype
+                    };
+                    datalst.push(EmpAttendance);
+                });
+
+
+                var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+                var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/SaveAttendance";
+
+                if (clientId != undefined && clientId != "0" && clientId != "" && month != undefined && month != "0") {
+                    if (datalst.length > 200) {
+                        var lstdata = [];
+                        var startindx = 0; var looplength = 200; var nxtlooplength = 200;
+                        do {
+                            if (startindx > 0 && looplength < datalst.length) {
+                                nxtlooplength = datalst.length - looplength;
+                                looplength += nxtlooplength
+                            }
+                            lstdata = datalst.slice(startindx, looplength);
+                            var dataparam = JSON.stringify({ lst: lstdata });
+                            $.ajax({
+                                type: "POST",
+                                url: ajaxUrl,
+                                data: dataparam,
+                                async: false,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (json) {
+                                    if (json != "") {
+                                        if (json.msg == "success") {
+                                            console.log("startindx:" + startindx + " looplenth:" + looplength);
+                                        }
+                                        else {
+                                            console.log("startindx:" + startindx + " looplenth:" + looplength);
+                                            console.log(json.Obj);
+                                        }
+                                    }
+                                },
+                                error: function (json) { alert('fail'); }
+                            });
+                            startindx += looplength;
+
+                        } while (startindx < datalst.length);
+
+                        alert("Employees Attendance Saved.");
+                        GetEmpAttendanceData();
+                    }
+                    else if (datalst.length > 0) {
+                        var dataparam = JSON.stringify({ lst: datalst });
+                        $.ajax({
+                            type: "POST",
+                            url: ajaxUrl,
+                            data: dataparam,
+                            async: false,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (json) {
+                                if (json != "") {
+                                    if (json.msg == "success") {
+                                        alert("Employees Attendance Saved.");
+                                        GetEmpAttendanceData();
+                                    }
+                                    else {
+                                        alert(json.Obj);
+                                    }
+                                }
+                            },
+                            error: function (json) { alert('fail'); }
+                        });
+                    }
+                } else {
+                    alert("Select ClientId and month.");
+                }
+            }
+            else {
+                alert("Enter Employee to Save Attendance.");
+            }
+            //closeModal();
+
+            reorder();
+        }
+
+
+        function SaveTempAttendance() {
+            debugger;
+            var datalst = [];
+            //openModal();
+            var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
+                   var month = "0";
+                   var Chk = $("#<%=chkold.ClientID %>").is(":checked");
+                   if (Chk == true) {
+                       var date = $("#<%=txtmonth.ClientID %>").datepicker('getDate');
+                var year = date.getFullYear().toString();
+                var monthv = date.getMonth();
+                if (monthv == 11) {
+                    monthv = 12;
+                }
+                else {
+                    monthv = date.getMonth() + 1;
+                }
+                month = monthv + year.substr(2, 2);
+            }
+            else {
+                month = $("#<%=ddlMonth.ClientID %>").find(":selected").index().toString();
+                   }
+                   var ottype = parseInt($("#ddlOTtype").val());
+                   var empid = $("#<%=txtEmpId.ClientID %>").val();
+                   var oldempid = $("#<%=txtoldEmpId.ClientID %>").val();
+                   var empname = $("#<%=txtEmpName.ClientID %>").val();
+                   var empdesgid = $("#<%=ddlEmpDesg.ClientID %>").val();
+                   var empdesgname = $('#<%= ddlEmpDesg.ClientID %> option:selected').text();
+                   var empttype = $('#<%= ddlTransfertype.ClientID %> option:selected').val();
+            var jdate = $("#txtJoingingDate").val();
+            var rdate = $("#txtRelievingDate").val();
+            var esi = $("#chkESI").is(":checked");
+            var pt = $("#chkPT").is(":checked");
+            var pf = $("#chkPF").is(":checked");
+            var nod = $("#txt-add-nod").val();
+            var ot = $("#txt-add-ot").val();
+            var wo = $("#txt-add-wo").val();
+            var nhs = $("#txt-add-nhs").val();
+            var npots = $("#txt-add-npots").val();
+            var OTHRS = $("#txt-add-othrs").val();
+            var canadv = $("#txt-add-canadv").val();
+            var pen = $("#txt-add-pen").val();
+            var UNIDED = $("#txt-add-unided").val();
+            var ATMDED = $("#txt-add-atmded").val();
+            var inctvs = $("#txt-add-inctvs").val();
+            var Arrears = $("#txt-add-arrears").val();
+            var Arrears = $("#txt-add-reimbursement").val();
+
+            //var isnewrow = $(row).hasClass("new-row");
+            var TempEmpAttendance = {
+                ClientId: clientId,
+                MonthIndex: month,
+                EmpId: empid,
+                EmpDesg: empdesgid,
+                JoiningDate: jdate,
+                RelievingDate: rdate,
+                PF: pf,
+                PT: pt,
+                ESI: esi,
+                TransferType: empttype,
+                NOD: nod,
+                OT: ot,
+                WO: wo,
+                NHS: nhs,
+                Nposts: npots,
+                OTHRS: OTHRS,
+                CanAdv: canadv,
+                Penality: pen,
+                UNIDED: UNIDED,
+                ATMDED: ATMDED,
+                Incentives: inctvs,
+                Arrears: Arrears,
+                Reimbursement: Reimbursement,
+                OTtype: ottype
+            };
+            datalst.push(TempEmpAttendance);
+
+            debugger;
+            //var ajaxUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + "/FameService.asmx/SaveAttendance";
+
+            var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+            var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/SaveAttendance";
+
+            if (clientId != undefined && clientId != "0" && clientId != "" && month != undefined && month != "0") {
+                if (datalst.length > 200) {
+                    var lstdata = [];
+                    var startindx = 0; var looplength = 500; var nxtlooplength = 500;
+                    do {
+                        if (startindx > 0 && looplength < datalst.length) {
+                            nxtlooplength = datalst.length - looplength;
+                            looplength += nxtlooplength
+                        }
+                        lstdata = datalst.slice(startindx, looplength);
+                        var dataparam = JSON.stringify({ lst: lstdata });
+                        $.ajax({
+                            type: "POST",
+                            url: ajaxUrl,
+                            data: dataparam,
+                            async: false,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (json) {
+                                if (json != "") {
+                                    if (json.msg == "success") {
+                                        console.log("startindx:" + startindx + " looplenth:" + looplength);
+                                    }
+                                    else {
+                                        console.log("startindx:" + startindx + " looplenth:" + looplength);
+                                        console.log(json.Obj);
+                                    }
+                                }
+                            },
+                            error: function (json) { alert('fail'); }
+                        });
+                        startindx += looplength;
+
+                    } while (startindx < datalst.length);
+
+                    alert("Employees Attendance Saved.");
+                    GetEmpAttendanceData();
+                }
+                else if (datalst.length > 0) {
+                    var dataparam = JSON.stringify({ lst: datalst });
+                    $.ajax({
+                        type: "POST",
+                        url: ajaxUrl,
+                        data: dataparam,
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (json) {
+                            if (json != "") {
+                                if (json.msg == "success") {
+                                    alert("Employees Attendance Saved.");
+                                    GetEmpAttendanceData();
+                                }
+                                else {
+                                    alert(json.Obj);
+                                }
+                            }
+                        },
+                        error: function (json) { alert('fail'); }
+                    });
+                }
+            } else {
+                alert("Select ClientId and month.");
+            }
+            ClearEmpAddValues();
+            //closeModal();
+        }
+
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('fade').style.display = 'none';
+        }
+
+        function getFormattedDate(date) {
+            var year = date.getFullYear();
+            var month = (1 + date.getMonth()).toString();
+            month = month.length > 1 ? month : '0' + month;
+            var day = date.getDate().toString();
+            day = day.length > 1 ? day : '0' + day;
+            return day + '/' + month + '/' + year;
+        }
+
+        function AddDuplicatesTbl(data) {
+            data = eval(data);
+            $("#tblDuplicates >tbody").html("");
+            $.each(data, function (i, item) {
+                var strr = "<tr class='tr-emp-Duplicates'>" +
+                    " <td><label class='lbl-tclientid lbl-thin'>##ClientID##</label></td>" +
+                    " <td><label class='lbl-tOldEmpid lbl-thin'>##OldEmpid##</label></td>" +
+                    " <td><label class='lbl-tEmpName lbl-thin'>##EmpName##</label></td>" +
+                    " <td><label class='lbl-tdesg lbl-thin'>##Designation##</label></td>" +
+                    "<td><label class='lbl-tnod lbl-thin lbl-tots'>##TNOD##</label></td>" +
+                    "<td><label class='lbl-tot lbl-thin lbl-tots'>##TOT##</label></td>" +
+                    "<td><label class='lbl-two lbl-thin lbl-tots'>##TWO##</label></td>" +
+                    "<td><label class='lbl-tnhs lbl-thin lbl-tots'>##TNHS##</label></td>" +
+                    "<td><label class='lbl-tnpots lbl-thin lbl-tots'>##TNPOTS##</label></td></tr>";
+                var newrow = strr.replace("##ClientID##", item.ClientID)
+                    .replace("##OldEmpid##", item.OldEmpid)
+                    .replace("##EmpName##", item.EmpFName)
+                    .replace("##Designation##", item.DesgName)
+                    .replace('##TNOD##', item.NODTotal)
+                    .replace('##TOT##', item.OTTotal)
+                    .replace('##TWO##', item.WOTotal)
+                    .replace('##TNHS##', item.NHSTotal)
+                    .replace('##TNPOTS##', item.NpotsTotal)
+                $("#tblDuplicates >tbody").append(newrow);
+            });
+
+        }
+
+        function GetAttendanceDuplicates() {
+            // openModal();
+            debugger;
             var empid = $("#<%=txtEmpId.ClientID %>").val();
                  var oldempid = $("#<%=txtoldEmpId.ClientID %>").val();
-                 var empname = $("#<%=txtEmpName.ClientID %>").val();
-                 var empdesgid = $("#<%=ddlEmpDesg.ClientID %>").val();
-                 var empdesgname = $('#<%= ddlEmpDesg.ClientID %> option:selected').text();
-                 var empttype = $('#<%= ddlTransfertype.ClientID %> option:selected').val();
-                 var jdate = $("#txtJoingingDate").val();
-                 var rdate = $("#txtRelievingDate").val();
-                 var esi = $("#chkESI").is(":checked");
-                 var pt = $("#chkPT").is(":checked");
-                 var pf = $("#chkPF").is(":checked");
-                 var nod = $("#txt-add-nod").val();
-                 var ot = $("#txt-add-ot").val();
-                 var wo = $("#txt-add-wo").val();
-                 var nhs = $("#txt-add-nhs").val();
-                 var npots = $("#txt-add-npots").val();
-                 var OTHRS = $("#txt-add-othrs").val();
-                 var canadv = $("#txt-add-canadv").val();
-                 var pen = $("#txt-add-pen").val();
-                 var UNIDED = $("#txt-add-unided").val();
-                 var ATMDED = $("#txt-add-atmded").val();
-                 var inctvs = $("#txt-add-inctvs").val();
-                   var Arrears = $("#txt-add-arrears").val();
-                   var Arrears = $("#txt-add-reimbursement").val();
 
-                 //var isnewrow = $(row).hasClass("new-row");
-                 var TempEmpAttendance = {
-                     ClientId: clientId,
-                     MonthIndex: month,
-                     EmpId: empid,
-                     EmpDesg: empdesgid,
-                     JoiningDate: jdate,
-                     RelievingDate: rdate,
-                     PF: pf,
-                     PT: pt,
-                     ESI: esi,
-                     TransferType: empttype,
-                     NOD: nod,
-                     OT: ot,
-                     WO: wo,
-                     NHS: nhs,
-                     Nposts: npots,
-                     OTHRS: OTHRS,
-                     CanAdv: canadv,
-                     Penality: pen,
-                     UNIDED: UNIDED,
-                     ATMDED: ATMDED,
-                     Incentives: inctvs,
-                     Arrears: Arrears,
-                     Reimbursement: Reimbursement,
-                     OTtype: ottype
-                 };
-                 datalst.push(TempEmpAttendance);
+                 var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
+                 var month = 0;
+                 var Chk = $("#<%=chkold.ClientID %>").is(":checked");
+                 if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
+                     month = $("#<%=txtmonth.ClientID %>").val();
+            }
+            else {
+                month = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
+            }
+            var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+            var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/GetAttendanceDuplicates";
 
-                 debugger;
-                 //var ajaxUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + "/FameService.asmx/SaveAttendance";
-
-                 var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-                 var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/SaveAttendance";
-
-                 if (clientId != undefined && clientId != "0" && clientId != "" && month != undefined && month != "0") {
-                     if (datalst.length > 200) {
-                         var lstdata = [];
-                         var startindx = 0; var looplength = 500; var nxtlooplength = 500;
-                         do {
-                             if (startindx > 0 && looplength < datalst.length) {
-                                 nxtlooplength = datalst.length - looplength;
-                                 looplength += nxtlooplength
-                             }
-                             lstdata = datalst.slice(startindx, looplength);
-                             var dataparam = JSON.stringify({ lst: lstdata });
-                             $.ajax({
-                                 type: "POST",
-                                 url: ajaxUrl,
-                                 data: dataparam,
-                                 async: false,
-                                 contentType: "application/json; charset=utf-8",
-                                 dataType: "json",
-                                 success: function (json) {
-                                     if (json != "") {
-                                         if (json.msg == "success") {
-                                             console.log("startindx:" + startindx + " looplenth:" + looplength);
-                                         }
-                                         else {
-                                             console.log("startindx:" + startindx + " looplenth:" + looplength);
-                                             console.log(json.Obj);
-                                         }
-                                     }
-                                 },
-                                 error: function (json) { alert('fail'); }
-                             });
-                             startindx += looplength;
-
-                         } while (startindx < datalst.length);
-
-                         alert("Employees Attendance Saved.");
-                         GetEmpAttendanceData();
-                     }
-                     else if (datalst.length > 0) {
-                         var dataparam = JSON.stringify({ lst: datalst });
-                         $.ajax({
-                             type: "POST",
-                             url: ajaxUrl,
-                             data: dataparam,
-                             async: false,
-                             contentType: "application/json; charset=utf-8",
-                             dataType: "json",
-                             success: function (json) {
-                                 if (json != "") {
-                                     if (json.msg == "success") {
-                                         alert("Employees Attendance Saved.");
-                                         GetEmpAttendanceData();
-                                     }
-                                     else {
-                                         alert(json.Obj);
-                                     }
-                                 }
-                             },
-                             error: function (json) { alert('fail'); }
-                         });
-                     }
-                 } else {
-                     alert("Select ClientId and month.");
-                 }
-                 ClearEmpAddValues();
-                 //closeModal();
-             }
-
-             function openModal() {
-                 document.getElementById('modal').style.display = 'block';
-                 document.getElementById('fade').style.display = 'block';
-             }
-
-             function closeModal() {
-                 document.getElementById('modal').style.display = 'none';
-                 document.getElementById('fade').style.display = 'none';
-             }
-
-             function getFormattedDate(date) {
-                 var year = date.getFullYear();
-                 var month = (1 + date.getMonth()).toString();
-                 month = month.length > 1 ? month : '0' + month;
-                 var day = date.getDate().toString();
-                 day = day.length > 1 ? day : '0' + day;
-                 return day + '/' + month + '/' + year;
-             }
-
-             function AddDuplicatesTbl(data) {
-                 data = eval(data);
-                 $("#tblDuplicates >tbody").html("");
-                 $.each(data, function (i, item) {
-                     var strr = "<tr class='tr-emp-Duplicates'>" +
-                          " <td><label class='lbl-tclientid lbl-thin'>##ClientID##</label></td>" +
-                           " <td><label class='lbl-tOldEmpid lbl-thin'>##OldEmpid##</label></td>" +
-                           " <td><label class='lbl-tEmpName lbl-thin'>##EmpName##</label></td>" +
-                        " <td><label class='lbl-tdesg lbl-thin'>##Designation##</label></td>" +
-                         "<td><label class='lbl-tnod lbl-thin lbl-tots'>##TNOD##</label></td>" +
-                         "<td><label class='lbl-tot lbl-thin lbl-tots'>##TOT##</label></td>" +
-                         "<td><label class='lbl-two lbl-thin lbl-tots'>##TWO##</label></td>" +
-                         "<td><label class='lbl-tnhs lbl-thin lbl-tots'>##TNHS##</label></td>" +
-                         "<td><label class='lbl-tnpots lbl-thin lbl-tots'>##TNPOTS##</label></td></tr>";
-                     var newrow = strr.replace("##ClientID##", item.ClientID)
-                                  .replace("##OldEmpid##", item.OldEmpid)
-                                  .replace("##EmpName##", item.EmpFName)
-                                 .replace("##Designation##", item.DesgName)
-                                 .replace('##TNOD##', item.NODTotal)
-                                 .replace('##TOT##', item.OTTotal)
-                                 .replace('##TWO##', item.WOTotal)
-                                 .replace('##TNHS##', item.NHSTotal)
-                                 .replace('##TNPOTS##', item.NpotsTotal)
-                     $("#tblDuplicates >tbody").append(newrow);
-                 });
-
-             }
-
-             function GetAttendanceDuplicates() {
-                 // openModal();
-                 debugger;
-                 var empid = $("#<%=txtEmpId.ClientID %>").val();
-            var oldempid = $("#<%=txtoldEmpId.ClientID %>").val();
-
-            var clientId = $("#<%=divClient.ClientID %>").attr("data-clientId");
-            var month = 0;
-            var Chk = $("#<%=chkold.ClientID %>").is(":checked");
-            if ($("#<%=chkold.ClientID %>").is(':checked') == true) {
-                month = $("#<%=txtmonth.ClientID %>").val();
-                 }
-                 else {
-                     month = $("#<%=ddlMonth.ClientID %>").find(":selected").index();
-                 }
-                 var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-                 var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/GetAttendanceDuplicates";
-
-                 if (oldempid != undefined && oldempid != "0" && oldempid != "" && month != undefined && month != "0") {
-                     $.ajax({
-                         type: "POST",
-                         url: ajaxUrl,
-                         data: "{empid:'" + oldempid + "',month:'" + month + "',Chk:'" + Chk + "'}",
-                         async: false,
-                         contentType: "application/json; charset=utf-8",
-                         dataType: "json",
-                         success: function (json, b, c) {
-                             if (json != "") {
-                                 //var res = JSON.parse(json.d);
-                                 if (json.msg == "success") {
-                                     AddDuplicatesTbl(json.Obj);
-                                     debugger;
-                                     $("#divDuplicates").show();
-                                 }
-                                 else if (json.msg == "nodata") {
-                                     $("#tblDuplicates >tbody").html("");
-                                     $("#divDuplicates").hide();
-                                 }
-                             }
-                         },
-                         error: function (json) { alert('fail'); }
-                     });
-                 }
+            if (oldempid != undefined && oldempid != "0" && oldempid != "" && month != undefined && month != "0") {
+                $.ajax({
+                    type: "POST",
+                    url: ajaxUrl,
+                    data: "{empid:'" + oldempid + "',month:'" + month + "',Chk:'" + Chk + "'}",
+                    async: false,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (json, b, c) {
+                        if (json != "") {
+                            //var res = JSON.parse(json.d);
+                            if (json.msg == "success") {
+                                AddDuplicatesTbl(json.Obj);
+                                debugger;
+                                $("#divDuplicates").show();
+                            }
+                            else if (json.msg == "nodata") {
+                                $("#tblDuplicates >tbody").html("");
+                                $("#divDuplicates").hide();
+                            }
+                        }
+                    },
+                    error: function (json) { alert('fail'); }
+                });
+            }
             // closeModal();
-             }
+        }
 
     </script>
 
@@ -1859,7 +1859,7 @@
                                 </th>
                                 <th>Arrears
                                 </th>
-                                 <th>Reimbursement
+                                <th>Reimbursement
                                 </th>
                             </tr>
                         </thead>
@@ -1923,7 +1923,7 @@
                                     <label id="lblTARREARS">
                                     </label>
                                 </td>
-                                 <td>
+                                <td>
                                     <label id="lblTREIMBURSEMENT">
                                     </label>
                                 </td>
@@ -2026,7 +2026,7 @@
                                     <td>
                                         <input type="text" class="form-control num-txt" id="txt-add-arrears" value="0" />
                                     </td>
-                                     <td>
+                                    <td>
                                         <input type="text" class="form-control num-txt" id="txt-add-reimbursement" value="0" />
                                     </td>
                                     <td rowspan="2"></td>
@@ -2110,7 +2110,7 @@
                                     </th>
                                     <th>Arrears
                                     </th>
-                                     <th>Reimbursement
+                                    <th>Reimbursement
                                     </th>
 
                                     <th>Totals

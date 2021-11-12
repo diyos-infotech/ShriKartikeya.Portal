@@ -141,7 +141,7 @@ namespace ShriKartikeya.Portal
                     }
                 }
                 FillMonthList();
-                //BindEmpddls();
+                BindEmpddls();
                 GetClientsData();
 
             }

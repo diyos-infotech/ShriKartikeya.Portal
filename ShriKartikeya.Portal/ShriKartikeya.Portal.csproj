@@ -135,6 +135,7 @@
     <Content Include="assets\FooterPayslip.jpg" />
     <Content Include="assets\HeaderPayslip.jpg" />
     <Content Include="Module_Reports\SendMail.aspx" />
+    <Content Include="Module_Reports\StopPaymentUpload.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2291,6 +2292,13 @@
     <Compile Include="Module_Reports\SendMail.aspx.designer.cs">
       <DependentUpon>SendMail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Module_Reports\StopPaymentUpload.aspx.cs">
+      <DependentUpon>StopPaymentUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\StopPaymentUpload.aspx.designer.cs">
+      <DependentUpon>StopPaymentUpload.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module_Reports\SubClientsWithMainClientReports.aspx.cs">
       <DependentUpon>SubClientsWithMainClientReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2520,6 +2528,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Module_Reports\ImportDocuments\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
