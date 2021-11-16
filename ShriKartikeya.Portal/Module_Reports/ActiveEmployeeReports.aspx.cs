@@ -493,6 +493,7 @@ namespace ShriKartikeya.Portal
 
             }
         }
+
         public DataSet getDataSetExportToExcel()
         {
             DataSet ds = new DataSet();
@@ -566,10 +567,9 @@ namespace ShriKartikeya.Portal
 
                     if (status == 8)
                     {
-
                       
-                        var LdateFrom = DateTime.Parse(TxtLdateFrom.Text.Trim(), CultureInfo.GetCultureInfo("en-GB"));
-                        var LdateTo = DateTime.Parse(TxtLdateTo.Text.Trim(), CultureInfo.GetCultureInfo("en-GB"));
+                        var LdateFrom = DateTime.Parse(TxtLdateFrom.Text.Trim(), CultureInfo.GetCultureInfo("en-GB")).ToString("yyyy/MM/dd");
+                        var LdateTo = DateTime.Parse(TxtLdateTo.Text.Trim(), CultureInfo.GetCultureInfo("en-GB")).ToString("yyyy/MM/dd");
                         HTEmpList.Add("@Status", 8);
                         HTEmpList.Add("@EmpIdPrefix", EmpIDPrefix);
                         HTEmpList.Add("@dateFrom", LdateFrom);
