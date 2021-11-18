@@ -469,7 +469,7 @@
                                             <%-- 20--%>
                                             <asp:TemplateField HeaderText="TD" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblTDdutyhrs" runat="server" Text='<%#Bind("NoOfDuties") %>'></asp:Label>
+                                                    <asp:Label ID="lblTDdutyhrs" runat="server" Text='<%#Bind("TotalDuties") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label runat="server" ID="lblTotalDuties"></asp:Label>
@@ -647,7 +647,7 @@
                                             <%-- 37--%>
                                             <asp:TemplateField HeaderText="Payable Amt" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblnetPayableamount" runat="server" Text='<%#Bind("ActualAmount","{0:0}") %>'> </asp:Label>
+                                                    <asp:Label ID="lblnetPayableamount" runat="server" Text='<%#Bind("PayableAmt","{0:0}") %>'> </asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label runat="server" ID="lblTotalNetPayableAmount"></asp:Label>

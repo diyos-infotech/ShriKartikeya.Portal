@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
@@ -2095,6 +2093,7 @@ namespace ShriKartikeya.Portal.Module_Reports
         float totalCdNightAllw = 0;
         float totalCdEmpty1 = 0;
         float totalCdEmpty2 = 0;
+        float totalNoOfDuties = 0;
         float totalCdEmpty3 = 0;
         float totalADDL4HR = 0;
         float totalQTRALLOW = 0;
@@ -2123,6 +2122,7 @@ namespace ShriKartikeya.Portal.Module_Reports
         float totalAdvBonus = 0;
         float totalwds = 0;
         float totalGross = 0;
+        float totalPayableAmt = 0;
         #endregion Total Variables
 
         protected void DisplayData()
@@ -2419,12 +2419,18 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     string duties = dt.Rows[i]["NoOfDuties"].ToString();
                                     if (duties.Trim().Length > 0)
                                     {
-                                        totalDuties += Convert.ToSingle(duties);
+                                        totalNoOfDuties += Convert.ToSingle(duties);
                                     }
                                     string ots = dt.Rows[i]["OTs"].ToString();
                                     if (ots.Trim().Length > 0)
                                     {
                                         totalOts += Convert.ToSingle(ots);
+                                    }
+
+                                    string Totalduties = dt.Rows[i]["TotalDuties"].ToString();
+                                    if (duties.Trim().Length > 0)
+                                    {
+                                        totalDuties += Convert.ToSingle(duties);
                                     }
 
                                     string wos = dt.Rows[i]["wo"].ToString();
@@ -2838,6 +2844,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     {
                                         totalActualamount += Convert.ToSingle(actualAmount);
                                     }
+                                    string PayableAmt = dt.Rows[i]["PayableAmt"].ToString();
+                                    if (PayableAmt.Trim().Length > 0)
+                                    {
+                                        totalPayableAmt += Convert.ToSingle(PayableAmt);
+                                    }
 
                                     string strfixedADDL4HR = dt.Rows[i]["fixedADDL4HR"].ToString();
                                     if (strfixedADDL4HR.Trim().Length > 0)
@@ -3156,7 +3167,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                         lblnoofContracts.Text = Math.Round(totalwds).ToString();
                         //18
                         Label lblTotaldutyhrs = GVListEmployees.FooterRow.FindControl("lblTotaldutyhrs") as Label;
-                        lblTotaldutyhrs.Text = Math.Round(totalDuties).ToString();
+                        lblTotaldutyhrs.Text = Math.Round(totalNoOfDuties).ToString();
 
                         Label lblTotalOts = GVListEmployees.FooterRow.FindControl("lblTotalOts") as Label;
                         lblTotalOts.Text = Math.Round(totalOts).ToString();
@@ -3375,7 +3386,7 @@ namespace ShriKartikeya.Portal.Module_Reports
 
                         //37
                         Label lblTotalNetPayableAmount = GVListEmployees.FooterRow.FindControl("lblTotalNetPayableAmount") as Label;
-                        lblTotalNetPayableAmount.Text = Math.Round(totalActualamount).ToString();
+                        lblTotalNetPayableAmount.Text = Math.Round(totalPayableAmt).ToString();
                       
                         #endregion
 
