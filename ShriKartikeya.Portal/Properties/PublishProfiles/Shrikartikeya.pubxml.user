@@ -110,6 +110,24 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="assets/PP.png">
       <publishTime>09/25/2021 13:26:44</publishTime>
     </File>
+    <File Include="assets/SKPlogo.png">
+      <publishTime>11/23/2021 11:25:44</publishTime>
+    </File>
+    <File Include="assets/SKPlogo1.png">
+      <publishTime>11/24/2021 10:27:37</publishTime>
+    </File>
+    <File Include="assets/SKPlogo2.png">
+      <publishTime>11/24/2021 11:38:15</publishTime>
+    </File>
+    <File Include="assets/SKPlogo3.png">
+      <publishTime>11/24/2021 15:43:20</publishTime>
+    </File>
+    <File Include="assets/SKPlogo4.png">
+      <publishTime>11/24/2021 16:49:16</publishTime>
+    </File>
+    <File Include="assets/SKPlogo5.png">
+      <publishTime>11/24/2021 19:58:45</publishTime>
+    </File>
     <File Include="assets/Status_Active.png">
       <publishTime>09/25/2021 13:26:44</publishTime>
     </File>
@@ -141,40 +159,40 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/25/2021 13:26:38</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>11/18/2021 14:45:49</publishTime>
+      <publishTime>11/25/2021 10:40:40</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>11/18/2021 14:45:49</publishTime>
+      <publishTime>11/25/2021 10:40:40</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
       <publishTime>06/28/2021 15:53:08</publishTime>
-      <publishTime>11/18/2021 14:45:35</publishTime>
+      <publishTime>11/25/2021 10:40:23</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>11/18/2021 14:45:49</publishTime>
+      <publishTime>11/25/2021 10:40:40</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
-      <publishTime>11/18/2021 14:45:35</publishTime>
+      <publishTime>11/25/2021 10:40:23</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.pdb">
       <publishTime>10/13/2021 09:49:43</publishTime>
-      <publishTime>11/18/2021 14:45:35</publishTime>
+      <publishTime>11/25/2021 10:40:23</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>11/18/2021 14:45:49</publishTime>
+      <publishTime>11/25/2021 10:40:40</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
       <publishTime>06/28/2021 15:53:08</publishTime>
-      <publishTime>11/18/2021 14:45:35</publishTime>
+      <publishTime>11/25/2021 10:40:23</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>11/18/2021 14:45:49</publishTime>
+      <publishTime>11/25/2021 10:40:40</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
-      <publishTime>11/18/2021 14:45:35</publishTime>
+      <publishTime>11/25/2021 10:40:23</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.pdb">
-      <publishTime>11/18/2021 14:45:35</publishTime>
+      <publishTime>11/25/2021 10:40:23</publishTime>
     </File>
     <File Include="bin/BouncyCastle.Crypto.dll">
       <publishTime>09/25/2021 13:27:37</publishTime>
@@ -1341,7 +1359,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/25/2021 13:26:40</publishTime>
     </File>
     <File Include="Module_Reports/EmpBioData.aspx">
-      <publishTime>09/25/2021 13:26:40</publishTime>
+      <publishTime>11/23/2021 10:41:18</publishTime>
     </File>
     <File Include="Module_Reports/EmpIDCard.aspx">
       <publishTime>09/25/2021 13:26:40</publishTime>
@@ -1643,7 +1661,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="PrecompiledApp.config">
       <publishTime>06/28/2021 15:53:30</publishTime>
       <publishTime>10/13/2021 09:49:52</publishTime>
-      <publishTime>11/18/2021 14:45:41</publishTime>
+      <publishTime>11/25/2021 10:40:30</publishTime>
     </File>
     <File Include="Properties/PublishProfiles/FolderProfile.pubxml.user">
       <publishTime>10/05/2021 14:30:26</publishTime>

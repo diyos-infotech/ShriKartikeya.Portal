@@ -134,6 +134,12 @@
   <ItemGroup>
     <Content Include="assets\FooterPayslip.jpg" />
     <Content Include="assets\HeaderPayslip.jpg" />
+    <Content Include="assets\SKPlogo.png" />
+    <Content Include="assets\SKPlogo1.png" />
+    <Content Include="assets\SKPlogo2.png" />
+    <Content Include="assets\SKPlogo3.png" />
+    <Content Include="assets\SKPlogo4.png" />
+    <Content Include="assets\SKPlogo5.png" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
     <Content Include="packages.config" />

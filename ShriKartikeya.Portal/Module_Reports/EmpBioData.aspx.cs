@@ -58520,7 +58520,1272 @@ namespace ShriKartikeya.Portal
                 return;
             }
 
+            if (ddloption.SelectedIndex == 9)
+            {
+                btnOfferLetter_Click(sender, e);
+                return;
+            }
 
+
+
+        }
+
+        protected void btnOfferLetter_Click(object sender, EventArgs e)
+        {
+
+
+
+            string fontstyle = "Calibri";
+     
+
+
+            #region for Variable Declaration
+
+            string Empid = "";
+            string FromEmpid = "";
+            string ToEmpid = "";
+            string Name = "";
+            string Designation = "";
+            string IDcardIssued = "";
+            string IDcardvalid = "";
+            string BloodGroup = "";
+            string Image = "";
+            string EmpSign = "";
+            string EmpESINo = "";
+            string doj = "";
+
+
+            #endregion for Variable Declaration
+
+            #region for companyinfo
+            string QueryCompanyInfo = "select * from companyinfo";
+            DataTable DtCompanyInfo = Config.ExecuteReaderWithQueryAsync(QueryCompanyInfo).Result;
+
+            string CompanyName = "";
+            string Address = "";
+            string Emailid = "";
+            string Website = "";
+            string Phoneno = "";
+            string Faxno = "";
+            string Idno = "";
+            string name = "";
+            string Gender = "";
+            string Dateofjoining = "";
+            string postappliedfor = "";
+            string MobileNumber = "";
+            string SpouseName = "";
+            string MotherName = "";
+            string contactno = "";
+
+
+            if (DtCompanyInfo.Rows.Count > 0)
+            {
+                CompanyName = DtCompanyInfo.Rows[0]["CompanyName"].ToString();
+                Address = DtCompanyInfo.Rows[0]["Address"].ToString();
+                Phoneno = DtCompanyInfo.Rows[0]["Phoneno"].ToString();
+                Faxno = DtCompanyInfo.Rows[0]["Faxno"].ToString();
+                Emailid = DtCompanyInfo.Rows[0]["Emailid"].ToString();
+                Website = DtCompanyInfo.Rows[0]["Website"].ToString();
+
+
+            }
+            #endregion for companyinfo
+
+            string query = "";
+            DataTable dtEmpdetails = new DataTable();
+            var spname = "";
+
+            Hashtable ht = new Hashtable();
+            if (ddlEmpIDoptions.SelectedIndex == 0)
+            {
+                Empid = txtEmpid.Text;
+                spname = "EmpBiodataPDF";
+                ht.Add("@Empid", Empid);
+            }
+            else if (ddlEmpIDoptions.SelectedIndex == 1)
+            {
+                FromEmpid = txtfromempid.Text;
+                ToEmpid = txttoempid.Text;
+                spname = "EmpBiodataBulk";
+                ht.Add("@fromEmpid", FromEmpid);
+                ht.Add("@toEmpid", ToEmpid);
+
+            }
+
+            string query1 = "select basic, HRA,Gross ,ESI,ESIEmpr,TDSDed,PF, PFEmpr, ProfTax, *from EmpPaySheet where EmpId = '" + txtEmpid.Text + "' order by Month desc ";
+            DataTable dt = Config.ExecuteAdaptorAsyncWithQueryParams(query1).Result;
+
+            string basic = dt.Rows[0]["basic"].ToString();
+            string HRA = dt.Rows[0]["HRA"].ToString();
+            string PF = dt.Rows[0]["PF"].ToString();
+            string SplAllowance = dt.Rows[0]["SplAllowance"].ToString();
+            string ProfTax = dt.Rows[0]["ProfTax"].ToString();
+            string PFEmpr = dt.Rows[0]["PFEmpr"].ToString();
+            string Gross = dt.Rows[0]["Gross"].ToString();
+            string TDSDed = dt.Rows[0]["TDSDed"].ToString();
+            string ESI = dt.Rows[0]["ESI"].ToString();
+            string ESIEmpr = dt.Rows[0]["ESIEmpr"].ToString();
+
+            string THnet = Convert.ToString(Convert.ToInt32(dt.Rows[0]["Gross"])-((Convert.ToInt32(dt.Rows[0]["ProfTax"] ) + Convert.ToInt32(dt.Rows[0]["TDSDed"]) + Convert.ToInt32(dt.Rows[0]["PF"] )+ (Convert.ToInt32(dt.Rows[0]["ESI"])))));
+            string ctc = Convert.ToString(((Convert.ToInt32(dt.Rows[0]["PFEmpr"])+ (Convert.ToInt32(dt.Rows[0]["ESIEmpr"])) + (Convert.ToInt32(dt.Rows[0]["Gross"]) - ((Convert.ToInt32(dt.Rows[0]["ProfTax"]) + Convert.ToInt32(dt.Rows[0]["TDSDed"]) + Convert.ToInt32(dt.Rows[0]["PF"]) + (Convert.ToInt32(dt.Rows[0]["ESI"]))))))));
+
+
+
+
+
+
+
+
+
+            dtEmpdetails = Config.ExecuteAdaptorAsyncWithParams(spname, ht).Result;
+           
+
+          if (dtEmpdetails.Rows.Count > 0)
+          {
+                Idno = dtEmpdetails.Rows[0]["EmpId"].ToString();
+                name = dtEmpdetails.Rows[0]["Fullname"].ToString();
+                Gender = dtEmpdetails.Rows[0]["EmpSex"].ToString();
+                Dateofjoining = dtEmpdetails.Rows[0]["EmpDtofJoining"].ToString();               
+                postappliedfor = dtEmpdetails.Rows[0]["EmpDesgn"].ToString();               
+                MobileNumber = dtEmpdetails.Rows[0]["EmpPhone"].ToString();
+                SpouseName = dtEmpdetails.Rows[0]["EmpSpouseName"].ToString();
+                MotherName = dtEmpdetails.Rows[0]["EmpMotherName"].ToString();                
+                contactno = dtEmpdetails.Rows[0]["EmpPhone"].ToString();
+               
+                
+
+
+
+                MemoryStream ms = new MemoryStream();
+            Document document = new Document(PageSize.A4);
+            var writer = PdfWriter.GetInstance(document, ms);
+            document.Open();
+
+
+            PdfPCell cell;
+
+            int fontsize = 10;
+            int fontsize1 = 12;
+            int fontsize2 = 14;
+
+            PdfPTable table = new PdfPTable(2);
+            table.TotalWidth = 350f;
+            table.LockedWidth = true;
+            float[] width = new float[] { 4f, 4f };
+            table.SetWidths(width);
+
+
+            string imagepath1 = "";
+            imagepath1 = Server.MapPath("~/assets/SKPlogo.png");
+            if (File.Exists(imagepath1))
+                if (File.Exists(imagepath1))
+                {
+                    iTextSharp.text.Image gif2 = iTextSharp.text.Image.GetInstance(imagepath1);
+                    gif2.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                    gif2.ScalePercent(80f);
+                    gif2.SetAbsolutePosition(80f, 720f);
+                    document.Add(gif2);
+                }
+
+                string imagepath11 = "";
+                imagepath11 = Server.MapPath("~/assets/SKPlogo1.png");
+                if (File.Exists(imagepath11))
+                    if (File.Exists(imagepath11))
+                    {
+                        iTextSharp.text.Image gif21 = iTextSharp.text.Image.GetInstance(imagepath11);
+                        gif21.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                        gif21.ScalePercent(80f);
+                        gif21.SetAbsolutePosition(18f, 220f);
+                        document.Add(gif21);
+                    }
+
+                string imagepath17 = "";
+                imagepath17 = Server.MapPath("~/assets/SKPlogo2.png");
+                if (File.Exists(imagepath17))
+                    if (File.Exists(imagepath17))
+                    {
+                        iTextSharp.text.Image gif27 = iTextSharp.text.Image.GetInstance(imagepath17);
+                        gif27.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif27.ScalePercent(70f);
+                        gif27.SetAbsolutePosition(18f, 70f);
+                        document.Add(gif27);
+                    }
+                string imagepath18 = "";
+                imagepath18 = Server.MapPath("~/assets/SKPlogo5.png");
+                if (File.Exists(imagepath18))
+                    if (File.Exists(imagepath18))
+                    {
+                        iTextSharp.text.Image gif18 = iTextSharp.text.Image.GetInstance(imagepath18);
+                        gif18.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif18.ScalePercent(60f);
+                        gif18.SetAbsolutePosition(5f, 470f);
+                        document.Add(gif18);
+                    }
+
+                string imagepath19 = "";
+                imagepath19 = Server.MapPath("~/assets/SKPlogo5.png");
+                if (File.Exists(imagepath19))
+                    if (File.Exists(imagepath19))
+                    {
+                        iTextSharp.text.Image gif19 = iTextSharp.text.Image.GetInstance(imagepath19);
+                        gif19.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif19.ScalePercent(59f);
+                        gif19.SetAbsolutePosition(4.18f, 130f);
+                        document.Add(gif19);
+                    }
+
+
+                document.Add(table);
+
+            PdfPTable table1 = new PdfPTable(2);
+            table1.TotalWidth = 430f;
+            table1.LockedWidth = true;
+            float[] width1 = new float[] { 4f, 4f };
+            table1.SetWidths(width1);
+
+
+            cell = new PdfPCell(new Phrase("Sub: Order of Appointment - "+ postappliedfor , FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+            cell.PaddingTop = 100;
+            table1.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("Dear "+name+"," ,FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+            cell.PaddingTop = 25;
+            table1.AddCell(cell);
+
+
+           
+
+
+                PdfPCell custDet5 = new PdfPCell();
+                Paragraph p3 = new Paragraph();
+                p3.Add(new Phrase("Congratulations! We welcome you on board Shri Kartikeya Pharma in the role of           ", FontFactory.GetFont(FontFactory.TIMES_ROMAN, fontsize +2, Font.NORMAL, BaseColor.BLACK)));
+                p3.Add(new Phrase(             postappliedfor , FontFactory.GetFont(FontFactory.TIMES_ROMAN, fontsize, Font.BOLD, BaseColor.BLACK)));
+                p3.Add(new Phrase("  with effect from  " , FontFactory.GetFont(FontFactory.TIMES_ROMAN, fontsize + 2, Font.NORMAL, BaseColor.BLACK)));
+                p3.Add(new Phrase( Dateofjoining, FontFactory.GetFont(FontFactory.TIMES_ROMAN, fontsize + 2, Font.BOLD, BaseColor.BLACK)));
+                custDet5.AddElement(p3);
+                custDet5.HorizontalAlignment = 0;
+                custDet5.Colspan = 3;
+                custDet5.Border = 0;
+                custDet5.PaddingTop = 10;
+                table1.AddCell(custDet5);
+
+                cell = new PdfPCell(new Phrase("This appointment is made under the following terms and conditions:", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.PaddingTop = 15;
+            cell.Colspan = 2;
+            table1.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("TERMS AND CONDITIONS:", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+            cell.PaddingTop = 15;
+            table1.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("1. You are expected to perform to the best of your ability, all duties and tasks assigned to you or as per your role at Shri Kartikeya Pharma.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+            cell.PaddingTop = 15;
+            table1.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("2. You will be confirmed after 6 Months of probation. This period may be extended based on your performance.Upon successful confirmation, all employee benefits will be extendible to you.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+            table1.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("3. Normal business hours for the company are 9:00 am - 6:00 pm from Monday to Saturday. However,it is important for employees to put in additional time in order to fulfil required duties if required.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+            cell.PaddingLeft = 15; 
+            cell.PaddingTop = 15;
+            table1.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("4. Your Annual Salary is fixed as mentioned in the annexure. Salary is payable monthly within the first week of the following month.The salary amount, net of deductions of Income tax and other statutory deductibles would be paid directly into your bank account.The breakup is in the annexure to this mail.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+            cell.PaddingLeft = 15;
+            cell.PaddingTop = 15;
+            table1.AddCell(cell);
+
+
+            cell = new PdfPCell(new Phrase("5. You will be entitled to take leaves in agreement with the Company’s Leave Policy. While we follow a limited Leaves Policy, prior approval from management for all leaves is a must so there is no hindrance to workflow.Any planned vacation more than a calendar week will have to be approved by the management at least a month in advance.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+            cell.PaddingLeft = 15;
+            cell.PaddingTop = 15;
+            table1.AddCell(cell);
+
+
+            cell = new PdfPCell(new Phrase(" Absence for a continuous period of 3 days without prior approval of your superior (including overstay of leave), can lead to termination of your services without notice or explanation by Shri Kartikeya Pharma.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+            cell.PaddingLeft = 15;
+            cell.PaddingTop = 15;
+            table1.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("  6. Shri Kartikeya Pharma reserves the right to terminate your employment on grounds of policy, misconduct or unsatisfactory job performance.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+            cell.HorizontalAlignment = 0;
+            cell.Border = 0;
+            cell.Colspan = 2;
+            cell.PaddingLeft = 15;
+            cell.PaddingTop = 10;
+            table1.AddCell(cell);
+
+
+
+                //cell = new PdfPCell(new Phrase("------------------------------------------------------------------------------------------------------------------------------------", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 130;
+                //table1.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Address, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;              
+                //cell.PaddingTop = 5;
+                //table1.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Phoneno + Faxno , FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;              
+                //cell.PaddingTop = 5;
+                //table1.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Emailid + Website , FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;                
+                //cell.PaddingTop = 5;
+                //table1.AddCell(cell);
+
+                document.Add(table1);
+
+
+                document.NewPage();
+
+
+                PdfPTable table3 = new PdfPTable(2);
+                table3.TotalWidth = 500f;
+                table3.LockedWidth = true;
+                float[] width3 = new float[] { 4f, 4f };
+                table3.SetWidths(width3);
+
+
+                string imagepath2 = "";
+                imagepath2 = Server.MapPath("~/assets/SKPlogo.png");
+                if (File.Exists(imagepath2))
+                    if (File.Exists(imagepath2))
+                    {
+                        iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(imagepath2);
+                        gif.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                        gif.ScalePercent(80f);
+                        gif.SetAbsolutePosition(80f, 720f);
+                        document.Add(gif);
+                    }
+
+                string imagepath12 = "";
+                imagepath12 = Server.MapPath("~/assets/SKPlogo1.png");
+                if (File.Exists(imagepath12))
+                    if (File.Exists(imagepath12))
+                    {
+                        iTextSharp.text.Image gif22 = iTextSharp.text.Image.GetInstance(imagepath12);
+                        gif22.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                        gif22.ScalePercent(80f);
+                        gif22.SetAbsolutePosition(18f, 220f);
+                        document.Add(gif22);
+                    }
+
+                string imagepath22 = "";
+                imagepath22 = Server.MapPath("~/assets/SKPlogo2.png");
+                if (File.Exists(imagepath22))
+                    if (File.Exists(imagepath22))
+                    {
+                        iTextSharp.text.Image gif22 = iTextSharp.text.Image.GetInstance(imagepath22);
+                        gif22.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif22.ScalePercent(70f);
+                        gif22.SetAbsolutePosition(18f, 80f);
+                        document.Add(gif22);
+                    }
+                string imagepath28 = "";
+                imagepath28 = Server.MapPath("~/assets/SKPlogo5.png");
+                if (File.Exists(imagepath28))
+                    if (File.Exists(imagepath28))
+                    {
+                        iTextSharp.text.Image gif28 = iTextSharp.text.Image.GetInstance(imagepath28);
+                        gif28.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif28.ScalePercent(60f);
+                        gif28.SetAbsolutePosition(5f, 470f);
+                        document.Add(gif28);
+                    }
+
+                string imagepath29 = "";
+                imagepath29 = Server.MapPath("~/assets/SKPlogo5.png");
+                if (File.Exists(imagepath29))
+                    if (File.Exists(imagepath29))
+                    {
+                        iTextSharp.text.Image gif29 = iTextSharp.text.Image.GetInstance(imagepath29);
+                        gif29.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif29.ScalePercent(59f);
+                        gif29.SetAbsolutePosition(4.19f, 130f);
+                        document.Add(gif29);
+                    }
+
+
+
+                document.Add(table3);
+
+                PdfPTable table4 = new PdfPTable(2);
+                table4.TotalWidth = 430;
+                table4.LockedWidth = true;
+                float[] width4 = new float[] { 4f, 4f };
+                table4.SetWidths(width4);
+               
+
+
+                cell = new PdfPCell(new Phrase("7. Whilst employed by Shri Kartikeya Pharma:", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 100;
+                table4.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("You will not be permitted to undertake any other employment or engage in any external activities of a commercial nature.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;          
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("You will be required to effectively carry out all duties assigned to you by your manager and others authorized by the Company to assign such duties and responsibilities.Your performance will be subject to regular appraisal by your manager", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Except if required by Shri Kartikeya Pharma in the course of your employment, or,thereafter, you shall not divulge to any third party, information regarding the affairs or business matters of the Company or information regarding its customers.All information that comes to your knowledge by reasons of employment with the company is deemed to be confidential.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("You will be signing a confidentiality agreement with the company at the time of joining.You will be required to apply and maintain the highest standards of personal conduct and integrity and comply with all Company policies and procedures.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Any intentional violation of these or any other Company procedures can result in disciplinary action being taken against you, which may result in termination of your employment with or without notice or compensation.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("You confirm that you have disclosed fully all of your business interests to Shri Kartikeya Pharma whether or not they are similar to or in conflict with the business or activities of the Company, and all circumstances in respect of which there is, or there might be perceived, a conflict of interest between Shri Kartikeya Pharma and you or any immediate relatives.Also,you agree to disclose fully and immediately to the Company any such interests or circumstances which may arise during your employment", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Upon separation from the Company on account of either resignation or termination, you need to immediately return to the Company all the assets and property(including any leased properties) of the company software and hardware including documents, files, books, papers and memos in your possession or custody. ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Your assignment, salary, and benefits are effective from the date you join Shri Kartikeya Pharma and complete all joining formalities which includes undergoing any training that is provided.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("The terms of this offer are intended to be kept strictly confidential.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("If in case you decide to leave or resign from the organization, you will have to serve a notice period of 2 months.During these two months, you will have to be physically present at the office and make sure that you inculcate your entire job - related knowledge to the person who will be filling in your position.You can attend interviews during this period with prior information to the management.If you fail to serve this period then you will have pay 2 month’s salary to the company.The management can also choose to release you early.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table4.AddCell(cell);
+
+
+
+
+
+
+                //cell = new PdfPCell(new Phrase("------------------------------------------------------------------------------------------------------------------------------------", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 60;
+                //table4.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Address, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 5;
+                //table4.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Phoneno + Faxno, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 5;
+                //table4.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Emailid + Website, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 5;
+                //table4.AddCell(cell);
+
+                document.Add(table4);
+
+                document.NewPage();
+
+                PdfPTable table5 = new PdfPTable(2);
+                table5.TotalWidth = 500f;
+                table5.LockedWidth = true;
+                float[] width5 = new float[] { 4f, 4f };
+                table5.SetWidths(width5);
+
+
+                string imagepath3 = "";
+                imagepath3 = Server.MapPath("~/assets/SKPlogo.png");
+                if (File.Exists(imagepath3))
+                    if (File.Exists(imagepath3))
+                    {
+                        iTextSharp.text.Image gif1 = iTextSharp.text.Image.GetInstance(imagepath3);
+                        gif1.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                        gif1.ScalePercent(80f);
+                        gif1.SetAbsolutePosition(80f, 720f);
+                        document.Add(gif1);
+                    }
+
+                string imagepath13 = "";
+                imagepath13 = Server.MapPath("~/assets/SKPlogo1.png");
+                if (File.Exists(imagepath13))
+                    if (File.Exists(imagepath13))
+                    {
+                        iTextSharp.text.Image gif23 = iTextSharp.text.Image.GetInstance(imagepath13);
+                        gif23.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                        gif23.ScalePercent(80f);
+                        gif23.SetAbsolutePosition(18f, 220f);
+                        document.Add(gif23);
+                    }
+
+                string imagepath31 = "";
+                imagepath31 = Server.MapPath("~/assets/SKPlogo2.png");
+                if (File.Exists(imagepath31))
+                    if (File.Exists(imagepath31))
+                    {
+                        iTextSharp.text.Image gif31 = iTextSharp.text.Image.GetInstance(imagepath31);
+                        gif31.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif31.ScalePercent(70f);
+                        gif31.SetAbsolutePosition(18f, 70f);
+                        document.Add(gif31);
+                    }
+
+                string imagepath52 = "";
+                imagepath52 = Server.MapPath("~/assets/SKPlogo4.png");
+                if (File.Exists(imagepath52))
+                    if (File.Exists(imagepath52))
+                    {
+                        iTextSharp.text.Image gif52 = iTextSharp.text.Image.GetInstance(imagepath52);
+                        gif52.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif52.ScalePercent(60f);
+                        gif52.SetAbsolutePosition(180f, 280f);
+                        document.Add(gif52);
+                    }
+
+                string imagepath38 = "";
+                imagepath38 = Server.MapPath("~/assets/SKPlogo5.png");
+                if (File.Exists(imagepath38))
+                    if (File.Exists(imagepath38))
+                    {
+                        iTextSharp.text.Image gif38 = iTextSharp.text.Image.GetInstance(imagepath38);
+                        gif38.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif38.ScalePercent(60f);
+                        gif38.SetAbsolutePosition(5f, 470f);
+                        document.Add(gif38);
+                    }
+
+                string imagepath39 = "";
+                imagepath39 = Server.MapPath("~/assets/SKPlogo5.png");
+                if (File.Exists(imagepath39))
+                    if (File.Exists(imagepath39))
+                    {
+                        iTextSharp.text.Image gif39 = iTextSharp.text.Image.GetInstance(imagepath39);
+                        gif39.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif39.ScalePercent(59f);
+                        gif39.SetAbsolutePosition(4.13f, 130f);
+                        document.Add(gif39);
+                    }
+
+
+
+                document.Add(table5);
+
+                PdfPTable table6 = new PdfPTable(2);
+                table6.TotalWidth = 430;
+                table6.LockedWidth = true;
+                float[] width6 = new float[] { 4f, 4f };
+                table6.SetWidths(width6);
+
+
+
+                cell = new PdfPCell(new Phrase("8. This order of appointment by Shri Kartikeya Pharma is conditional to the satisfactory completion of all regulatory and background checks.Please note that failure to clear any one of the above will lead to immediate withdrawal of this appointment order and thus termination of your employment with Shri Kartikeya Pharma.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 100;
+                table6.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("9. You are required to confirm by email to the undersigned within the next week that you agree to abide by the policies here", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 20;
+                table6.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Salary Annexure to the Appointment Order", FontFactory.GetFont(FontFactory.TIMES_BOLD, fontsize, Font.UNDERLINE, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2; 
+                cell.PaddingTop = 20;
+                cell.PaddingBottom = 20;
+                table6.AddCell(cell);
+                document.Add(table6);
+
+
+
+                PdfPTable table11 = new PdfPTable(2);
+                table11.TotalWidth = 200;
+                table11.LockedWidth = true;
+                float[] width11 = new float[] { 2f,2f, };
+                table11.SetWidths(width11);
+
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                cell.Border = 0;
+                cell.PaddingTop = 50;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                cell.PaddingTop = 50;
+                cell.Border = 0;
+                table11.AddCell(cell);
+
+                BaseColor color = new BaseColor(221, 226, 222);
+
+                cell = new PdfPCell(new Phrase("Designation", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                cell.BackgroundColor = color;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(postappliedfor, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                cell.BackgroundColor = color;
+                table11.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                cell.PaddingTop = 10;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                cell.PaddingTop = 10;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Basic", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;                
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(basic, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;             
+                 table11.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("HRA", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;               
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(HRA, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;               
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Special Allowance", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;               
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(SplAllowance, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;               
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Gross", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                cell.BackgroundColor = color;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(Gross, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                cell.BackgroundColor = color;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("PT", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(ProfTax, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("PF", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(PF, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+
+
+                cell = new PdfPCell(new Phrase("TDS (As Per IT Rule)", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(TDSDed, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("ESIC", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(ESI, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Ded Employee", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("TH Net", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                cell.BackgroundColor = color;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(THnet, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                cell.BackgroundColor = color;
+                table11.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("PF Employer", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(PFEmpr, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("ESIC Employer", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(ESIEmpr, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Ded Employer", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                table11.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("CTC", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Colspan = 1;
+                cell.BackgroundColor = color;
+                table11.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(ctc, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 2;
+                cell.Colspan = 1;
+                cell.BackgroundColor = color;
+
+                table11.AddCell(cell);
+                
+                document.Add(table11);
+
+
+                //PdfPTable table12 = new PdfPTable(2);
+                //table12.TotalWidth = 500f;
+                //table12.LockedWidth = true;
+                //float[] width12 = new float[] { 4f, 4f };
+                //table12.SetWidths(width12);
+
+
+
+
+
+                //cell = new PdfPCell(new Phrase("------------------------------------------------------------------------------------------------------------------------------------", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 230;
+                //table12.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Address, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 5;
+                //table12.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Phoneno + Faxno, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 5;
+                //table12.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Emailid + Website, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 2;
+                //cell.PaddingTop = 5;
+                //table12.AddCell(cell);
+
+
+                //document.Add(table12);
+
+
+                document.NewPage();
+
+                PdfPTable table7 = new PdfPTable(4);
+                table7.TotalWidth = 500f;
+                table7.LockedWidth = true;
+                float[] width7 = new float[] { 1.5f,1f,0.7f,1f };
+                table7.SetWidths(width7);
+
+
+                string imagepath4 = "";
+                imagepath4 = Server.MapPath("~/assets/SKPlogo.png");
+                if (File.Exists(imagepath4))
+                    if (File.Exists(imagepath4))
+                    {
+                        iTextSharp.text.Image gif3 = iTextSharp.text.Image.GetInstance(imagepath4);
+                        gif3.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                        gif3.ScalePercent(80f);
+                        gif3.SetAbsolutePosition(80f, 720f);
+                        document.Add(gif3);
+                    }
+
+
+                string imagepath14 = "";
+                imagepath14 = Server.MapPath("~/assets/SKPlogo1.png");
+                if (File.Exists(imagepath14))
+                    if (File.Exists(imagepath14))
+                    {
+                        iTextSharp.text.Image gif24 = iTextSharp.text.Image.GetInstance(imagepath14);
+                        gif24.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                        gif24.ScalePercent(80f);
+                        gif24.SetAbsolutePosition(18f, 220f);
+                        document.Add(gif24);
+                    }
+
+                string imagepath15 = "";
+                imagepath15 = Server.MapPath("~/assets/SKPlogo2.png");
+                if (File.Exists(imagepath15))
+                    if (File.Exists(imagepath15))
+                    {
+                        iTextSharp.text.Image gif25 = iTextSharp.text.Image.GetInstance(imagepath15);
+                        gif25.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif25.ScalePercent(70f);
+                        gif25.SetAbsolutePosition(18f, 80f);
+                        document.Add(gif25);
+                    }
+                string imagepath51 = "";
+                imagepath51 = Server.MapPath("~/assets/SKPlogo3.png");
+                if (File.Exists(imagepath51))
+                    if (File.Exists(imagepath51))
+                    {
+                        iTextSharp.text.Image gif51 = iTextSharp.text.Image.GetInstance(imagepath51);
+                        gif51.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif51.ScalePercent(50f);
+                        gif51.SetAbsolutePosition(100f, 380f);
+                        document.Add(gif51);
+                    }
+
+                string imagepath58 = "";
+                imagepath58 = Server.MapPath("~/assets/SKPlogo5.png");
+                if (File.Exists(imagepath58))
+                    if (File.Exists(imagepath58))
+                    {
+                        iTextSharp.text.Image gif58 = iTextSharp.text.Image.GetInstance(imagepath58);
+                        gif58.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif58.ScalePercent(60f);
+                        gif58.SetAbsolutePosition(5f, 470f);
+                        document.Add(gif58);
+                    }
+
+                string imagepath59 = "";
+                imagepath59 = Server.MapPath("~/assets/SKPlogo5.png");
+                if (File.Exists(imagepath59))
+                    if (File.Exists(imagepath59))
+                    {
+                        iTextSharp.text.Image gif59 = iTextSharp.text.Image.GetInstance(imagepath59);
+                        gif59.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                        gif59.ScalePercent(59f);
+                        gif59.SetAbsolutePosition(4.15f, 130f);
+                        document.Add(gif59);
+                    }
+
+                document.Add(table7);
+
+
+                PdfPTable table8 = new PdfPTable(4);
+                table8.TotalWidth = 430f;
+                table8.LockedWidth = true;
+                float[] width8 = new float[] { 1.5f, 1f, 0.7f, 1f };
+                table8.SetWidths(width8);
+
+
+
+                cell = new PdfPCell(new Phrase("Documents required:", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingTop = 80;
+                table8.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("The following documents need to be submitted to the HR department at the of joining. ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingTop = 10;
+                table8.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("1.   Updated Resume ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 20;
+                cell.PaddingTop = 10;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("2.   3 Passport size Photos", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 20;              
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("3.   All Educational Documents", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 20;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("4.   Identity Proofs: Any two of Following:", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 20;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Aadhar Card (Compulsory)", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Voter Identity Card", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Driving License.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Passport", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("Photo Ration Card", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Pan Card (Compulsory)", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Latest Bank statement/Passbook", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Relieving Letter or Experience letter", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Latest 3 Months Payslips of current organization", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;
+                cell.PaddingLeft = 50;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Wishing you a brilliant career with us!", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 4;                
+                cell.PaddingTop = 15;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("For Shri Kartikeya Pharma,", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 15;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Accepted & Signed", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 15;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Kartikeya Baldwa", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 30;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Name:", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 30;
+                table8.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("C.E.O", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase(" Date:", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 5;
+                table8.AddCell(cell);
+
+
+
+
+
+
+
+
+
+
+                //cell = new PdfPCell(new Phrase("----------------------------------------------------------------------------------------------------------------------------------------------", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 4;
+                //cell.PaddingTop = 180;
+                //table7.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Address, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 1;
+                //cell.Border = 0;
+                //cell.Colspan = 4;
+                //cell.PaddingTop = 5;
+                //table7.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase("Phone :", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 1;
+                //cell.PaddingLeft = 70;
+                //cell.PaddingTop = 5;
+                //table7.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Phoneno + Faxno, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 1;                
+                //cell.PaddingTop = 5;
+                //table7.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase("Website :", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 1;
+                //cell.PaddingRight = 30;
+                //cell.PaddingTop = 5;
+                //table7.AddCell(cell);
+
+                //cell = new PdfPCell(new Phrase(Emailid + Website, FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                //cell.HorizontalAlignment = 0;
+                //cell.Border = 0;
+                //cell.Colspan = 1;
+                //cell.PaddingRight = 70;
+                //cell.PaddingTop = 5;
+                //table7.AddCell(cell);
+
+
+                document.Add(table8);
+
+
+
+
+
+                string filename = txtName.Text + " - " + txtEmpid.Text + " - " + "Biodata.pdf";
+
+            document.Close();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=" + filename);
+            Response.Buffer = true;
+            Response.Clear();
+            Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+            Response.OutputStream.Flush();
+            Response.End();
+        }
 
         }
 
