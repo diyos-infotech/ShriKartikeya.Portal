@@ -443,7 +443,9 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblFromContracts2to" runat="server" Text='<%#Bind("CountABS") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="Left" />
+                                                 <FooterTemplate>
+                                                    <asp:Label runat="server" ID="lblTotalFromContracts2to"></asp:Label>
+                                                </FooterTemplate>
                                             </asp:TemplateField>
 
                                             <%-- 18--%>

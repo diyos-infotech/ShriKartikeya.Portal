@@ -58612,7 +58612,7 @@ namespace ShriKartikeya.Portal
 
             }
 
-            string query1 = "select basic, HRA,Gross ,ESI,ESIEmpr,TDSDed,PF, PFEmpr, ProfTax, *from EmpPaySheet where EmpId = '" + txtEmpid.Text + "' order by Month desc ";
+            string query1 = "select basic, HRA,Gross ,ESI,ESIEmpr,TDSDed,PF, PF PFEmpr, ProfTax,SplAllowance from EmpPaySheet where EmpId = '" + txtEmpid.Text + "' order by Month desc ";
             DataTable dt = Config.ExecuteAdaptorAsyncWithQueryParams(query1).Result;
 
             string basic = dt.Rows[0]["basic"].ToString();

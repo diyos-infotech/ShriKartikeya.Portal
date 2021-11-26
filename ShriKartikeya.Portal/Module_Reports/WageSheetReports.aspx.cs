@@ -2123,6 +2123,7 @@ namespace ShriKartikeya.Portal.Module_Reports
         float totalwds = 0;
         float totalGross = 0;
         float totalPayableAmt = 0;
+        float totalCountABS = 0;
         #endregion Total Variables
 
         protected void DisplayData()
@@ -3014,7 +3015,11 @@ namespace ShriKartikeya.Portal.Module_Reports
                                         totalGross += Convert.ToSingle(stGross);
                                     }
 
-
+                                    string strCountABS = dt.Rows[i]["CountABS"].ToString();
+                                    if (strCountABS.Trim().Length > 0)
+                                    {
+                                        totalCountABS += Convert.ToSingle(strCountABS);
+                                    }
 
                                     //string strDaysFromContracts = dt.Rows[i]["NoofDaysFromContracts"].ToString();
                                     //if (stAdvBonus.Trim().Length > 0)
@@ -3165,6 +3170,9 @@ namespace ShriKartikeya.Portal.Module_Reports
                         //16
                         Label lblnoofContracts = GVListEmployees.FooterRow.FindControl("lblnoofContracts") as Label;
                         lblnoofContracts.Text = Math.Round(totalwds).ToString();
+                        //17
+                        Label lblTotalFromContracts2to = GVListEmployees.FooterRow.FindControl("lblTotalFromContracts2to") as Label;
+                        lblTotalFromContracts2to.Text = Math.Round(totalwds).ToString();
                         //18
                         Label lblTotaldutyhrs = GVListEmployees.FooterRow.FindControl("lblTotaldutyhrs") as Label;
                         lblTotaldutyhrs.Text = Math.Round(totalNoOfDuties).ToString();
