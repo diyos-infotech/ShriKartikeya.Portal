@@ -58612,7 +58612,7 @@ namespace ShriKartikeya.Portal
 
             }
 
-            string query1 = "select basic, HRA,Gross ,ESI,ESIEmpr,TDSDed,PF, PF PFEmpr, ProfTax,SplAllowance from EmpPaySheet where EmpId = '" + txtEmpid.Text + "' order by Month desc ";
+            string query1 = "select top (1) basic, HRA,Gross ,ESI,ESIEmpr,TDSDed,PF, PF PFEmpr, ProfTax,SplAllowance from EmpPaySheet where EmpId = '" + txtEmpid.Text + "' order by Month desc ";
             DataTable dt = Config.ExecuteAdaptorAsyncWithQueryParams(query1).Result;
 
             string basic = dt.Rows[0]["basic"].ToString();
@@ -58627,7 +58627,7 @@ namespace ShriKartikeya.Portal
             string ESIEmpr = dt.Rows[0]["ESIEmpr"].ToString();
 
             string THnet = Convert.ToString(Convert.ToInt32(dt.Rows[0]["Gross"])-((Convert.ToInt32(dt.Rows[0]["ProfTax"] ) + Convert.ToInt32(dt.Rows[0]["TDSDed"]) + Convert.ToInt32(dt.Rows[0]["PF"] )+ (Convert.ToInt32(dt.Rows[0]["ESI"])))));
-            string ctc = Convert.ToString(((Convert.ToInt32(dt.Rows[0]["PFEmpr"])+ (Convert.ToInt32(dt.Rows[0]["ESIEmpr"])) + (Convert.ToInt32(dt.Rows[0]["Gross"]) - ((Convert.ToInt32(dt.Rows[0]["ProfTax"]) + Convert.ToInt32(dt.Rows[0]["TDSDed"]) + Convert.ToInt32(dt.Rows[0]["PF"]) + (Convert.ToInt32(dt.Rows[0]["ESI"]))))))));
+            string ctc = Convert.ToString(((Convert.ToInt32(dt.Rows[0]["PFEmpr"])+ (Convert.ToInt32(dt.Rows[0]["ESIEmpr"])) + (Convert.ToInt32(dt.Rows[0]["Gross"])))));
 
 
 
