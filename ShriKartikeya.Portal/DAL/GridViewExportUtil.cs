@@ -922,7 +922,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("<TR valign='top'>");
         HttpContext.Current.Response.Write("<Td border='1'; align='center' colspan=27>");
         HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write(ContractorName+Address);
+        HttpContext.Current.Response.Write(ContractorName + Address);
         HttpContext.Current.Response.Write("</B>");
         HttpContext.Current.Response.Write("</Td>");
         HttpContext.Current.Response.Write("</TR>");
@@ -1058,7 +1058,7 @@ public class GridViewExportUtil
 
 
     }
-    public void ExportGridForWagesheetctcReportse(string fileName, int countduties, int countfixedwages, int countearnings, int countdedutions, int countnetpay, int Empdetailscount,  string ContractorName, string line2, HiddenField hidGridView)
+    public void ExportGridForWagesheetctcReportse(string fileName, int countduties, int countfixedwages, int countearnings, int countdedutions, int countnetpay, int Empdetailscount, string ContractorName, string line2, HiddenField hidGridView)
     {
         string filename = fileName;
         string style = @"<style> .text { mso-number-format:\@; } </style> ";
@@ -1076,7 +1076,7 @@ public class GridViewExportUtil
           "style='font-size:11.0pt; font-family:calibri; background:white;'>");
 
         //am getting my grid's column headers
-       // int columnscount = 44;
+        // int columnscount = 44;
 
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
@@ -1099,12 +1099,12 @@ public class GridViewExportUtil
 
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td border :'1'; align='center'  colspan= '" + Empdetailscount +"'>");
+        HttpContext.Current.Response.Write("<Td border :'1'; align='center'  colspan= '" + Empdetailscount + "'>");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write("EMPLOYEES DETAILS");
         HttpContext.Current.Response.Write("</B>");
         HttpContext.Current.Response.Write("</Td>");
-       
+
 
         HttpContext.Current.Response.Write("<Td border : '1' align='center'  colspan='" + countfixedwages + "'>");
         HttpContext.Current.Response.Write("<B>");
@@ -1144,7 +1144,7 @@ public class GridViewExportUtil
         //HttpContext.Current.Response.Write("</B>");
         //HttpContext.Current.Response.Write("</Td>");
 
-       
+
 
         HttpContext.Current.Response.Write("<Td border :'1'; align='center'  colspan='" + countnetpay + "'>");
         HttpContext.Current.Response.Write("<B>");
@@ -1172,7 +1172,7 @@ public class GridViewExportUtil
 
     }
 
-    public void ExportGridForWagesheetctcReport(string fileName, int countduties, int countfixedwages, int countearnings, int countdedutions, int countpfempr, int countAdvBonus, int countnetpay, int Empdetailscount, string Form, string wages, string Rule, string ContractorName, string WorkLocation, int count,int othrsount,string line2, HiddenField hidGridView)
+    public void ExportGridForWagesheetctcReport(string fileName, int countduties, int countfixedwages, int countearnings, int countdedutions, int countpfempr, int countAdvBonus, int countnetpay, int Empdetailscount, string Form, string wages, string Rule, string ContractorName, string WorkLocation, int count, int othrsount, string line2, HiddenField hidGridView)
     {
         string filename = fileName;
         string style = @"<style> .text { mso-number-format:\@; } </style> ";
@@ -1285,7 +1285,7 @@ public class GridViewExportUtil
          "borderColor='#000000' cellSpacing='0' cellPadding='0' " +
          "style='font-size:11.0pt; font-family:calibri; background:white;'>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
-        
+
         HttpContext.Current.Response.Write("<Td border='1'; align='center'  colspan= '" + Empdetailscount + "'>");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write("");
@@ -1312,7 +1312,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</B>");
         HttpContext.Current.Response.Write("</Td>");
 
-      
+
 
 
         HttpContext.Current.Response.Write("<Td border='1' align='center'  colspan='" + countearnings + "'>");
@@ -2183,7 +2183,7 @@ public class GridViewExportUtil
 
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count  + ">");
+        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write("For " + line + ".,");
         HttpContext.Current.Response.Write("</B>");
@@ -2210,9 +2210,9 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</TR>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count  + ">");
+        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
-        HttpContext.Current.Response.Write("Director");
+        HttpContext.Current.Response.Write("Proprietor");
         HttpContext.Current.Response.Write("</B>");
         HttpContext.Current.Response.Write("</Td>");
 
@@ -2255,7 +2255,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</TR>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count  + ">");
+        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write(line1);
         HttpContext.Current.Response.Write("</B>");
@@ -2264,7 +2264,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</TR>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count  + ">");
+        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write(line2);
         HttpContext.Current.Response.Write("</B>");
@@ -2273,7 +2273,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</TR>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count  + ">");
+        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write(line3);
         HttpContext.Current.Response.Write("</B>");
@@ -2282,7 +2282,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</TR>");
         HttpContext.Current.Response.Write("<TR valign='top'>");
 
-        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count  + ">");
+        HttpContext.Current.Response.Write("<Td style='border:none' align='left' colspan= " + count + ">");
         HttpContext.Current.Response.Write("<B>");
         HttpContext.Current.Response.Write(line4);
         HttpContext.Current.Response.Write("</B>");
@@ -2435,7 +2435,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</B>");
         HttpContext.Current.Response.Write("</Td>");
 
-        HttpContext.Current.Response.Write("</TR>"); 
+        HttpContext.Current.Response.Write("</TR>");
 
         HttpContext.Current.Response.Write("</Table>");
         HttpContext.Current.Response.Write("</font>");
@@ -2485,7 +2485,6 @@ public class GridViewExportUtil
             //Get column headers  and make it as bold in excel columns
             HttpContext.Current.Response.Write("<B>");
             HttpContext.Current.Response.Write(table.Columns[j].ToString());
-
             HttpContext.Current.Response.Write("</B>");
             HttpContext.Current.Response.Write("</Td>");
         }
@@ -2493,7 +2492,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</TR>");
 
         foreach (DataRow row in table.Rows)
-        {//write in new row
+        {
             HttpContext.Current.Response.Write("<TR>");
             for (int i = 0; i < table.Columns.Count; i++)
             {
