@@ -41,6 +41,8 @@
                             <td align="right"><a href="AddEmployee.aspx" class=" btn save">Add New Employee</a><br />
                                 <a href="ApproveEmployee.aspx" class=" btn save" runat="server" id="ApproveEmployeeLink">Approve Employee</a> </td>
                             <td align="right"><a href="EmpSalaryStructure.aspx" class=" btn save">Emp Salary Structure</a></td>
+                            <td align="right"><a href="TDSDemo.aspx" class=" btn save">TDS Calculation</a></td>
+
                         </tr>
                     </table>
                     <div class="col-md-12">
@@ -143,13 +145,13 @@
                                             <ItemStyle Width="40px"></ItemStyle>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Status" ItemStyle-Width="30px">
+                                        <asp:TemplateField HeaderText="Status" ItemStyle-Width="30px">
                                             <ItemTemplate>
-                                            <asp:Label runat="server" ID="lblempGen" Text='<%#Bind("empstatus")%>' ></asp:Label>
-                                        </ItemTemplate>
+                                                <asp:Label runat="server" ID="lblempGen" Text='<%#Bind("empstatus")%>'></asp:Label>
+                                            </ItemTemplate>
                                         </asp:TemplateField>
 
-                                       <asp:TemplateField HeaderText="Actions">
+                                        <asp:TemplateField HeaderText="Actions">
                                             <ItemTemplate>
                                                 <asp:ImageButton ID="lbtn_Select" ImageUrl="~/css/assets/view.png" runat="server"
                                                     ToolTip="View" OnClick="lbtn_Select_Click" Visible="false" />

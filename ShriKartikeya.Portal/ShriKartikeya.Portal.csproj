@@ -140,8 +140,10 @@
     <Content Include="assets\SKPlogo3.png" />
     <Content Include="assets\SKPlogo4.png" />
     <Content Include="assets\SKPlogo5.png" />
+    <Content Include="Module_Employees\TDSDemo.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
+    <Content Include="Module_Reports\TDSReport.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1692,6 +1694,13 @@
     <Compile Include="Module_Employees\PostingOrderList.aspx.designer.cs">
       <DependentUpon>PostingOrderList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Module_Employees\TDSDemo.aspx.cs">
+      <DependentUpon>TDSDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Employees\TDSDemo.aspx.designer.cs">
+      <DependentUpon>TDSDemo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module_Inventory\AddNewItem.aspx.cs">
       <DependentUpon>AddNewItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2311,6 +2320,13 @@
     </Compile>
     <Compile Include="Module_Reports\SubClientsWithMainClientReports.aspx.designer.cs">
       <DependentUpon>SubClientsWithMainClientReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\TDSReport.aspx.cs">
+      <DependentUpon>TDSReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\TDSReport.aspx.designer.cs">
+      <DependentUpon>TDSReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Reports\WagesheetReportctc.aspx.cs">
       <DependentUpon>WagesheetReportctc.aspx</DependentUpon>
