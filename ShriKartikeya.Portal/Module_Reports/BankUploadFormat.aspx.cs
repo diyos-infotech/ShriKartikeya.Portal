@@ -151,8 +151,9 @@ namespace ShriKartikeya.Portal
                 ddlOptions.DataBind();
             }
                ddlOptions.Items.Insert(0, "--Select--");
-            
-         
+               ddlOptions.Items.Insert(1, "-ALL-");
+
+
         }
         protected void ClearData()
         {
@@ -330,13 +331,13 @@ namespace ShriKartikeya.Portal
                     //    gve.ExporttoExcelForBankUpload("BankUploadFormat.xls", this.GVListClients, line, line1, count);
                     //}
 
-                    if (ddlOptions.SelectedIndex == 1)
+                    if ( ddlOptions.SelectedIndex == 2)
                     {
 
                         gve.Export("BankUploadFormat.xls", this.GVListClients);
 
                     }
-                    if (ddlOptions.SelectedIndex == 2 || ddlOptions.SelectedIndex == 3|| ddlOptions.SelectedIndex == 4)
+                    if (ddlOptions.SelectedIndex == 1 || ddlOptions.SelectedIndex == 3 || ddlOptions.SelectedIndex == 4|| ddlOptions.SelectedIndex == 5)
                     {
                         string strcompanyName = compInfo.Rows[0]["CompanyName"].ToString();
                         string line = strcompanyName;
@@ -359,22 +360,22 @@ namespace ShriKartikeya.Portal
                     e.Row.Cells[0].Text = "";
                     e.Row.Font.Bold = true;
                 }
-                if (ddlOptions.SelectedIndex == 1)
+                if (ddlOptions.SelectedIndex == 2)
                 {
                     e.Row.Cells[7].Attributes.Add("class", "text");
                     e.Row.Cells[14].Attributes.Add("class", "text");
 
                 }
-                if (ddlOptions.SelectedIndex == 2)
+                if (ddlOptions.SelectedIndex == 3)
                 {
                     e.Row.Cells[3].Attributes.Add("class", "text");
                 }
 
-                if (ddlOptions.SelectedIndex == 3 )
+                if (ddlOptions.SelectedIndex == 4 )
                 {
                     e.Row.Cells[4].Attributes.Add("class", "text");
                 }
-                if (ddlOptions.SelectedIndex == 4)
+                if (ddlOptions.SelectedIndex == 5)
                 {
                     e.Row.Cells[4].Attributes.Add("class", "text");
                 }
