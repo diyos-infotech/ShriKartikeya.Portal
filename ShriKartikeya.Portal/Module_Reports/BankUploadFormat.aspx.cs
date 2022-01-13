@@ -331,13 +331,13 @@ namespace ShriKartikeya.Portal
                     //    gve.ExporttoExcelForBankUpload("BankUploadFormat.xls", this.GVListClients, line, line1, count);
                     //}
 
-                    if ( ddlOptions.SelectedIndex == 2)
+                    if (ddlOptions.SelectedIndex == 2 || ddlOptions.SelectedIndex == 3)
                     {
 
                         gve.Export("BankUploadFormat.xls", this.GVListClients);
 
                     }
-                    if (ddlOptions.SelectedIndex == 1 || ddlOptions.SelectedIndex == 3 || ddlOptions.SelectedIndex == 4|| ddlOptions.SelectedIndex == 5)
+                    if (ddlOptions.SelectedIndex == 1  || ddlOptions.SelectedIndex == 4|| ddlOptions.SelectedIndex == 5)
                     {
                         string strcompanyName = compInfo.Rows[0]["CompanyName"].ToString();
                         string line = strcompanyName;
@@ -368,7 +368,9 @@ namespace ShriKartikeya.Portal
                 }
                 if (ddlOptions.SelectedIndex == 3)
                 {
-                    e.Row.Cells[3].Attributes.Add("class", "text");
+                    //e.Row.Cells[3].Attributes.Add("class", "text");
+                    e.Row.Cells[7].Attributes.Add("class", "text");
+                    e.Row.Cells[14].Attributes.Add("class", "text");
                 }
 
                 if (ddlOptions.SelectedIndex == 4 )

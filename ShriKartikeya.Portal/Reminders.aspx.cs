@@ -19,7 +19,7 @@ namespace ShriKartikeya.Portal
 
 
             string SqlQry = "select isnull(empfname,'')+' '+ isnull(empMname,'')+' ' + isnull(empLname,'') + '<br/>[  Ph.No:' +isnull(EmpPhone,'NA') + ']' + ' '  as Name  " +
-                            "  From Empdetails   Where EmpDtofBirth='" + DateTime.Now.Date.ToString("MM/dd/yyyy") + "' ";
+                            "  From Empdetails   where  month(EmpDtofBirth)=month(getdate()) and Day(EmpDtofBirth)=Day(getdate())";
             DataTable Dt = config.ExecuteAdaptorAsyncWithQueryParams(SqlQry).Result;
             if (Dt.Rows.Count > 0)
             {
