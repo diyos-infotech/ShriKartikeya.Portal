@@ -41,7 +41,7 @@
                             <td align="right"><a href="AddEmployee.aspx" class=" btn save">Add New Employee</a><br />
                                 <a href="ApproveEmployee.aspx" class=" btn save" runat="server" id="ApproveEmployeeLink">Approve Employee</a> </td>
                             <td align="right"><a href="EmpSalaryStructure.aspx" class=" btn save">Emp Salary Structure</a></td>
-                            <td align="right"><a href="TDSDemo.aspx" class=" btn save">TDS Calculation</a></td>
+                            <td align="right"><a href="/TDSDemo.aspx" class=" btn save">TDS Calculation</a></td>
 
                         </tr>
                     </table>

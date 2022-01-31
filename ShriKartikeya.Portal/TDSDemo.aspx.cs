@@ -1544,7 +1544,7 @@ namespace ShriKartikeya.Portal
                 DataTable Saldt = config.ExecuteAdaptorAsyncWithQueryParams(SalQry).Result;
                 if (dt.Rows.Count > 0)
                 {
-                    txtincome.Text = Saldt.Rows[0]["TotalSalary"].ToString();
+                    txtincome.Text= Saldt.Rows[0]["TotalSalary"].ToString();
                     txtbasic.Text = Saldt.Rows[0]["Basic"].ToString();
                     txtHra.Text = Saldt.Rows[0]["HRA"].ToString();
                 }
@@ -1633,7 +1633,7 @@ namespace ShriKartikeya.Portal
 
         protected void lnkBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Employees.aspx");
+            Response.Redirect("Module_Employees/Employees.aspx");
         }
 
         protected void btnTDSClose_Click(object sender, EventArgs e)
@@ -1755,5 +1755,7 @@ namespace ShriKartikeya.Portal
 
 
         }
+
+
     }
 }
