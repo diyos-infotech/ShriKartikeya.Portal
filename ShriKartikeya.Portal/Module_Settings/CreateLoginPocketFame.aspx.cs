@@ -161,7 +161,7 @@ namespace ShriKartikeya.Portal
             }
 
 
-            string ChkQry = "select * from Logindetails_Android where companyid=19 and EmpId='" + txtEmpid.Text + "' ";
+            string ChkQry = "select * from Logindetails_Android where companyid=47 and EmpId='" + txtEmpid.Text + "' ";
             DataTable chkresult = config.PocketFameExecuteAdaptorAsyncWithQueryParams(ChkQry).Result;
             if (chkresult.Rows.Count > 0)
             {
@@ -275,11 +275,11 @@ namespace ShriKartikeya.Portal
             int result = config.ExecuteNonQueryWithQueryAsync(query).Result;
             if (result > 0)
             {
-                string ChkQry = "select * from Logindetails_Android where companyid=19 and EmpId='" + txtEmpid.Text + "' ";
+                string ChkQry = "select * from Logindetails_Android where companyid=47 and EmpId='" + txtEmpid.Text + "' ";
                 DataTable chkresult = config.PocketFameExecuteAdaptorAsyncWithQueryParams(ChkQry).Result;
                 if (chkresult.Rows.Count > 0)
                 {
-                    string updatequery = "Update Logindetails_Android set UserName='" + txtusrname.Text.Trim() + "',Password='" + txtConfirmPassword.Text.Trim() + "',UpdatedDateTime=getdate(),Role='" + ddlrole.SelectedValue + "' where empid='" + Empid + "' and companyid=19";
+                    string updatequery = "Update Logindetails_Android set UserName='" + txtusrname.Text.Trim() + "',Password='" + txtConfirmPassword.Text.Trim() + "',UpdatedDateTime=getdate(),Role='" + ddlrole.SelectedValue + "' where empid='" + Empid + "' and companyid=47";
                     int updateresult = config.PocketFameExecuteNonQueryWithQueryAsync(updatequery).Result;
                     if (updateresult > 0)
                     {
@@ -294,7 +294,7 @@ namespace ShriKartikeya.Portal
                 }
                 else
                 {
-                    string insertquery = "insert into Logindetails_Android (Id,	EmpId,	UserName,	Password,	CompanyId,	CreatedDateTime	,UpdatedDateTime,	EmailId	,Role,	PushCode,	Rated	,ClientId) values (newid(),'" + txtEmpid.Text + "','" + txtusrname.Text.Trim() + "','" + txtConfirmPassword.Text.Trim() + "',19,Getdate(),'','','" + ddlrole.SelectedValue + "','',0,'')";
+                    string insertquery = "insert into Logindetails_Android (Id,	EmpId,	UserName,	Password,	CompanyId,	CreatedDateTime	,UpdatedDateTime,	EmailId	,Role,	PushCode,	Rated	,ClientId) values (newid(),'" + txtEmpid.Text + "','" + txtusrname.Text.Trim() + "','" + txtConfirmPassword.Text.Trim() + "',47,Getdate(),'','','" + ddlrole.SelectedValue + "','',0,'')";
                     int insertresult = config.PocketFameExecuteNonQueryWithQueryAsync(insertquery).Result;
                     if (insertresult > 0)
                     {
