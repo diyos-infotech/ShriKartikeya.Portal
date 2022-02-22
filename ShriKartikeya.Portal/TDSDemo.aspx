@@ -302,7 +302,7 @@ investments and claim tax deductions under HRA, LTA, Section 80, interest paid o
                             <td>PAN
                             </td>
                             <td>
-                                <asp:TextBox runat="server" ID="txtpan" Enabled="false" class="form-control"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtpan" Enabled="true" class="form-control"></asp:TextBox>
                             </td>
                         </tr>
 
@@ -1112,7 +1112,6 @@ investments and claim tax deductions under HRA, LTA, Section 80, interest paid o
                                     <asp:Label ID="lblPostBudgetOld" runat="server" Text='<%#Bind("PostBudgetOld") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
 
                             <asp:TemplateField HeaderText="New Regime" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="15px">
                                 <HeaderStyle Width="15px" />

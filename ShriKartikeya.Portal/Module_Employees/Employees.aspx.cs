@@ -33,6 +33,11 @@ namespace ShriKartikeya.Portal
                     }
 
                     DisplayData();
+
+                    if (Session["AccessLevel"].ToString() == "1")
+                    {
+                        linktdsdemo.Visible = true;
+                    }
                 }
 
             }
