@@ -58526,7 +58526,11 @@ namespace ShriKartikeya.Portal
                 return;
             }
 
-
+            if (ddloption.SelectedIndex == 10)
+            {
+                btnFromNDA_Click(sender, e);
+                return;
+            }
 
         }
 
@@ -60635,5 +60639,847 @@ namespace ShriKartikeya.Portal
                 txtName.Visible = false;
             }
         }
+
+        protected void btnFromNDA_Click(object sender, EventArgs e)
+        {
+
+
+
+            string fontstyle = "Times New Roman";
+
+
+
+            #region for Variable Declaration
+
+            string Empid = "";
+            string FromEmpid = "";
+            string ToEmpid = "";
+            string Name = "";
+            string Designation = "";
+            string IDcardIssued = "";
+            string IDcardvalid = "";
+            string BloodGroup = "";
+            string Image = "";
+            string EmpSign = "";
+            string EmpESINo = "";
+            string doj = "";
+
+
+            #endregion for Variable Declaration
+
+            #region for companyinfo
+            string QueryCompanyInfo = "select * from companyinfo";
+            DataTable DtCompanyInfo = Config.ExecuteReaderWithQueryAsync(QueryCompanyInfo).Result;
+
+            string CompanyName = "";
+            string Address = "";
+            string Emailid = "";
+            string Website = "";
+            string Phoneno = "";
+            string Faxno = "";
+            string Idno = "";
+            string name = "";
+            string Gender = "";
+            string Dateofjoining = "";
+            string postappliedfor = "";
+            string MobileNumber = "";
+            string SpouseName = "";
+            string MotherName = "";
+            string contactno = "";
+
+
+            if (DtCompanyInfo.Rows.Count > 0)
+            {
+                CompanyName = DtCompanyInfo.Rows[0]["CompanyName"].ToString();
+                Address = DtCompanyInfo.Rows[0]["Address"].ToString();
+                Phoneno = DtCompanyInfo.Rows[0]["Phoneno"].ToString();
+                Faxno = DtCompanyInfo.Rows[0]["Faxno"].ToString();
+                Emailid = DtCompanyInfo.Rows[0]["Emailid"].ToString();
+                Website = DtCompanyInfo.Rows[0]["Website"].ToString();
+
+
+            }
+            #endregion for companyinfo
+
+            string query = "";
+            DataTable dtEmpdetails = new DataTable();
+            var spname = "";
+
+            Hashtable ht = new Hashtable();
+            if (ddlEmpIDoptions.SelectedIndex == 0)
+            {
+                Empid = txtEmpid.Text;
+                spname = "EmpBiodataPDF";
+                ht.Add("@Empid", Empid);
+            }
+            else if (ddlEmpIDoptions.SelectedIndex == 1)
+            {
+                FromEmpid = txtfromempid.Text;
+                ToEmpid = txttoempid.Text;
+                spname = "EmpBiodataBulk";
+                ht.Add("@fromEmpid", FromEmpid);
+                ht.Add("@toEmpid", ToEmpid);
+
+            }
+
+            string query1 = "select top (1) basic, HRA,Gross ,ESI,ESIEmpr,TDSDed,PF, PF PFEmpr, ProfTax,SplAllowance from EmpPaySheet where EmpId = '" + txtEmpid.Text + "' order by Month desc ";
+            DataTable dt = Config.ExecuteAdaptorAsyncWithQueryParams(query1).Result;
+
+            string basic = dt.Rows[0]["basic"].ToString();
+            string HRA = dt.Rows[0]["HRA"].ToString();
+            string PF = dt.Rows[0]["PF"].ToString();
+            string SplAllowance = dt.Rows[0]["SplAllowance"].ToString();
+            string ProfTax = dt.Rows[0]["ProfTax"].ToString();
+            string PFEmpr = dt.Rows[0]["PFEmpr"].ToString();
+            string Gross = dt.Rows[0]["Gross"].ToString();
+            string TDSDed = dt.Rows[0]["TDSDed"].ToString();
+            string ESI = dt.Rows[0]["ESI"].ToString();
+            string ESIEmpr = dt.Rows[0]["ESIEmpr"].ToString();
+
+            string THnet = Convert.ToString(Convert.ToInt32(dt.Rows[0]["Gross"]) - ((Convert.ToInt32(dt.Rows[0]["ProfTax"]) + Convert.ToInt32(dt.Rows[0]["TDSDed"]) + Convert.ToInt32(dt.Rows[0]["PF"]) + (Convert.ToInt32(dt.Rows[0]["ESI"])))));
+            string ctc = Convert.ToString(((Convert.ToInt32(dt.Rows[0]["PFEmpr"]) + (Convert.ToInt32(dt.Rows[0]["ESIEmpr"])) + (Convert.ToInt32(dt.Rows[0]["Gross"])))));
+
+
+
+
+
+
+
+
+
+            dtEmpdetails = Config.ExecuteAdaptorAsyncWithParams(spname, ht).Result;
+
+
+            if (dtEmpdetails.Rows.Count > 0)
+            {
+                Idno = dtEmpdetails.Rows[0]["EmpId"].ToString();
+                name = dtEmpdetails.Rows[0]["Fullname"].ToString();
+                Gender = dtEmpdetails.Rows[0]["EmpSex"].ToString();
+                Dateofjoining = dtEmpdetails.Rows[0]["EmpDtofJoining"].ToString();
+                postappliedfor = dtEmpdetails.Rows[0]["EmpDesgn"].ToString();
+                MobileNumber = dtEmpdetails.Rows[0]["EmpPhone"].ToString();
+                SpouseName = dtEmpdetails.Rows[0]["EmpSpouseName"].ToString();
+                MotherName = dtEmpdetails.Rows[0]["EmpMotherName"].ToString();
+                contactno = dtEmpdetails.Rows[0]["EmpPhone"].ToString(); 
+              string  Empemail = dtEmpdetails.Rows[0]["Email"].ToString();
+                string Emppresentadd = dtEmpdetails.Rows[0]["prLmark"].ToString();
+                string Emppermenentadd = dtEmpdetails.Rows[0]["peLmark"].ToString();
+
+
+
+
+
+                MemoryStream ms = new MemoryStream();
+                Document document = new Document(PageSize.A4);
+                var writer = PdfWriter.GetInstance(document, ms);
+                document.Open();
+
+
+                PdfPCell cell;
+
+                int fontsize = 10;
+                int fontsize1 = 12;
+                int fontsize2 = 14;
+
+                PdfPTable table = new PdfPTable(2);
+                table.TotalWidth = 350f;
+                table.LockedWidth = true;
+                float[] width = new float[] { 4f, 4f };
+                table.SetWidths(width);
+
+
+                //string imagepath1 = "";
+                //imagepath1 = Server.MapPath("~/assets/SKPlogo.png");
+                //if (File.Exists(imagepath1))
+                //    if (File.Exists(imagepath1))
+                //    {
+                //        iTextSharp.text.Image gif2 = iTextSharp.text.Image.GetInstance(imagepath1);
+                //        gif2.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                //        gif2.ScalePercent(80f);
+                //        gif2.SetAbsolutePosition(80f, 720f);
+                //        document.Add(gif2);
+                //    }
+
+                //string imagepath11 = "";
+                //imagepath11 = Server.MapPath("~/assets/SKPlogo1.png");
+                //if (File.Exists(imagepath11))
+                //    if (File.Exists(imagepath11))
+                //    {
+                //        iTextSharp.text.Image gif21 = iTextSharp.text.Image.GetInstance(imagepath11);
+                //        gif21.Alignment = (iTextSharp.text.Image.ALIGN_MIDDLE | iTextSharp.text.Image.UNDERLYING);
+                //        gif21.ScalePercent(80f);
+                //        gif21.SetAbsolutePosition(18f, 220f);
+                //        document.Add(gif21);
+                //    }
+
+                //string imagepath17 = "";
+                //imagepath17 = Server.MapPath("~/assets/SKPlogo2.png");
+                //if (File.Exists(imagepath17))
+                //    if (File.Exists(imagepath17))
+                //    {
+                //        iTextSharp.text.Image gif27 = iTextSharp.text.Image.GetInstance(imagepath17);
+                //        gif27.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                //        gif27.ScalePercent(70f);
+                //        gif27.SetAbsolutePosition(18f, 70f);
+                //        document.Add(gif27);
+                //    }
+                //string imagepath18 = "";
+                //imagepath18 = Server.MapPath("~/assets/SKPlogo5.png");
+                //if (File.Exists(imagepath18))
+                //    if (File.Exists(imagepath18))
+                //    {
+                //        iTextSharp.text.Image gif18 = iTextSharp.text.Image.GetInstance(imagepath18);
+                //        gif18.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                //        gif18.ScalePercent(60f);
+                //        gif18.SetAbsolutePosition(5f, 470f);
+                //        document.Add(gif18);
+                //    }
+
+                //string imagepath19 = "";
+                //imagepath19 = Server.MapPath("~/assets/SKPlogo5.png");
+                //if (File.Exists(imagepath19))
+                //    if (File.Exists(imagepath19))
+                //    {
+                //        iTextSharp.text.Image gif19 = iTextSharp.text.Image.GetInstance(imagepath19);
+                //        gif19.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
+                //        gif19.ScalePercent(59f);
+                //        gif19.SetAbsolutePosition(4.18f, 130f);
+                //        document.Add(gif19);
+                //    }
+
+
+                document.Add(table);
+
+                PdfPTable table1 = new PdfPTable(2);
+                table1.TotalWidth = 430f;
+                table1.LockedWidth = true;
+                float[] width1 = new float[] { 4f, 4f };
+                table1.SetWidths(width1);
+
+
+                cell = new PdfPCell(new Phrase("Employee Non-Disclosure and Confidentiality Agreement", FontFactory.GetFont(fontstyle, fontsize, Font.BOLD, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 1;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 50;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("This Employee Non - Disclosure and Confidentiality Agreement(hereinafter referred to as  “Agreement”) is entered into at Hyderabad on the 1st September, 2021(the “Effective Date”)  between", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 25;
+                table1.AddCell(cell);
+
+
+
+
+
+                PdfPCell custDet5 = new PdfPCell();
+                Paragraph p3 = new Paragraph();
+                p3.Add(new Phrase("Shri Kartikeya Pharma Group ,", FontFactory.GetFont(FontFactory.TIMES_ROMAN, fontsize , Font.BOLD, BaseColor.BLACK)));
+                p3.Add(new Phrase("which comprises", FontFactory.GetFont(FontFactory.TIMES_ROMAN, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                p3.Add(new Phrase(CompanyName +",", FontFactory.GetFont(FontFactory.TIMES_ROMAN, fontsize, Font.BOLD, BaseColor.BLACK)));
+                p3.Add(new Phrase(" a proprietorship firm of Smt Bhagwati Devi Baldwa, having its registered office at "+Address+", India, and Ixoreal Biosciences Private Limited, a company registered in India, having its registered office at" + Address +", India, hereinafter collectively referred to as the “Company” ", FontFactory.GetFont(FontFactory.TIMES_ROMAN, fontsize , Font.NORMAL, BaseColor.BLACK)));
+                custDet5.AddElement(p3);
+                custDet5.HorizontalAlignment = 0;
+                custDet5.Colspan = 2;
+                custDet5.Border = 0;
+                custDet5.PaddingTop = 10;
+                table1.AddCell(custDet5);
+
+                cell = new PdfPCell(new Phrase("And "+name+ "Employee ID:" +Idno+ ", an employee of the Company (hereinafter referred \n to as the “Employee”). ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.PaddingTop = 15;
+                cell.Colspan = 2;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("The above parties may be referred to collectively as the “Parties”.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("The Company has hired Employee as "+ postappliedfor + " pursuant to the terms and conditions in the Appointment letter " + Dateofjoining + " the terms and conditions of which have been agreed by the employee (the “Employment Agreement”). ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("During the course of employment, the Company may require to disclose to the employee/employee may get knowledge to certain confidential and proprietary information, which is unique and valuable to its ongoing business operations. ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("In consideration of the Employee’s employment by the Company and the covenants and mutual promises contained herein, the Parties agree as follows:", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("1. Confidential Information. The term “Confidential Information” as used in this Agreement shall mean any data, information, or knowledge either disclosed by the Company to the Employee or which comes within the knowledge of the employee, in any manner whatsoever, and which information is not generally known to the public, including but not limited to the following:", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("a.	All information with regard to list and contact details of the customers  ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("b.	Manufacture, business or operational plans or activities, existing or contemplated markets, advertising initiatives, methods of operation, products, or services; ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("c.	Suppliers or logistics data; ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("d.	Supplier lists, cost of goods or services, profits and losses, budgeting, past or future sales, or financial information; ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("e.	Schematics, designs, software source or object code, compressed or uncompressed binaries, inventions, patents or patent applications or illustrations; ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                document.NewPage();
+
+                cell = new PdfPCell(new Phrase("f.	Existing or contemplated designs, models or platforms, formulas, research, notes, or analytical data; ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("g.	Management, board of directors, affiliates, suppliers, customers, employees, or third-party contractors;", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("h.	History, entity structure, accounts, or goodwill; the Company’s copyrights, trademarks, trade secrets, patents, trade names, moral rights, or any other tangible or intangible rights, whether registered or unregistered; ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("i.	Technical systems, processes, methods, algorithms, computational schemas, know-how, or trade secrets; ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("j.	Employees, salaries, job related functions, duties or responsibilities; the Company’s written, auditory or electronic communications;", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("k.	Any information that if disclosed, whether true or untrue, could harm the goodwill or reputation of the Company or the Company’s management, board of directors, affiliates, suppliers, customers, employees, third-party contractors, methods of operation, products, or services; or", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("l.	Any other information of any of whatever kind and nature that the Company informs the employee through any medium, whatsoever, to be confidential.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("2. The employee hereby, irrevocably and unconditionally agrees and undertakes that he will not do any of the following by any act or omission, and which list is only illustrative, with regard to the computer, computer system or computer network of the company", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("a.  Access or secure access unauthorizedly", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("b.	Download, copy or extract any data, computer data base or information including information or data held or stored in any removable storage medium", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("c.	Introduce or cause to be introduced any computer containment or computer virus  ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("d.	Tamper or manipulate the data", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("e.	Deny access in contravention to law ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("f.	Destroy, delete or alter any information residing in a computer resource or diminish its value or utility or affect it injuriously by any means", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("g.	Knowingly or intentionally steal or cause any person to conceal, destroy or alter ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("h.	Illegally/unauthorizedly copy, remove or steal confidential, valuable or personal data/information from the company without its knowledge or consent, including stealing or hacking of passwords, personal information of clients/other employees, trade secrets, client database, software, source codes, confidential information, information which the company is bound to protect, hacking into data base and other aspects in line with this, ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("i.	disclose any information, document or other material without the consent of the company, ,in writing", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("j.	allow any other person to secure any access, whatsoever, to any information which employee is privy to during the course of employment or disclose to any third person", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("3.   Criminal liability: In case, the employee was to, by any act or omission, violate any of the above undertakings, in whichsoever manner, whatsoever, employee well understands that he/she will expose himself/herself to criminal liability under the Indian Penal Code, 1860, Information Technology Act, 2000 and any other penal laws apart from the liability elucidated at para 7 below.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                document.NewPage();
+
+                cell = new PdfPCell(new Phrase("4.    Exclusions to Confidential Information. The obligation of confidentiality with respect to Confidential Information will not apply to any information:", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("a.	If the information is or becomes publicly known and available other than as a result of prior unauthorized disclosure by the Employee;", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("b.	If the information is disclosed by the Employee with the Company’s prior written permission and approval;", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("c.	If the information is independently developed by the Employee prior to disclosure by the Company and without the use and benefit of any of the Company’s Confidential Information; or", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("d.	If the Employee is legally compelled by applicable law, by any court, governmental agency, or regulatory authority or subpoena or discovery request in pending litigation, but only if, to the extent lawful, the Employee gives prompt written notice of that fact to the Company prior to disclosure so that the Company may request a protective order or other remedy, the Employee may disclose only such portion of the Confidential Information which it is legally obligated to disclose.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("5 .    Obligation to Maintain Confidentiality. With respect to Confidential Information, the employee agrees and undertakes to:", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("a.	retain the same in strict confidence, to protect the security, integrity, and confidentiality of such information and to not permit its unauthorized access to or unauthorized use, disclosure, publication, or dissemination except in conformity with this Agreement.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("b.	Confidential Information is and will remain the sole and exclusive property of the Company and will not be disclosed or revealed by the Employee, except (i) to other employees of the Company who have a need to know such information and agree to be bound by the terms of this Agreement or (ii) with the Company’s express prior written consent.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("c.	The Employee understands that Confidential Information is intended for civil purposes only and will not, directly or indirectly, download, access, process, transfer or otherwise communicate the same or any part thereof to any other entity or country, for any purpose whatsoever.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("d.	Upon termination of this Agreement or at the request of the Company, the Employee will ensure that all Confidential Information and all documents, memoranda, notes and other writings or electronic records prepared by the Employee that include or reflect any Confidential Information in the Employee’s actual or constructive possession are returned to the Company within 24 hours.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("e.	The obligation to not disclose Confidential Information shall survive the termination of this Agreement, and at no time will the Employee be permitted to disclose Confidential Information, except to the extent that such Confidential Information is excluded from the obligations of confidentiality under this Agreement pursuant to Paragraph 4 above. The obligation not to disclose Confidential Information shall remain in effect until five years following the Employee’s termination of employment by the Company, except to the extent that such Confidential Information is excluded from the obligations of confidentiality under this Agreement pursuant to Paragraph 4 above.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("6. Undertaking: The employee undertakes that he/she will not take up any direct or indirect employment/self-employment/business/consultancy related to similar business with competing interest (dealing with Ashwagandha) as is being undertaken by the company for a period of five years after leaving employment/being terminated, violation to which would render the employee liable for the damages that the company may suffer thereto. The employee agrees that it will be the sole discretion of the company to ascertain the quantum of reasonable damages suffered and compensate the company within 14 working days of demand being made in writing.  ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                document.NewPage();
+
+                cell = new PdfPCell(new Phrase("7. Disclaimer. There is no representation or warranty, express or implied, made by the Company as to the accuracy or completeness of any of its Confidential Information.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("8. Remedies. The Employee acknowledges that use or disclosure of any confidential and proprietary information in a manner inconsistent with this Agreement will give rise to irreparable injury for which damages would not be an adequate remedy.  Accordingly, in addition to any other legal remedies which may be available at law or in equity, the Company shall be entitled to equitable or injunctive relief against the unauthorized use or disclosure of confidential and proprietary information. The Company shall be entitled to pursue any other legally permissible remedy available as a result of such breach, including but not limited to damages, both direct and consequential. In any action brought by the Company under this Section, the Company shall be entitled to recover its attorney’s fees and costs from Employee.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("9. Notices. All notices given under this Agreement must be in writing. A notice is effective upon receipt and shall be sent via one of the following methods: delivery in person, overnight courier service, certified or registered mail, postage prepaid, return receipt requested, addressed to the Party to be notified at the below address or by facsimile at the below facsimile number or in the case of either Party, to such other party, address or facsimile number as such Party may designate upon reasonable notice to the other Party.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Company – \n "+ CompanyName+" \n "+Address+"\n "+ Emailid, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("Employee – \n "+ name + "\n "+Empemail, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("10. Termination. This Agreement will terminate on the written agreement of the Parties to terminate this Agreement or the cessation of the Employee’s employment, whichever is earlier. However, the obligation under clauses 2 and 5 shall be enforced and binding for a period 3 years post termination.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("11. Amendment. This Agreement may be amended or modified only by a written agreement signed by both of the Parties.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("12. Jurisdiction. This Agreement shall be construed and interpreted in accordance with and governed by the laws of Union of India. The Courts at Hyderabad shall have exclusive jurisdiction over all matters arising out of or relating to this Agreement.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("13. No Offer or Sale. Nothing in this Agreement will be deemed a sale or offer for sale of Confidential Information nor obligate the Company to grant the Employee a license or any rights, by statute, common law theory of estoppel or otherwise, to Confidential Information.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("14. Entire Agreement. This Agreement constitutes the entire agreement between the Parties and supersedes all prior or contemporaneous negotiations, discussions or agreements, whether written or oral, regarding the subject matter hereof.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("15. Miscellaneous. No joint venture, partnership or agency relationship exists between the Employee, the Company or any third-party as a result of this Agreement. This Agreement will inure to the benefit of and be binding on the respective successors and permitted assigns of the parties. Neither Party may assign its rights or delegate its duties under this Agreement without the other Party’s prior written consent. In the event that any provision of this Agreement is held to be invalid, illegal or unenforceable in whole or in part, the remaining provisions shall not be affected and shall continue to be valid, legal and enforceable as though the invalid, illegal or unenforceable parts had not been included in this Agreement. Neither Party will be charged with any waiver of any provision of this Agreement, unless such waiver is evidenced by a writing signed by the Party and any such waiver will be limited to the terms of such writing.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("IN WITNESS WHEREOF, the Parties hereto have executed this Agreement as of the date first written above.", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                // document.NewPage();
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase("", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("EMPLOYEE", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("By: ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Name: "+name, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Title: "+postappliedfor, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Current Address: "+Emppresentadd, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Permanent Address: "+ Emppermenentadd, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Mobile Number: "+contactno, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Landline Number, if any: NA", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("COMPANY", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 50;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(CompanyName, FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("By: ", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Name: Kartikeya Baldwa", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 25;
+                table1.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Title: C.E.O", FontFactory.GetFont(fontstyle, fontsize, Font.NORMAL, BaseColor.BLACK)));
+                cell.HorizontalAlignment = 0;
+                cell.Border = 0;
+                cell.Colspan = 2;
+                cell.PaddingLeft = 15;
+                cell.PaddingTop = 15;
+                table1.AddCell(cell);
+
+                document.Add(table1);
+
+
+                document.NewPage();
+
+
+
+                string filename = txtName.Text + " - " + txtEmpid.Text + " - " + "Biodata.pdf";
+
+                document.Close();
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename=" + filename);
+                Response.Buffer = true;
+                Response.Clear();
+                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                Response.OutputStream.Flush();
+                Response.End();
+            }
+
+        }
+
     }
 }
