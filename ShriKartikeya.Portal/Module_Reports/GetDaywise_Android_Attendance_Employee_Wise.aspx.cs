@@ -5,9 +5,9 @@ using System.Web.UI;
 using System.Globalization;
 using ShriKartikeya.Portal.DAL;
 
-namespace ShriKartikeya.Portal.Module_Reports
+namespace ShriKartikeya.Portal
 {
-    public partial class GetDaywise_Android_AttendanceMonthwise : System.Web.UI.Page
+    public partial class GetDaywise_Android_Attendance_Employee_Wise : System.Web.UI.Page
     {
         GridViewExportUtil GVUtil = new GridViewExportUtil();
         AppConfiguration config = new AppConfiguration();
@@ -42,7 +42,6 @@ namespace ShriKartikeya.Portal.Module_Reports
             }
         }
 
-
         protected void GetWebConfigdata()
         {
             EmpIDPrefix = Session["EmpIDPrefix"].ToString();
@@ -50,26 +49,28 @@ namespace ShriKartikeya.Portal.Module_Reports
             BranchID = Session["BranchID"].ToString();
         }
 
-        protected void LoadClientNames()
+        protected void LoadEMPNames()
         {
             var Branch = "";
-
-            if (ddlBranch.SelectedIndex > 0)
+            if (ddlBranch.SelectedIndex == 1)
+            {
+                Branch = "%";
+            }
+            else
             {
                 Branch = ddlBranch.SelectedValue;
             }
-
-            string querybranch = "select clientid,Clientname from clients where branchid like'" + Branch + "' order by clientid";
+            string querybranch = "select empid,empfname from empdetails where branch like'" + Branch + "' order by empid";
             DataTable dtbranch = config.ExecuteAdaptorAsyncWithQueryParams(querybranch).Result;
             if (dtbranch.Rows.Count > 0)
             {
-                ddlCName.DataValueField = "clientid";
-                ddlCName.DataTextField = "Clientname";
-                ddlCName.DataSource = dtbranch;
-                ddlCName.DataBind();
+                ddlEName.DataValueField = "empid";
+                ddlEName.DataTextField = "empfname";
+                ddlEName.DataSource = dtbranch;
+                ddlEName.DataBind();
             }
-            ddlCName.Items.Insert(0, "--Select--");
-            ddlCName.Items.Insert(1, "All");
+            ddlEName.Items.Insert(0, "--Select--");
+            ddlEName.Items.Insert(1, "ALL");
 
 
         }
@@ -85,58 +86,60 @@ namespace ShriKartikeya.Portal.Module_Reports
                 ddlBranch.DataBind();
             }
             ddlBranch.Items.Insert(0, "--Select--");
+            ddlBranch.Items.Insert(1, "ALL");
         }
 
-        protected void LoadClientList()
+        protected void LoadEMPList()
         {
             var Branch = "";
-
-            if (ddlBranch.SelectedIndex> 0)
+            if (ddlBranch.SelectedIndex == 1)
+            {
+                Branch = "%";
+            }
+            else
             {
                 Branch = ddlBranch.SelectedValue;
             }
-
-            string querybranch = "select clientid,Clientname from clients where branchid like'" + Branch + "' order by clientid";
+            string querybranch = "select empid,empfname from empdetails where branch like'" + Branch + "' order by empid";
             DataTable dtbranch = config.ExecuteAdaptorAsyncWithQueryParams(querybranch).Result;
             if (dtbranch.Rows.Count > 0)
             {
-                ddlClientID.DataValueField = "clientid";
-                ddlClientID.DataTextField = "clientid";
-                ddlClientID.DataSource = dtbranch;
-                ddlClientID.DataBind();
+                ddlEmpID.DataValueField = "empid";
+                ddlEmpID.DataTextField = "empid";
+                ddlEmpID.DataSource = dtbranch;
+                ddlEmpID.DataBind();
             }
-            ddlClientID.Items.Insert(0, "--Select--");
-            ddlClientID.Items.Insert(1, "All");
+            ddlEmpID.Items.Insert(0, "--Select--");
 
         }
 
-        protected void ddlCName_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlEName_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearData();
-            if (ddlCName.SelectedIndex > 0)
+            if (ddlEName.SelectedIndex > 0)
             {
                 txtmonth.Text = "";
-                ddlClientID.SelectedValue = ddlCName.SelectedValue;
+                ddlEmpID.SelectedValue = ddlEName.SelectedValue;
 
             }
             else
             {
-                ddlClientID.SelectedIndex = 0;
+                ddlEmpID.SelectedIndex = 0;
             }
         }
 
-        protected void ddlClientID_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlEmpID_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearData();
 
-            if (ddlClientID.SelectedIndex > 0)
+            if (ddlEmpID.SelectedIndex > 0)
             {
                 txtmonth.Text = "";
-                ddlCName.SelectedValue = ddlClientID.SelectedValue;
+                ddlEName.SelectedValue = ddlEmpID.SelectedValue;
             }
             else
             {
-                ddlCName.SelectedIndex = 0;
+                ddlEName.SelectedIndex = 0;
             }
         }
 
@@ -145,47 +148,48 @@ namespace ShriKartikeya.Portal.Module_Reports
             GvDayWiseAttendance.DataSource = null;
             GvDayWiseAttendance.DataBind();
 
-            string clientid = ddlClientID.SelectedValue;
-            var Branch = "";
 
-            if (ddlBranch.SelectedIndex > 0)
+            string empid = "%";
+            var Branch = "";
+            if (ddlBranch.SelectedIndex == 1)
+            {
+                Branch = "%";
+            }
+            else
             {
                 Branch = ddlBranch.SelectedValue;
             }
 
-            if (ddlClientID.SelectedIndex == 1)
-            {
-                clientid = "%";
-            }
-            
+            empid = ddlEmpID.SelectedValue;
+
 
 
             string month = "";
             string Year = "";
             string AttMonth = "";
 
-          
+
 
             if (txtmonth.Text != "")
             {
                 string date = DateTime.Parse(txtmonth.Text.Trim(), CultureInfo.GetCultureInfo("en-gb")).ToString();
-                 month = DateTime.Parse(date).Month.ToString();
-                 Year = DateTime.Parse(date).Year.ToString();
+                month = DateTime.Parse(date).Month.ToString();
+                Year = DateTime.Parse(date).Year.ToString();
 
-                 AttMonth = month + Year.Substring(2, 2);
+                AttMonth = month + Year.Substring(2, 2);
             }
 
 
-           
+
             string spname = "";
             DataTable dtBP = null;
             Hashtable HashtableBP = new Hashtable();
 
-            spname = "GetDaywise_Android_Attendance_MonthwiseDuplicate";
-            HashtableBP.Add("@clientid", clientid);
+            spname = "GetDaywise_Android_Attendance_EmployeeWise";
+            HashtableBP.Add("@Empid", empid);
             HashtableBP.Add("@Month", AttMonth);
             HashtableBP.Add("@Branch", Branch);
-           
+
 
             dtBP = config.ExecuteAdaptorAsyncWithParams(spname, HashtableBP).Result;
             if (dtBP.Rows.Count > 0)
@@ -213,7 +217,7 @@ namespace ShriKartikeya.Portal.Module_Reports
 
         protected void lbtn_Export_Click(object sender, EventArgs e)
         {
-            GVUtil.Export("Get_Android_Attendance.xls", this.GvDayWiseAttendance);
+            GVUtil.Export("Get_Android_Attendance Employee Wise.xls", this.GvDayWiseAttendance);
 
         }
 
@@ -222,8 +226,8 @@ namespace ShriKartikeya.Portal.Module_Reports
         {
             GvDayWiseAttendance.DataSource = null;
             GvDayWiseAttendance.DataBind();
-            LoadClientList();
-            LoadClientNames();
+            LoadEMPList();
+            LoadEMPNames();
         }
     }
 }

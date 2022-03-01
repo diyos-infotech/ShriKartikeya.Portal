@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Module_Reports/ReportMaster.master" AutoEventWireup="true" CodeBehind="GetDaywise_Android_AttendanceMonthwise.aspx.cs" Inherits="ShriKartikeya.Portal.Module_Reports.GetDaywise_Android_AttendanceMonthwise" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Module_Reports/ReportMaster.master" AutoEventWireup="true" 
+    CodeBehind="GetDaywise_Android_Attendance_Employee_Wise.aspx.cs" Inherits="ShriKartikeya.Portal.GetDaywise_Android_Attendance_Employee_Wise" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
@@ -175,10 +175,10 @@
             });
             $(".ddlautocomplete").combobox({
                 select: function (event, ui) {
-                    $("#<%=ddlClientID.ClientID %>").attr("data-clientId", ui.item.value);
-                    OnAutoCompleteDDLClientidchange(event, ui);
+                    $("#<%=ddlEmpID.ClientID %>").attr("data-clientId", ui.item.value);
+                    OnAutoCompleteddlEmpIDchange(event, ui);
                 },
-                select: function (event, ui) { $("#<%=ddlCName.ClientID %>").attr("data-clientId", ui.item.value); OnAutoCompleteDDLClientnamechange(event, ui); },
+                select: function (event, ui) { $("#<%=ddlEName.ClientID %>").attr("data-clientId", ui.item.value); OnAutoCompleteDDLClientnamechange(event, ui); },
                 //select: function (event, ui) { $("#ddlFOID").attr("data-clientId", ui.item.value); OnAutoCompleteDDLFoidchange(event, ui); },
 
                 minLength: 4
@@ -189,20 +189,20 @@
             setProperty();
 
 
-            $("#<%=ddlClientID.ClientID %>").combobox().parent().find("input.ui-autocomplete-input").css('width', '90px')
-            $("#<%=ddlCName.ClientID %>").combobox().parent().find("input.ui-autocomplete-input").css('width', '140px');
+            $("#<%=ddlEmpID.ClientID %>").combobox().parent().find("input.ui-autocomplete-input").css('width', '90px')
+            $("#<%=ddlEName.ClientID %>").combobox().parent().find("input.ui-autocomplete-input").css('width', '140px');
 
             //$('.ui-autocomplete-input').css('width', '300px')
         });
 
-        function OnAutoCompleteDDLClientidchange(event, ui) {
-            $("#<%=ddlClientID.ClientID %>").trigger('change');
+        function OnAutoCompleteddlEmpIDchange(event, ui) {
+            $("#<%=ddlEmpID.ClientID %>").trigger('change');
 
         }
 
         function OnAutoCompleteDDLClientnamechange(event, ui) {
 
-            $("#<%=ddlCName.ClientID %>").trigger('change');
+            $("#<%=ddlEName.ClientID %>").trigger('change');
                }
                
 
@@ -307,19 +307,19 @@
 
                                         
                                             <td >
-                                                <asp:Label runat="server" ID="lblclientid" Text="Client ID"></asp:Label>
+                                                <asp:Label runat="server" ID="lblEmpid" Text="Emp ID"></asp:Label>
                                             </td>
                                             <td >
-                                                <asp:DropDownList ID="ddlClientID" runat="server" CssClass="ddlautocomplete chosen-select" AutoPostBack="True" OnSelectedIndexChanged="ddlClientID_SelectedIndexChanged"
+                                                <asp:DropDownList ID="ddlEmpID" runat="server" CssClass="ddlautocomplete chosen-select" AutoPostBack="True" OnSelectedIndexChanged="ddlEmpID_SelectedIndexChanged"
                                                     >
                                                 </asp:DropDownList>
                                             </td>
 
                                             <td>
-                                                <asp:Label runat="server" ID="lblclientname" Text="Name" style="margin-left:10px"></asp:Label>
+                                                <asp:Label runat="server" ID="lblEmpname" Text="Name" style="margin-left:10px"></asp:Label>
                                             </td>
                                             <td >
-                                                <asp:DropDownList ID="ddlCName" runat="server" placeholder="select" CssClass="ddlautocomplete chosen-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCName_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlEName" runat="server" placeholder="select" CssClass="ddlautocomplete chosen-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEName_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             </td>
                                            <td >Month
