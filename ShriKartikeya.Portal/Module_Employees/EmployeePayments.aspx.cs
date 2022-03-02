@@ -104,7 +104,7 @@ namespace ShriKartikeya.Portal
 
         public void VisibleGeneratebutton()
         {
-           
+
         }
 
         protected void Fillcname()
@@ -406,7 +406,7 @@ namespace ShriKartikeya.Portal
                         float totalHardshipAllw = 0;
                         float totalPaidHolidayAllw = 0;
                         float totalRegistrationFee = 0;
-
+                        float totalDriverSalary = 0;
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
                             float actAmount = 0;
@@ -924,6 +924,13 @@ namespace ShriKartikeya.Portal
                                 if (strRegistrationFee.Trim().Length > 0)
                                 {
                                     totalRegistrationFee += Convert.ToSingle(strRegistrationFee);
+
+                                }
+
+                                string strDriverSalary = dt.Rows[i]["DriverSalary"].ToString();
+                                if (strDriverSalary.Trim().Length > 0)
+                                {
+                                    totalDriverSalary += Convert.ToSingle(strDriverSalary);
 
                                 }
 
@@ -1939,6 +1946,17 @@ namespace ShriKartikeya.Portal
                             gvattendancezero.Columns[87].Visible = false;
                         }
 
+                        Label lblTotalDriverSalary = gvattendancezero.FooterRow.FindControl("lblTotalDriverSalary") as Label;
+                        lblTotalDriverSalary.Text = Math.Round(totalDriverSalary).ToString();
+                        if (totalDriverSalary > 0)
+                        {
+                            gvattendancezero.Columns[89].Visible = true;
+                        }
+                        else
+                        {
+                            gvattendancezero.Columns[89].Visible = false;
+                        }
+
 
                         //New code add as on 24/12/2013 by venkat
 
@@ -2437,7 +2455,7 @@ namespace ShriKartikeya.Portal
                 //imgfoot.SetAbsolutePosition(0, 0);
                 imghead.Alignment = (iTextSharp.text.Image.ALIGN_LEFT | iTextSharp.text.Image.UNDERLYING);
                 imghead.ScalePercent(58f);//55
-                imghead.SetAbsolutePosition(23,100);
+                imghead.SetAbsolutePosition(23, 100);
 
                 PdfContentByte cbhead = writer.DirectContent;
                 PdfTemplate tpl = cbhead.CreateTemplate(600, 160);
@@ -2456,7 +2474,7 @@ namespace ShriKartikeya.Portal
 
 
                 imgfoot.ScalePercent(58f);//55
-                imgfoot.SetAbsolutePosition(23,10);
+                imgfoot.SetAbsolutePosition(23, 10);
 
                 PdfContentByte cbfoot = writer.DirectContent;
                 PdfTemplate tp = cbfoot.CreateTemplate(600, 120);
@@ -2467,12 +2485,12 @@ namespace ShriKartikeya.Portal
                 //19,27
                 cbhead.AddTemplate(tpl, 8, 790);
 
-               // cbmiddile.AddTemplate(tp3, 8, 600);
+                // cbmiddile.AddTemplate(tp3, 8, 600);
 
 
                 Phrase headPhraseImg = new Phrase(cbfoot + "", FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7, iTextSharp.text.Font.NORMAL));
                 Phrase footPhraseImg = new Phrase(cbhead + "", FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7, iTextSharp.text.Font.NORMAL));
-               // Phrase middilePhraseImg = new Phrase(cbmiddile + "", FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7, iTextSharp.text.Font.NORMAL));
+                // Phrase middilePhraseImg = new Phrase(cbmiddile + "", FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7, iTextSharp.text.Font.NORMAL));
             }
         }
         protected void btnEmpWageSlip_Click(object sender, EventArgs e)
@@ -2744,8 +2762,8 @@ namespace ShriKartikeya.Portal
                             // var output = new FileStream(fileheader2, FileMode., FileAccess.Write, FileShare.None);
                             #region
 
-                          
-                          
+
+
 
                             PageEventHelperL pageEventHelper = new PageEventHelperL();
                             writer.PageEvent = pageEventHelper;
@@ -2762,7 +2780,7 @@ namespace ShriKartikeya.Portal
                             cellspace.Colspan = 5;
                             cellspace.Border = 0;
                             tablewageslip.AddCell(cellspace);
-                       
+
                             PdfPCell cellHead1 = new PdfPCell(new Phrase("Pay Slip  ", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                             cellHead1.HorizontalAlignment = 1;
                             cellHead1.Colspan = 5;
@@ -2786,16 +2804,16 @@ namespace ShriKartikeya.Portal
                             cellHead31C.Border = 0;
                             if (ChkPerOne.Checked == true)
                             {
-                               cellHead31C.PaddingTop = 35;
-                              
+                                cellHead31C.PaddingTop = 35;
+
                             }
                             else
                             {
                                 cellHead31C.PaddingTop = 85;
-                              
+
                             }
                             cellHead31C.SetLeading(0, 1.2f);
-                            tablewageslip.AddCell(cellHead31C);                          
+                            tablewageslip.AddCell(cellHead31C);
 
 
                             PdfPCell cellHead31 = new PdfPCell(new Phrase(companyAddress, FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
@@ -2804,7 +2822,7 @@ namespace ShriKartikeya.Portal
                             cellHead31.Border = 0;
                             //cellHead31.PaddingTop = 5;
                             cellHead31.SetLeading(0, 1.2f);
-                          //  tablewageslip.AddCell(cellHead31);
+                            //  tablewageslip.AddCell(cellHead31);
 
 
 
@@ -4692,9 +4710,7 @@ namespace ShriKartikeya.Portal
                                 }
                             }
 
-
-
-                            PdfPCell cellTotal = new PdfPCell(new Phrase("Net Pay", FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                            PdfPCell cellTotal = new PdfPCell(new Phrase("Driver Salary", FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
                             cellTotal.HorizontalAlignment = 0;
                             cellTotal.Colspan = 1;
                             // cellTotal.MinimumHeight = 20;
@@ -4706,15 +4722,41 @@ namespace ShriKartikeya.Portal
                             //cellTotal11.MinimumHeight = 20;
                             tablewageslip.AddCell(cellTotal11);
 
-                            forConvert = Convert.ToSingle(dt.Rows[i]["Actualamount"].ToString());
-                            string gtotal = NumberToEnglish.Instance.changeNumericToWords(forConvert.ToString("#"));
+                            forConvert = Convert.ToSingle(dt.Rows[i]["DriverSalary"].ToString());
 
-                            PdfPCell cellTotal1 = new PdfPCell(new Phrase("Rs. " + forConvert.ToString("0.00"), FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                            PdfPCell cellTotal1 = new PdfPCell(new Phrase(forConvert.ToString("0.00"), FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
                             cellTotal1.HorizontalAlignment = 2;
                             cellTotal1.Colspan = 1;
                             tablewageslip.AddCell(cellTotal1);
 
                             PdfPCell cellEmptycell = new PdfPCell(new Phrase("  ", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                            cellEmptycell.HorizontalAlignment = 0;
+                            cellEmptycell.Colspan = 2;
+                            //cellIncentives.MinimumHeight = 20;
+                            tablewageslip.AddCell(cellEmptycell);
+
+
+                            cellTotal = new PdfPCell(new Phrase("Net Pay", FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                            cellTotal.HorizontalAlignment = 0;
+                            cellTotal.Colspan = 1;
+                            // cellTotal.MinimumHeight = 20;
+                            tablewageslip.AddCell(cellTotal);
+
+                            cellTotal11 = new PdfPCell(new Phrase("", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                            cellTotal11.HorizontalAlignment = 2;
+                            cellTotal11.Colspan = 1;
+                            //cellTotal11.MinimumHeight = 20;
+                            tablewageslip.AddCell(cellTotal11);
+
+                            forConvert = Convert.ToSingle(dt.Rows[i]["Actualamount"].ToString());
+                            string gtotal = NumberToEnglish.Instance.changeNumericToWords(forConvert.ToString("#"));
+
+                            cellTotal1 = new PdfPCell(new Phrase("Rs. " + forConvert.ToString("0.00"), FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                            cellTotal1.HorizontalAlignment = 2;
+                            cellTotal1.Colspan = 1;
+                            tablewageslip.AddCell(cellTotal1);
+
+                            cellEmptycell = new PdfPCell(new Phrase("  ", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                             cellEmptycell.HorizontalAlignment = 0;
                             cellEmptycell.Colspan = 2;
                             //cellIncentives.MinimumHeight = 20;
@@ -20248,9 +20290,9 @@ namespace ShriKartikeya.Portal
                 else
                 {
                     btnFreeze.Visible = false;
-                   
-                        btnUnFreeze.Visible = true;
-                    
+
+                    btnUnFreeze.Visible = true;
+
                     btnpayment.Enabled = false;
                 }
             }
@@ -20289,7 +20331,7 @@ namespace ShriKartikeya.Portal
             {
                 btnpayment.Enabled = true;
                 btnUnFreeze.Visible = false;
-              
+
                 btnFreeze.Visible = true;
             }
         }
@@ -20313,7 +20355,7 @@ namespace ShriKartikeya.Portal
                 btnFreeze.Visible = true;
                 btnpayment.Enabled = true;
                 btnUnFreeze.Visible = false;
-            
+
                 int month = GetMonthBasedOnSelectionDateorMonth();
 
                 string Qry = "";
@@ -27843,10 +27885,10 @@ namespace ShriKartikeya.Portal
                     int j = 0;
 
                     int FontSize = 10;
-                    PdfPTable Maintable1 = new PdfPTable(21);
+                    PdfPTable Maintable1 = new PdfPTable(22);
                     Maintable1.TotalWidth = 990f;
                     Maintable1.LockedWidth = true;
-                    float[] width1 = new float[] { 2f, 6.5f, 7.5f, 11f, 5.5f, 4f, 4.5f, 4.5f, 5f, 5f, 5f, 5f, 5f, 5f, 5f, 5f, 5f, 5.5f, 5f, 5f, 5f };
+                    float[] width1 = new float[] { 2f, 6.5f, 7.5f, 11f, 5.5f, 4f, 4.5f, 4.5f, 5f, 5f, 5f, 5f, 5f, 5f, 5f, 5f, 5f, 5.5f, 5f, 5f, 5f, 5f };
                     Maintable1.SetWidths(width1);
 
                     PdfPCell cell;
@@ -27938,11 +27980,11 @@ namespace ShriKartikeya.Portal
                     Maintable1.AddCell(cell);
 
                     document.Add(Maintable1);
-                    PdfPTable Maintable = new PdfPTable(21);
+                    PdfPTable Maintable = new PdfPTable(22);
                     Maintable.TotalWidth = 990f;
                     Maintable.LockedWidth = true;
                     Maintable.HeaderRows = 1;
-                    float[] width = new float[] { 2f, 6.5f, 9.5f, 9.5f, 6.3f, 4.5f, 4.5f, 4.7f, 5f, 4f, 4.7f, 4.9f, 5f, 5.4f, 5f, 4.3f, 4.7f, 5.5f, 5f, 5f, 5f };
+                    float[] width = new float[] { 2f, 6.5f, 9.5f, 9.5f, 6.3f, 4.5f, 4.5f, 4.7f, 5f, 4f, 4.7f, 4.9f, 5f, 5.4f, 5f, 4.3f, 4.7f, 5.5f, 5f, 5f, 5f, 5f };
                     Maintable.SetWidths(width);
 
 
@@ -28045,6 +28087,11 @@ namespace ShriKartikeya.Portal
                         Maintable.AddCell(cell);
                     }
 
+                    cell = new PdfPCell(new Phrase("Driver Salary", FontFactory.GetFont(Fontstyle, Font_size, Font.BOLD, BaseColor.BLACK)));
+                    cell.HorizontalAlignment = 1;
+                    cell.Colspan = 1;
+                    cell.SetLeading(0, 1.3f);
+                    Maintable.AddCell(cell);
 
                     cell = new PdfPCell(new Phrase("Net pay", FontFactory.GetFont(Fontstyle, Font_size, Font.BOLD, BaseColor.BLACK)));
                     cell.HorizontalAlignment = 1;
@@ -28072,6 +28119,7 @@ namespace ShriKartikeya.Portal
                     float TotalDed = 0;
                     float AdvBonus = 0;
                     float Netpay = 0;
+                    float DriverSalary = 0;
                     float gross = 0;
                     float noofduties = 0;
                     float basic = 0;
@@ -28188,6 +28236,7 @@ CFixedTelephoneAllw, CFixedReimbursement, CFixedHardshipAllw, CFixedPaidHolidayA
                     string ATotalDed = "";
                     string AAdvBonus = "";
 
+                    string ADriverSalary = "";
                     string ANetpay = "";
                     string Agross = "";
                     string Anoofduties = "";
@@ -28328,6 +28377,7 @@ CFixedTelephoneAllw, CFixedReimbursement, CFixedHardshipAllw, CFixedPaidHolidayA
                     float totalTotalDed = 0;
                     float totalAdvbonus = 0;
                     float totalNetpay = 0;
+                    float totalDriverSalary = 0;
                     float totalgross = 0;
                     float totalnoofduties = 0;
                     float totalbasic = 0;
@@ -28408,6 +28458,7 @@ totalFixedTelephoneAllw, totalFixedReimbursement, totalFixedHardshipAllw, totalF
                     string AtotalTotalDed = "";
                     string AtotalAdvbonus = "";
                     string AtotalNetpay = "";
+                    string AtotalDriverSalary = "";
                     string Atotalgross = "";
                     string Atotalnoofduties = "";
                     string Atotalbasic = "";
@@ -28926,6 +28977,16 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         else
                         {
                             ANetpay = "-";
+                        }
+
+                        DriverSalary = float.Parse(dt.Rows[i]["DriverSalary"].ToString());
+                        if (DriverSalary > 0)
+                        {
+                            ADriverSalary = DriverSalary.ToString();
+                        }
+                        else
+                        {
+                            ADriverSalary = "-";
                         }
                         gross = float.Parse(dt.Rows[i]["Gross"].ToString());
                         if (gross > 0)
@@ -29835,7 +29896,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         }
                         cellHead7.AddElement(CcellHead7);
                         cellHead7.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-                        cellHead7.Border = 15;
+                        cellHead7.Border = 16;
                         cellHead7.SetLeading(0, 1.3f);
                         Maintable.AddCell(cellHead7);
 
@@ -32178,6 +32239,22 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                             AtotalAdvbonus = "-";
                         }
 
+                        cell = new PdfPCell(new Phrase(ADriverSalary, FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                        cell.HorizontalAlignment = 2;
+                        cell.Colspan = 1;
+                        cell.SetLeading(0, 1.2f);
+                        Maintable.AddCell(cell);
+
+                        totalDriverSalary += DriverSalary;
+                        if (totalDriverSalary > 0)
+                        {
+                            AtotalDriverSalary = totalDriverSalary.ToString();
+                        }
+                        else
+                        {
+                            AtotalDriverSalary = "-";
+                        }
+
                         cell = new PdfPCell(new Phrase(ANetpay, FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
                         cell.HorizontalAlignment = 2;
                         cell.Colspan = 1;
@@ -32216,10 +32293,10 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
 
                     #region for total values by Anil Reddy on 27-12-2016
 
-                    PdfPTable Maintable2 = new PdfPTable(21);
+                    PdfPTable Maintable2 = new PdfPTable(22);
                     Maintable2.TotalWidth = 990f;
                     Maintable2.LockedWidth = true;
-                    float[] width2 = new float[] { 2f, 6.5f, 9.5f, 9.5f, 6.3f, 4.5f, 4.5f, 4.7f, 5f, 4f, 4.7f, 4.9f, 5f, 5.4f, 5f, 4.3f, 4.7f, 5.5f, 5f, 5f, 5f };
+                    float[] width2 = new float[] { 2f, 6.5f, 9.5f, 9.5f, 6.3f, 4.5f, 4.5f, 4.7f, 5f, 4f, 4.7f, 4.9f, 5f, 5.4f, 5f, 4.3f, 4.7f, 5.5f, 5f, 5f, 5f, 5f };
                     Maintable2.SetWidths(width2);
 
                     cell = new PdfPCell(new Phrase("Grand Total", FontFactory.GetFont(Fontstyle, 8, Font.BOLD, BaseColor.BLACK)));
@@ -33412,7 +33489,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                     cell.SetLeading(0, 1.2f);
                     Maintable2.AddCell(cell);
 
-                    if (ddlpaymenttype.SelectedIndex == 4) 
+                    if (ddlpaymenttype.SelectedIndex == 4)
                     {
                         cell = new PdfPCell(new Phrase(AtotalTotalDed + "\n" + AtotalAdvbonus, FontFactory.GetFont(Fontstyle, 8, Font.BOLD, BaseColor.BLACK)));
                         cell.HorizontalAlignment = 2;
@@ -33428,6 +33505,12 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         cell.SetLeading(0, 1.2f);
                         Maintable2.AddCell(cell);
                     }
+
+                    cell = new PdfPCell(new Phrase(AtotalDriverSalary, FontFactory.GetFont(Fontstyle, 8, Font.BOLD, BaseColor.BLACK)));
+                    cell.HorizontalAlignment = 2;
+                    cell.Colspan = 1;
+                    cell.SetLeading(0, 1.2f);
+                    Maintable2.AddCell(cell);
 
                     cell = new PdfPCell(new Phrase(AtotalNetpay, FontFactory.GetFont(Fontstyle, 8, Font.BOLD, BaseColor.BLACK)));
                     cell.HorizontalAlignment = 2;
@@ -33482,7 +33565,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
 
                     cell = new PdfPCell(new Phrase("Amount", FontFactory.GetFont(Fontstyle, Font_size, Font.BOLD, BaseColor.BLACK)));
                     cell.HorizontalAlignment = 0;
-                    cell.Colspan = 8;
+                    cell.Colspan = 9;
                     cell.Border = 0;
                     Maintable2.AddCell(cell);
 
@@ -33501,7 +33584,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
 
                     cell = new PdfPCell(new Phrase(TotalAmountforBank.ToString(), FontFactory.GetFont(Fontstyle, Font_size, Font.ITALIC, BaseColor.BLACK)));
                     cell.HorizontalAlignment = 0;
-                    cell.Colspan = 8;
+                    cell.Colspan = 9;
                     cell.Border = 0;
                     Maintable2.AddCell(cell);
 
@@ -33520,7 +33603,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
 
                     cell = new PdfPCell(new Phrase(TotalAmountForCash.ToString(), FontFactory.GetFont(Fontstyle, Font_size, Font.ITALIC, BaseColor.BLACK)));
                     cell.HorizontalAlignment = 0;
-                    cell.Colspan = 8;
+                    cell.Colspan = 9;
                     cell.Border = 0;
                     Maintable2.AddCell(cell);
 
@@ -33528,7 +33611,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
 
                     cell = new PdfPCell(new Phrase("Authorised Signatory", FontFactory.GetFont(Fontstyle, Font_size, Font.BOLD, BaseColor.BLACK)));
                     cell.HorizontalAlignment = 2;
-                    cell.Colspan = 21;
+                    cell.Colspan = 22;
                     cell.Border = 0;
                     cell.PaddingTop = 40;
                     Maintable2.AddCell(cell);

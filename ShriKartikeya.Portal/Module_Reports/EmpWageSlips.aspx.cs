@@ -2390,7 +2390,7 @@ namespace ShriKartikeya.Portal
                             cellTotalDed1.Colspan = 1;
                             tablewageslip.AddCell(cellTotalDed1);
 
-                            PdfPCell cellTotal = new PdfPCell(new Phrase("Net Pay", FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                            PdfPCell cellTotal = new PdfPCell(new Phrase("Driver Salary", FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
                             cellTotal.HorizontalAlignment = 0;
                             cellTotal.Colspan = 1;
                             // cellTotal.MinimumHeight = 20;
@@ -2402,15 +2402,40 @@ namespace ShriKartikeya.Portal
                             //cellTotal11.MinimumHeight = 20;
                             tablewageslip.AddCell(cellTotal11);
 
-                            forConvert = Convert.ToSingle(dt.Rows[i]["Actualamount"].ToString());
-                            string gtotal = NumberToEnglish.Instance.changeNumericToWords(forConvert.ToString("#"));
+                            forConvert = Convert.ToSingle(dt.Rows[i]["DriverSalary"].ToString());
 
-                            PdfPCell cellTotal1 = new PdfPCell(new Phrase("Rs. " + forConvert.ToString("0.00"), FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                            PdfPCell cellTotal1 = new PdfPCell(new Phrase(forConvert.ToString("0.00"), FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
                             cellTotal1.HorizontalAlignment = 2;
                             cellTotal1.Colspan = 1;
                             tablewageslip.AddCell(cellTotal1);
 
                             PdfPCell cellEmptycell = new PdfPCell(new Phrase("  ", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                            cellEmptycell.HorizontalAlignment = 0;
+                            cellEmptycell.Colspan = 2;
+                            //cellIncentives.MinimumHeight = 20;
+                            tablewageslip.AddCell(cellEmptycell);
+
+                             cellTotal = new PdfPCell(new Phrase("Net Pay", FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                            cellTotal.HorizontalAlignment = 0;
+                            cellTotal.Colspan = 1;
+                            // cellTotal.MinimumHeight = 20;
+                            tablewageslip.AddCell(cellTotal);
+
+                             cellTotal11 = new PdfPCell(new Phrase("", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                            cellTotal11.HorizontalAlignment = 2;
+                            cellTotal11.Colspan = 1;
+                            //cellTotal11.MinimumHeight = 20;
+                            tablewageslip.AddCell(cellTotal11);
+
+                            forConvert = Convert.ToSingle(dt.Rows[i]["Actualamount"].ToString());
+                            string gtotal = NumberToEnglish.Instance.changeNumericToWords(forConvert.ToString("#"));
+
+                             cellTotal1 = new PdfPCell(new Phrase("Rs. " + forConvert.ToString("0.00"), FontFactory.GetFont(fontsyle, Fontsize, Font.BOLD, BaseColor.BLACK)));
+                            cellTotal1.HorizontalAlignment = 2;
+                            cellTotal1.Colspan = 1;
+                            tablewageslip.AddCell(cellTotal1);
+
+                             cellEmptycell = new PdfPCell(new Phrase("  ", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                             cellEmptycell.HorizontalAlignment = 0;
                             cellEmptycell.Colspan = 2;
                             //cellIncentives.MinimumHeight = 20;

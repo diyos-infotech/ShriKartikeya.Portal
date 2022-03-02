@@ -2402,6 +2402,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus,,isnull(ea.Rei
                         float Reimbursement = 0;
                         string stoppayment = "";
                         float pldays = 0;
+                        float DriverSalary = 0;
                         #endregion
 
                         #region Variables for Posting order Table data and EmpAttendance(Default Values)
@@ -2649,6 +2650,11 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus,,isnull(ea.Rei
                                     Reimbursement = float.Parse(ds.Tables[0].Rows[i]["Reimbursement"].ToString());
                                 }
 
+                                if (String.IsNullOrEmpty(ds.Tables[0].Rows[i]["Driver Salary"].ToString().Trim()) == false)
+                                {
+                                    DriverSalary = float.Parse(ds.Tables[0].Rows[i]["Driver Salary"].ToString());
+                                }
+
                                 stoppayment = ds.Tables[0].Rows[i]["Stop Payment"].ToString();
                                 if (stoppayment == "Y" || stoppayment == "YES" || stoppayment == "y" || stoppayment == "yes" || stoppayment == "Yes")
                                 {
@@ -2718,7 +2724,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus,,isnull(ea.Rei
                                 Httable.Add("@oldempid", oldempid);
                                 Httable.Add("@Stoppayment", stoppayment);
                                 Httable.Add("@Reimbursement", Reimbursement);
-
+                                Httable.Add("@DriverSalary", DriverSalary);
                                 #endregion
 
                                 string SPName = "ImportFullAttendanceFromExcel";
@@ -2937,7 +2943,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus,,isnull(ea.Rei
                         float CL = 0;
                         float PL = 0;
                         float UL = 0;
-
+                        float DriverSalary = 0;
                         int pf = 0;
                         int esi = 0;
                         int pt = 0;
@@ -3164,6 +3170,10 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus,,isnull(ea.Rei
                                     if (String.IsNullOrEmpty(dr["Reimbursement"].ToString()) == false)
                                     {
                                         Reimbursement = float.Parse(dr["Reimbursement"].ToString());
+                                    }
+                                    if (String.IsNullOrEmpty(dr["Driver Salary"].ToString()) == false)
+                                    {
+                                        DriverSalary = float.Parse(dr["Driver Salary"].ToString());
                                     }
                                     if (String.IsNullOrEmpty(dr["Stop Payment"].ToString()) == false)
                                     {
@@ -4916,6 +4926,7 @@ isnull(ea.Arrears,0) as Arrears,isnull(ea.AttBonus,0) as AttBonus,,isnull(ea.Rei
                                 Httable.Add("@RemarksText", RemarksText);
                                 Httable.Add("@Reimbursement", Reimbursement);
                                 Httable.Add("@Stoppayment", stoppayment);
+                                Httable.Add("@DriverSalary", DriverSalary);
                                 #endregion
 
                                 string SPName = "ImportAttendanceFromExcel";

@@ -249,7 +249,7 @@ namespace ShriKartikeya.Portal
                 float totalloanded = 0;
                 float totalGenDed = 0;
                 float totalctc = 0;
-
+                float totalDriverSalary = 0;
                 float totalAttBonus = 0;
                 float totalTravelAllw = 0;
                 float totalNightShiftAllw = 0;
@@ -1122,6 +1122,13 @@ namespace ShriKartikeya.Portal
 
                                 }
 
+                                string strDriverSalary = dt.Rows[i]["DriverSalary"].ToString();
+                                if (strDriverSalary.Trim().Length > 0)
+                                {
+                                    totalDriverSalary += Convert.ToSingle(strDriverSalary);
+
+                                }
+
                                 //string strUniformAllw = dt.Rows[i]["UniformAllw"].ToString();
                                 //if (strUniformAllw.Trim().Length > 0)
                                 //{
@@ -1739,7 +1746,7 @@ namespace ShriKartikeya.Portal
                     {
                         countdedutions += 1;
                     }
-
+                   
 
                     //if (totalMobInstDed > 0)
                     //{
@@ -2042,7 +2049,7 @@ namespace ShriKartikeya.Portal
         float totalfixedReimbursement = 0;
         float totalfixedHardshipAllw = 0;
         float totalfixedPaidHolidayAllw = 0;
-
+        float totalDriverSalary = 0;
 
         protected void DisplayData()
         {
@@ -2872,7 +2879,12 @@ namespace ShriKartikeya.Portal
                                         totalPaidHolidayAllw += Convert.ToSingle(strPaidHolidayAllw);
 
                                     }
+                                    string strDriverSalary = dt.Rows[i]["DriverSalary"].ToString();
+                                    if (strDriverSalary.Trim().Length > 0)
+                                    {
+                                        totalDriverSalary += Convert.ToSingle(strDriverSalary);
 
+                                    }
                                     //string strUniformAllw = dt.Rows[i]["UniformAllw"].ToString();
                                     //if (strUniformAllw.Trim().Length > 0)
                                     //{
@@ -4466,16 +4478,26 @@ namespace ShriKartikeya.Portal
                             GVListEmployees.Columns[134].Visible = false;
 
                         }
-
-                        Label lblTotalNetAmount = GVListEmployees.FooterRow.FindControl("lblTotalNetAmount") as Label;
-                        lblTotalNetAmount.Text = Math.Round(totalActualamount).ToString();
-                        if (totalActualamount > 0)
+                        Label lblTotalDriverSalary = GVListEmployees.FooterRow.FindControl("lblTotalDriverSalary") as Label;
+                        lblTotalDriverSalary.Text = Math.Round(totalDriverSalary).ToString();
+                        if (totalDriverSalary > 0)
                         {
                             GVListEmployees.Columns[135].Visible = true;
                         }
                         else
                         {
                             GVListEmployees.Columns[135].Visible = false;
+
+                        }
+                        Label lblTotalNetAmount = GVListEmployees.FooterRow.FindControl("lblTotalNetAmount") as Label;
+                        lblTotalNetAmount.Text = Math.Round(totalActualamount).ToString();
+                        if (totalActualamount > 0)
+                        {
+                            GVListEmployees.Columns[136].Visible = true;
+                        }
+                        else
+                        {
+                            GVListEmployees.Columns[136].Visible = false;
 
                         }
 
