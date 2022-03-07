@@ -1,13 +1,8 @@
-using System;
 using System.Data;
-using System.Configuration;
 using System.IO;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using OfficeOpenXml;
 using ClosedXML.Excel;
 using System.Linq;
@@ -26,6 +21,7 @@ public class GridViewExportUtil
     {
 
         var products = dt;
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         ExcelPackage excel = new ExcelPackage();
         var workSheet = excel.Workbook.Worksheets.Add(fileName);
         var totalCols = products.Columns.Count;
@@ -55,6 +51,7 @@ public class GridViewExportUtil
             HttpContext.Current.Response.End();
         }
     }
+
     public void Export(string fileName, GridView gv)
     {
         GridViewExportUtil gve = new GridViewExportUtil();
@@ -273,7 +270,7 @@ public class GridViewExportUtil
 
             for (int i = 0; i < row.Cells.Count; i++)
             {
-                dr[i] = row.Cells[i].Text.Replace("&nbsp;", " ");
+                dr[i] = row.Cells[i].Text.Replace(" ", "").Replace("&nbsp;", " ");
             }
             dt.Rows.Add(dr);
         }
@@ -288,39 +285,45 @@ public class GridViewExportUtil
 
             for (int i = 0; i < gv.FooterRow.Cells.Count; i++)
             {
-                dr[i] = gv.FooterRow.Cells[i].Text.Replace("&nbsp;", " ");
+                dr[i] = gv.FooterRow.Cells[i].Text.Replace("&nbsp;", "");
             }
 
 
             dt.Rows.Add(dr);
         }
 
-        DataSet ds = new DataSet();
-        ds.Tables.Add(dt);
-        ds.Tables[0].TableName = "Sheet1";
+        var products = dt;
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        ExcelPackage excel = new ExcelPackage();
+        var workSheet = excel.Workbook.Worksheets.Add(fileName);
+        var totalCols = products.Columns.Count;
+        var totalRows = products.Rows.Count;
 
-        using (XLWorkbook wb = new XLWorkbook())
+        for (var col = 1; col <= totalCols; col++)
         {
-            var ws = wb.Worksheets.Add(ds.Tables[0]);
-            ws.Name = fileName;
-            ws.Tables.FirstOrDefault().ShowAutoFilter = false;
-            ws.Table(0).Theme = XLTableTheme.None; // Remove Theme.
-            ws.Columns().AdjustToContents();
-            ws.Row(1).Style.Font.Bold = true;
-            ws.Row(1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-            HttpContext.Current.Response.Clear();
-            HttpContext.Current.Response.Buffer = true;
-            HttpContext.Current.Response.Charset = "";
-            HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename= " + fileName);
-            using (var memoryStream = new MemoryStream())
+            workSheet.Cells[1, col].Value = products.Columns[col - 1].ColumnName;
+            workSheet.Cells[1, col].Style.Font.Bold = true;
+
+        }
+        for (var row = 1; row <= totalRows; row++)
+        {
+            for (var col = 0; col < totalCols; col++)
             {
-                wb.SaveAs(memoryStream);
-                memoryStream.WriteTo(HttpContext.Current.Response.OutputStream);
-                HttpContext.Current.Response.Flush();
-                HttpContext.Current.Response.End();
+                workSheet.Cells[row + 1, col + 1].Value = products.Rows[row - 1][col];
             }
         }
+
+
+        using (var memoryStream = new MemoryStream())
+        {
+            HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            HttpContext.Current.Response.AddHeader("content-disposition", "attachment ;filename=\"" + fileName + "\"");
+            excel.SaveAs(memoryStream);
+            memoryStream.WriteTo(HttpContext.Current.Response.OutputStream);
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.Response.End();
+        }
+
     }
 
     public void ExporttoExcelNewPaysheet(DataTable table, string line, string line2, string filename)
@@ -477,35 +480,7 @@ public class GridViewExportUtil
         HttpContext.Current.Response.Write("</TR>");
         HttpContext.Current.Response.Write("</TR>");
 
-        // for (int j = 0; j < columnscount; j++)
-        //{
-        //    //write in new column
-
-        //    HttpContext.Current.Response.Write("<Td valign='middle'>");
-
-        //    //Get column headers  and make it as bold in excel columns
-        //    HttpContext.Current.Response.Write("<B>");
-        //    HttpContext.Current.Response.Write(table.Columns[j].ToString());
-
-        //    HttpContext.Current.Response.Write("</B>");
-        //    HttpContext.Current.Response.Write("</Td>");
-        //}
-
-        //HttpContext.Current.Response.Write("</TR>");
-
-        //foreach (DataRow row in table.Rows)
-        //{//write in new row
-        //    HttpContext.Current.Response.Write("<TR>");
-        //    for (int i = 0; i < table.Columns.Count; i++)
-        //    {
-        //        HttpContext.Current.Response.Write("<Td>");
-        //        HttpContext.Current.Response.Write(row[i].ToString());
-        //        HttpContext.Current.Response.Write("</Td>");
-        //        HttpContext.Current.Response.Write(style);
-        //    }
-
-        //    HttpContext.Current.Response.Write("</TR>");
-        //}
+       
         HttpContext.Current.Response.Write("</Table>");
         HttpContext.Current.Response.Write("</font>");
 
