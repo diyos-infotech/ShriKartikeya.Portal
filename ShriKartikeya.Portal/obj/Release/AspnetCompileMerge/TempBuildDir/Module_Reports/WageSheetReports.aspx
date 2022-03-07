@@ -609,6 +609,16 @@
                                             </asp:TemplateField>
 
                                             <%-- 33--%>
+                                            <asp:TemplateField HeaderText="Driver Salary" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDriverSalary" runat="server" Text='<%#Bind("DriverSalary","{0:0}") %>'> </asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label runat="server" ID="lblTotalDriverSalary"></asp:Label>
+                                                </FooterTemplate>
+                                            </asp:TemplateField>
+
+                                            <%-- 34--%>
                                             <asp:TemplateField HeaderText="Net Pay" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCenternetamountPay" runat="server" Text='<%#Bind("ActualAmount","{0:0}") %>'> </asp:Label>
@@ -617,7 +627,7 @@
                                                     <asp:Label runat="server" ID="lblTotalNetAmount"></asp:Label>
                                                 </FooterTemplate>
                                             </asp:TemplateField>
-                                            <%-- 34--%>
+                                            <%-- 35--%>
 
                                             <asp:TemplateField HeaderText="Arrears" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
@@ -628,7 +638,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <%-- 35--%>
+                                            <%-- 36--%>
                                             <asp:TemplateField HeaderText="OT Amout" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblotamt" runat="server" Text='<%#Bind("OTAmt","{0:0}") %>'></asp:Label>
@@ -638,7 +648,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <%-- 36--%>
+                                            <%-- 37--%>
                                             <asp:TemplateField HeaderText="Inc" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblIncentivs" runat="server" Text='<%#Bind("Incentivs","{0:0}") %>'></asp:Label>
@@ -648,7 +658,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <%-- 37--%>
+                                            <%-- 38--%>
                                             <asp:TemplateField HeaderText="Reimbursement" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblReimbursement" runat="server" Text='<%#Bind("Reimbursement","{0:0}") %>'></asp:Label>
@@ -658,7 +668,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <%-- 38--%>
+                                            <%-- 39--%>
                                             <asp:TemplateField HeaderText="Payable Amt" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblnetPayableamount" runat="server" Text='<%#Bind("PayableAmt","{0:0}") %>'> </asp:Label>

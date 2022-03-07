@@ -1696,7 +1696,17 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <%-- 135--%>
+                                               <%-- 135--%>
+                                           <asp:TemplateField HeaderText="Driver Salary" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDriverSalary" runat="server" Text='<%#Bind("DriverSalary","{0:0}") %>'> </asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label runat="server" ID="lblTotalDriverSalary"></asp:Label>
+                                                </FooterTemplate>
+                                            </asp:TemplateField>
+
+                                            <%-- 136--%>
                                             <asp:TemplateField HeaderText="Net Amt" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblnetamount" runat="server" Text='<%#Bind("ActualAmount","{0:0}") %>'> </asp:Label>
@@ -1706,7 +1716,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <%-- 136--%>
+                                            <%-- 137--%>
                                             <asp:TemplateField HeaderText="Signature orThumb Impression of the Workman" ItemStyle-HorizontalAlign="Left" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblRemarks" runat="server" Text='<%#Bind("Remarks") %>'></asp:Label>

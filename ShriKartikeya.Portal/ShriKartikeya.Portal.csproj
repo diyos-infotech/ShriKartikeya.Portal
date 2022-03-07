@@ -141,9 +141,11 @@
     <Content Include="assets\SKPlogo4.png" />
     <Content Include="assets\SKPlogo5.png" />
     <Content Include="Module_Employees\TDSDemo.aspx" />
+    <Content Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
     <Content Include="Module_Reports\TDSReport.aspx" />
+    <Content Include="Module_Reports\ZeroAttendanceReport.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2079,6 +2081,13 @@
     <Compile Include="Module_Reports\GetDaywise_Android_AttendanceMonthwise.aspx.designer.cs">
       <DependentUpon>GetDaywise_Android_AttendanceMonthwise.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx.cs">
+      <DependentUpon>GetDaywise_Android_Attendance_Employee_Wise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx.designer.cs">
+      <DependentUpon>GetDaywise_Android_Attendance_Employee_Wise.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module_Reports\GSTR1InvoiceReport.aspx.cs">
       <DependentUpon>GSTR1InvoiceReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2348,6 +2357,13 @@
     </Compile>
     <Compile Include="Module_Reports\WageSheetReportsNew.aspx.designer.cs">
       <DependentUpon>WageSheetReportsNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\ZeroAttendanceReport.aspx.cs">
+      <DependentUpon>ZeroAttendanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\ZeroAttendanceReport.aspx.designer.cs">
+      <DependentUpon>ZeroAttendanceReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Settings\AccessPrevilegers.aspx.cs">
       <DependentUpon>AccessPrevilegers.aspx</DependentUpon>

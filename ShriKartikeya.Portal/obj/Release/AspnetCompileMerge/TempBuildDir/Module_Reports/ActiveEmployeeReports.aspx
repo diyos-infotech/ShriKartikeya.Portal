@@ -549,6 +549,36 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
+                                                    <asp:TemplateField HeaderText="ServiceNo">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lblEmpstatus" Text='<%# Bind("ServiceNo") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="DtofEnrolment">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lblEmpstatus" Text='<%# Bind("DtofEnrolment") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="DtofDischarge">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lblEmpstatus" Text='<%# Bind("DtofDischarge") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="MedcalCategoryBloodGroup">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lblEmpstatus" Text='<%# Bind("MedcalCategoryBloodGroup") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                     <asp:TemplateField HeaderText="ReasonsofDischarge">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lblEmpstatus" Text='<%# Bind("ReasonsofDischarge") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
                                                 </Columns>
                                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                                                 <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />

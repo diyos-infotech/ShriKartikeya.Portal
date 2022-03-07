@@ -10,7 +10,7 @@ namespace ShriKartikeya.Portal
         AppConfiguration config = new AppConfiguration();
         GridViewExportUtil gve = new GridViewExportUtil();
         string UserName = "";
-        string previligeid = "";
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             UserName = Session["UserId"].ToString();
@@ -92,9 +92,9 @@ namespace ShriKartikeya.Portal
             {
                 RedirectPage = DtPrefix.Rows[0]["REDIRECT_PAGE"].ToString();
                 ID = DtPrefix.Rows[0]["ID"].ToString();
-                if (ID == "1" && RedirectPage == "Reminders.aspx")
+                if (ID == "1" && RedirectPage == "Employees.aspx")
                 {
-                    Response.Redirect("~/Reminders.aspx");
+                    Response.Redirect("~/Module_Employees/Employees.aspx");
                 }
                 if (ID == "2" && RedirectPage == "Employees.aspx")
                 {
@@ -121,8 +121,8 @@ namespace ShriKartikeya.Portal
                     Response.Redirect("~/Module_Settings/Settings.aspx");
                 }
             }
-            Session["homepage"] = "Reminders.aspx";
-            Response.Redirect("Reminders.aspx");
+            Session["homepage"] = "Employees.aspx";
+            Response.Redirect("~/Module_Employees/Employees.aspx");
 
         }
 

@@ -1549,8 +1549,16 @@
                                                     <asp:Label runat="server" ID="lblTotalDeductions"></asp:Label>
                                                 </FooterTemplate>
                                             </asp:TemplateField>
-
-                                            <%--89--%>
+                                              <%--89--%>
+                                            <asp:TemplateField HeaderText="Driver Salary" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDriverSalary" runat="server" Text='<%#Bind("DriverSalary","{0:0}") %>'> </asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label runat="server" ID="lblTotalDriverSalary"></asp:Label>
+                                                </FooterTemplate>
+                                            </asp:TemplateField>
+                                            <%--90--%>
                                             <asp:TemplateField HeaderText="Net Amt" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblnetamount" runat="server" Text='<%#Bind("ActualAmount","{0:0}") %>'> </asp:Label>

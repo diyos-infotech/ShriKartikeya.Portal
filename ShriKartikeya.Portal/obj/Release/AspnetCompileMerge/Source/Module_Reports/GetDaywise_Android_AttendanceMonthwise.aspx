@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Module_Reports/ReportMaster.master" AutoEventWireup="true" CodeBehind="GetDaywise_Android_AttendanceMonthwise.aspx.cs" Inherits="ShriKartikeya.Portal.Module_Reports.GetDaywise_Android_AttendanceMonthwise" %>
 
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
