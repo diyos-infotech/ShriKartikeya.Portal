@@ -35,12 +35,30 @@
     <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 
-    <style>
-
-          .select2-container--default .select2-selection--single .select2-selection__rendered
-        {
-            line-height:32px
+    <style type="text/css">
+        .overlay {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background: rgba(255,255,255,0.8) url("assets/loader.gif") center no-repeat;
         }
+        /* Turn off scrollbar when body element has the loading class */
+        body.loading {
+            overflow: hidden;
+        }
+            /* Make spinner image visible when body element has the loading class */
+            body.loading .overlay {
+                display: block;
+            }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 32px
+        }
+
         img {
             border-radius: 50%;
             box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
@@ -2199,18 +2217,24 @@
             border-radius: 8px
             /*{cornerRadiusShadow}*/
             ;
-
-      
-        
     </style>
 
 
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" autocomplete="off">
         <asp:ScriptManager runat="server" ID="ScriptManager"></asp:ScriptManager>
 
         <script type="text/javascript">
+
+            $(document).on({
+                ajaxStart: function () {
+                    $("body").addClass("loading");
+                },
+                ajaxStop: function () {
+                    $("body").removeClass("loading");
+                }
+            });
 
             function LoadProfile(e) {
 
@@ -2298,7 +2322,7 @@
             var output = (('' + day).length < 2 ? '0' : '') + day + '/' + (('' + monthv).length < 2 ? '0' : '') + monthv + '/' + d2.getFullYear();
             var month = output;
 
-           
+
 
 
             var d1 = new Date();
@@ -2307,7 +2331,7 @@
             var output1 = (('' + day1).length < 2 ? '0' : '') + day1 + '/' + (('' + monthv1).length < 2 ? '0' : '') + monthv1 + '/' + d1.getFullYear();
             var month1 = output1;
 
-           
+
 
             var Department = "%";
             var EmpID = "%";
@@ -2370,74 +2394,74 @@
                 if ($("#<%=txtEmpID.ClientID %>").val() != "") {
 
                     EmpID = $("#<%=txtEmpID.ClientID %>").val();
-                        EmpID = EmpID.substr(0, EmpID.indexOf(' -'));
-                    }
+                    EmpID = EmpID.substr(0, EmpID.indexOf(' -'));
+                }
 
                 debugger;
 
                 var myModalview = $('#myModalview');
 
 
-                    $.ajax({
-                        type: 'POST',
-                        url: 'Dashboard.aspx/GetBioData',
-                        data: "{Empid:'" + EmpID + "'}",
-                        contentType: 'application/json; charset=utf-8',
-                        dataType: 'json',
-                        success: function (data) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'Dashboard.aspx/GetBioData',
+                    data: "{Empid:'" + EmpID + "'}",
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (data) {
 
-                           
-                          
-                            $("#gvBiodata tr:has(td)").remove();
 
-                            for (var i = 0; i < data.d.length; i++) {
 
-                                $("#gvBiodata").append("<tr><td>" + data.d[i].text + "</td><td style='font-weight:bold'>" + data.d[i].value + "</td></tr>");
-                            }
+                        $("#gvBiodata tr:has(td)").remove();
 
-                            $.ajax({
-                                type: 'POST',
-                                url: 'Dashboard.aspx/GetEmployeeDetails',
-                                data: "{Empid:'" + EmpID + "'}",
-                                contentType: 'application/json; charset=utf-8',
-                                dataType: 'json',
-                                success: function (data) {
+                        for (var i = 0; i < data.d.length; i++) {
 
-                                    
-
-                                    for (var j = 0; j < data.d.length; j++) {
-
-                                        $('[id*=lblempname]').html(data.d[j].Name);
-                                        $("[id*=lblDesignation]").html(data.d[j].Design);
-                                        if (data.d[j].Image.length > 0) {
-
-                                            
-
-                                            if (data.d[j].Image.toString().indexOf("data")!=-1) {
-                                                $("#Image4").attr({ "src": data.d[j].Image });
-
-                                            }
-                                            else {
-
-                                                $("#Image4").attr({ "src": "data:image/jpeg;base64,"+data.d[j].Image });
-                                            }
-                                        }
-                                    }
-
-                                },
-                                error: function (error) {
-                                    alert("error" + error.responseText);
-                                }
-                            });
-
-                            $('#myModalview').modal('show');
-                        },
-
-                        error: function (error) {
-                            alert("error" + error.statusText);
+                            $("#gvBiodata").append("<tr><td>" + data.d[i].text + "</td><td style='font-weight:bold'>" + data.d[i].value + "</td></tr>");
                         }
 
-                    });
+                        $.ajax({
+                            type: 'POST',
+                            url: 'Dashboard.aspx/GetEmployeeDetails',
+                            data: "{Empid:'" + EmpID + "'}",
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+
+
+
+                                for (var j = 0; j < data.d.length; j++) {
+
+                                    $('[id*=lblempname]').html(data.d[j].Name);
+                                    $("[id*=lblDesignation]").html(data.d[j].Design);
+                                    if (data.d[j].Image.length > 0) {
+
+
+
+                                        if (data.d[j].Image.toString().indexOf("data") != -1) {
+                                            $("#Image4").attr({ "src": data.d[j].Image });
+
+                                        }
+                                        else {
+
+                                            $("#Image4").attr({ "src": "data:image/jpeg;base64," + data.d[j].Image });
+                                        }
+                                    }
+                                }
+
+                            },
+                            error: function (error) {
+                                alert("error" + error.responseText);
+                            }
+                        });
+
+                        $('#myModalview').modal('show');
+                    },
+
+                    error: function (error) {
+                        alert("error" + error.statusText);
+                    }
+
+                });
 
             }
 
@@ -2464,6 +2488,7 @@
                     data: "{month:'" + month1 + "',Department:'" + Department + "'}",
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
+                  
                     success: function (data) {
 
 
@@ -2476,6 +2501,7 @@
                             $("#lblNosingleAtt").html(data.d[i].NoSingleAttn);
 
                         }
+
 
 
                     },
@@ -2590,7 +2616,7 @@
                     month = $("#<%=txtMonth.ClientID %>").val();
                 }
 
-               
+
 
                 if ($('#ddlDepartment').find('option:selected').text() != 'Select Department') {
                     Department = $('#ddlDepartment').find('option:selected').val();
@@ -2624,7 +2650,7 @@
                             $("#gvpaysheet").append("<tr><td>" + data.d[i].WageDetails + "</td><td style='text-align:right'>" + data.d[i].Amount.toLocaleString('en-IN') + "</td></tr>");
                         }
 
-                       
+
 
 
                     },
@@ -2644,7 +2670,7 @@
                     month = $("#<%=txtMonth.ClientID %>").val();
                 }
 
-              
+
 
 
                 if ($('#ddlDepartment').find('option:selected').text() != 'Select Department') {
@@ -2703,7 +2729,7 @@
                     month = $("#<%=txtMonth.ClientID %>").val();
                 }
 
-                
+
 
 
                 if ($('#ddlDepartment').find('option:selected').text() != 'Select Department') {
@@ -2784,7 +2810,7 @@
                     month = $("#<%=txtMonth.ClientID %>").val();
                 }
 
-                
+
 
                 if ($('#ddlDepartment').find('option:selected').text() != 'Select Department') {
                     Department = $('#ddlDepartment').find('option:selected').val();
@@ -2848,7 +2874,7 @@
 
             function EmployeeCount() {
 
-                
+
 
 
                 if ($('#ddlDepartment').find('option:selected').text() != 'Select Department') {
@@ -2949,7 +2975,7 @@
                     month = $("#<%=txtMonth.ClientID %>").val();
                 }
 
-                
+
 
 
                 if ($('#ddlDepartment').find('option:selected').text() != 'Select Department') {
@@ -3017,7 +3043,7 @@
             function AgeLimit() {
 
 
-               
+
 
 
                 if ($('#ddlDepartment').find('option:selected').text() != 'Select Department') {
@@ -3179,8 +3205,8 @@
             <div class="col-xs-10">
             </div>
             <div class="col-xs-1">
-                <asp:Button ID="btnBack" runat="server"  Text="Back" style="margin-top:10px;margin-left:-20px" PostBackUrl="~/Module_Employees/Employees.aspx" />
-                
+                <asp:Button ID="btnBack" runat="server" Text="Back" Style="margin-top: 10px; margin-left: -20px" PostBackUrl="~/Module_Employees/Employees.aspx" />
+
             </div>
 
         </div>
@@ -3188,13 +3214,13 @@
         <div class="container" style="font-size: 12px; position: relative; top: 5px; bottom: 20px; border-radius: 20px; font-family: 'Poppins', sans-serif;">
 
             <div class="row">
-                <div class="col-xs-12" style="padding: 10px; background: url(assets/banner.jpg); background-size: cover;border-radius:10px">
+                <div class="col-xs-12" style="padding: 10px; background: url(assets/banner.jpg); background-size: cover; border-radius: 10px">
 
                     <div class="col-xs-3">
                         <asp:TextBox ID="txtMonth" runat="server" Text="" AutoComplete="off" class="form-control" placeholder="Month"></asp:TextBox>
-                         <cc1:CalendarExtender ID="CEMonth" runat="server" Enabled="true" TargetControlID="txtMonth" CssClass="cal_Theme1" BehaviorID="calendar1"
-                                               DefaultView="Months" OnClientHidden="onCalendarHidden" OnClientShown="onCalendarShown" Format="MMM-yyyy">
-                                                        </cc1:CalendarExtender>
+                        <cc1:CalendarExtender ID="CEMonth" runat="server" Enabled="true" TargetControlID="txtMonth" CssClass="cal_Theme1" BehaviorID="calendar1"
+                            DefaultView="Months" OnClientHidden="onCalendarHidden" OnClientShown="onCalendarShown" Format="MMM-yyyy">
+                        </cc1:CalendarExtender>
                     </div>
 
 
@@ -3211,24 +3237,23 @@
 
                     <div class="col-xs-2" style="padding: 3.5px; text-align: center;">
                         <asp:Button ID="btnSubmit" runat="server" class="btn btn-success" Text="Submit" />
-                        
-                   
 
-                         <asp:Button ID="btnTemp" runat="server" Text="Ok" Style="display: none" />
-                         <input type="button" id="btnEmpViewProfile" class="btn btn-info" value="View Profile" onclick="LoadEmpBioData();" />  
-                         </div>
+
+
+                        <asp:Button ID="btnTemp" runat="server" Text="Ok" Style="display: none" />
+                        <input type="button" id="btnEmpViewProfile" class="btn btn-info" value="View Profile" onclick="LoadEmpBioData();" />
+                    </div>
 
 
 
                 </div>
             </div>
 
-            <div class="row" style="height:8px">
-
+            <div class="row" style="height: 8px">
             </div>
 
             <div class="row">
-                <div class="col-xs-12" style="padding: 5px; border: 1px solid #C0C0C0;background-color: #FFFFFF; border-radius: 10px;box-shadow: 0 15px 40px rgba(166,173,201,0.2);">
+                <div class="col-xs-12" style="padding: 5px; border: 1px solid #C0C0C0; background-color: #FFFFFF; border-radius: 10px; box-shadow: 0 15px 40px rgba(166,173,201,0.2);">
 
                     <div class="header">
                         <label>Pocket FaME Summary</label>
@@ -3244,7 +3269,8 @@
                                     <div class="input-group date" data-provide="datepicker">
                                         <asp:TextBox ID="txtDate" runat="server" class="form-control"> </asp:TextBox>
                                         <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass=" cal_Theme1"
-                                            Enabled="true" Format="dd/MM/yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                                            Enabled="true" Format="dd/MM/yyyy" TargetControlID="txtDate">
+                                        </cc1:CalendarExtender>
 
 
                                         <div class="input-group-addon">
@@ -3253,7 +3279,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <asp:Button ID="btnDataSubmit" runat="server" Text="Submit" class="btn btn-success" Style="margin-left: 10px" />
+                                    <asp:Button ID="btnDataSubmit" runat="server" Text="Submit"  class="btn btn-success" Style="margin-left: 10px" />
                                 </td>
                             </tr>
                         </table>
@@ -3261,7 +3287,7 @@
 
 
                     <div class="col-xs-3" style="padding: 3.5px">
-                        <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px;background:#F5F5F5; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);">
+                        <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px; background: #F5F5F5; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);">
                             <div class="col-auto" style="padding: 10px">
                                 <table width="100%">
                                     <tr>
@@ -3286,7 +3312,7 @@
                     </div>
 
                     <div class="col-xs-3" style="padding: 3.5px">
-                        <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px; background:#F5F5F5;box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);">
+                        <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px; background: #F5F5F5; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);">
                             <div class="col-auto" style="padding: 10px">
                                 <table width="100%">
                                     <tr>
@@ -3310,7 +3336,7 @@
                     </div>
 
                     <div class="col-xs-3" style="padding: 3.5px">
-                        <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px;background:#F5F5F5;box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);">
+                        <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px; background: #F5F5F5; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);">
                             <div class="col-auto" style="padding: 10px">
                                 <table width="100%">
                                     <tr>
@@ -3335,7 +3361,7 @@
                     </div>
 
                     <div class="col-xs-3" style="padding: 3.5px">
-                        <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px;background:#F5F5F5; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);">
+                        <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px; background: #F5F5F5; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);">
 
 
                             <div class="col-auto" style="padding: 10px">
@@ -3488,7 +3514,7 @@
 
                 <div class="col-xs-5" style="padding: 3.5px">
                     <div class="col-xs-12" style="border: 1px solid #C0C0C0; border-radius: 10px; background-color: #FFFFFF; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3); padding: 5px">
-                        <asp:GridView ID="gvsalsummary" runat="server" CellSpacing="6" Width="100%" Style="height: 160px;font-weight:bold" CssClass="table table-striped table-bordered table-condensed table-hover">
+                        <asp:GridView ID="gvsalsummary" runat="server" CellSpacing="6" Width="100%" Style="height: 160px; font-weight: bold" CssClass="table table-striped table-bordered table-condensed table-hover">
                             <AlternatingRowStyle CssClass="gridalt" />
                         </asp:GridView>
                     </div>
@@ -3497,7 +3523,7 @@
 
                 <div class="col-xs-3" style="padding: 3.5px">
                     <div class="col-xs-12" style="border: 1px solid #C0C0C0; height: 287px; border-radius: 10px; background-color: #FFFFFF; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3); padding: 5px">
-                        <asp:GridView ID="gvpaysheet" runat="server" CellSpacing="6" Width="100%" Style="height: 160px;font-weight:bold" CssClass="table table-striped table-bordered table-condensed table-hover">
+                        <asp:GridView ID="gvpaysheet" runat="server" CellSpacing="6" Width="100%" Style="height: 160px; font-weight: bold" CssClass="table table-striped table-bordered table-condensed table-hover">
                             <AlternatingRowStyle CssClass="gridalt" />
                         </asp:GridView>
                     </div>
@@ -3523,7 +3549,7 @@
                                             </table>
 
                                         </div>
-                                        <div class="col-xs-10" style="position: relative; left: 10px; font-size: 12px; ">
+                                        <div class="col-xs-10" style="position: relative; left: 10px; font-size: 12px;">
                                             <table>
 
                                                 <tr>
@@ -3691,7 +3717,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                         </div>
-                        <div class="modal-body" style="margin-top: -20px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #dddddd), color-stop(1, #fdfdfd)); background-size: cover;">
+                        <div class="modal-body" style="margin-top: -20px; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #dddddd), color-stop(1, #fdfdfd)); background-size: cover;">
 
 
                             <div class="row">
@@ -3728,13 +3754,13 @@
 
                             </div>
 
-                            <div class="row" style=" font-size: 12px">
+                            <div class="row" style="font-size: 12px">
 
                                 <div class="col-xs-9" style="background-color: white; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3); margin-left: 13%;">
-                                  <%--  <asp:GridView ID="gvBiodata" runat="server"  CellSpacing="10" CellPadding="5" ShowHeader="false" Width="105%" Style="height: 160px; line-height: 2; text-align: left; margin: 0px auto" GridLines="None">
+                                    <%--  <asp:GridView ID="gvBiodata" runat="server"  CellSpacing="10" CellPadding="5" ShowHeader="false" Width="105%" Style="height: 160px; line-height: 2; text-align: left; margin: 0px auto" GridLines="None">
                                     </asp:GridView>--%>
 
-                                   <table id="gvBiodata" Width="105%" style="height: 160px; line-height: 2; text-align: left; margin: 0px auto" ></table>
+                                    <table id="gvBiodata" width="105%" style="height: 160px; line-height: 2; text-align: left; margin: 0px auto"></table>
                                 </div>
 
                             </div>
@@ -3743,7 +3769,7 @@
                 </div>
 
             </div>
-
+            <div class="overlay"></div>
 
             <asp:HiddenField runat="server" ID="hfempid" />
         </div>
