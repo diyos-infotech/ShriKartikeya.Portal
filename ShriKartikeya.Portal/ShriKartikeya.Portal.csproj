@@ -140,7 +140,9 @@
     <Content Include="assets\SKPlogo3.png" />
     <Content Include="assets\SKPlogo4.png" />
     <Content Include="assets\SKPlogo5.png" />
+    <Content Include="Dashboard.aspx" />
     <Content Include="Module_Employees\TDSDemo.aspx" />
+    <Content Include="Module_Reports\AndroidAttendanceSK.aspx" />
     <Content Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
@@ -1448,6 +1450,13 @@
     <Compile Include="DAL\MenuBAL.cs" />
     <Compile Include="DAL\MenuDAL.cs" />
     <Compile Include="DAL\SqlHelper.cs" />
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1891,6 +1900,13 @@
     </Compile>
     <Compile Include="Module_Reports\ActiveEmployeeReports.aspx.designer.cs">
       <DependentUpon>ActiveEmployeeReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\AndroidAttendanceSK.aspx.cs">
+      <DependentUpon>AndroidAttendanceSK.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\AndroidAttendanceSK.aspx.designer.cs">
+      <DependentUpon>AndroidAttendanceSK.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Reports\ArrearWages.aspx.cs">
       <DependentUpon>ArrearWages.aspx</DependentUpon>

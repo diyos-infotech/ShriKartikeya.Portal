@@ -92,9 +92,15 @@ namespace ShriKartikeya.Portal
             {
                 RedirectPage = DtPrefix.Rows[0]["REDIRECT_PAGE"].ToString();
                 ID = DtPrefix.Rows[0]["ID"].ToString();
+
+
                 if (ID == "1" && RedirectPage == "Employees.aspx")
                 {
-                    Response.Redirect("~/Module_Employees/Employees.aspx");
+
+                    
+                        Response.Redirect("~/Module_Employees/Employees.aspx");
+
+                    
                 }
                 if (ID == "2" && RedirectPage == "Employees.aspx")
                 {
@@ -121,8 +127,18 @@ namespace ShriKartikeya.Portal
                     Response.Redirect("~/Module_Settings/Settings.aspx");
                 }
             }
-            Session["homepage"] = "Employees.aspx";
-            Response.Redirect("~/Module_Employees/Employees.aspx");
+
+            if (RedirectPage == "Dashboard.aspx")
+            {
+                Session["homepage"] = "Dashboard.aspx";
+                Response.Redirect("Dashboard.aspx");
+
+            }
+            else
+            {
+                Session["homepage"] = "Employees.aspx";
+                Response.Redirect("~/Module_Employees/Employees.aspx");
+            }
 
         }
 

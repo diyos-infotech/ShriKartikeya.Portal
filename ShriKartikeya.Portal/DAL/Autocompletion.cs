@@ -122,6 +122,35 @@ public class Autocompletion : System.Web.Services.WebService
 
     }
 
+    [WebMethod(EnableSession = true)]
+    public List<string> GetEmpIDName(string term)
+    {
+
+
+        List<string> EmpIds = new List<string>();
+        string cs = ConfigurationManager.ConnectionStrings["KLTSConnectionString"].ConnectionString;
+        SqlCommand cmd;
+        using (SqlConnection cn = new SqlConnection(cs))
+        {
+
+            cmd = new SqlCommand("Select (empid+' - '+empfname) as empid from empdetails where  (empid like '%" + term + "%' or Oldempid like '%" + term + "%' or empfname like '%" + term + "%') and empid not like 'nya%'   ", cn);
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@term", term);
+            cn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                EmpIds.Add(dr["empid"].ToString());
+            }
+
+            return EmpIds;
+        }
+
+
+    }
+
 
     [WebMethod(EnableSession = true)]
     public List<string> GetFormEmpIDs(string term)

@@ -11,8 +11,6 @@
     <script src="../js/colResizable-1.6.js"></script>
     <script src="../js/colResizable-1.6.min.js"></script>
 
-
-
     <style type="text/css">
         td {
             max-width: 180px;
@@ -21,33 +19,7 @@
             overflow: hidden;
         }
 
-        #social div {
-            display: block;
-        }
 
-        .HeaderStyle {
-            text-align: Left;
-        }
-
-        .style3 {
-            height: 24px;
-        }
-
-        .modalBackground {
-            background-color: Gray;
-            z-index: 10000;
-        }
-
-        .slidingDiv {
-            background-color: #99CCFF;
-            padding: 10px;
-            margin-top: 10px;
-            border-bottom: 5px solid #3399FF;
-        }
-
-        .show_hide {
-            display: none;
-        }
 
         .custom-combobox {
             position: relative;
@@ -70,19 +42,7 @@
 
     <script type="text/javascript">
 
-        function dtval(d, e) {
-            var pK = e ? e.which : window.event.keyCode;
-            if (pK == 8) { d.value = substr(0, d.value.length - 1); return; }
-            var dt = d.value;
-            var da = dt.split('/');
-            for (var a = 0; a < da.length; a++) { if (da[a] != +da[a]) da[a] = da[a].substr(0, da[a].length - 1); }
-            if (da[0] > 31) { da[1] = da[0].substr(da[0].length - 1, 1); da[0] = '0' + da[0].substr(0, da[0].length - 1); }
-            if (da[1] > 12) { da[2] = da[1].substr(da[1].length - 1, 1); da[1] = '0' + da[1].substr(0, da[1].length - 1); }
-            if (da[2] > 9999) da[1] = da[2].substr(0, da[2].length - 1);
-            dt = da.join('/');
-            if (dt.length == 2 || dt.length == 5) dt += '/';
-            d.value = dt;
-        }
+
 
         function setProperty() {
             $.widget("custom.combobox", {
@@ -217,8 +177,6 @@
             $(".ddlautocomplete").combobox({
                 select: function (event, ui) { $("#<%=ddlClientID.ClientID %>").attr("data-clientId", ui.item.value); OnAutoCompleteDDLClientidchange(event, ui); },
                 select: function (event, ui) { $("#<%=ddlCName.ClientID %>").attr("data-clientId", ui.item.value); OnAutoCompleteDDLClientnamechange(event, ui); },
-                //select: function (event, ui) { $("#ddlFOID").attr("data-clientId", ui.item.value); OnAutoCompleteDDLFoidchange(event, ui); },
-
                 minLength: 4
             });
         }
@@ -235,21 +193,18 @@
         function OnAutoCompleteDDLClientnamechange(event, ui) {
 
             $("#<%=ddlCName.ClientID %>").trigger('change');
-               }
-               //function OnAutoCompleteDDLFoidchange(event, ui) {
+        }
 
-               //    $('#ddlFOID').trigger('change');
-               //}
 
-               $(function () {
-                   $('#<%=GvDayWiseAttendance.ClientID %>').colResizable({
-                liveDrag: true,
-                resizeMode: 'overflow',
-                postbackSafe: true,
-                gripInnerHtml: "<div class='grip'></div>",
-                draggingClass: "dragging"
-            });
-        });
+        $(function () {
+            $('#<%=GvDayWiseAttendance.ClientID %>').colResizable({
+                       liveDrag: true,
+                       resizeMode: 'overflow',
+                       postbackSafe: true,
+                       gripInnerHtml: "<div class='grip'></div>",
+                       draggingClass: "dragging"
+                   });
+               });
 
     </script>
 

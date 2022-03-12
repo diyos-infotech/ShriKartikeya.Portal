@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <History>False|2022-03-07T11:08:50.8507090Z;True|2021-05-01T12:41:04.1613204+05:30;False|2021-05-01T12:38:02.2770990+05:30;False|2021-05-01T12:36:56.4440233+05:30;False|2021-05-01T12:35:14.5850571+05:30;False|2021-05-01T12:34:28.0609872+05:30;False|2021-05-01T12:33:26.2727849+05:30;False|2021-05-01T12:32:42.1624044+05:30;</History>
+    <History>True|2022-03-12T07:25:58.3376701Z;False|2022-03-07T16:38:50.8507090+05:30;True|2021-05-01T12:41:04.1613204+05:30;False|2021-05-01T12:38:02.2770990+05:30;False|2021-05-01T12:36:56.4440233+05:30;False|2021-05-01T12:35:14.5850571+05:30;False|2021-05-01T12:34:28.0609872+05:30;False|2021-05-01T12:33:26.2727849+05:30;False|2021-05-01T12:32:42.1624044+05:30;</History>
     <_PublishTargetUrl>D:\Precompiled\ShriKartikeya.Portal</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
@@ -159,40 +159,40 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/25/2021 14:41:52</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>03/07/2022 16:45:27</publishTime>
+      <publishTime>03/12/2022 12:55:43</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/07/2022 16:45:27</publishTime>
+      <publishTime>03/12/2022 12:55:43</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
       <publishTime>06/28/2021 15:53:08</publishTime>
-      <publishTime>03/07/2022 16:45:05</publishTime>
+      <publishTime>03/12/2022 12:55:35</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/07/2022 16:45:27</publishTime>
+      <publishTime>03/12/2022 12:55:43</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
-      <publishTime>03/07/2022 16:45:05</publishTime>
+      <publishTime>03/12/2022 12:55:35</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.pdb">
       <publishTime>10/13/2021 09:49:43</publishTime>
-      <publishTime>03/07/2022 16:45:05</publishTime>
+      <publishTime>03/12/2022 12:55:35</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/07/2022 16:45:27</publishTime>
+      <publishTime>03/12/2022 12:55:43</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
       <publishTime>06/28/2021 15:53:08</publishTime>
-      <publishTime>03/07/2022 16:45:05</publishTime>
+      <publishTime>03/12/2022 12:55:35</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/07/2022 16:45:27</publishTime>
+      <publishTime>03/12/2022 12:55:43</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.dll">
-      <publishTime>03/07/2022 16:45:05</publishTime>
+      <publishTime>03/12/2022 12:55:35</publishTime>
     </File>
     <File Include="bin/ShriKartikeya.Portal.pdb">
-      <publishTime>03/07/2022 16:45:05</publishTime>
+      <publishTime>03/12/2022 12:55:35</publishTime>
     </File>
     <File Include="bin/BouncyCastle.Crypto.dll">
       <publishTime>10/25/2021 14:42:30</publishTime>
@@ -649,6 +649,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="DAL/SqlHelper.cs">
       <publishTime>08/17/2021 10:59:18</publishTime>
+    </File>
+    <File Include="Dashboard.aspx">
+      <publishTime>03/12/2022 12:44:37</publishTime>
     </File>
     <File Include="date/calendar.png">
       <publishTime>10/25/2021 14:42:04</publishTime>
@@ -1199,6 +1202,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Module_Reports/ActiveEmployeeReports.aspx">
       <publishTime>03/07/2022 14:35:21</publishTime>
     </File>
+    <File Include="Module_Reports/AndroidAttendanceSK.aspx">
+      <publishTime>03/11/2022 19:00:57</publishTime>
+    </File>
     <File Include="Module_Reports/ArrearWages.aspx">
       <publishTime>10/25/2021 14:41:55</publishTime>
     </File>
@@ -1389,7 +1395,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/25/2021 14:41:55</publishTime>
     </File>
     <File Include="Module_Reports/GetDaywise_Android_Attendance.aspx">
-      <publishTime>10/25/2021 14:41:55</publishTime>
+      <publishTime>03/11/2022 19:00:44</publishTime>
     </File>
     <File Include="Module_Reports/GetDaywise_Android_AttendanceMonthwise.aspx">
       <publishTime>03/07/2022 14:35:21</publishTime>
@@ -1673,7 +1679,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="PrecompiledApp.config">
       <publishTime>06/28/2021 15:53:30</publishTime>
       <publishTime>10/13/2021 09:49:52</publishTime>
-      <publishTime>03/07/2022 16:45:14</publishTime>
+      <publishTime>03/12/2022 12:55:37</publishTime>
     </File>
     <File Include="Properties/PublishProfiles/FolderProfile.pubxml.user">
       <publishTime>10/05/2021 14:30:26</publishTime>
