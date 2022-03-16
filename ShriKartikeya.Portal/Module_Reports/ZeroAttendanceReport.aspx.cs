@@ -59,8 +59,11 @@ namespace ShriKartikeya.Portal
         }
 
 
-        public void GetSampleExport()
+      
+
+        protected void lnkImportfromexcel_Click(object sender, EventArgs e)
         {
+
             string date = string.Empty;
             if (txtmonth.Text.Trim().Length > 0)
             {
@@ -75,22 +78,7 @@ namespace ShriKartikeya.Portal
             string qry = "select distinct (isnull(ed.EmpId,'')+'-'+isnull(ed.OldEmpid,'')) as EmpId,isnull(c.clientName,'') as ClientName,(ed.EmpFName+' '+ed.EmpMName+' '+ed.EmpLName) as Name,'' as Dateofleaving from EmpDetails ed  left join Clients c on c.clientid=ed.UnitId where ed.EmpId not in (select EmpId from EmpAttendance where MONTH = '" + month + Year.Substring(2, 2) + "') and ed.Empstatus=1 and EmpDtofJoining<=cast('" + datev + "' as date) and ed.EmpId not like ('%NYA%') and EmpId like'%" + EmpIDPrefix + "%'";
             DataTable dt = config.ExecuteAdaptorAsyncWithQueryParams(qry).Result;
 
-            if (dt.Rows.Count > 0)
-            {
-                gvlistofemp.DataSource = dt;
-                gvlistofemp.DataBind();
-
-            }
-            else
-            {
-                gvlistofemp.DataSource = null;
-                gvlistofemp.DataBind();
-            }
-        }
-
-        protected void lnkImportfromexcel_Click(object sender, EventArgs e)
-        {
-            gve.NewExport("Sampleempdetails.xlsx", this.gvlistofemp);
+            gve.NewExportExcel("Sampleempdetails.xlsx", dt);
         }
         DataTable dt = new DataTable();
         protected void btnsave_Click(object sender, EventArgs e)
@@ -255,10 +243,7 @@ namespace ShriKartikeya.Portal
             }
         }
 
-        protected void txtmonth_TextChanged(object sender, EventArgs e)
-        {
-            GetSampleExport();
-        }
+     
 
         protected void gvlistofemp_RowDataBound(object sender, GridViewRowEventArgs e)
         {
