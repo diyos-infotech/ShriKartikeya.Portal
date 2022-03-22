@@ -1067,7 +1067,7 @@ public class FameService : System.Web.Services.WebService
 
     [WebMethod(EnableSession = true)]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void DeleteAttendance(string empId, string empDesgId, string clientId, string month)
+    public void DeleteAttendance(string empId, string empDesgId, string clientId, string month, bool Chk)
     {
         Context.Response.Clear();
         var result = "";
@@ -1076,8 +1076,22 @@ public class FameService : System.Web.Services.WebService
         string OrderedDAte = DateTime.Now.Date.ToString();
         string RelievingDate = DateTime.Now.Date.ToString();
         var LastDate = DateTime.Now.Date;
-        var Month = Timings.Instance.GetIdForSelectedMonth(Convert.ToInt32(month));
-        //var RelMonth = Timings.Instance.GetReverseIdForSelectedMonth(Convert.ToInt32(month));
+        var Month = 0;
+        string date = "";
+        if (Chk == false)
+        {
+            Month = Timings.Instance.GetIdForSelectedMonth(Convert.ToInt32(month));
+
+        }
+
+        else
+        {
+            date = DateTime.Parse(month, CultureInfo.GetCultureInfo("en-gb")).ToString();
+            string month1 = DateTime.Parse(date).Month.ToString();
+            string Year1 = DateTime.Parse(date).Year.ToString();
+            string olddate = month1 + Year1.Substring(2, 2);
+            Month = Convert.ToInt32(olddate);
+        }
         try
         {
             var deletequery = "delete from EmpAttendance where [MONTH] = " + Month + " and EmpId = '" + empId + "' and ClientId = '" + clientId + "' and Design = '" + empDesgId + "'";
