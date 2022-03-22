@@ -197,9 +197,9 @@ namespace ShriKartikeya.Portal
 
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        IDNO = ds.Tables[0].Rows[i]["IDNO"].ToString();
+                        IDNO = ds.Tables[0].Rows[i]["EmpId"].ToString();
                         var EMPID = IDNO.Substring(0, 9);
-                        Dateofleaving = ds.Tables[0].Rows[i]["Date of leaving"].ToString();
+                        Dateofleaving = ds.Tables[0].Rows[i]["Dateofleaving"].ToString();
 
                         string Dateofleaving1 = "01/01/1900";
 
