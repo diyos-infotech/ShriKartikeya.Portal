@@ -106,7 +106,7 @@
                                     <tr>
                                          <td>Month</td>
                              <td>
-                             <asp:TextBox ID="txtmonth" runat="server" class="sinput" AutoComplete="off" AutoPostBack="true" OnTextChanged="txtmonth_TextChanged"></asp:TextBox>
+                             <asp:TextBox ID="txtmonth" runat="server" class="sinput" AutoComplete="off"></asp:TextBox>
                              <cc1:CalendarExtender ID="CalendarExtender1" runat="server" BehaviorID="calendar1"
                               Enabled="true" Format="MMM-yyyy" TargetControlID="txtmonth" DefaultView="Months" OnClientHidden="onCalendarHidden" OnClientShown="onCalendarShown">
                               </cc1:CalendarExtender>

@@ -757,7 +757,7 @@
                     var url = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
                     var ajaxUrl = url.substring(0, url.lastIndexOf('/')) + "/FameService.asmx/DeleteAttendance";
                     if (trclientId != undefined && trclientId != "0" && trclientId != "" && trmonth != undefined && trmonth != "0") {
-                        var dataparam = JSON.stringify({ empId: trempid, empDesgId: trempdesg, clientId: trclientId, month: trmonth });
+                        var dataparam = JSON.stringify({ empId: trempid, empDesgId: trempdesg, clientId: trclientId, month: trmonth, Chk: trChk });
                         $.ajax({
                             type: "POST",
                             url: ajaxUrl,
