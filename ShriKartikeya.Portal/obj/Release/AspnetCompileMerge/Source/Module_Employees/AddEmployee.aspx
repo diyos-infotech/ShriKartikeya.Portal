@@ -745,7 +745,13 @@
                                                         </cc1:FilteredTextBoxExtender>
                                                     </td>
                                                 </tr>
-
+                                                 <tr>
+                                                    <td>Details added by<span style="color: Red">*</span>
+                                                    </td>
+                                                    <td>
+                                                        <asp:TextBox ID="txtDetailsAddedBy" TabIndex="39" MaxLength="1000" runat="server" class="sinput"></asp:TextBox>
+                                                    </td>
+                                                </tr>
                                                 <tr style="visibility: hidden">
                                                     <td>Community/Classification
                                                     </td>

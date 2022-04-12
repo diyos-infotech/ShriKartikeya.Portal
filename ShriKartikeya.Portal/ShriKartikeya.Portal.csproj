@@ -143,6 +143,7 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Module_Employees\TDSDemo.aspx" />
     <Content Include="Module_Reports\AndroidAttendanceSK.aspx" />
+    <Content Include="Module_Reports\AndroidAttendanceSKHrs.aspx" />
     <Content Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
@@ -1907,6 +1908,12 @@
     </Compile>
     <Compile Include="Module_Reports\AndroidAttendanceSK.aspx.designer.cs">
       <DependentUpon>AndroidAttendanceSK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\AndroidAttendanceSKHrs.aspx.cs">
+      <DependentUpon>AndroidAttendanceSKHrs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\AndroidAttendanceSKHrs.aspx.designer.cs">
+      <DependentUpon>AndroidAttendanceSKHrs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Reports\ArrearWages.aspx.cs">
       <DependentUpon>ArrearWages.aspx</DependentUpon>
