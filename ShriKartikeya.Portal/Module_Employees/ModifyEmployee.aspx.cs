@@ -568,7 +568,12 @@ namespace ShriKartikeya.Portal
                     lblMsg.Text = "Please Select The gender";
                     return;
                 }
+                if (txtDetailsAddedBy.Text.Trim().Length == 0)
+                {
+                    lblMsg.Text = "Please Fill Details Added By!";
+                    return;
 
+                }
                 //if (rdbsingle.Checked == false && rdbmarried.Checked == false && rdbdivorcee.Checked == false && rdbWidower.Checked == false)
                 //{
                 //    lblMsg.Text = "Please Select The Marital Status";
@@ -661,9 +666,9 @@ namespace ShriKartikeya.Portal
                 var IRecordStatus = 0;
                 var testDate = 0;
 
+                var DetailsAddedBy = "";
 
-
-
+                DetailsAddedBy = txtDetailsAddedBy.Text;
                 EmpBankAcNo = txtBankAccNum.Text;
                 Empbankbranchname = txtbranchname.Text;
                 EmpIFSCcode = txtIFSCcode.Text;
@@ -2185,6 +2190,7 @@ namespace ShriKartikeya.Portal
                 ModifyEmployeeDetails.Add("@BGVNumber", BGVNumber);
                 ModifyEmployeeDetails.Add("@Modify_By", Modify_By);
                 ModifyEmployeeDetails.Add("@Modify_On", Modify_On);
+                ModifyEmployeeDetails.Add("@DetailsAddedBy", DetailsAddedBy);
                 #endregion for Proofs Submitted
 
 
@@ -2916,7 +2922,7 @@ namespace ShriKartikeya.Portal
                 txtMotherName.Text = dt.Rows[0]["EmpMotherName"].ToString();
                 txtFatherName.Text = dt.Rows[0]["EmpFatherName"].ToString();
                 txtbloodgrp.Text = dt.Rows[0]["EBloodGroup"].ToString();
-
+                txtDetailsAddedBy.Text= dt.Rows[0]["DetailsAddedBy"].ToString();
 
                 txtsecondBankAccNum.Text = dt.Rows[0]["SecondEmpbankAcNo"].ToString();
                 txtprvSSNumber.Text = dt.Rows[0]["PreviousUANNumber"].ToString();

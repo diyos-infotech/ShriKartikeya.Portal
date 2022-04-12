@@ -552,7 +552,12 @@ namespace ShriKartikeya.Portal
 
                 }
 
+                if (txtDetailsAddedBy.Text.Trim().Length == 0)
+                {
+                    lblMsg.Text = "Please Fill Details Added By!";
+                    return;
 
+                }
 
 
                 string Checkempid = "select nyaempid from empdetails where NYAempid='" + txtEmID.Text + "' ";
@@ -1454,13 +1459,15 @@ namespace ShriKartikeya.Portal
                 #endregion End Variable Declaration as on [02-10-2013]
 
 
+                var DetailsAddedBy = "";
+
                 #region  Begin  Assign Variables  as on  [18-09-2013]
                 #region Begin  1 to 5    Empid to Gender
                 if (rdbactive.Checked)
                     Empstatus = 1;
                 else
                     Empstatus = 0;
-
+                DetailsAddedBy = txtDetailsAddedBy.Text;
                 Empid = txtEmID.Text;
                 EmpFName = txtEmpFName.Text;
                 EmpMName = txtEmpmiName.Text;
@@ -2702,6 +2709,7 @@ namespace ShriKartikeya.Portal
                 cmd.Parameters.Add("@Created_On", Created_On);
                 cmd.Parameters.Add("@RejoinEmpid", RejoinEmpid);
                 cmd.Parameters.Add("@RejoinStatus", RejoinStatus);
+                cmd.Parameters.Add("@DetailsAddedBy", DetailsAddedBy);
                 #endregion
 
                 #endregion  End Stored Procedure Parameters   as  on [02-10-2013]
@@ -4860,6 +4868,7 @@ namespace ShriKartikeya.Portal
                 txtMotherName.Text = dt.Rows[0]["EmpMotherName"].ToString();
                 txtFatherName.Text = dt.Rows[0]["EmpFatherName"].ToString();
                 txtbloodgrp.Text = dt.Rows[0]["EBloodGroup"].ToString();
+                txtDetailsAddedBy.Text= dt.Rows[0]["DetailsAddedBy"].ToString();
 
                 if (dt.Rows[0]["Division"].ToString() == "0" || dt.Rows[0]["Division"].ToString() == "")
                 {

@@ -571,7 +571,12 @@ namespace ShriKartikeya.Portal
                         lblMsg.Text = "Please Select the Designation";
                         return;
                     }
+                    if (txtDetailsAddedBy.Text.Trim().Length == 0)
+                    {
+                        lblMsg.Text = "Please Fill Details Added By!";
+                        return;
 
+                    }
                     if (txtEmpDtofBirth.Text.Trim().Length == 0)
                     {
                         lblMsg.Text = "Please Fill Date Of Birth!";
@@ -1117,7 +1122,7 @@ namespace ShriKartikeya.Portal
                 var Empbankbranchname = string.Empty;
                 var EmpIFSCcode = string.Empty;
                 var EmpBranchCode = string.Empty;
-
+                var DetailsAddedBy = "";
                 var EmpBankCode = string.Empty;
                 var EmpBankAppNo = string.Empty;
                 var EmpRegionCode = string.Empty;
@@ -1146,7 +1151,7 @@ namespace ShriKartikeya.Portal
 
 
 
-
+                DetailsAddedBy = txtDetailsAddedBy.Text;
                 EmpBankAcNo = txtBankAccNum.Text;
                 Empbankbranchname = txtbranchname.Text;
                 EmpIFSCcode = txtIFSCcode.Text;
@@ -2222,6 +2227,7 @@ namespace ShriKartikeya.Portal
                 ModifyEmployeeDetails.Add("@BGVNumber", BGVNumber);
                 ModifyEmployeeDetails.Add("@Modify_By", Modify_By);
                 ModifyEmployeeDetails.Add("@Modify_On", Modify_On);
+                ModifyEmployeeDetails.Add("@DetailsAddedBy", DetailsAddedBy);
                 #endregion for Proofs Submitted
 
 
@@ -2866,7 +2872,7 @@ namespace ShriKartikeya.Portal
                // txtfatheroccupation.Text = dt.Rows[0]["EmpFatherOccupation"].ToString();
                 txtbloodgrp.Text= dt.Rows[0]["EBloodGroup"].ToString();
 
-
+                txtDetailsAddedBy.Text= dt.Rows[0]["DetailsAddedBy"].ToString();
                 txtsecondBankAccNum.Text = dt.Rows[0]["SecondEmpbankAcNo"].ToString();
                 txtprvSSNumber.Text = dt.Rows[0]["PreviousUANNumber"].ToString();
                 txtemercontactno.Text = dt.Rows[0]["EmergencyContactNo"].ToString();

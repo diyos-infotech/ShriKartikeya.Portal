@@ -363,7 +363,13 @@
                                                                 </cc1:FilteredTextBoxExtender>
                                                             </td>
                                                         </tr>
-
+                                                        <tr>
+                                                            <td>Details added by<span style="color: Red">*</span>
+                                                            </td>
+                                                            <td>
+                                                                <asp:TextBox ID="txtDetailsAddedBy" TabIndex="39" MaxLength="1000" runat="server" class="sinput"></asp:TextBox>
+                                                            </td>
+                                                        </tr>
                                                         <tr style="visibility: hidden">
                                                             <td>Community/Classification </td>
                                                             <td style="padding-top: 10px">
@@ -2355,7 +2361,7 @@
                                             </div>
                                         </asp:Panel>
 
-                                            <asp:Panel ID="pnlmediclamdetails" Enabled="false" runat="server" GroupingText="<strong>&nbsp;Mediclaim Details&nbsp;</strong>" Style="margin-top: 10px">
+                                        <asp:Panel ID="pnlmediclamdetails" Enabled="false" runat="server" GroupingText="<strong>&nbsp;Mediclaim Details&nbsp;</strong>" Style="margin-top: 10px">
                                             <div style="padding: 10px">
                                                 <asp:GridView ID="gvmediclaimDetails" runat="server" AllowPaging="True" AutoGenerateColumns="false"
                                                     BorderStyle="Solid" CellPadding="5" ForeColor="#333333" Height="180px" PageSize="25" Visible="true"
@@ -2431,7 +2437,7 @@
                                                             <ItemStyle HorizontalAlign="Center" Font-Size="Small"></ItemStyle>
                                                         </asp:TemplateField>
 
-                                                       
+
                                                         <asp:TemplateField HeaderStyle-Font-Size="Small" HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#EFF3FB"
                                                             HeaderText="Whether residing with him/her ?" ItemStyle-Font-Size="Small" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
@@ -2456,7 +2462,7 @@
                                                     </Columns>
                                                 </asp:GridView>
                                             </div>
-                                            <asp:Button ID="btnMediclaimDetailsAdd" runat="server" Text="Add" Style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" OnClick="btnMediclaimDetailsAdd_Click"  />
+                                            <asp:Button ID="btnMediclaimDetailsAdd" runat="server" Text="Add" Style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" OnClick="btnMediclaimDetailsAdd_Click" />
                                         </asp:Panel>
 
                                     </ContentTemplate>
