@@ -145,6 +145,7 @@
     <Content Include="Module_Reports\AndroidAttendanceSK.aspx" />
     <Content Include="Module_Reports\AndroidAttendanceSKHrs.aspx" />
     <Content Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx" />
+    <Content Include="Module_Reports\PocketFaMECredentials.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
     <Content Include="Module_Reports\TDSReport.aspx" />
@@ -2271,6 +2272,13 @@
     </Compile>
     <Compile Include="Module_Reports\PFDetailsReportNew.aspx.designer.cs">
       <DependentUpon>PFDetailsReportNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\PocketFaMECredentials.aspx.cs">
+      <DependentUpon>PocketFaMECredentials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\PocketFaMECredentials.aspx.designer.cs">
+      <DependentUpon>PocketFaMECredentials.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Reports\PTReport.aspx.cs">
       <DependentUpon>PTReport.aspx</DependentUpon>
