@@ -34,7 +34,7 @@ namespace ShriKartikeya.Portal
 
                     DisplayData();
 
-                    if (Session["AccessLevel"].ToString() == "1")
+                    if (Session["AccessLevel"].ToString() == "1" || Session["AccessLevel"].ToString() == "3")
                     {
                         linktdsdemo.Visible = true;
                     }
@@ -49,7 +49,7 @@ namespace ShriKartikeya.Portal
 
         public void DisplayData()
         {
-           
+
             int OrderBy = 1;
             DataTable dtBranch = GlobalData.Instance.LoadBranchOnUserID(BranchID);
 
@@ -195,7 +195,7 @@ namespace ShriKartikeya.Portal
                 {
                     e.Row.ForeColor = System.Drawing.Color.Red;
                 }
-               
+
 
             }
 

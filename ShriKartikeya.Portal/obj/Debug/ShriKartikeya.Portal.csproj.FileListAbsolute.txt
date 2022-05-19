@@ -63,10 +63,7 @@ D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\ClosedXML.xml
 D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\DocumentFormat.OpenXml.xml
 D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\EPPlus.xml
 D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\ExcelNumberFormat.xml
-D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\Microsoft.IO.RecyclableMemoryStream.xml
-D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Debug\ShriKartikeya.Portal.csproj.AssemblyReference.cache
-D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Debug\ShriKartikeya.Portal.csproj.CoreCompileInputs.cache
-D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Debug\ShriKartikeya.Portal.csproj.CopyComplete
 D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Debug\ShriKartikeya.Portal.dll
 D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Debug\ShriKartikeya.Portal.pdb
+D:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Debug\ShriKartikeya.Portal.csprojResolveAssemblyReference.cache

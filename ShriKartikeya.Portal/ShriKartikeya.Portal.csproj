@@ -281,7 +281,6 @@
     <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
     <Content Include="bin\Microsoft.ApplicationInsights.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -1425,6 +1424,7 @@
     <Content Include="Service References\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Service References\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="signin.aspx" />
+    <Content Include="TDSCal.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1912,6 +1912,7 @@
     </Compile>
     <Compile Include="Module_Reports\AndroidAttendanceSKHrs.aspx.cs">
       <DependentUpon>AndroidAttendanceSKHrs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Module_Reports\AndroidAttendanceSKHrs.aspx.designer.cs">
       <DependentUpon>AndroidAttendanceSKHrs.aspx</DependentUpon>
@@ -2592,6 +2593,13 @@
     </Compile>
     <Compile Include="signin.aspx.designer.cs">
       <DependentUpon>signin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TDSCal.aspx.cs">
+      <DependentUpon>TDSCal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TDSCal.aspx.designer.cs">
+      <DependentUpon>TDSCal.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
