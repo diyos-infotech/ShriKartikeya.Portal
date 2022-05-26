@@ -13,6 +13,7 @@ namespace ShriKartikeya.Portal
     public partial class TDSCal : System.Web.UI.Page
     {
         AppConfiguration config = new AppConfiguration();
+        GridViewExportUtil gve = new GridViewExportUtil();
 
         DropDownList bind_dropdownlistOthersections;
         DropDownList bind_dropdownlisttaxes;
@@ -1569,13 +1570,13 @@ namespace ShriKartikeya.Portal
 
             if (RdboldScheme.Checked == true)
             {
-                insertQry = "insert into TDS_EmpYearlyData (EmpId,FinancialYear,YearlyAmount,MonthlyAmount,scheme) " +
-               " select EmpId,FinancialYear,OldYearlyAmount,OldMonthlyAmount,'OldScheme' from TDS_PrvEmpYearlyData where empid='" + TDSEmpiD + "' and FinancialYear='" + TDSFY + "'";
+                insertQry = "insert into TDS_EmpYearlyData (EmpId,FinancialYear,YearlyAmount,MonthlyAmount,scheme,CessAmount,TaxAmount) " +
+               " select EmpId,FinancialYear,OldYearlyAmount,OldMonthlyAmount,'OldScheme',OldCessAmount,OldTaxAmount from TDS_PrvEmpYearlyData where empid='" + TDSEmpiD + "' and FinancialYear='" + TDSFY + "'";
             }
             else
             {
-                insertQry = "insert into TDS_EmpYearlyData (EmpId,FinancialYear,YearlyAmount,MonthlyAmount,scheme) " +
-              " select EmpId,FinancialYear,NewYearlyAmount,NewMonthlyAmount,'NewScheme' from TDS_PrvEmpYearlyData where empid='" + TDSEmpiD + "' and FinancialYear='" + TDSFY + "'";
+                insertQry = "insert into TDS_EmpYearlyData (EmpId,FinancialYear,YearlyAmount,MonthlyAmount,scheme,CessAmount,TaxAmount) " +
+              " select EmpId,FinancialYear,NewYearlyAmount,NewMonthlyAmount,'NewScheme',NewCessAmount,NewTaxAmount from TDS_PrvEmpYearlyData where empid='" + TDSEmpiD + "' and FinancialYear='" + TDSFY + "'";
             }
             DtInsert = config.ExecuteNonQueryWithQueryAsync(insertQry).Result;
             if (DtInsert > 0)
@@ -1753,6 +1754,24 @@ namespace ShriKartikeya.Portal
                 txtincometotal.Text = "0";
             }
 
+
+        }
+
+        protected void lkbgetreport_Click(object sender, EventArgs e)
+        {
+            string TDSFY = lblPreFinancialYear.Text.Trim();
+
+            var SPName = "";
+            Hashtable HTPaysheet = new Hashtable();
+            SPName = "GetTDSReport";
+            HTPaysheet.Add("@FinancialYear", TDSFY);
+
+            DataTable dt = config.ExecuteAdaptorAsyncWithParams(SPName, HTPaysheet).Result;
+
+            if (dt.Rows.Count > 0)
+            {
+                gve.Datatableexport(dt, "TDSReport");
+            }
 
         }
     }
