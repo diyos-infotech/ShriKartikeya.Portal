@@ -897,6 +897,7 @@ namespace KLTS.Data
             return month;
         }
 
+      
         public int GetIDForPrviousMonth()
         {
             int year = 2000;
@@ -1226,6 +1227,10 @@ namespace KLTS.Data
             #endregion End Old code as on [23-12-2013]
 
         }
+
+
+      
+
 
         public DateTime GetFirstDayMonth(int year, int month)
         {
@@ -3241,6 +3246,12 @@ namespace KLTS.Data
             }
         }
 
+        public int GetTotalNoofdaysInMonth(int month, int year)
+        {
+            int days = 0;
+            days = DateTime.DaysInMonth(year, month);
+            return days;
+        }
     }
 
     public class NumberToEnglish

@@ -144,6 +144,9 @@
     <Content Include="Module_Employees\TDSDemo.aspx" />
     <Content Include="Module_Reports\AndroidAttendanceSK.aspx" />
     <Content Include="Module_Reports\AndroidAttendanceSKHrs.aspx" />
+    <Content Include="Module_Reports\ArrearPaysheet.aspx" />
+    <Content Include="Module_Reports\ArrearPaySheetReport.aspx" />
+    <Content Include="Module_Reports\BonusReportNew.aspx" />
     <Content Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx" />
     <Content Include="Module_Reports\PocketFaMECredentials.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
@@ -1917,6 +1920,20 @@
     <Compile Include="Module_Reports\AndroidAttendanceSKHrs.aspx.designer.cs">
       <DependentUpon>AndroidAttendanceSKHrs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Module_Reports\ArrearPaysheet.aspx.cs">
+      <DependentUpon>ArrearPaysheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\ArrearPaysheet.aspx.designer.cs">
+      <DependentUpon>ArrearPaysheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\ArrearPaySheetReport.aspx.cs">
+      <DependentUpon>ArrearPaySheetReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\ArrearPaySheetReport.aspx.designer.cs">
+      <DependentUpon>ArrearPaySheetReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module_Reports\ArrearWages.aspx.cs">
       <DependentUpon>ArrearWages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1965,6 +1982,13 @@
     </Compile>
     <Compile Include="Module_Reports\BillsVsActuals.aspx.designer.cs">
       <DependentUpon>BillsVsActuals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\BonusReportNew.aspx.cs">
+      <DependentUpon>BonusReportNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\BonusReportNew.aspx.designer.cs">
+      <DependentUpon>BonusReportNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Reports\BulkWageSlips.aspx.cs">
       <DependentUpon>BulkWageSlips.aspx</DependentUpon>

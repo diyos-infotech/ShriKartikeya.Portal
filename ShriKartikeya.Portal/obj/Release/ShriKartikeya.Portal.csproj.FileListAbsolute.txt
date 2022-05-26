@@ -27,7 +27,6 @@ F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\ClosedXML.xml
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\DocumentFormat.OpenXml.xml
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\EPPlus.xml
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\ExcelNumberFormat.xml
-F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\bin\Microsoft.IO.RecyclableMemoryStream.xml
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Release\ShriKartikeya.Portal.csprojAssemblyReference.cache
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Release\ShriKartikeya.Portal.csproj.CoreCompileInputs.cache
