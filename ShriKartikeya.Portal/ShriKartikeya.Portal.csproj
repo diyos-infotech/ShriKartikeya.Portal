@@ -148,6 +148,7 @@
     <Content Include="Module_Reports\ArrearPaySheetReport.aspx" />
     <Content Include="Module_Reports\BonusReportNew.aspx" />
     <Content Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx" />
+    <Content Include="Module_Reports\ImportEmpRoster.aspx" />
     <Content Include="Module_Reports\PocketFaMECredentials.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
@@ -174,29 +175,6 @@
     <Content Include="css\js\Controls\web.config" />
     <Content Include="date\Thumbs.db" />
     <Content Include="images\.DS_Store" />
-    <Content Include="ImportDocuments\22a4aa45-3ba8-4115-96c0-8a6804e8c19a.xls" />
-    <Content Include="ImportDocuments\297aab23-8fea-46b3-9979-051463812dcb.xls" />
-    <Content Include="ImportDocuments\3b311ee0-8b58-4e15-b154-56b784b04ef4.xls" />
-    <Content Include="ImportDocuments\4aed7b03-78d4-4406-976b-eb5391b16a71.xls" />
-    <Content Include="ImportDocuments\4fadf8a0-dd8b-4bc8-86d5-91411691ae9c.xls" />
-    <Content Include="ImportDocuments\51ac36a7-afa5-4a25-9a43-53889a98d40b.xls" />
-    <Content Include="ImportDocuments\70e4f0bf-8ef3-4ab3-87de-37fbacff9655.xls" />
-    <Content Include="ImportDocuments\7501dd89-f2de-4635-90b1-02e19c5b4174.xls" />
-    <Content Include="ImportDocuments\7739c432-6eb2-4a11-8967-679ad6bc1d83.xls" />
-    <Content Include="ImportDocuments\7806dbc9-bb23-4ae6-9537-207656ebba8f.xls" />
-    <Content Include="ImportDocuments\7d331fc7-4348-4092-8e3e-47699bc37bec.xls" />
-    <Content Include="ImportDocuments\96de0e7d-4614-4b0b-9353-8f83827976a4.xls" />
-    <Content Include="ImportDocuments\9f3b243d-ff04-4956-a80f-2940efcc99c9.xls" />
-    <Content Include="ImportDocuments\adc11658-53b0-48ab-ab47-3c1565dc412e.xls" />
-    <Content Include="ImportDocuments\b09a9a96-2fb3-4e6c-93e9-915aeae28c01.xls" />
-    <Content Include="ImportDocuments\b457b56c-9bd1-4ef0-89a4-101c084467f2.xls" />
-    <Content Include="ImportDocuments\b5791fff-a602-4bf4-a505-cbef23be2828.xls" />
-    <Content Include="ImportDocuments\be249486-d3c0-4726-a1df-36af5052617e.xls" />
-    <Content Include="ImportDocuments\d74f2da7-0e99-4e58-8515-275f06763dc8.xls" />
-    <Content Include="ImportDocuments\e80661c1-52e6-4238-ba5b-3b63be4e97d5.xls" />
-    <Content Include="ImportDocuments\e96ea71a-3c56-4747-be92-c631c4c7fd6e.xls" />
-    <Content Include="ImportDocuments\eae98bd9-83f3-4810-8659-414201ffd5af.xls" />
-    <Content Include="ImportDocuments\f8fe03a2-9f76-4454-8b83-af0ee1047c68.xls" />
     <Content Include="login\Thumbs.db" />
     <Content Include="Module_Clients\Clients.master" />
     <Content Include="Module_Employees\EmployeeMaster.master" />
@@ -276,14 +254,6 @@
     <Content Include="assets\WO.png" />
     <Content Include="AutoCompleteAA.asmx" />
     <Content Include="Autocompletion.asmx" />
-    <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
-    <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
-    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
-    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
-    <Content Include="bin\Microsoft.AI.Web.dll" />
-    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
-    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -2172,6 +2142,13 @@
     <Compile Include="Module_Reports\ImportEmpLoanDetails.aspx.designer.cs">
       <DependentUpon>ImportEmpLoanDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Module_Reports\ImportEmpRoster.aspx.cs">
+      <DependentUpon>ImportEmpRoster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\ImportEmpRoster.aspx.designer.cs">
+      <DependentUpon>ImportEmpRoster.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module_Reports\LicenceDetailsReports.aspx.cs">
       <DependentUpon>LicenceDetailsReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2628,6 +2605,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ImportDocuments\" />
     <Folder Include="Models\" />
     <Folder Include="Module_Reports\ImportDocuments\" />
   </ItemGroup>

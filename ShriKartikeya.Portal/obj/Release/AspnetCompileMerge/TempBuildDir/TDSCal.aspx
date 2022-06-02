@@ -218,14 +218,20 @@
 
         <div style="margin-top: 10px; float: right">
 
-                <asp:Button ID="btnBack" runat="server" Text="Back" Style="margin-top: 10px; margin-left: -100px" PostBackUrl="~/Module_Employees/Employees.aspx" />
+            <asp:Button ID="btnBack" runat="server" Text="Back" Style="margin-top: 10px; margin-left: -100px" PostBackUrl="~/Module_Employees/Employees.aspx" />
+
+        </div>
+
+        <div style="margin-top: 50px; float: right">
+
+            <asp:LinkButton ID="lkbgetreport" runat="server" Text="Export to Excel" OnClick="lkbgetreport_Click" />
 
         </div>
 
         <div style="width: 90%; padding-left: 110px">
 
 
-           <%-- <h1>FORM NO. 12BB</h1>
+            <%-- <h1>FORM NO. 12BB</h1>
             <p>(See Rule 26c)</p>--%>
 
             <div class="Centerallign" style="font-size: 20px; font-weight: 500" runat="server" visible="false">

@@ -13,7 +13,6 @@
             position: relative;
             display: inline-block;
         }
-
         .custom-combobox-toggle {
             position: absolute;
             top: 0;
