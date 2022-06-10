@@ -329,6 +329,7 @@ namespace ShriKartikeya.Portal
                         float totalGrass = 0;
                         float totalOTAmount = 0;
                         float totalPF = 0;
+                        float totalVPF = 0;
                         float totalESI = 0;
                         float totalProfTax = 0;
                         float totalSalAdv = 0;
@@ -564,7 +565,11 @@ namespace ShriKartikeya.Portal
                                 {
                                     totalTransport += Convert.ToSingle(strTransport);
                                 }
-
+                                string strVPF = dt.Rows[i]["VPF"].ToString();
+                                if (strVPF.Trim().Length > 0)
+                                {
+                                    totalVPF += Convert.ToSingle(strVPF);
+                                }
 
                                 string strPF = dt.Rows[i]["PF"].ToString();
                                 if (strPF.Trim().Length > 0)
@@ -1561,6 +1566,9 @@ namespace ShriKartikeya.Portal
 
                         }
 
+                        Label lblTotalVPF = gvattendancezero.FooterRow.FindControl("lblTotalVPF") as Label;
+                        lblTotalVPF.Text = Math.Round(totalVPF).ToString();
+
                         Label lblTotalPF = gvattendancezero.FooterRow.FindControl("lblTotalPF") as Label;
                         lblTotalPF.Text = Math.Round(totalPF).ToString();
 
@@ -1571,11 +1579,11 @@ namespace ShriKartikeya.Portal
                         lblTotalProfTax.Text = Math.Round(totalProfTax).ToString();
                         if (totalProfTax > 0)
                         {
-                            gvattendancezero.Columns[59].Visible = true;
+                            gvattendancezero.Columns[60].Visible = true;
                         }
                         else
                         {
-                            gvattendancezero.Columns[59].Visible = true;
+                            gvattendancezero.Columns[60].Visible = true;
 
                         }
 
@@ -1585,18 +1593,6 @@ namespace ShriKartikeya.Portal
 
                         if (totalSalAdv > 0)
                         {
-                            gvattendancezero.Columns[60].Visible = true;
-                        }
-                        else
-                        {
-                            gvattendancezero.Columns[60].Visible = false;
-
-                        }
-
-                        Label lblTotaladvded = gvattendancezero.FooterRow.FindControl("lblTotaladvded") as Label;
-                        lblTotaladvded.Text = Math.Round(totalAdvDed).ToString();
-                        if (totalAdvDed > 0)
-                        {
                             gvattendancezero.Columns[61].Visible = true;
                         }
                         else
@@ -1605,9 +1601,9 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalwcded = gvattendancezero.FooterRow.FindControl("lblTotalwcded") as Label;
-                        lblTotalwcded.Text = Math.Round(totalWCDed).ToString();
-                        if (totalWCDed > 0)
+                        Label lblTotaladvded = gvattendancezero.FooterRow.FindControl("lblTotaladvded") as Label;
+                        lblTotaladvded.Text = Math.Round(totalAdvDed).ToString();
+                        if (totalAdvDed > 0)
                         {
                             gvattendancezero.Columns[62].Visible = true;
                         }
@@ -1617,10 +1613,9 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalUniformDed = gvattendancezero.FooterRow.FindControl("lblTotalUniformDed") as Label;
-                        lblTotalUniformDed.Text = Math.Round(totalUniformDed).ToString();
-
-                        if (totalUniformDed > 0)
+                        Label lblTotalwcded = gvattendancezero.FooterRow.FindControl("lblTotalwcded") as Label;
+                        lblTotalwcded.Text = Math.Round(totalWCDed).ToString();
+                        if (totalWCDed > 0)
                         {
                             gvattendancezero.Columns[63].Visible = true;
                         }
@@ -1630,11 +1625,10 @@ namespace ShriKartikeya.Portal
 
                         }
 
+                        Label lblTotalUniformDed = gvattendancezero.FooterRow.FindControl("lblTotalUniformDed") as Label;
+                        lblTotalUniformDed.Text = Math.Round(totalUniformDed).ToString();
 
-                        Label lblTotalOtherDed = gvattendancezero.FooterRow.FindControl("lblTotalOtherDed") as Label;
-                        lblTotalOtherDed.Text = Math.Round(totalOtherDed).ToString();
-
-                        if (totalOtherDed > 0)
+                        if (totalUniformDed > 0)
                         {
                             gvattendancezero.Columns[64].Visible = true;
                         }
@@ -1644,10 +1638,11 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lbltotalloanded = gvattendancezero.FooterRow.FindControl("lblTotaltotalloanded") as Label;
-                        lbltotalloanded.Text = Math.Round(totalloanded).ToString();
 
-                        if (totalloanded > 0)
+                        Label lblTotalOtherDed = gvattendancezero.FooterRow.FindControl("lblTotalOtherDed") as Label;
+                        lblTotalOtherDed.Text = Math.Round(totalOtherDed).ToString();
+
+                        if (totalOtherDed > 0)
                         {
                             gvattendancezero.Columns[65].Visible = true;
                         }
@@ -1657,16 +1652,29 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalCanteenAdv = gvattendancezero.FooterRow.FindControl("lblTotalcantadv") as Label;
-                        lblTotalCanteenAdv.Text = Math.Round(totalCanteenAdv).ToString();
+                        Label lbltotalloanded = gvattendancezero.FooterRow.FindControl("lblTotaltotalloanded") as Label;
+                        lbltotalloanded.Text = Math.Round(totalloanded).ToString();
 
-                        if (totalCanteenAdv > 0)
+                        if (totalloanded > 0)
                         {
                             gvattendancezero.Columns[66].Visible = true;
                         }
                         else
                         {
                             gvattendancezero.Columns[66].Visible = false;
+
+                        }
+
+                        Label lblTotalCanteenAdv = gvattendancezero.FooterRow.FindControl("lblTotalcantadv") as Label;
+                        lblTotalCanteenAdv.Text = Math.Round(totalCanteenAdv).ToString();
+
+                        if (totalCanteenAdv > 0)
+                        {
+                            gvattendancezero.Columns[67].Visible = true;
+                        }
+                        else
+                        {
+                            gvattendancezero.Columns[67].Visible = false;
 
                         }
 
@@ -1677,11 +1685,11 @@ namespace ShriKartikeya.Portal
 
                         if (totalSecDepDed > 0)
                         {
-                            gvattendancezero.Columns[67].Visible = true;
+                            gvattendancezero.Columns[68].Visible = true;
                         }
                         else
                         {
-                            gvattendancezero.Columns[67].Visible = false;
+                            gvattendancezero.Columns[68].Visible = false;
 
                         }
 
@@ -1693,19 +1701,6 @@ namespace ShriKartikeya.Portal
 
                         if (totalGenDed > 0)
                         {
-                            gvattendancezero.Columns[68].Visible = true;
-                        }
-                        else
-                        {
-                            gvattendancezero.Columns[68].Visible = false;
-
-                        }
-
-                        Label lblTotalowf = gvattendancezero.FooterRow.FindControl("lblTotalowf") as Label;
-                        lblTotalowf.Text = Math.Round(totalOWF).ToString();
-
-                        if (totalOWF > 0)
-                        {
                             gvattendancezero.Columns[69].Visible = true;
                         }
                         else
@@ -1714,10 +1709,10 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalPenalty = gvattendancezero.FooterRow.FindControl("lblTotalPenalty") as Label;
-                        lblTotalPenalty.Text = Math.Round(totalPenalty).ToString();
+                        Label lblTotalowf = gvattendancezero.FooterRow.FindControl("lblTotalowf") as Label;
+                        lblTotalowf.Text = Math.Round(totalOWF).ToString();
 
-                        if (totalPenalty > 0)
+                        if (totalOWF > 0)
                         {
                             gvattendancezero.Columns[70].Visible = true;
                         }
@@ -1727,11 +1722,10 @@ namespace ShriKartikeya.Portal
 
                         }
 
+                        Label lblTotalPenalty = gvattendancezero.FooterRow.FindControl("lblTotalPenalty") as Label;
+                        lblTotalPenalty.Text = Math.Round(totalPenalty).ToString();
 
-                        Label lblTotalRentDed = gvattendancezero.FooterRow.FindControl("lblTotalRentDed") as Label;
-                        lblTotalRentDed.Text = Math.Round(totalRentDed).ToString();
-
-                        if (totalRentDed > 0)
+                        if (totalPenalty > 0)
                         {
                             gvattendancezero.Columns[71].Visible = true;
                         }
@@ -1742,10 +1736,10 @@ namespace ShriKartikeya.Portal
                         }
 
 
-                        Label lblTotalMedicalDed = gvattendancezero.FooterRow.FindControl("lblTotalMedicalDed") as Label;
-                        lblTotalMedicalDed.Text = Math.Round(totalMedicalDed).ToString();
+                        Label lblTotalRentDed = gvattendancezero.FooterRow.FindControl("lblTotalRentDed") as Label;
+                        lblTotalRentDed.Text = Math.Round(totalRentDed).ToString();
 
-                        if (totalMedicalDed > 0)
+                        if (totalRentDed > 0)
                         {
                             gvattendancezero.Columns[72].Visible = true;
                         }
@@ -1755,10 +1749,11 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalMLWFDed = gvattendancezero.FooterRow.FindControl("lblTotalMLWFDed") as Label;
-                        lblTotalMLWFDed.Text = Math.Round(totalMLWFDed).ToString();
 
-                        if (totalMLWFDed > 0)
+                        Label lblTotalMedicalDed = gvattendancezero.FooterRow.FindControl("lblTotalMedicalDed") as Label;
+                        lblTotalMedicalDed.Text = Math.Round(totalMedicalDed).ToString();
+
+                        if (totalMedicalDed > 0)
                         {
                             gvattendancezero.Columns[73].Visible = true;
                         }
@@ -1768,16 +1763,29 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalFoodDed = gvattendancezero.FooterRow.FindControl("lblTotalFoodDed") as Label;
-                        lblTotalFoodDed.Text = Math.Round(totalFoodDed).ToString();
+                        Label lblTotalMLWFDed = gvattendancezero.FooterRow.FindControl("lblTotalMLWFDed") as Label;
+                        lblTotalMLWFDed.Text = Math.Round(totalMLWFDed).ToString();
 
-                        if (totalFoodDed > 0)
+                        if (totalMLWFDed > 0)
                         {
                             gvattendancezero.Columns[74].Visible = true;
                         }
                         else
                         {
                             gvattendancezero.Columns[74].Visible = false;
+
+                        }
+
+                        Label lblTotalFoodDed = gvattendancezero.FooterRow.FindControl("lblTotalFoodDed") as Label;
+                        lblTotalFoodDed.Text = Math.Round(totalFoodDed).ToString();
+
+                        if (totalFoodDed > 0)
+                        {
+                            gvattendancezero.Columns[75].Visible = true;
+                        }
+                        else
+                        {
+                            gvattendancezero.Columns[75].Visible = false;
 
                         }
 
@@ -1789,18 +1797,6 @@ namespace ShriKartikeya.Portal
 
                         if (totalElectricityDed > 0)
                         {
-                            gvattendancezero.Columns[75].Visible = true;
-                        }
-                        else
-                        {
-                            gvattendancezero.Columns[75].Visible = false;
-                        }
-
-                        Label lblTotalTransportDed = gvattendancezero.FooterRow.FindControl("lblTotalTransportDed") as Label;
-                        lblTotalTransportDed.Text = Math.Round(totalTransportDed).ToString();
-
-                        if (totalTransportDed > 0)
-                        {
                             gvattendancezero.Columns[76].Visible = true;
                         }
                         else
@@ -1808,11 +1804,10 @@ namespace ShriKartikeya.Portal
                             gvattendancezero.Columns[76].Visible = false;
                         }
 
+                        Label lblTotalTransportDed = gvattendancezero.FooterRow.FindControl("lblTotalTransportDed") as Label;
+                        lblTotalTransportDed.Text = Math.Round(totalTransportDed).ToString();
 
-                        Label lblTotalDccDed = gvattendancezero.FooterRow.FindControl("lblTotalDccDed") as Label;
-                        lblTotalDccDed.Text = Math.Round(totalDccDed).ToString();
-
-                        if (totalDccDed > 0)
+                        if (totalTransportDed > 0)
                         {
                             gvattendancezero.Columns[77].Visible = true;
                         }
@@ -1821,10 +1816,11 @@ namespace ShriKartikeya.Portal
                             gvattendancezero.Columns[77].Visible = false;
                         }
 
-                        Label lblTotalLeaveDed = gvattendancezero.FooterRow.FindControl("lblTotalLeaveDed") as Label;
-                        lblTotalLeaveDed.Text = Math.Round(totalLeaveDed).ToString();
 
-                        if (totalLeaveDed > 0)
+                        Label lblTotalDccDed = gvattendancezero.FooterRow.FindControl("lblTotalDccDed") as Label;
+                        lblTotalDccDed.Text = Math.Round(totalDccDed).ToString();
+
+                        if (totalDccDed > 0)
                         {
                             gvattendancezero.Columns[78].Visible = true;
                         }
@@ -1833,16 +1829,28 @@ namespace ShriKartikeya.Portal
                             gvattendancezero.Columns[78].Visible = false;
                         }
 
-                        Label lblTotalLicenseDed = gvattendancezero.FooterRow.FindControl("lblTotalLicenseDed") as Label;
-                        lblTotalLicenseDed.Text = Math.Round(totalLicenseDed).ToString();
+                        Label lblTotalLeaveDed = gvattendancezero.FooterRow.FindControl("lblTotalLeaveDed") as Label;
+                        lblTotalLeaveDed.Text = Math.Round(totalLeaveDed).ToString();
 
-                        if (totalLicenseDed > 0)
+                        if (totalLeaveDed > 0)
                         {
                             gvattendancezero.Columns[79].Visible = true;
                         }
                         else
                         {
                             gvattendancezero.Columns[79].Visible = false;
+                        }
+
+                        Label lblTotalLicenseDed = gvattendancezero.FooterRow.FindControl("lblTotalLicenseDed") as Label;
+                        lblTotalLicenseDed.Text = Math.Round(totalLicenseDed).ToString();
+
+                        if (totalLicenseDed > 0)
+                        {
+                            gvattendancezero.Columns[80].Visible = true;
+                        }
+                        else
+                        {
+                            gvattendancezero.Columns[80].Visible = false;
                         }
 
 
@@ -1852,18 +1860,6 @@ namespace ShriKartikeya.Portal
                         lblTotalAdv4Ded.Text = Math.Round(totalAdv4Ded).ToString();
                         if (totalAdv4Ded > 0)
                         {
-                            gvattendancezero.Columns[80].Visible = true;
-                        }
-                        else
-                        {
-                            gvattendancezero.Columns[80].Visible = false;
-
-                        }
-
-                        Label lblTotalNightRoundDed = gvattendancezero.FooterRow.FindControl("lblTotalNightRoundDed") as Label;
-                        lblTotalNightRoundDed.Text = Math.Round(totalNightRoundDed).ToString();
-                        if (totalNightRoundDed > 0)
-                        {
                             gvattendancezero.Columns[81].Visible = true;
                         }
                         else
@@ -1872,9 +1868,9 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalManpowerMobDed = gvattendancezero.FooterRow.FindControl("lblTotalManpowerMobDed") as Label;
-                        lblTotalManpowerMobDed.Text = Math.Round(totalManpowerMobDed).ToString();
-                        if (totalManpowerMobDed > 0)
+                        Label lblTotalNightRoundDed = gvattendancezero.FooterRow.FindControl("lblTotalNightRoundDed") as Label;
+                        lblTotalNightRoundDed.Text = Math.Round(totalNightRoundDed).ToString();
+                        if (totalNightRoundDed > 0)
                         {
                             gvattendancezero.Columns[82].Visible = true;
                         }
@@ -1884,10 +1880,9 @@ namespace ShriKartikeya.Portal
 
                         }
 
-
-                        Label lblTotalMobileusageDed = gvattendancezero.FooterRow.FindControl("lblTotalMobileusageDed") as Label;
-                        lblTotalMobileusageDed.Text = Math.Round(totalMobileusageDed).ToString();
-                        if (totalMobileusageDed > 0)
+                        Label lblTotalManpowerMobDed = gvattendancezero.FooterRow.FindControl("lblTotalManpowerMobDed") as Label;
+                        lblTotalManpowerMobDed.Text = Math.Round(totalManpowerMobDed).ToString();
+                        if (totalManpowerMobDed > 0)
                         {
                             gvattendancezero.Columns[83].Visible = true;
                         }
@@ -1897,9 +1892,10 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalMediClaimDed = gvattendancezero.FooterRow.FindControl("lblTotalMediClaimDed") as Label;
-                        lblTotalMediClaimDed.Text = Math.Round(totalMediClaimDed).ToString();
-                        if (totalMediClaimDed > 0)
+
+                        Label lblTotalMobileusageDed = gvattendancezero.FooterRow.FindControl("lblTotalMobileusageDed") as Label;
+                        lblTotalMobileusageDed.Text = Math.Round(totalMobileusageDed).ToString();
+                        if (totalMobileusageDed > 0)
                         {
                             gvattendancezero.Columns[84].Visible = true;
                         }
@@ -1909,10 +1905,9 @@ namespace ShriKartikeya.Portal
 
                         }
 
-
-                        Label lblTotalCrisisDed = gvattendancezero.FooterRow.FindControl("lblTotalCrisisDed") as Label;
-                        lblTotalCrisisDed.Text = Math.Round(totalCrisisDed).ToString();
-                        if (totalCrisisDed > 0)
+                        Label lblTotalMediClaimDed = gvattendancezero.FooterRow.FindControl("lblTotalMediClaimDed") as Label;
+                        lblTotalMediClaimDed.Text = Math.Round(totalMediClaimDed).ToString();
+                        if (totalMediClaimDed > 0)
                         {
                             gvattendancezero.Columns[85].Visible = true;
                         }
@@ -1922,9 +1917,10 @@ namespace ShriKartikeya.Portal
 
                         }
 
-                        Label lblTotalTelephoneBillDed = gvattendancezero.FooterRow.FindControl("lblTotalTelephoneBillDed") as Label;
-                        lblTotalTelephoneBillDed.Text = Math.Round(totalTelephoneBillDed).ToString();
-                        if (totalTelephoneBillDed > 0)
+
+                        Label lblTotalCrisisDed = gvattendancezero.FooterRow.FindControl("lblTotalCrisisDed") as Label;
+                        lblTotalCrisisDed.Text = Math.Round(totalCrisisDed).ToString();
+                        if (totalCrisisDed > 0)
                         {
                             gvattendancezero.Columns[86].Visible = true;
                         }
@@ -1934,30 +1930,42 @@ namespace ShriKartikeya.Portal
 
                         }
 
-
-                        Label lblTotalRegistrationFee = gvattendancezero.FooterRow.FindControl("lblTotalRegistrationFee") as Label;
-                        lblTotalRegistrationFee.Text = Math.Round(totalTelephoneBillDed).ToString();
-                        if (totalRegistrationFee > 0)
+                        Label lblTotalTelephoneBillDed = gvattendancezero.FooterRow.FindControl("lblTotalTelephoneBillDed") as Label;
+                        lblTotalTelephoneBillDed.Text = Math.Round(totalTelephoneBillDed).ToString();
+                        if (totalTelephoneBillDed > 0)
                         {
                             gvattendancezero.Columns[87].Visible = true;
                         }
                         else
                         {
                             gvattendancezero.Columns[87].Visible = false;
+
+                        }
+
+
+                        Label lblTotalRegistrationFee = gvattendancezero.FooterRow.FindControl("lblTotalRegistrationFee") as Label;
+                        lblTotalRegistrationFee.Text = Math.Round(totalTelephoneBillDed).ToString();
+                        if (totalRegistrationFee > 0)
+                        {
+                            gvattendancezero.Columns[88].Visible = true;
+                        }
+                        else
+                        {
+                            gvattendancezero.Columns[88].Visible = false;
                         }
 
                         Label lblTotalDriverSalary = gvattendancezero.FooterRow.FindControl("lblTotalDriverSalary") as Label;
                         lblTotalDriverSalary.Text = Math.Round(totalDriverSalary).ToString();
                         if (totalDriverSalary > 0)
                         {
-                            gvattendancezero.Columns[89].Visible = true;
+                            gvattendancezero.Columns[90].Visible = true;
                         }
                         else
                         {
-                            gvattendancezero.Columns[89].Visible = false;
+                            gvattendancezero.Columns[90].Visible = false;
                         }
 
-
+                        //NEW CODE add bu dhana on 10-6-2022 ref:009362
                         //New code add as on 24/12/2013 by venkat
 
                         #endregion
@@ -4202,7 +4210,27 @@ namespace ShriKartikeya.Portal
                             cellHead12.Colspan = 1;
                             cellHead12.BackgroundColor = color;
                             tableDeductions.AddCell(cellHead12);
+                            //VPF code changes by dhana 10/6/2022 009362
+                            forConvert = Convert.ToSingle(dt.Rows[i]["VPF"].ToString());
+                            
 
+                            if (forConvert  > 0)
+                            {
+
+                                PdfPCell cellPF2 = new PdfPCell(new Phrase("VPF", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                cellPF2.HorizontalAlignment = 0;
+                                cellPF2.Colspan = 1;
+                                //cellPF2.MinimumHeight = 20;
+                                tableDeductions.AddCell(cellPF2);
+
+
+                                PdfPCell cellPF = new PdfPCell(new Phrase(forConvert .ToString("0.00"), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                cellPF.HorizontalAlignment = 2;
+                                cellPF.Colspan = 1;
+                                tableDeductions.AddCell(cellPF);
+                            }
+
+                           
                             forConvert = Convert.ToSingle(dt.Rows[i]["PF"].ToString());
                             PFEmployer = Convert.ToSingle(dt.Rows[i]["PFEmpr"].ToString());
 
@@ -6546,6 +6574,27 @@ namespace ShriKartikeya.Portal
                             cellHead12.Colspan = 1;
                             cellHead12.BackgroundColor = color;
                             tableDeductions.AddCell(cellHead12);
+
+                            forConvert = Convert.ToSingle(dt.Rows[i]["VPF"].ToString());
+                            
+
+                            if (forConvert > 0)
+                            {
+
+                                PdfPCell cellPF2 = new PdfPCell(new Phrase("VPF", FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                cellPF2.HorizontalAlignment = 0;
+                                cellPF2.Colspan = 1;
+                                //cellPF2.MinimumHeight = 20;
+                                tableDeductions.AddCell(cellPF2);
+
+
+                                PdfPCell cellPF = new PdfPCell(new Phrase(forConvert .ToString("0.00"), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                cellPF.HorizontalAlignment = 2;
+                                cellPF.Colspan = 1;
+                                tableDeductions.AddCell(cellPF);
+                            }
+
+
 
                             forConvert = Convert.ToSingle(dt.Rows[i]["PF"].ToString());
                             PFEmployer = Convert.ToSingle(dt.Rows[i]["PFEmpr"].ToString());
@@ -28113,6 +28162,7 @@ namespace ShriKartikeya.Portal
                     float UniformDed = 0;     //UniformAdv                              
                     float GD = 0;  //generaded
                     float PF = 0;
+                    float VPF = 0;
                     float ESI = 0;
                     float PT = 0;
                     float Nfhs = 0;
@@ -28230,6 +28280,7 @@ CFixedTelephoneAllw, CFixedReimbursement, CFixedHardshipAllw, CFixedPaidHolidayA
                     string AUniformDed = "";
                     string AGD = "";
                     string APF = "";
+                    string AVPF = "";
                     string AESI = "";
                     string APT = "";
                     string ANfhs = "";
@@ -28370,6 +28421,7 @@ CFixedTelephoneAllw, CFixedReimbursement, CFixedHardshipAllw, CFixedPaidHolidayA
                     float totalAdv4 = 0;
                     float totalUniformDed = 0;
                     float totalGD = 0;
+                    float totalVPF = 0;
                     float totalPF = 0;
                     float totalESI = 0;
                     float totalPT = 0;
@@ -28452,6 +28504,7 @@ totalFixedTelephoneAllw, totalFixedReimbursement, totalFixedHardshipAllw, totalF
                     string AtotalUniformDed = "";
                     string AtotalGD = "";
                     string AtotalPF = "";
+                    string AtotalVPF = "";
                     string AtotalESI = "";
                     string AtotalPT = "";
                     string AtotalNfhs = "";
@@ -28801,6 +28854,17 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         {
                             AGD = "-";
                         }
+
+                        VPF = float.Parse(dt.Rows[i]["VPF"].ToString());
+                        if (VPF > 0)
+                        {
+                            AVPF = VPF.ToString();
+                        }
+                        else
+                        {
+                            AVPF = "-";
+                        }
+
                         PF = float.Parse(dt.Rows[i]["PF"].ToString());
                         if (PF > 0)
                         {
@@ -28810,6 +28874,10 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         {
                             APF = "-";
                         }
+
+                        
+
+
                         ESI = float.Parse(dt.Rows[i]["ESI"].ToString());
                         if (ESI > 0)
                         {
@@ -31712,9 +31780,14 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         cell = new PdfPCell();
                         Paragraph CcellHead111 = new Paragraph();
 
+                        if (AVPF != "-")
+                        {
+                            CcellHead111.Add(new Chunk("VPF", FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                        }
+
                         if (APF != "-")
                         {
-                            CcellHead111.Add(new Chunk("PF", FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                            CcellHead111.Add(new Chunk("\nPF", FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
                         }
 
                         if (AESI != "-")
@@ -31747,9 +31820,14 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         cell = new PdfPCell();
                         Paragraph CcellHead1112 = new Paragraph();
 
+                        if (AVPF != "-")
+                        {
+                            CcellHead1112.Add(new Chunk(AVPF, FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                        }
+
                         if (APF != "-")
                         {
-                            CcellHead1112.Add(new Chunk(APF, FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                            CcellHead1112.Add(new Chunk("\n"+APF, FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
                         }
 
                         if (AESI != "-")
@@ -31779,6 +31857,17 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         //cell.SetLeading(0, 1.2f);
                         Maintable.AddCell(cell);
                         #region for total
+                        totalVPF += VPF;
+                        if (totalVPF > 0)
+                        {
+                            AtotalVPF = totalVPF.ToString();
+                        }
+                        else
+                        {
+                            AtotalVPF = "-";
+                        }
+
+
                         totalPF += PF;
                         if (totalPF > 0)
                         {
@@ -33215,9 +33304,14 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                     cell = new PdfPCell();
                     Paragraph CcellHead20 = new Paragraph();
 
+                    if (AtotalVPF != "-")
+                    {
+                        CcellHead20.Add(new Chunk("VPF", FontFactory.GetFont(Fontstyle, 8, Font.BOLD, BaseColor.BLACK)));
+                    }
+
                     if (AtotalPF != "-")
                     {
-                        CcellHead20.Add(new Chunk("PF", FontFactory.GetFont(Fontstyle, 8, Font.BOLD, BaseColor.BLACK)));
+                        CcellHead20.Add(new Chunk("\nPF", FontFactory.GetFont(Fontstyle, 8, Font.BOLD, BaseColor.BLACK)));
                     }
 
                     if (AtotalESI != "-")
@@ -34012,7 +34106,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                     #region  for variables by Anil Reddy on 27-12-2016
 
                     string EmpBankAcNo = "";
-
+                    float VPF = 0;
                     float PF = 0;
                     float ESI = 0;
                     float TotalDed = 0;
@@ -34027,7 +34121,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
 
                     //end fixed wages
 
-
+                    string AVPF = "";
                     string APF = "";
                     string AESI = "";
 
@@ -34065,7 +34159,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
 
                     #region  for total variables by Anil Reddy on 27-12-2016
 
-
+                    float totalVPF = 0;
                     float totalPF = 0;
                     float totalESI = 0;
                     float totalTotalDed = 0;
@@ -34075,7 +34169,7 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                     float totalots = 0;
                     float totalotamt = 0;
 
-
+                    string AtotalVPF = "";
                     string AtotalPF = "";
                     string AtotalESI = "";
 
@@ -34144,6 +34238,16 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         else
                         {
                             Aotamt = "-";
+                        }
+
+                        VPF = float.Parse(dt.Rows[i]["VPF"].ToString());
+                        if (VPF > 0)
+                        {
+                            AVPF = VPF.ToString();
+                        }
+                        else
+                        {
+                            AVPF = "-";
                         }
 
                         PF = float.Parse(dt.Rows[i]["PF"].ToString());
@@ -34574,8 +34678,12 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         Paragraph CcellHead111 = new Paragraph();
 
                         // if (APF != "-")
+
                         {
-                            CcellHead111.Add(new Chunk("PF", FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                            CcellHead111.Add(new Chunk("VPF", FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                        }
+                        {
+                            CcellHead111.Add(new Chunk("\nPF", FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
                         }
 
                         //  if (AESI != "-")
@@ -34596,9 +34704,19 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         cell = new PdfPCell();
                         Paragraph CcellHead1112 = new Paragraph();
 
+                        if (AVPF != "-")
+                        {
+                            CcellHead1112.Add(new Chunk(AVPF, FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                        }
+                        else
+                        {
+                            CcellHead1112.Add(new Chunk("-", FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+
+                        }
+
                         if (APF != "-")
                         {
-                            CcellHead1112.Add(new Chunk(APF, FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
+                            CcellHead1112.Add(new Chunk("\n" + APF, FontFactory.GetFont(Fontstyle, 9, Font.NORMAL, BaseColor.BLACK)));
                         }
                         else
                         {
@@ -34627,6 +34745,17 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                         //cell.SetLeading(0, 1.2f);
                         Maintable.AddCell(cell);
                         #region for total
+                        totalVPF += VPF;
+                        if (totalVPF > 0)
+                        {
+                            AtotalVPF = totalVPF.ToString();
+                        }
+                        else
+                        {
+                            AtotalVPF = "-";
+                        }
+
+
                         totalPF += PF;
                         if (totalPF > 0)
                         {
@@ -34834,8 +34963,12 @@ ATotalCFixedTelephoneAllw = ""; string ATotalCFixedReimbursement = ""; string AT
                     Paragraph CcellHead20 = new Paragraph();
 
                     // if (AtotalPF != "-")
+
                     {
-                        CcellHead20.Add(new Chunk("PF", FontFactory.GetFont(Fontstyle, 9, Font.BOLD, BaseColor.BLACK)));
+                        CcellHead20.Add(new Chunk("VPF", FontFactory.GetFont(Fontstyle, 9, Font.BOLD, BaseColor.BLACK)));
+                    }
+                    {
+                        CcellHead20.Add(new Chunk("\nPF", FontFactory.GetFont(Fontstyle, 9, Font.BOLD, BaseColor.BLACK)));
                     }
 
                     // if (AtotalESI != "-")

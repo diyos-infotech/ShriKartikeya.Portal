@@ -584,6 +584,8 @@
                        var inctvs = $("#txt-add-inctvs").val();
                        var Arrears = $("#txt-add-arrears").val();
                        var Reimbursement = $("#txt-add-reimbursement").val();
+                       var DriverSalary = $("#txt-add-DriverSalary").val();
+                       var VPF = $("#txt-add-VPF").val();
 
                        var empstatus = $("#<%=lblempstatus.ClientID %>").val();
             var stoppayment = $("#chkstoppayment").is(":checked");
@@ -630,6 +632,8 @@
                         $(row).find(".txt-inctvs").val(inctvs);
                         $(row).find(".txt-Arrears").val(Arrears);
                         $(row).find(".txt-Reimbursement").val(Reimbursement);
+                        $(row).find(".txt-VPF").val(VPF);
+                        $(row).find(".txt-DriverSalary").val(DriverSalary);
                         $(row).find("#chkstoppayment").val(stoppayment);
                         alert("Employee attendance updated.");
                         updated = true;
@@ -653,6 +657,8 @@
                     " <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td>  " +
                     " <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>  " +
                     " <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td>  " +
+                    " <td><input type='text' class='form-control num-txt txt-DriverSalary' value='##DriverSalary##'></td>  " +
+                    " <td><input type='text' class='form-control num-txt txt-VPF' value='##VPF##'></td>  " +
                     " <td><label class='txt-linetotal'/> " +
                     " <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>" +
                     " </tr>";
@@ -682,6 +688,8 @@
                             .replace('##INCTVS##', inctvs)
                             .replace('##ARREARS##', Arrears)
                             .replace('##REIMBURSEMENT##', Reimbursement)
+                            .replace('##DriverSalary##', DriverSalary)
+                            .replace('##VPF##', VPF)
                             .replace('##STOPPAYMENT##', stoppayment);
 
                         $("#tblattendancegrid >tbody").append(newrow);
@@ -728,6 +736,8 @@
                        $("#txt-add-inctvs").val("0");
                        $("#txt-add-arrears").val("0");
                        $("#txt-add-reimbursement").val("0");
+                       $("#txt-add-DriverSalary").val("0");
+                       $("#txt-add-VPF").val("0");
                        $("#<%=lblempstatus.ClientID %>").val("");
                  <%-- $("#<%=txtEmpId.ClientID %>").focus();--%>
                        $("#<%=txtoldEmpId.ClientID %>").focus();
@@ -918,6 +928,8 @@
                     " <td><input type='text' class='form-control num-txt txt-inctvs' value='##INCTVS##'></td>  " +
                     " <td><input type='text' class='form-control num-txt txt-Arrears' value='##ARREARS##'></td>  " +
                     " <td><input type='text' class='form-control num-txt txt-Reimbursement' value='##REIMBURSEMENT##'></td>  " +
+                    " <td><input type='text' class='form-control num-txt txt-DriverSalary' value='##DriverSalary##'></td>  " +
+                    " <td><input type='text' class='form-control num-txt txt-VPF' value='##VPF##'></td>  " +
                     " <td><label class='txt-linetotal'/> " +
                     " <td><button type='button' class='btn btn-danger' onclick='DeleteRow(this); return false;'><i class='glyphicon glyphicon-trash'></i></button></td>" +
                     " </tr>";
@@ -939,7 +951,9 @@
                     .replace('##ATMDED##', item.ATMDED)
                     .replace('##INCTVS##', item.Incentivs)
                     .replace('##ARREARS##', item.Arrears)
-                    .replace('##REIMBURSEMENT##', item.Reimbursement);
+                    .replace('##REIMBURSEMENT##', item.Reimbursement)
+                    .replace('##DriverSalary##', item.DriverSalary)
+                    .replace('##VPF##', item.VPF);
                 $("#tblattendancegrid >tbody").append(newrow);
                 if (item.stoppayment == false) {
                     $("#tblattendancegrid > tbody >tr[data-emp-id=" + item.EmpId + "]").find("input[type=checkbox]").prop("checked", false);
@@ -1011,7 +1025,9 @@
                     "<td><label class='lbl-tatmded lbl-thin'>##TATMDED##</label></td>" +
                     "<td><label class='lbl-tinctvs lbl-thin'>##TINTVS##</label></td>" +
                     "<td><label class='lbl-tarrears lbl-thin'>##TARREARS##</label></td>" +
-                    "<td><label class='lbl-treimbursement lbl-thin'>##TREIMBURSEMENT##</label></td></tr>";
+                    "<td><label class='lbl-treimbursement lbl-thin'>##TREIMBURSEMENT##</label></td>" +
+                    "<td><label class='lbl-tDriverSalary lbl-thin'>##TDriverSalary##</label></td>" +
+                  "<td><label class='lbl-tVPF lbl-thin'>##TVPF##</label></td></tr > ";
                 var newrow = strr.replace("##Designation##", item.DesgName)
                     .replace('##TNOD##', item.NODTotal)
                     .replace('##TOT##', item.OTTotal)
@@ -1025,7 +1041,9 @@
                     .replace('##TATMDED##', item.ATMDEDTotal)
                     .replace('##TINTVS##', item.InctvsTotal)
                     .replace('##TARREARS##', item.ArrearsTotal)
-                    .replace('##TREIMBURSEMENT##', item.ReimbursementTotal);
+                    .replace('##TREIMBURSEMENT##', item.ReimbursementTotal)
+                    .replace('##TDriverSalary##', item.DriverSalaryTotal)
+                    .replace('##TVPF##', item.VPFTotal);
                 $("#tblSummary >tbody").append(newrow);
             });
             CalculateSummaryTotals();
@@ -1141,6 +1159,25 @@
             });
             $("#lblReimbursement").text(Reimbursementtotal);
 
+           
+
+
+            var DriverSalarytotal = 0;
+            $('.txt-DriverSalary').each(function () {
+                if ($(this).val() != "" && $(this).val() != undefined) {
+                    DriverSalarytotal += parseFloat($(this).val());
+                }
+            });
+            $("#lblDriverSalary").text(DriverSalarytotal);
+
+
+            var VPFtotal = 0;
+            $('.txt-VPF').each(function () {
+                if ($(this).val() != "" && $(this).val() != undefined) {
+                    VPFtotal += parseFloat($(this).val());
+                }
+            });
+            $("#lblVPF").text(VPFtotal);
 
             $(".tr-emp-att").each(function () {
                 var linetotal = 0;
@@ -1251,6 +1288,19 @@
             $("#lblTREIMBURSEMENT").text(Reimbursementtotal);
 
 
+            var DriverSalarytotal = 0;
+            $('.lbl-tDriverSalary').each(function () {
+                DriverSalarytotal += parseFloat($(this).text());
+            });
+            $("#lblTDriverSalary").text(DriverSalarytotal);
+
+            var VPFtotal = 0;
+            $('.lbl-tVPF').each(function () {
+                VPFtotal += parseFloat($(this).text());
+            });
+            $("#lblTVPF").text(VPFtotal);
+
+
             $(".tr-emp-summary").each(function () {
                 var linetotal = 0;
                 $(this).find(".lbl-tots").each(function () {
@@ -1319,6 +1369,8 @@
                         Incentives: parseFloat($(row).find(".txt-inctvs").val()),
                         Arrears: parseFloat($(row).find(".txt-Arrears").val()),
                         Reimbursement: parseFloat($(row).find(".txt-Reimbursement").val()),
+                        DriverSalary: parseFloat($(row).find(".txt-DriverSalary").val()),
+                        VPF: parseFloat($(row).find(".txt-VPF").val()),
                         stoppayment: $(row).find("#chkstoppayment").is(":checked"),
                         OTtype: ottype
                     };
@@ -1450,6 +1502,8 @@
             var inctvs = $("#txt-add-inctvs").val();
             var Arrears = $("#txt-add-arrears").val();
             var Arrears = $("#txt-add-reimbursement").val();
+            var DriverSalary = $("#txt-add-DriverSalary").val();
+            var VPF = $("#txt-add-VPF").val();
 
             //var isnewrow = $(row).hasClass("new-row");
             var TempEmpAttendance = {
@@ -1476,6 +1530,8 @@
                 Incentives: inctvs,
                 Arrears: Arrears,
                 Reimbursement: Reimbursement,
+                DriverSalary: DriverSalary,
+                VPF: VPF,
                 OTtype: ottype
             };
             datalst.push(TempEmpAttendance);
@@ -1861,6 +1917,10 @@
                                 </th>
                                 <th>Reimbursement
                                 </th>
+                                <th>DriverSalary
+                                </th>
+                                <th>VPF
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1925,6 +1985,14 @@
                                 </td>
                                 <td>
                                     <label id="lblTREIMBURSEMENT">
+                                    </label>
+                                </td>
+                                <td>
+                                    <label id="lblTDriverSalary">
+                                    </label>
+                                </td>
+                                <td>
+                                    <label id="lblTVPF">
                                     </label>
                                 </td>
                             </tr>
@@ -2029,6 +2097,12 @@
                                     <td>
                                         <input type="text" class="form-control num-txt" id="txt-add-reimbursement" value="0" />
                                     </td>
+                                     <td>
+                                        <input type="text" class="form-control num-txt" id="txt-add-DriverSalary" value="0" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control num-txt" id="txt-add-VPF" value="0" />
+                                    </td>
                                     <td rowspan="2"></td>
                                     <td rowspan="2">
                                         <button class="btn btn-primary" onclick="AddNewEmp(this);return false;" style="height: 60px;">
@@ -2063,6 +2137,8 @@
                                         <input type="checkbox" id="chkPT" checked="checked" />
                                         &nbsp; PT
                                     </td>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -2111,6 +2187,10 @@
                                     <th>Arrears
                                     </th>
                                     <th>Reimbursement
+                                    </th>
+                                     <th>DriverSalary
+                                    </th>
+                                    <th>VPF
                                     </th>
 
                                     <th>Totals
@@ -2183,6 +2263,14 @@
                                     </th>
                                     <th>
                                         <label id="lblReimbursement">
+                                        </label>
+                                    </th>
+                                    <th>
+                                        <label id="lblDriverSalary">
+                                        </label>
+                                    </th>
+                                     <th>
+                                        <label id="lblVPF">
                                         </label>
                                     </th>
                                     <th>

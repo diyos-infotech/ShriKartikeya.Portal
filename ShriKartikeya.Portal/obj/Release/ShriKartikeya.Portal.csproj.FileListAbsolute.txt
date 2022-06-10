@@ -46,3 +46,4 @@ F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Release\ShriKartike
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Release\ShriKartikeya.Portal.csproj.CopyComplete
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Release\ShriKartikeya.Portal.dll
 F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Release\ShriKartikeya.Portal.pdb
+F:\GitProjects\ShriKartikeya.Portal\ShriKartikeya.Portal\obj\Release\ShriKartikeya.Portal.csprojAssemblyReference.cache

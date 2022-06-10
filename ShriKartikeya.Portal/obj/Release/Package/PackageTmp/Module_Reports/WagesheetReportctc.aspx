@@ -680,25 +680,7 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                              <%-- 43--%>
-                                            <asp:TemplateField HeaderText="Fixed PF EMPR" ItemStyle-HorizontalAlign="Center">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblFixedPFEMPR" runat="server" Text='<%#Bind("FixedPFempr","{0:0}") %>'> </asp:Label>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <asp:Label runat="server" ID="lblTotalFixedPFEMPR"></asp:Label>
-                                                </FooterTemplate>
-                                            </asp:TemplateField>
-
-                                            <%-- 44--%>
-                                            <asp:TemplateField HeaderText="Fixed ESI EMPR" ItemStyle-HorizontalAlign="Center">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblFixedESIEMPR" runat="server" Text='<%#Bind("Fixedesiempr","{0:0}") %>'> </asp:Label>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <asp:Label runat="server" ID="lblTotalFixedESIEMPR"></asp:Label>
-                                                </FooterTemplate>
-                                            </asp:TemplateField>
+                                           
 
                                                <%-- 45--%>
                                             <asp:TemplateField HeaderText="TOTAL CTC" ItemStyle-HorizontalAlign="Center">

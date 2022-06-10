@@ -2045,17 +2045,7 @@ namespace ShriKartikeya.Portal.Module_Reports
                                     //}
 
                                     ////
-                                    string strfixedpfempr = dt.Rows[i]["fixedpfempr"].ToString();
-                                    if (strfixedpfempr.Trim().Length > 0)
-                                    {
-                                        totalfixedpfempr += Convert.ToSingle(strfixedpfempr);
-                                    }
-
-                                    string strfixedesiempr = dt.Rows[i]["fixedesiempr"].ToString();
-                                    if (strfixedesiempr.Trim().Length > 0)
-                                    {
-                                        totalfixedesiempr += Convert.ToSingle(strfixedesiempr);
-                                    }
+                                   
 
                                     string stractc = dt.Rows[i]["ActualCTC"].ToString();
                                     if (stractc.Trim().Length > 0)
@@ -2344,17 +2334,6 @@ namespace ShriKartikeya.Portal.Module_Reports
                         //42
                         Label lblTotalESIEMPR = GVListEmployees1.FooterRow.FindControl("lblTotalESIEMPR") as Label;
                         lblTotalESIEMPR.Text = Math.Round(totalesiempr).ToString();
-
-
-                        //41
-                        Label lblTotalFixedPFEMPR = GVListEmployees1.FooterRow.FindControl("lblTotalFixedPFEMPR") as Label;
-                        lblTotalFixedPFEMPR.Text = Math.Round(totalfixedpfempr).ToString();
-
-
-
-                        //42
-                        Label lblTotalFixedESIEMPR = GVListEmployees1.FooterRow.FindControl("lblTotalFixedESIEMPR") as Label;
-                        lblTotalFixedESIEMPR.Text = Math.Round(totalfixedesiempr).ToString();
 
 
                         //43
