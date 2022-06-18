@@ -147,8 +147,10 @@
     <Content Include="Module_Reports\ArrearPaysheet.aspx" />
     <Content Include="Module_Reports\ArrearPaySheetReport.aspx" />
     <Content Include="Module_Reports\BonusReportNew.aspx" />
+    <Content Include="Module_Reports\ClientwiseBonusreport.aspx" />
     <Content Include="Module_Reports\GetDaywise_Android_Attendance_Employee_Wise.aspx" />
     <Content Include="Module_Reports\ImportEmpRoster.aspx" />
+    <Content Include="Module_Reports\PFZeroReport.aspx" />
     <Content Include="Module_Reports\PocketFaMECredentials.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
@@ -1988,6 +1990,12 @@
     <Compile Include="Module_Reports\ClientReports.aspx.designer.cs">
       <DependentUpon>ClientReports.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Module_Reports\ClientwiseBonusreport.aspx.cs">
+      <DependentUpon>ClientwiseBonusreport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\ClientwiseBonusreport.aspx.designer.cs">
+      <DependentUpon>ClientwiseBonusreport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module_Reports\ClientWiseEmployeeNetpayReports.aspx.cs">
       <DependentUpon>ClientWiseEmployeeNetpayReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2274,6 +2282,12 @@
     </Compile>
     <Compile Include="Module_Reports\PFDetailsReportNew.aspx.designer.cs">
       <DependentUpon>PFDetailsReportNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\PFZeroReport.aspx.cs">
+      <DependentUpon>PFZeroReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\PFZeroReport.aspx.designer.cs">
+      <DependentUpon>PFZeroReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Reports\PocketFaMECredentials.aspx.cs">
       <DependentUpon>PocketFaMECredentials.aspx</DependentUpon>
