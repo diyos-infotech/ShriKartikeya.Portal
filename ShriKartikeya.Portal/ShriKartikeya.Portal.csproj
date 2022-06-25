@@ -152,6 +152,7 @@
     <Content Include="Module_Reports\ImportEmpRoster.aspx" />
     <Content Include="Module_Reports\PFZeroReport.aspx" />
     <Content Include="Module_Reports\PocketFaMECredentials.aspx" />
+    <Content Include="Module_Reports\Salerystructure.aspx" />
     <Content Include="Module_Reports\SendMail.aspx" />
     <Content Include="Module_Reports\StopPaymentUpload.aspx" />
     <Content Include="Module_Reports\TDSReport.aspx" />
@@ -2348,6 +2349,13 @@
     </Compile>
     <Compile Include="Module_Reports\Reports.aspx.designer.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Reports\Salerystructure.aspx.cs">
+      <DependentUpon>Salerystructure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module_Reports\Salerystructure.aspx.designer.cs">
+      <DependentUpon>Salerystructure.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module_Reports\SampleAttendance.aspx.cs">
       <DependentUpon>SampleAttendance.aspx</DependentUpon>
