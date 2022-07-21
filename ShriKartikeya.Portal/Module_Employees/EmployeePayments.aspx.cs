@@ -2841,15 +2841,27 @@ namespace ShriKartikeya.Portal
                             //cellHead4.PaddingTop = 5;
                             cellHead4.PaddingBottom = 5;
                             tablewageslip.AddCell(cellHead4);
+                            string EmpGender = dt.Rows[i]["Gender"].ToString();
 
+                            if (EmpGender == "Male")
+                            {
+                                PdfPCell cellHead5 = new PdfPCell(new Phrase("NAME : " + dt.Rows[i]["EmpmName"].ToString() + "            S/o : " + dt.Rows[i]["EmpfatherName"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                cellHead5.HorizontalAlignment = 0;
+                                cellHead5.Colspan = 3;
+                                cellHead5.PaddingTop = 5;
+                                // cellHead5.MinimumHeight = 20;
+                                tablewageslip.AddCell(cellHead5);
+                            }
+                            else
+                            {
+                                PdfPCell cellHead5 = new PdfPCell(new Phrase("NAME : " + dt.Rows[i]["EmpmName"].ToString() + "            D/o : " + dt.Rows[i]["EmpfatherName"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                cellHead5.HorizontalAlignment = 0;
+                                cellHead5.Colspan = 3;
+                                cellHead5.PaddingTop = 5;
+                                // cellHead5.MinimumHeight = 20;
+                                tablewageslip.AddCell(cellHead5);
 
-
-                            PdfPCell cellHead5 = new PdfPCell(new Phrase("NAME : " + dt.Rows[i]["EmpmName"].ToString() + "            S/o : " + dt.Rows[i]["EmpfatherName"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
-                            cellHead5.HorizontalAlignment = 0;
-                            cellHead5.Colspan = 3;
-                            cellHead5.PaddingTop = 5;
-                            // cellHead5.MinimumHeight = 20;
-                            tablewageslip.AddCell(cellHead5);
+                            }
 
                             PdfPCell cellHead711 = new PdfPCell(new Phrase("Designation - " + dt.Rows[i]["Desgn"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                             cellHead711.HorizontalAlignment = 0;
@@ -5215,15 +5227,27 @@ namespace ShriKartikeya.Portal
                             cellHead4.Border = 0;
                             cellHead4.PaddingTop = -5;
                             tablewageslip.AddCell(cellHead4);
+                            string EmpGender = dt.Rows[i]["Gender"].ToString();
 
+                            if (EmpGender == "Male")
+                            {
+                                PdfPCell cellHead5 = new PdfPCell(new Phrase("NAME : " + dt.Rows[i]["EmpmName"].ToString() + "            S/o : " + dt.Rows[i]["EmpfatherName"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                cellHead5.HorizontalAlignment = 0;
+                                cellHead5.Colspan = 3;
+                                cellHead5.PaddingTop = 5;
+                                // cellHead5.MinimumHeight = 20;
+                                tablewageslip.AddCell(cellHead5);
+                            }
 
-
-                            PdfPCell cellHead5 = new PdfPCell(new Phrase("NAME : " + dt.Rows[i]["EmpmName"].ToString() + "            S/o : " + dt.Rows[i]["EmpfatherName"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
-                            cellHead5.HorizontalAlignment = 0;
-                            cellHead5.Colspan = 3;
-                            cellHead5.PaddingTop = 5;
-                            // cellHead5.MinimumHeight = 20;
-                            tablewageslip.AddCell(cellHead5);
+                            else
+                            {
+                                PdfPCell cellHead5 = new PdfPCell(new Phrase("NAME : " + dt.Rows[i]["EmpmName"].ToString() + "            D/o : " + dt.Rows[i]["EmpfatherName"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
+                                cellHead5.HorizontalAlignment = 0;
+                                cellHead5.Colspan = 3;
+                                cellHead5.PaddingTop = 5;
+                                // cellHead5.MinimumHeight = 20;
+                                tablewageslip.AddCell(cellHead5);
+                            }
 
                             PdfPCell cellHead711 = new PdfPCell(new Phrase("Designation - " + dt.Rows[i]["Desgn"].ToString(), FontFactory.GetFont(fontsyle, Fontsize, Font.NORMAL, BaseColor.BLACK)));
                             cellHead711.HorizontalAlignment = 0;
